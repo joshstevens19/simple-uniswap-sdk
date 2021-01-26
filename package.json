@@ -1,0 +1,25 @@
+{
+  "name": "uniswap-sdk",
+  "version": "1.0.0",
+  "description": "Simple easy to understand SDK for uniswap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshstevens19/uniswap-sdk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshstevens19/uniswap-sdk/issues"
+  },
+  "homepage": "https://github.com/joshstevens19/uniswap-sdk#readme",
+  "dependencies": {
+    "ethers": "^5.0.26"
+  },
+  "devDependencies": {
+    "ethereum-abi-types-generator": "^1.0.10"
+  }
+}
