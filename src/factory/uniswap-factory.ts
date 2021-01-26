@@ -29,6 +29,10 @@ export class UniswapFactory {
     // to do!
   }
 
+  public findBestRoute(routes: string[]): void {
+    // to do!
+  }
+
   public trade(): void {
     // to do!
   }
