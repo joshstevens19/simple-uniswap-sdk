@@ -8,7 +8,8 @@
     "gen-erc20-abi": "abi-types-generator ./src/ABI/erc-20-abi.json --output=./src/ABI/types --name=erc20-contract --provider=ethers_v5",
     "gen-uniswap-router-v2-abi": "abi-types-generator ./src/ABI/uniswap-router-v2.json --output=./src/ABI/types --name=uniswap-router --provider=ethers_v5",
     "gen-uniswap-factory-v2-abi": "abi-types-generator ./src/ABI/uniswap-factory-v2.json --output=./src/ABI/types --name=uniswap-factory --provider=ethers_v5",
-    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi"
+    "gen-uniswap-pair-v2-abi": "abi-types-generator ./src/ABI/uniswap-pair-v2.json --output=./src/ABI/types --name=uniswap-pair --provider=ethers_v5",
+    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi && npm run gen-uniswap-pair-v2-abi"
   },
   "repository": {
     "type": "git",
