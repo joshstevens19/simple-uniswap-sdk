@@ -19,6 +19,7 @@ import { Token } from '../token/models/token';
 import { BestRouteQuote } from './models/best-route-quote';
 import { PriceContext } from './models/price-context';
 import { UniswapPairContext } from './models/uniswap-pair-context';
+import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
 
 export class UniswapPairFactory {
   private _fromERC20TokenContract = this._uniswapPairContext.ethersProvider.getContract<ERC20ContractContext>(
@@ -27,6 +28,10 @@ export class UniswapPairFactory {
   );
 
   private _uniswapRouterFactory = new UniswapRouterFactory(
+    this._uniswapPairContext.ethersProvider
+  );
+
+  private _uniswapPairFactory = new UniswapPairContractFactory(
     this._uniswapPairContext.ethersProvider
   );
 
@@ -48,6 +53,13 @@ export class UniswapPairFactory {
    */
   public get fromToken(): Token {
     return this._uniswapPairContext.fromToken;
+  }
+
+  /**
+   * Get the contract calls
+   */
+  public get contractCalls(): UniswapPairContractFactory {
+    return this._uniswapPairFactory;
   }
 
   /**
