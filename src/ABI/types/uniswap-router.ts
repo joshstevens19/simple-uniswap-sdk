@@ -111,7 +111,7 @@ export interface UniswapRouter {
     amountBMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: true
@@ -132,7 +132,7 @@ export interface UniswapRouter {
     amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -154,7 +154,7 @@ export interface UniswapRouter {
     amountOut: BigNumberish,
     reserveIn: BigNumberish,
     reserveOut: BigNumberish,
-    overrides?: ContractCallOverrides,
+    overrides?: ContractCallOverrides
   ): Promise<BigNumber>;
   /**
    * Payable: false
@@ -169,7 +169,7 @@ export interface UniswapRouter {
     amountIn: BigNumberish,
     reserveIn: BigNumberish,
     reserveOut: BigNumberish,
-    overrides?: ContractCallOverrides,
+    overrides?: ContractCallOverrides
   ): Promise<BigNumber>;
   /**
    * Payable: false
@@ -182,7 +182,7 @@ export interface UniswapRouter {
   getAmountsIn(
     amountOut: BigNumberish,
     path: string[],
-    overrides?: ContractCallOverrides,
+    overrides?: ContractCallOverrides
   ): Promise<BigNumber[]>;
   /**
    * Payable: false
@@ -195,7 +195,7 @@ export interface UniswapRouter {
   getAmountsOut(
     amountIn: BigNumberish,
     path: string[],
-    overrides?: ContractCallOverrides,
+    overrides?: ContractCallOverrides
   ): Promise<BigNumber[]>;
   /**
    * Payable: false
@@ -210,7 +210,7 @@ export interface UniswapRouter {
     amountA: BigNumberish,
     reserveA: BigNumberish,
     reserveB: BigNumberish,
-    overrides?: ContractCallOverrides,
+    overrides?: ContractCallOverrides
   ): Promise<BigNumber>;
   /**
    * Payable: false
@@ -233,7 +233,7 @@ export interface UniswapRouter {
     amountBMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -254,7 +254,7 @@ export interface UniswapRouter {
     amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -275,7 +275,7 @@ export interface UniswapRouter {
     amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -304,7 +304,7 @@ export interface UniswapRouter {
     v: BigNumberish,
     r: Arrayish,
     s: Arrayish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -333,7 +333,7 @@ export interface UniswapRouter {
     v: BigNumberish,
     r: Arrayish,
     s: Arrayish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -364,7 +364,7 @@ export interface UniswapRouter {
     v: BigNumberish,
     r: Arrayish,
     s: Arrayish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: true
@@ -381,7 +381,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: true
@@ -398,7 +398,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: true
@@ -415,7 +415,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -434,7 +434,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -453,7 +453,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -472,7 +472,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -491,7 +491,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -510,7 +510,7 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
    * Payable: false
@@ -529,6 +529,6 @@ export interface UniswapRouter {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
+    overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
 }

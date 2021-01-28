@@ -53,4 +53,25 @@ export class WETH {
       name: 'Wrapped Ether',
     };
   }
+
+  /**
+   * Get WETH token info by chain id
+   * @param chainId The chain id
+   */
+  public static token(chainId: ChainId) {
+    switch (chainId) {
+      case ChainId.MAINNET:
+        return this.MAINNET();
+      case ChainId.ROPSTEN:
+        return this.ROPSTEN();
+      case ChainId.RINKEBY:
+        return this.RINKEBY();
+      case ChainId.GÖRLI:
+        return this.GORLI();
+      case ChainId.KOVAN:
+        return this.KOVAN();
+      default:
+        throw new Error(`${chainId} is not allowed`);
+    }
+  }
 }

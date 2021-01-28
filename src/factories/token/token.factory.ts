@@ -1,9 +1,9 @@
-import { ContractContext as ERC20ContractContext } from '../ABI/types/erc20-contract';
-import { ContractContext } from '../common/contract-context';
-import { EthersProvider } from '../ethers-provider';
+import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
+import { ContractContext } from '../../common/contract-context';
+import { EthersProvider } from '../../ethers-provider';
 import { Token } from './models/token';
 
-export class TokenService {
+export class TokenFactory {
   constructor(
     private _tokenContractAddress: string,
     private _ethersProvider: EthersProvider

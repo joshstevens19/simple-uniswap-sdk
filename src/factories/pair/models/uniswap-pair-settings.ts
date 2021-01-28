@@ -1,6 +1,6 @@
 export class UniswapPairSettings {
-  slippage?: number | undefined;
-  deadlineMinutes?: number | undefined;
+  slippage: number;
+  deadlineMinutes: number;
 
   constructor(settings?: {
     slippage?: number | undefined;

@@ -29,4 +29,11 @@ export class EthersProvider {
   public network(): providers.Network {
     return this._ethersProvider.network;
   }
+
+  /**
+   * Get the ethers provider
+   */
+  public get provider(): providers.JsonRpcProvider {
+    return this._ethersProvider;
+  }
 }

@@ -1,9 +1,9 @@
-import { EthersProvider } from './ethers-provider';
-import { UniswapFactoryContext } from './factory/models/uniswap-factory-context';
-import { UniswapFactory } from './factory/uniswap-factory';
-import { NetworkDetails } from './models/network-details';
+import { EthersProvider } from '../../ethers-provider';
+import { NetworkDetails } from '../../models/network-details';
+import { TokenFactory } from '../token/token.factory';
+import { UniswapPairContext } from './models/uniswap-pair-context';
 import { UniswapPairSettings } from './models/uniswap-pair-settings';
-import { TokenService } from './tokens/token.service';
+import { UniswapPairFactory } from './uniswap-pair.factory';
 
 export class UniswapPair {
   private _ethersProvider: EthersProvider;
@@ -11,6 +11,7 @@ export class UniswapPair {
   constructor(
     private _fromTokenContractAddress: string,
     private _toTokenContractAddress: string,
+    private _ethereumAddress: string,
     private _networkDetails: NetworkDetails,
     private _settings: UniswapPairSettings = new UniswapPairSettings()
   ) {
@@ -20,28 +21,29 @@ export class UniswapPair {
   /**
    * Create factory to be able to call methods on the 2 tokens
    */
-  public async createFactory(): Promise<UniswapFactory> {
-    const fromTokenContext = new TokenService(
+  public async createFactory(): Promise<UniswapPairFactory> {
+    const fromTokenContext = new TokenFactory(
       this._fromTokenContractAddress,
       this._ethersProvider
     );
 
     const fromToken = await fromTokenContext.getToken();
 
-    const toTokenContext = new TokenService(
+    const toTokenContext = new TokenFactory(
       this._toTokenContractAddress,
       this._ethersProvider
     );
 
     const toToken = await toTokenContext.getToken();
 
-    const uniswapFactoryContext: UniswapFactoryContext = {
+    const uniswapFactoryContext: UniswapPairContext = {
       fromToken,
       toToken,
+      ethereumAddress: this._ethereumAddress,
       settings: this._settings,
       ethersProvider: this._ethersProvider,
     };
 
-    return new UniswapFactory(uniswapFactoryContext);
+    return new UniswapPairFactory(uniswapFactoryContext);
   }
 }
