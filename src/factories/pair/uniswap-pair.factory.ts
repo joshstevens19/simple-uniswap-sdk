@@ -14,7 +14,7 @@ import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { WETH } from '../../common/weth';
 import { TradePath } from '../../enums/trade-path';
-import { UniswapRouterFactory } from '../router/uniswap-router.factory';
+import { UniswapRouterContractFactory } from '../router/uniswap-router-contract.factory';
 import { Token } from '../token/models/token';
 import { BestRouteQuote } from './models/best-route-quote';
 import { PriceContext } from './models/price-context';
@@ -27,7 +27,7 @@ export class UniswapPairFactory {
     this._uniswapPairContext.fromToken.contractAddress
   );
 
-  private _uniswapRouterFactory = new UniswapRouterFactory(
+  private _uniswapRouterContractFactory = new UniswapRouterContractFactory(
     this._uniswapPairContext.ethersProvider
   );
 
@@ -326,7 +326,7 @@ export class UniswapPairFactory {
 
     const hex = hexlify(convertedMinTokens);
 
-    return this._uniswapRouterFactory.swapExactETHForTokens(
+    return this._uniswapRouterContractFactory.swapExactETHForTokens(
       hex,
       routePathArray,
       this._uniswapPairContext.ethereumAddress,
@@ -349,7 +349,7 @@ export class UniswapPairFactory {
 
     const ethAmountOutWei = hexlify(parseEther(ethAmountOutMin));
 
-    return this._uniswapRouterFactory.swapExactTokensForETH(
+    return this._uniswapRouterContractFactory.swapExactTokensForETH(
       hexlify(amountIn),
       ethAmountOutWei,
       routePathArray,
@@ -372,7 +372,7 @@ export class UniswapPairFactory {
     const amountIn = tokenAmount.shiftedBy(this.fromToken.decimals);
     const amountMin = tokenAmountMin.shiftedBy(this.fromToken.decimals);
 
-    return this._uniswapRouterFactory.swapExactTokensForTokens(
+    return this._uniswapRouterContractFactory.swapExactTokensForTokens(
       hexlify(amountIn),
       hexlify(amountMin),
       routePathArray,

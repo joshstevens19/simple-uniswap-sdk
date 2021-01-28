@@ -3,7 +3,7 @@ import { ContractContext as FactoryContractContext } from '../../ABI/types/unisw
 import { ContractContext } from '../../common/contract-context';
 import { EthersProvider } from '../../ethers-provider';
 
-export class UniswapFactory {
+export class UniswapContractFactory {
   private _uniswapFactoryContract = this._ethersProvider.getContract<FactoryContractContext>(
     JSON.stringify(ContractContext.factoryAbi),
     ContractContext.factoryAddress
