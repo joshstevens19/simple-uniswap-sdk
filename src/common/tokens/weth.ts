@@ -1,4 +1,4 @@
-import { ChainId } from '../enums/chain-id';
+import { ChainId } from '../../enums/chain-id';
 
 /**
  * WETH token context

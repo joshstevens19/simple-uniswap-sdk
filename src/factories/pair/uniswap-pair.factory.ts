@@ -8,11 +8,11 @@ import {
 } from 'ethereum-multicall';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
+import { WETH } from '../../common/tokens/weth';
 import { formatEther } from '../../common/utils/format-ether';
 import { getCurrentUnixTime } from '../../common/utils/get-current-unix-time';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
-import { WETH } from '../../common/weth';
 import { TradePath } from '../../enums/trade-path';
 import { UniswapRouterContractFactory } from '../router/uniswap-router-contract.factory';
 import { Token } from '../token/models/token';
