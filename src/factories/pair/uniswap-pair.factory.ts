@@ -78,6 +78,11 @@ export class UniswapPairFactory {
           amountBigNumber,
           routes
         );
+      case TradePath.erc20ToErc20:
+        return await this.getTokenTradeAmountErc20ToErc20(
+          amountBigNumber,
+          routes
+        );
       default:
         throw new Error(`${this.tradePath()} is not defined`);
     }
@@ -166,6 +171,39 @@ export class UniswapPairFactory {
   }
 
   /**
+   * Get the token trade amount for erc20 > eth
+   * @param amount The amount
+   */
+  private async getTokenTradeAmountErc20ToEth(
+    amount: BigNumber,
+    routes: string[][]
+  ): Promise<PriceContext> {
+    return await this.findBestPriceAndPathErc20ToEth(amount, routes);
+  }
+
+  /**
+   * Gets how much token they will get for their trade minus all fees
+   * @param ethAmount The eth amount
+   */
+  private async getTokenTradeAmountEthToErc20(
+    ethAmount: BigNumber,
+    routes: string[][]
+  ): Promise<PriceContext> {
+    return await this.findBestPriceAndPathEthToErc20(ethAmount, routes);
+  }
+
+  /**
+   * Get the token trade amount for erc20 > erc20
+   * @param amount The amount
+   */
+  private async getTokenTradeAmountErc20ToErc20(
+    amount: BigNumber,
+    routes: string[][]
+  ): Promise<PriceContext> {
+    return await this.findBestPriceAndPathErc20ToErc20(amount, routes);
+  }
+
+  /**
    * finds the best price and path for Erc20ToEth
    * @param amount the erc20Token amount being sent
    */
@@ -199,25 +237,36 @@ export class UniswapPairFactory {
   }
 
   /**
-   * Get the token trade amount for erc20 > eth
-   * @param amount The amount
+   * finds the best price and path for Erc20ToErc20
+   * @param amount the erc20Token amount being sent
    */
-  private async getTokenTradeAmountErc20ToEth(
-    amount: BigNumber,
+  private async findBestPriceAndPathErc20ToErc20(
+    erc20Amount: BigNumber,
     routes: string[][]
   ): Promise<PriceContext> {
-    return await this.findBestPriceAndPathErc20ToEth(amount, routes);
-  }
+    const bestRouteQuote = await this.findBestRoute(erc20Amount, routes);
 
-  /**
-   * Gets how much token they will get for their trade minus all fees
-   * @param ethAmount The eth amount
-   */
-  private async getTokenTradeAmountEthToErc20(
-    ethAmount: BigNumber,
-    routes: string[][]
-  ): Promise<PriceContext> {
-    return await this.findBestPriceAndPathEthToErc20(ethAmount, routes);
+    const convertQuoteWithSlippage = new BigNumber(
+      bestRouteQuote.convertQuote
+    ).minus(
+      bestRouteQuote.convertQuote
+        .times(this._uniswapPairContext.settings.slippage)
+        .toFixed(this.fromToken.decimals)
+    );
+
+    const priceContext: PriceContext = {
+      baseConvertRequest: hexlify(erc20Amount),
+      minAmountConvertQuote: hexlify(convertQuoteWithSlippage),
+      expectedConvertQuote: hexlify(bestRouteQuote.convertQuote),
+      routePath: bestRouteQuote.routePathArray,
+      data: this.generateTradeDataErc20ToErc20(
+        erc20Amount,
+        convertQuoteWithSlippage,
+        bestRouteQuote.routePathArray
+      ),
+    };
+
+    return priceContext;
   }
 
   /**
@@ -276,21 +325,44 @@ export class UniswapPairFactory {
   /**
    * Generate trade amount erc20 > eth
    * @param tokenAmount The token amount
-   * @param ethAmountOut The eth in eth not wei this converts it
+   * @param ethAmountOutMin The min eth in eth not wei this converts it
    * @param routePathArray The route path array
    */
   private generateTradeDataErc20ToEth(
     tokenAmount: BigNumber,
-    ethAmountOut: BigNumber,
+    ethAmountOutMin: BigNumber,
     routePathArray: string[]
   ): string {
     const amountIn = tokenAmount.shiftedBy(this.fromToken.decimals);
 
-    const ethAmountOutWei = hexlify(parseEther(ethAmountOut));
+    const ethAmountOutWei = hexlify(parseEther(ethAmountOutMin));
 
     return this._uniswapRouterFactory.swapExactTokensForETH(
       hexlify(amountIn),
       ethAmountOutWei,
+      routePathArray,
+      this._uniswapPairContext.ethereumAddress,
+      this.generateTradeDeadlineUnixTime()
+    );
+  }
+
+  /**
+   * Generate trade amount erc20 > erc20
+   * @param tokenAmount The token amount
+   * @param tokenAmountOut The min token amount out
+   * @param routePathArray The route path array
+   */
+  private generateTradeDataErc20ToErc20(
+    tokenAmount: BigNumber,
+    tokenAmountMin: BigNumber,
+    routePathArray: string[]
+  ): string {
+    const amountIn = tokenAmount.shiftedBy(this.fromToken.decimals);
+    const amountMin = tokenAmountMin.shiftedBy(this.fromToken.decimals);
+
+    return this._uniswapRouterFactory.swapExactTokensForTokens(
+      hexlify(amountIn),
+      hexlify(amountMin),
       routePathArray,
       this._uniswapPairContext.ethereumAddress,
       this.generateTradeDeadlineUnixTime()
