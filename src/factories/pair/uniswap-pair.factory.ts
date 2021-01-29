@@ -1,22 +1,16 @@
 import BigNumber from 'bignumber.js';
-import {
-  CallReturnContext,
-  ContractCallContext,
-  ContractCallResults,
-  ContractCallReturnContext,
-  Multicall,
-} from 'ethereum-multicall';
+import { Multicall } from 'ethereum-multicall';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
-import { WETH } from '../../common/tokens/weth';
-import { formatEther } from '../../common/utils/format-ether';
 import { getCurrentUnixTime } from '../../common/utils/get-current-unix-time';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
+import { getTradePath } from '../../common/utils/trade-path';
 import { TradePath } from '../../enums/trade-path';
+import { RouteQuote } from '../router/models/route-quote';
 import { UniswapRouterContractFactory } from '../router/uniswap-router-contract.factory';
+import { UniswapRouterFactory } from '../router/uniswap-router.factory';
 import { Token } from '../token/models/token';
-import { BestRouteQuote } from './models/best-route-quote';
 import { PriceContext } from './models/price-context';
 import { UniswapPairContext } from './models/uniswap-pair-context';
 import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
@@ -32,6 +26,12 @@ export class UniswapPairFactory {
   );
 
   private _uniswapPairFactory = new UniswapPairContractFactory(
+    this._uniswapPairContext.ethersProvider
+  );
+
+  private _uniswapRouterFactory = new UniswapRouterFactory(
+    this._uniswapPairContext.fromToken,
+    this._uniswapPairContext.toToken,
     this._uniswapPairContext.ethersProvider
   );
 
@@ -68,10 +68,7 @@ export class UniswapPairFactory {
    * @amount The amount you want to swap, this is the FROM token amount.
    * @routes The routes it find the best route to take
    */
-  public async trade(
-    amount: string,
-    routes: string[][]
-  ): Promise<PriceContext> {
+  public async trade(amount: string): Promise<PriceContext> {
     const amountBigNumber = new BigNumber(amount);
     switch (this.tradePath()) {
       case TradePath.erc20ToEth:
@@ -81,59 +78,26 @@ export class UniswapPairFactory {
             `${this._uniswapPairContext.ethereumAddress} allowance to move ${this.fromToken.contractAddress}(${this.fromToken.name}) is less then the amount you want to move. Allowance is ${allowance}`
           );
         }
-        return await this.getTokenTradeAmountErc20ToEth(
-          amountBigNumber,
-          routes
-        );
+        return await this.getTokenTradeAmountErc20ToEth(amountBigNumber);
       case TradePath.ethToErc20:
-        return await this.getTokenTradeAmountEthToErc20(
-          amountBigNumber,
-          routes
-        );
+        return await this.getTokenTradeAmountEthToErc20(amountBigNumber);
       case TradePath.erc20ToErc20:
-        return await this.getTokenTradeAmountErc20ToErc20(
-          amountBigNumber,
-          routes
-        );
+        return await this.getTokenTradeAmountErc20ToErc20(amountBigNumber);
       default:
         throw new Error(`${this.tradePath()} is not defined`);
     }
   }
 
+  public get routes(): UniswapRouterFactory {
+    return this._uniswapRouterFactory;
+  }
+
   /**
    * Find the best route rate out of all the route quotes
    * @param amountToTrade The amount to trade
-   * @param routes The routes you want to check
    */
-  public async findBestRoute(
-    amountToTrade: BigNumber,
-    routes: string[][]
-  ): Promise<BestRouteQuote> {
-    const tradeAmount = this.formatAmountToTrade(amountToTrade);
-
-    const contractCallContext: ContractCallContext = {
-      reference: 'uniswap',
-      contractAddress: ContractContext.routerAddress,
-      abi: ContractContext.routerAbi,
-      calls: [],
-    };
-
-    for (let i = 0; i < routes.length; i++) {
-      const routeCombo = routes[i];
-
-      contractCallContext.calls.push({
-        reference: `route${i}`,
-        methodName: 'getAmountsOut',
-        methodParameters: [tradeAmount, routeCombo],
-      });
-    }
-
-    const contractCallResults = await this._multicall.call(contractCallContext);
-
-    return this.filterBestRouteQuoteFromResults(
-      contractCallContext,
-      contractCallResults
-    );
+  public async findBestRoute(amountToTrade: BigNumber): Promise<RouteQuote> {
+    return await this.routes.findBestRoute(amountToTrade);
   }
 
   /**
@@ -187,10 +151,9 @@ export class UniswapPairFactory {
    * @param amount The amount
    */
   private async getTokenTradeAmountErc20ToEth(
-    amount: BigNumber,
-    routes: string[][]
+    amount: BigNumber
   ): Promise<PriceContext> {
-    return await this.findBestPriceAndPathErc20ToEth(amount, routes);
+    return await this.findBestPriceAndPathErc20ToEth(amount);
   }
 
   /**
@@ -198,10 +161,9 @@ export class UniswapPairFactory {
    * @param ethAmount The eth amount
    */
   private async getTokenTradeAmountEthToErc20(
-    ethAmount: BigNumber,
-    routes: string[][]
+    ethAmount: BigNumber
   ): Promise<PriceContext> {
-    return await this.findBestPriceAndPathEthToErc20(ethAmount, routes);
+    return await this.findBestPriceAndPathEthToErc20(ethAmount);
   }
 
   /**
@@ -209,10 +171,9 @@ export class UniswapPairFactory {
    * @param amount The amount
    */
   private async getTokenTradeAmountErc20ToErc20(
-    amount: BigNumber,
-    routes: string[][]
+    amount: BigNumber
   ): Promise<PriceContext> {
-    return await this.findBestPriceAndPathErc20ToErc20(amount, routes);
+    return await this.findBestPriceAndPathErc20ToErc20(amount);
   }
 
   /**
@@ -220,10 +181,9 @@ export class UniswapPairFactory {
    * @param amount the erc20Token amount being sent
    */
   private async findBestPriceAndPathErc20ToEth(
-    erc20Amount: BigNumber,
-    routes: string[][]
+    erc20Amount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this.findBestRoute(erc20Amount, routes);
+    const bestRouteQuote = await this.findBestRoute(erc20Amount);
 
     const convertQuoteWithSlippage = new BigNumber(
       bestRouteQuote.convertQuote
@@ -253,10 +213,9 @@ export class UniswapPairFactory {
    * @param amount the erc20Token amount being sent
    */
   private async findBestPriceAndPathErc20ToErc20(
-    erc20Amount: BigNumber,
-    routes: string[][]
+    erc20Amount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this.findBestRoute(erc20Amount, routes);
+    const bestRouteQuote = await this.findBestRoute(erc20Amount);
 
     const convertQuoteWithSlippage = new BigNumber(
       bestRouteQuote.convertQuote
@@ -286,10 +245,9 @@ export class UniswapPairFactory {
    * @param ethAmount The eth amount
    */
   private async findBestPriceAndPathEthToErc20(
-    ethAmount: BigNumber,
-    routes: string[][]
+    ethAmount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this.findBestRoute(ethAmount, routes);
+    const bestRouteQuote = await this.findBestRoute(ethAmount);
 
     const convertQuoteWithSlippage = new BigNumber(
       bestRouteQuote.convertQuote
@@ -382,144 +340,11 @@ export class UniswapPairFactory {
   }
 
   /**
-   * Filer best route from results
-   * @param uniswapFactoryContext The uniswap factory context
-   * @param contractCallContext The contract call context
-   * @param contractCallResults The contract call results
-   */
-  private filterBestRouteQuoteFromResults(
-    contractCallContext: ContractCallContext,
-    contractCallResults: ContractCallResults
-  ): BestRouteQuote {
-    const uniswapResults =
-      contractCallResults.results[contractCallContext.reference];
-
-    return this.filterBestRouteFromResults(uniswapResults);
-  }
-
-  /**
-   * Work out the best route from results
-   * @param uniswapFactoryContext The uniswap factory context
-   * @param contractCallReturnContext The contract call return context
-   */
-  private filterBestRouteFromResults(
-    contractCallReturnContext: ContractCallReturnContext
-  ): BestRouteQuote {
-    const tradePath = this.tradePath();
-
-    let result: BestRouteQuote | undefined;
-
-    for (
-      let i = 0;
-      i < contractCallReturnContext.callsReturnContext.length;
-      i++
-    ) {
-      const callReturnContext = contractCallReturnContext.callsReturnContext[i];
-      let newResult;
-
-      switch (tradePath) {
-        case TradePath.ethToErc20:
-          newResult = this.buildBestRouteQuoteForEthToErc20(callReturnContext);
-          break;
-        case TradePath.erc20ToEth:
-          newResult = this.buildBestRouteQuoteForErc20ToEth(callReturnContext);
-          break;
-        case TradePath.erc20ToErc20:
-          newResult = this.buildBestRouteQuoteForErc20ToErc20(
-            callReturnContext
-          );
-          break;
-        default:
-          throw new Error(
-            `${tradePath} not found in InternalTradePath defined`
-          );
-      }
-
-      if (
-        !result ||
-        (result && newResult.convertQuote.isGreaterThan(result.convertQuote))
-      ) {
-        result = newResult;
-      }
-    }
-
-    if (!result) {
-      throw new Error('No quote found');
-    }
-
-    return result;
-  }
-
-  /**
-   * Build up the best route quote for erc20 > erc20
-   * @param callReturnContext The call return context
-   */
-  private buildBestRouteQuoteForErc20ToErc20(
-    callReturnContext: CallReturnContext
-  ): BestRouteQuote {
-    return this.buildBestRouteQuoteForEthToErc20(callReturnContext);
-  }
-
-  /**
-   * Build up the best route quote for eth > erc20
-   * @param callReturnContext The call return context
-   */
-  private buildBestRouteQuoteForEthToErc20(
-    callReturnContext: CallReturnContext
-  ): BestRouteQuote {
-    const convertQuoteUnformatted = new BigNumber(
-      callReturnContext.returnValues[
-        callReturnContext.returnValues.length - 1
-      ].hex
-    );
-    return {
-      convertQuote: convertQuoteUnformatted.shiftedBy(
-        this.toToken.decimals * -1
-      ),
-      // route array is always in the 1 index of the method parameters
-      routePathArray: callReturnContext.methodParameters[1],
-    };
-  }
-
-  /**
-   * Build up the best route quote for erc20 > eth
-   * @param callReturnContext The call return context
-   */
-  private buildBestRouteQuoteForErc20ToEth(
-    callReturnContext: CallReturnContext
-  ): BestRouteQuote {
-    const convertQuoteUnformatted = new BigNumber(
-      callReturnContext.returnValues[
-        callReturnContext.returnValues.length - 1
-      ].hex
-    );
-    return {
-      convertQuote: new BigNumber(formatEther(convertQuoteUnformatted)),
-      // route array is always in the 1 index of the method parameters
-      routePathArray: callReturnContext.methodParameters[1],
-    };
-  }
-
-  /**
    * Get the trade path
    */
   private tradePath(): TradePath {
     const network = this._uniswapPairContext.ethersProvider.network();
-    if (
-      this.fromToken.contractAddress ===
-      WETH.token(network.chainId).contractAddress
-    ) {
-      return TradePath.ethToErc20;
-    }
-
-    if (
-      this.toToken.contractAddress ===
-      WETH.token(network.chainId).contractAddress
-    ) {
-      return TradePath.erc20ToEth;
-    }
-
-    return TradePath.erc20ToErc20;
+    return getTradePath(network.chainId, this.fromToken, this.toToken);
   }
 
   /**
@@ -529,27 +354,5 @@ export class UniswapPairFactory {
     const timestamp =
       getCurrentUnixTime() + this._uniswapPairContext.settings.deadlineMinutes;
     return timestamp.toString();
-  }
-
-  /**
-   * Format amount to trade into callable formats
-   * @param amountToTrade The amount to trade
-   * @param uniswapFactoryContext The uniswap factory context
-   */
-  private formatAmountToTrade(amountToTrade: BigNumber): string {
-    switch (this.tradePath()) {
-      case TradePath.ethToErc20:
-        const amountToTradeWei = parseEther(amountToTrade);
-        return hexlify(amountToTradeWei);
-      case TradePath.erc20ToEth:
-      case TradePath.ethToErc20:
-        return hexlify(
-          amountToTrade.shiftedBy(this._uniswapPairContext.fromToken.decimals)
-        );
-      default:
-        throw new Error(
-          `Internal trade path ${this.tradePath()} is not supported`
-        );
-    }
   }
 }
