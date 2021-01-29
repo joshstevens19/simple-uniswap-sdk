@@ -1,5 +1,5 @@
+import { ChainId } from '../../enums/chain-id';
 import { EthersProvider } from '../../ethers-provider';
-import { NetworkDetails } from '../../models/network-details';
 import { TokenFactory } from '../token/token.factory';
 import { UniswapPairContext } from './models/uniswap-pair-context';
 import { UniswapPairSettings } from './models/uniswap-pair-settings';
@@ -12,10 +12,10 @@ export class UniswapPair {
     private _fromTokenContractAddress: string,
     private _toTokenContractAddress: string,
     private _ethereumAddress: string,
-    private _networkDetails: NetworkDetails,
+    private _chainIdOrProviderUrl: ChainId | string,
     private _settings: UniswapPairSettings = new UniswapPairSettings()
   ) {
-    this._ethersProvider = new EthersProvider(this._networkDetails);
+    this._ethersProvider = new EthersProvider(this._chainIdOrProviderUrl);
   }
 
   /**

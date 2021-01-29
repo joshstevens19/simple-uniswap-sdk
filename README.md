@@ -17,7 +17,7 @@ NEED TO PUBLISH NPM PACKAGE
 The uniswap pair factory is an instance which is joint together with the `from` token and the `to` token, it is all self contained in the instance and exposes easy methods for you to call to start using uniswap.
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
@@ -25,18 +25,13 @@ const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   toTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  // you can also put your providerUrl in here if you wanted
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -66,7 +61,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
@@ -74,18 +69,12 @@ const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   toTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -124,7 +113,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
@@ -132,18 +121,20 @@ const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
+
 
 const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   toTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET,
+  {
+    // if not supplied it use `0.005` which is 0.5%;
+    // all figures
+    slippage: 0.005,
+    // if not supplied it will use 20 a deadline minutes
+    deadlineMinutes: 20
+  }
 );
 
 // now to create the factory you just do
@@ -204,7 +195,7 @@ export interface PriceContext {
 #### ERC20 > ERC20
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
@@ -212,18 +203,12 @@ const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   toTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -268,7 +253,7 @@ console.log(trade);
 #### ETH > ERC20
 
 ```ts
-import { UniswapPair, WETH } from 'uniswap-sdk';
+import { UniswapPair, WETH, ChainId } from 'uniswap-sdk';
 
 // use the WETH import from the lib, bare in mind you should use the
 // network which yours on, so if your on rinkeby you should use
@@ -278,18 +263,12 @@ const fromTokenContractAddress = WETH.MAINNET().contractAddress;
 const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   toTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -325,7 +304,7 @@ console.log(trade);
 #### ERC20 > ETH
 
 ```ts
-import { UniswapPair, WETH } from 'uniswap-sdk';
+import { UniswapPair, WETH, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'
@@ -335,18 +314,12 @@ const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'
 const toTokenContractAddress = WETH.MAINNET().contractAddress
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   toTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -390,7 +363,7 @@ async hasGotEnoughAllowance(amount: string): Promise<boolean>
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -398,18 +371,12 @@ const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   fromTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -433,7 +400,7 @@ async allowance(): Promise<boolean>
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -441,18 +408,12 @@ const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   fromTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -474,7 +435,7 @@ generateApproveUniswapAllowanceData(): string
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -482,18 +443,12 @@ const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   fromTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -515,7 +470,7 @@ async findBestRoute(amountToTrade: string): Promise<RouteQuote>
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -523,18 +478,12 @@ const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   fromTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -577,7 +526,7 @@ async findAllPossibleRoutesWithQuote(amountToTrade: string): Promise<RouteQuote[
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -585,18 +534,12 @@ const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   fromTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -781,7 +724,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -789,18 +732,12 @@ const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   fromTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -968,7 +905,7 @@ export interface UniswapPair {
 #### In UniswapPairFactory
 
 ```ts
-import { UniswapPair } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -976,18 +913,12 @@ const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-// your network ID or if you want to only supply your node you can here as well
-// if you supply your providerUrl you do not need to supply the chain id.
-const networkDetails: NetworkDetails = {
-  id: ChainId.MAINNET,
-  providerUrl: 'YOUR_PROVIDER_URL',
-};
 
 const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   fromTokenContractAddress,
   ethereumAddress,
-  networkDetails
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do

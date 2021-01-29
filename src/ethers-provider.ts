@@ -1,11 +1,16 @@
 import { Contract, ContractInterface, providers } from 'ethers';
-import { NetworkDetails } from './models/network-details';
+import { ChainId } from './enums/chain-id';
 
 export class EthersProvider {
-  private _ethersProvider: providers.JsonRpcProvider;
-  constructor(private _networkDetails: NetworkDetails) {
-    this._ethersProvider = new providers.JsonRpcProvider(
-      this._networkDetails.providerUrl // TODO USE FALLBACK NODE IF NONE PASSED IN
+  private _ethersProvider: providers.BaseProvider;
+  constructor(private _chainIdOrProviderUrl: ChainId | string) {
+    if (typeof this._chainIdOrProviderUrl === 'string') {
+      this._ethersProvider = new providers.JsonRpcProvider(
+        this._chainIdOrProviderUrl
+      );
+    }
+    this._ethersProvider = new providers.InfuraProvider(
+      this._chainIdOrProviderUrl
     );
   }
 
@@ -33,7 +38,7 @@ export class EthersProvider {
   /**
    * Get the ethers provider
    */
-  public get provider(): providers.JsonRpcProvider {
+  public get provider(): providers.BaseProvider {
     return this._ethersProvider;
   }
 }

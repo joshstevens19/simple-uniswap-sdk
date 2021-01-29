@@ -1,7 +1,7 @@
-import { UniswapContractFactory } from './uniswap-contract.factory';
+// import { UniswapContractFactory } from './uniswap-contract.factory';
 
-export class UniswapContractFactoryPublic extends UniswapContractFactory {
-  constructor() {
-    super();
-  }
-}
+// export class UniswapContractFactoryPublic extends UniswapContractFactory {
+//   constructor() {
+//     super();
+//   }
+// }

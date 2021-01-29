@@ -1,7 +1,7 @@
-import { TokenFactory } from './token.factory';
+// import { TokenFactory } from './token.factory';
 
-export class TokenFactoryPublic extends TokenFactory {
-  constructor() {
-    super();
-  }
-}
+// export class TokenFactoryPublic extends TokenFactory {
+//   constructor() {
+//     super();
+//   }
+// }
