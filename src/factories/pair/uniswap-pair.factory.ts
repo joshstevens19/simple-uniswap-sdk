@@ -1,5 +1,4 @@
 import BigNumber from 'bignumber.js';
-import { Multicall } from 'ethereum-multicall';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { getCurrentUnixTime } from '../../common/utils/get-current-unix-time';
@@ -35,10 +34,6 @@ export class UniswapPairFactory {
     this._uniswapPairContext.ethersProvider
   );
 
-  private _multicall = new Multicall({
-    ethersProvider: this._uniswapPairContext.ethersProvider.provider,
-  });
-
   constructor(private _uniswapPairContext: UniswapPairContext) {}
 
   /**
@@ -66,7 +61,6 @@ export class UniswapPairFactory {
    * Generate trade - this will return amount but you still need to send the transaction
    * if you want it to be executed on the blockchain
    * @amount The amount you want to swap, this is the FROM token amount.
-   * @routes The routes it find the best route to take
    */
   public async trade(amount: string): Promise<PriceContext> {
     const amountBigNumber = new BigNumber(amount);
@@ -94,7 +88,7 @@ export class UniswapPairFactory {
     }
   }
 
-  public get routes(): UniswapRouterFactory {
+  private get _routes(): UniswapRouterFactory {
     return this._uniswapRouterFactory;
   }
 
@@ -102,8 +96,27 @@ export class UniswapPairFactory {
    * Find the best route rate out of all the route quotes
    * @param amountToTrade The amount to trade
    */
-  public async findBestRoute(amountToTrade: BigNumber): Promise<RouteQuote> {
-    return await this.routes.findBestRoute(amountToTrade);
+  public async findBestRoute(amountToTrade: string): Promise<RouteQuote> {
+    return await this._routes.findBestRoute(new BigNumber(amountToTrade));
+  }
+
+  /**
+   * Find the best route rate out of all the route quotes
+   * @param amountToTrade The amount to trade
+   */
+  public async findAllPossibleRoutesWithQuote(
+    amountToTrade: string
+  ): Promise<RouteQuote[]> {
+    return await this._routes.getAllPossibleRoutesWithQuotes(
+      new BigNumber(amountToTrade)
+    );
+  }
+
+  /**
+   * Find all possible routes
+   */
+  public async findAllPossibleRoutes(): Promise<Token[][]> {
+    return await this._routes.getAllPossibleRoutes();
   }
 
   /**
@@ -112,6 +125,10 @@ export class UniswapPairFactory {
    * @param amount The amount you want to swap
    */
   public async hasGotEnoughAllowance(amount: string): Promise<boolean> {
+    if (this.tradePath() === TradePath.ethToErc20) {
+      return true;
+    }
+
     const allowance = await this.allowance();
 
     const bigNumberAllowance = new BigNumber(allowance).shiftedBy(
@@ -130,6 +147,10 @@ export class UniswapPairFactory {
    * on the users behalf. Only valid when the `fromToken` is a ERC20 token.
    */
   public async allowance(): Promise<string> {
+    if (this.tradePath() === TradePath.ethToErc20) {
+      return '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+    }
+
     const allowance = await this._fromERC20TokenContract.allowance(
       this._uniswapPairContext.ethereumAddress,
       ContractContext.routerAddress
@@ -143,6 +164,12 @@ export class UniswapPairFactory {
    * This will return the data for you to send as a transaction
    */
   public generateApproveUniswapAllowanceData(): string {
+    if (this.tradePath() === TradePath.ethToErc20) {
+      throw new Error(
+        'You do not need to generate approve uniswap allowance when doing eth > erc20'
+      );
+    }
+
     return this._fromERC20TokenContract.interface.encodeFunctionData(
       'approve',
       [
@@ -189,7 +216,7 @@ export class UniswapPairFactory {
   private async findBestPriceAndPathErc20ToEth(
     erc20Amount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this.findBestRoute(erc20Amount);
+    const bestRouteQuote = await this._routes.findBestRoute(erc20Amount);
 
     const convertQuoteWithSlippage = new BigNumber(
       bestRouteQuote.convertQuote
@@ -200,9 +227,11 @@ export class UniswapPairFactory {
     );
 
     const priceContext: PriceContext = {
-      baseConvertRequest: hexlify(erc20Amount),
-      minAmountConvertQuote: hexlify(convertQuoteWithSlippage),
-      expectedConvertQuote: hexlify(bestRouteQuote.convertQuote),
+      baseConvertRequest: erc20Amount.toFixed(),
+      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
+      expectedConvertQuote: bestRouteQuote.convertQuote.toFixed(),
+      routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
+      routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
       data: this.generateTradeDataErc20ToEth(
         erc20Amount,
@@ -221,7 +250,7 @@ export class UniswapPairFactory {
   private async findBestPriceAndPathErc20ToErc20(
     erc20Amount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this.findBestRoute(erc20Amount);
+    const bestRouteQuote = await this._routes.findBestRoute(erc20Amount);
 
     const convertQuoteWithSlippage = new BigNumber(
       bestRouteQuote.convertQuote
@@ -232,9 +261,11 @@ export class UniswapPairFactory {
     );
 
     const priceContext: PriceContext = {
-      baseConvertRequest: hexlify(erc20Amount),
-      minAmountConvertQuote: hexlify(convertQuoteWithSlippage),
-      expectedConvertQuote: hexlify(bestRouteQuote.convertQuote),
+      baseConvertRequest: erc20Amount.toFixed(),
+      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
+      expectedConvertQuote: bestRouteQuote.convertQuote.toFixed(),
+      routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
+      routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
       data: this.generateTradeDataErc20ToErc20(
         erc20Amount,
@@ -253,7 +284,7 @@ export class UniswapPairFactory {
   private async findBestPriceAndPathEthToErc20(
     ethAmount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this.findBestRoute(ethAmount);
+    const bestRouteQuote = await this._routes.findBestRoute(ethAmount);
 
     const convertQuoteWithSlippage = new BigNumber(
       bestRouteQuote.convertQuote
@@ -264,9 +295,11 @@ export class UniswapPairFactory {
     );
 
     const priceContext: PriceContext = {
-      baseConvertRequest: hexlify(ethAmount),
-      minAmountConvertQuote: hexlify(convertQuoteWithSlippage),
-      expectedConvertQuote: hexlify(bestRouteQuote.convertQuote),
+      baseConvertRequest: ethAmount.toFixed(),
+      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
+      expectedConvertQuote: bestRouteQuote.convertQuote.toFixed(),
+      routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
+      routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
       data: this.generateTradeDataEthToErc20(
         convertQuoteWithSlippage,
@@ -334,7 +367,7 @@ export class UniswapPairFactory {
     routePathArray: string[]
   ): string {
     const amountIn = tokenAmount.shiftedBy(this.fromToken.decimals);
-    const amountMin = tokenAmountMin.shiftedBy(this.fromToken.decimals);
+    const amountMin = tokenAmountMin.shiftedBy(this.toToken.decimals);
 
     return this._uniswapRouterContractFactory.swapExactTokensForTokens(
       hexlify(amountIn),

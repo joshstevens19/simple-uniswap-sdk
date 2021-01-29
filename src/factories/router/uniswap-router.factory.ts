@@ -80,8 +80,6 @@ export class UniswapRouterFactory {
 
     const results = contractCallResults.results[contractCallContext.reference];
 
-    console.log(results.callsReturnContext);
-
     const availablePairs = results.callsReturnContext.filter(
       (c) => c.returnValues[0] !== '0x0000000000000000000000000000000000000000'
     );
@@ -189,8 +187,6 @@ export class UniswapRouterFactory {
         )
     );
 
-    console.log(jointCompatibleRoutes);
-
     const routes: Token[][] = [];
     if (
       fromTokenRoutes.pairs.fromTokenPairs!.find(
@@ -248,8 +244,6 @@ export class UniswapRouterFactory {
         }
       }
     }
-
-    // console.log(JSON.stringify(routes));
 
     return routes;
   }

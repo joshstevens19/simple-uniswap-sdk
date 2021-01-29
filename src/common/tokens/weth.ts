@@ -1,10 +1,11 @@
 import { ChainId } from '../../enums/chain-id';
+import { Token } from '../../factories/token/models/token';
 
 /**
  * WETH token context
  */
 export class WETH {
-  public static MAINNET() {
+  public static MAINNET(): Token {
     return {
       chainId: ChainId.MAINNET,
       contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',

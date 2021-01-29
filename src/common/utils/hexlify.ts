@@ -6,10 +6,6 @@ import { hexlify as EthersHexlify } from 'ethers/lib/utils';
  * Convert to hex
  * @param value The value
  */
-export function hexlify(value: number | Uint8Array | BigNumber): string {
-  if (value instanceof BigNumber) {
-    return EthersHexlify(EthersBigNumber.from(value.toFixed()));
-  }
-
-  return EthersHexlify(EthersBigNumber.from(value));
+export function hexlify(value: BigNumber): string {
+  return EthersHexlify(EthersBigNumber.from(value.toFixed()));
 }
