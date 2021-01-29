@@ -1,4 +1,4 @@
-import { BigNumberish } from 'ethers';
+import { BigNumberish, BytesLike } from 'ethers';
 import { ContractContext as RouterContractContext } from '../../ABI/types/uniswap-router';
 import { ContractContext } from '../../common/contract-context';
 import { EthersProvider } from '../../ethers-provider';
@@ -10,6 +10,202 @@ export class UniswapRouterContractFactory {
   );
 
   constructor(private _ethersProvider: EthersProvider) {}
+
+  public addLiquidity(
+    tokenA: string,
+    tokenB: string,
+    amountADesired: BigNumberish,
+    amountBDesired: BigNumberish,
+    amountAMin: BigNumberish,
+    amountBMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'addLiquidity',
+      [
+        tokenA,
+        tokenB,
+        amountADesired,
+        amountBDesired,
+        amountAMin,
+        amountBMin,
+        to,
+        deadline,
+      ]
+    );
+  }
+
+  public addLiquidityETH(
+    token: string,
+    amountTokenDesired: BigNumberish,
+    amountTokenMin: BigNumberish,
+    amountETHMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'addLiquidityETH',
+      [token, amountTokenDesired, amountTokenMin, amountETHMin, to, deadline]
+    );
+  }
+
+  public async factory(): Promise<string> {
+    return await this._uniswapRouterContract.factory();
+  }
+
+  public async getAmountsOut(
+    amountIn: BigNumberish,
+    path: string[]
+  ): Promise<string[]> {
+    const amounts = await this._uniswapRouterContract.getAmountsOut(
+      amountIn,
+      path
+    );
+    return amounts.map((c) => c.toHexString());
+  }
+
+  public async quote(
+    amountA: BigNumberish,
+    reserveA: BigNumberish,
+    reserveB: BigNumberish
+  ): Promise<string> {
+    return (
+      await this._uniswapRouterContract.quote(amountA, reserveA, reserveB)
+    ).toHexString();
+  }
+
+  public removeLiquidity(
+    tokenA: string,
+    tokenB: string,
+    liquidity: BigNumberish,
+    amountAMin: BigNumberish,
+    amountBMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'removeLiquidity',
+      [tokenA, tokenB, liquidity, amountAMin, amountBMin, to, deadline]
+    );
+  }
+
+  public removeLiquidityETH(
+    token: string,
+    liquidity: BigNumberish,
+    amountTokenMin: BigNumberish,
+    amountETHMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'removeLiquidity',
+      [token, liquidity, amountTokenMin, amountETHMin, to, deadline]
+    );
+  }
+
+  public removeLiquidityETHSupportingFeeOnTransferTokens(
+    token: string,
+    liquidity: BigNumberish,
+    amountTokenMin: BigNumberish,
+    amountETHMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'removeLiquidityETHSupportingFeeOnTransferTokens',
+      [token, liquidity, amountTokenMin, amountETHMin, to, deadline]
+    );
+  }
+
+  public removeLiquidityETHWithPermit(
+    token: string,
+    liquidity: BigNumberish,
+    amountTokenMin: BigNumberish,
+    amountETHMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish,
+    approveMax: boolean,
+    v: BigNumberish,
+    r: BytesLike,
+    s: BytesLike
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'removeLiquidityETHWithPermit',
+      [
+        token,
+        liquidity,
+        amountTokenMin,
+        amountETHMin,
+        to,
+        deadline,
+        approveMax,
+        v,
+        r,
+        s,
+      ]
+    );
+  }
+
+  public removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
+    token: string,
+    liquidity: BigNumberish,
+    amountTokenMin: BigNumberish,
+    amountETHMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish,
+    approveMax: boolean,
+    v: BigNumberish,
+    r: BytesLike,
+    s: BytesLike
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens',
+      [
+        token,
+        liquidity,
+        amountTokenMin,
+        amountETHMin,
+        to,
+        deadline,
+        approveMax,
+        v,
+        r,
+        s,
+      ]
+    );
+  }
+
+  removeLiquidityWithPermit(
+    tokenA: string,
+    tokenB: string,
+    liquidity: BigNumberish,
+    amountAMin: BigNumberish,
+    amountBMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish,
+    approveMax: boolean,
+    v: BigNumberish,
+    r: BytesLike,
+    s: BytesLike
+  ): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'removeLiquidityWithPermit',
+      [
+        tokenA,
+        tokenB,
+        liquidity,
+        amountAMin,
+        amountBMin,
+        to,
+        deadline,
+        approveMax,
+        v,
+        r,
+        s,
+      ]
+    );
+  }
 
   public swapExactETHForTokens(
     amountOutMin: BigNumberish,

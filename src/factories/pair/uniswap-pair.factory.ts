@@ -70,9 +70,10 @@ export class UniswapPairFactory {
    */
   public async trade(amount: string): Promise<PriceContext> {
     const amountBigNumber = new BigNumber(amount);
+    const allowance = await this.allowance();
+
     switch (this.tradePath()) {
       case TradePath.erc20ToEth:
-        const allowance = await this.allowance();
         if (new BigNumber(allowance).isLessThan(amountBigNumber)) {
           throw new Error(
             `${this._uniswapPairContext.ethereumAddress} allowance to move ${this.fromToken.contractAddress}(${this.fromToken.name}) is less then the amount you want to move. Allowance is ${allowance}`
@@ -82,6 +83,11 @@ export class UniswapPairFactory {
       case TradePath.ethToErc20:
         return await this.getTokenTradeAmountEthToErc20(amountBigNumber);
       case TradePath.erc20ToErc20:
+        if (new BigNumber(allowance).isLessThan(amountBigNumber)) {
+          throw new Error(
+            `${this._uniswapPairContext.ethereumAddress} allowance to move ${this.fromToken.contractAddress}(${this.fromToken.name}) is less then the amount you want to move. Allowance is ${allowance}`
+          );
+        }
         return await this.getTokenTradeAmountErc20ToErc20(amountBigNumber);
       default:
         throw new Error(`${this.tradePath()} is not defined`);
