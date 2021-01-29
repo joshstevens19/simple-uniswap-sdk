@@ -927,11 +927,10 @@ console.log(bestRoute);
 
 ### Contract calls
 
-Along side this we also expose in here the uniswap pair contract calls. Any methods which are state changing will return you the data and you will have to send it. Only use these if your doing any bespoke stuff with pairs. The `UniswapContractFactoryPublic` is also exposed in the package which you can pass it a chainId or a providerUrl
+Along side this we also expose in here the uniswap pair contract calls. Any methods which are state changing will return you the data and you will have to send it. Only use these if your doing any bespoke stuff with pairs. The `UniswapPairContractFactoryPublic` is also exposed in the package which you can pass it a chainId or a providerUrl
 
 ```ts
 export interface UniswapPair {
-
   allPairs(
     parameter0: BigNumberish,
   ): Promise<string>;
@@ -963,3 +962,65 @@ export interface UniswapPair {
     _feeToSetter: string,
   ): Promise<string>;
 ```
+
+#### Usage
+
+#### In UniswapPairFactory
+
+```ts
+import { UniswapPair } from 'uniswap-sdk';
+
+// the contract address of the token you want to convert FROM
+const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
+// the contract address of the token you want to convert TO
+const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+// the ethereum address of the user using this part of the dApp
+const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
+// your network ID or if you want to only supply your node you can here as well
+// if you supply your providerUrl you do not need to supply the chain id.
+const networkDetails: NetworkDetails = {
+  id: ChainId.MAINNET,
+  providerUrl: 'YOUR_PROVIDER_URL',
+};
+
+const uniswapPair = new UniswapPair(
+  toTokenContractAddress,
+  fromTokenContractAddress,
+  ethereumAddress,
+  networkDetails
+);
+
+// now to create the factory you just do
+const uniswapPairFactory = await uniswapPair.createFactory();
+
+// contract calls our here, this is only for the uniswap pair contract https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
+uniswapPairFactory.contractCalls;
+```
+
+#### Using UniswapPairContractFactoryPublic on its own
+
+// TODO
+
+### TokenFactoryPublic
+
+Along side the above we also have exposed some helpful token calls.
+
+// TODO
+
+### UniswapContractFactoryPublic
+
+// TODO
+
+### UniswapRouterContractFactoryPublic
+
+// TODO
+
+## Issues
+
+Please raise any issues in the below link.
+
+https://github.com/joshstevens19/uniswap-sdk/issues
+
+## Thanks
+
+This package is brought to you by [Josh Stevens](https://github.com/joshstevens19). My aim is to be able to keep creating these awesome packages to help the Ethereum space grow with easier-to-use tools to allow the learning curve to get involved with blockchain development easier and also making Ethereum ecosystem better. So if you want to help out with that vision and allow me to invest more time into creating cool packages please [sponsor me](https://github.com/sponsors/joshstevens19), every little helps. By sponsoring me, you're supporting me to be able to maintain existing packages, extend existing packages (as Ethereum matures), and allowing me to build more packages for Ethereum due to being able to invest more time into it. Thanks, everyone!
