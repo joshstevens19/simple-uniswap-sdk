@@ -8,4 +8,5 @@ export interface PriceContext {
   routeText: string;
   routePath: string[];
   data: string;
+  hasEnoughAllowance: boolean;
 }

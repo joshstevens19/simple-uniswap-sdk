@@ -64,24 +64,13 @@ export class UniswapPairFactory {
    */
   public async trade(amount: string): Promise<PriceContext> {
     const amountBigNumber = new BigNumber(amount);
-    const allowance = await this.allowance();
 
     switch (this.tradePath()) {
       case TradePath.erc20ToEth:
-        if (new BigNumber(allowance).isLessThan(amountBigNumber)) {
-          throw new Error(
-            `${this._uniswapPairContext.ethereumAddress} allowance to move ${this.fromToken.contractAddress}(${this.fromToken.name}) is less then the amount you want to move. Allowance is ${allowance}`
-          );
-        }
         return await this.getTokenTradeAmountErc20ToEth(amountBigNumber);
       case TradePath.ethToErc20:
         return await this.getTokenTradeAmountEthToErc20(amountBigNumber);
       case TradePath.erc20ToErc20:
-        if (new BigNumber(allowance).isLessThan(amountBigNumber)) {
-          throw new Error(
-            `${this._uniswapPairContext.ethereumAddress} allowance to move ${this.fromToken.contractAddress}(${this.fromToken.name}) is less then the amount you want to move. Allowance is ${allowance}`
-          );
-        }
         return await this.getTokenTradeAmountErc20ToErc20(amountBigNumber);
       default:
         throw new Error(`${this.tradePath()} is not defined`);
@@ -225,6 +214,8 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
+    const allowance = await this.allowance();
+
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -237,6 +228,7 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
+      hasEnoughAllowance: new BigNumber(allowance).isGreaterThan(erc20Amount),
     };
 
     return priceContext;
@@ -259,6 +251,8 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
+    const allowance = await this.allowance();
+
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -271,6 +265,7 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
+      hasEnoughAllowance: new BigNumber(allowance).isGreaterThan(erc20Amount),
     };
 
     return priceContext;
@@ -304,6 +299,7 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
+      hasEnoughAllowance: true,
     };
 
     return priceContext;
@@ -318,7 +314,10 @@ export class UniswapPairFactory {
     tokenAmount: BigNumber,
     routePathArray: string[]
   ): string {
-    const convertedMinTokens = tokenAmount.shiftedBy(this.toToken.decimals);
+    // uniswap adds extra digits on even if the token is say 8 digits long
+    const convertedMinTokens = tokenAmount
+      .shiftedBy(this.toToken.decimals)
+      .decimalPlaces(0);
 
     const hex = hexlify(convertedMinTokens);
 
@@ -341,7 +340,10 @@ export class UniswapPairFactory {
     ethAmountOutMin: BigNumber,
     routePathArray: string[]
   ): string {
-    const amountIn = tokenAmount.shiftedBy(this.fromToken.decimals);
+    // uniswap adds extra digits on even if the token is say 8 digits long
+    const amountIn = tokenAmount
+      .shiftedBy(this.fromToken.decimals)
+      .decimalPlaces(0);
 
     const ethAmountOutWei = hexlify(parseEther(ethAmountOutMin));
 
@@ -365,8 +367,13 @@ export class UniswapPairFactory {
     tokenAmountMin: BigNumber,
     routePathArray: string[]
   ): string {
-    const amountIn = tokenAmount.shiftedBy(this.fromToken.decimals);
-    const amountMin = tokenAmountMin.shiftedBy(this.toToken.decimals);
+    // uniswap adds extra digits on even if the token is say 8 digits long
+    const amountIn = tokenAmount
+      .shiftedBy(this.fromToken.decimals)
+      .decimalPlaces(0);
+    const amountMin = tokenAmountMin
+      .shiftedBy(this.toToken.decimals)
+      .decimalPlaces(0);
 
     return this._uniswapRouterContractFactory.swapExactTokensForTokens(
       hexlify(amountIn),

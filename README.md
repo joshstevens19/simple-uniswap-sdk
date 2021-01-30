@@ -156,7 +156,7 @@ console.log(fromToken);
 
 This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. You will still need to send the transaction if they confirm, this will just generate you the `data` for the transaction, which you will need to get them to sign on the dApp.
 
-It will throw an error if you try to do a trade but the allowance approved for to move tokens is below the amount sending. The error message will say this. We advise you check the allowance before you execute this trade which you should do anyway. You can use our allowance method below to check.
+It will also return a `hasEnoughAllowance` in the `PriceContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the data to appoving moving of the tokens.
 
 ```ts
 async trade(amount: string): Promise<PriceContext>
@@ -187,6 +187,8 @@ export interface PriceContext {
   // the generated data for this which if they accept you have tp
   // have in your transaction data when you send it
   data: string;
+  // if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true
+  hasEnoughAllowance: boolean;
 }
 ```
 
