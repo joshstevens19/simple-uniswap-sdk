@@ -176,7 +176,7 @@ export class UniswapRouterContractFactory {
     );
   }
 
-  removeLiquidityWithPermit(
+  public removeLiquidityWithPermit(
     tokenA: string,
     tokenB: string,
     liquidity: BigNumberish,

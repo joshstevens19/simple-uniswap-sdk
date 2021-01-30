@@ -4,8 +4,8 @@ import { TokenFactory } from './token.factory';
 
 export class TokenFactoryPublic extends TokenFactory {
   constructor(
-    chainIdOrProviderUrl: ChainId | string,
-    tokenContractAddress: string
+    tokenContractAddress: string,
+    chainIdOrProviderUrl: ChainId | string
   ) {
     super(tokenContractAddress, new EthersProvider(chainIdOrProviderUrl));
   }

@@ -15,17 +15,28 @@ const routeTest = async () => {
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  // const routes = await uniswapFactory.routes.getAllPossibleRoutes();
-
-  // const routesWithQuotes = await uniswapFactory.routes.getAllPossibleRoutesWithQuotes(
-  //   new BigNumber(1)
-  // );
-  // console.log(JSON.stringify(routesWithQuotes));
-
-  const trade = await uniswapPairFactory.findAllPossibleRoutes();
+  const trade = await uniswapPairFactory.trade('10');
   console.log(JSON.stringify(trade));
 
-  // console.log(uniswapPairFactory.generateApproveUniswapAllowanceData());
+  // const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+
+  // const tokenFactoryPublic = new TokenFactoryPublic(
+  //   toTokenContractAddress,
+  //   ChainId.MAINNET
+  // );
+
+  // // the contract address for which you are allowing to move tokens on your behalf
+  // const spender = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
+
+  // // the amount you wish to allow them to move, this example just uses the max
+  // // hex. If not each time they do a operation which needs to move tokens then
+  // // it will cost them 2 transactions, 1 to approve the allowance then 1 to actually
+  // // do the contract call to move the tokens.
+  // const value =
+  //   '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+
+  // const data = tokenFactoryPublic.generateApproveAllowanceData(spender, value);
+  // console.log(data);
 };
 
 routeTest();

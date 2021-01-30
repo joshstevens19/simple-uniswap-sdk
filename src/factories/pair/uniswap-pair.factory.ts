@@ -1,5 +1,4 @@
 import BigNumber from 'bignumber.js';
-import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { getCurrentUnixTime } from '../../common/utils/get-current-unix-time';
 import { hexlify } from '../../common/utils/hexlify';
@@ -10,14 +9,15 @@ import { RouteQuote } from '../router/models/route-quote';
 import { UniswapRouterContractFactory } from '../router/uniswap-router-contract.factory';
 import { UniswapRouterFactory } from '../router/uniswap-router.factory';
 import { Token } from '../token/models/token';
+import { TokenFactory } from '../token/token.factory';
 import { PriceContext } from './models/price-context';
 import { UniswapPairContext } from './models/uniswap-pair-context';
 import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
 
 export class UniswapPairFactory {
-  private _fromERC20TokenContract = this._uniswapPairContext.ethersProvider.getContract<ERC20ContractContext>(
-    JSON.stringify(ContractContext.erc20Abi),
-    this._uniswapPairContext.fromToken.contractAddress
+  private _fromTokenFactory = new TokenFactory(
+    this._uniswapPairContext.fromToken.contractAddress,
+    this._uniswapPairContext.ethersProvider
   );
 
   private _uniswapRouterContractFactory = new UniswapRouterContractFactory(
@@ -88,6 +88,9 @@ export class UniswapPairFactory {
     }
   }
 
+  /**
+   * Route getter
+   */
   private get _routes(): UniswapRouterFactory {
     return this._uniswapRouterFactory;
   }
@@ -151,31 +154,27 @@ export class UniswapPairFactory {
       return '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
     }
 
-    const allowance = await this._fromERC20TokenContract.allowance(
-      this._uniswapPairContext.ethereumAddress,
-      ContractContext.routerAddress
+    const allowance = await this._fromTokenFactory.allowance(
+      this._uniswapPairContext.ethereumAddress
     );
 
-    return allowance.toHexString();
+    return allowance;
   }
 
   /**
    * Generate the from token approve data max allowance to move the tokens.
    * This will return the data for you to send as a transaction
    */
-  public generateApproveUniswapAllowanceData(): string {
+  public generateApproveMaxAllowanceData(): string {
     if (this.tradePath() === TradePath.ethToErc20) {
       throw new Error(
         'You do not need to generate approve uniswap allowance when doing eth > erc20'
       );
     }
 
-    return this._fromERC20TokenContract.interface.encodeFunctionData(
-      'approve',
-      [
-        ContractContext.routerAddress,
-        '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-      ]
+    return this._fromTokenFactory.generateApproveAllowanceData(
+      ContractContext.routerAddress,
+      '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
     );
   }
 

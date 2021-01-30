@@ -31,7 +31,14 @@ const uniswapPair = new UniswapPair(
   toTokenContractAddress,
   ethereumAddress,
   // you can also put your providerUrl in here if you wanted
-  ChainId.MAINNET
+  ChainId.MAINNET,
+  {
+    // if not supplied it use `0.005` which is 0.5%;
+    // all figures
+    slippage: 0.005,
+    // if not supplied it will use 20 a deadline minutes
+    deadlineMinutes: 20,
+  }
 );
 
 // now to create the factory you just do
@@ -127,14 +134,7 @@ const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   toTokenContractAddress,
   ethereumAddress,
-  ChainId.MAINNET,
-  {
-    // if not supplied it use `0.005` which is 0.5%;
-    // all figures
-    slippage: 0.005,
-    // if not supplied it will use 20 a deadline minutes
-    deadlineMinutes: 20
-  }
+  ChainId.MAINNET
 );
 
 // now to create the factory you just do
@@ -394,7 +394,7 @@ true;
 This method will return the allowance the user has to move tokens from the from token they have picked. This is always returned as a hex. If you call this when doing `eth` > `erc20` it will always return the max hex as you only need to check this when moving erc20 > eth and erc20 > erc20.
 
 ```ts
-async allowance(): Promise<boolean>
+async allowance(): Promise<string>
 ```
 
 #### Usage
@@ -424,12 +424,12 @@ console.log(allowance);
 // '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 ```
 
-### generateApproveUniswapAllowanceData
+### generateApproveMaxAllowanceData
 
 This method will generate the data for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to move later. You have to send the transaction yourself, this only generates the data for you to send. Remember when they do not have enough allowance it will meaning doing 2 transaction, 1 to extend the allowance using this data then the next one to actually execute the trade. If you call this when doing `eth` > `erc20` it will always throw an error as you only need to check this when moving erc20 > eth and erc20 > erc20.
 
 ```ts
-generateApproveUniswapAllowanceData(): string
+generateApproveMaxAllowanceData(): string
 ```
 
 #### Usage
@@ -454,7 +454,7 @@ const uniswapPair = new UniswapPair(
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
 
-const data = uniswapPairFactory.generateApproveUniswapAllowanceData();
+const data = uniswapPairFactory.generateApproveMaxAllowanceData();
 console.log(data);
 // '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 ```
@@ -862,40 +862,203 @@ console.log(bestRoute);
 ];
 ```
 
+## TokenFactoryPublic
+
+Along side the above we also have exposed some helpful erc20 token calls.
+
+### getToken
+
+This method will return you the token information like decimals, name etc.
+
+```ts
+async getToken(): Promise<Token>
+```
+
+```ts
+export interface Token {
+  chainId: ChainId;
+  contractAddress: string;
+  decimals: number;
+  symbol: string;
+  name: string;
+}
+```
+
+#### Usage
+
+```ts
+import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+
+const tokenFactoryPublic = new TokenFactoryPublic(
+  toTokenContractAddress,
+  ChainId.MAINNET
+);
+
+const token = await tokenFactoryPublic.getToken();
+
+console.log(token):
+{
+  chainId: 1,
+  contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  decimals: 8,
+  symbol: 'FUN',
+  name: 'FunFair',
+},
+```
+
+### allowance
+
+This method will return the allowance the user has allowed to be able to be moved on his behalf. Uniswap needs this allowance to be higher then the amount swapping for it to be able to move the tokens for the user. This always returned as a hex.
+
+```ts
+async allowance(ethereumAddress: string): Promise<string>
+```
+
+#### Usage
+
+```ts
+import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+
+const tokenFactoryPublic = new TokenFactoryPublic(
+  toTokenContractAddress,
+  ChainId.MAINNET
+);
+
+const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
+
+const allowance = await tokenFactoryPublic.allowance(ethereumAddress);
+
+console.log(allowance);
+// '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+```
+
+### balanceOf
+
+This method will return the balance this user holds of this token. This always returned as a hex.
+
+```ts
+async balanceOf(ethereumAddress: string): Promise<string>
+```
+
+#### Usage
+
+```ts
+import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+
+const tokenFactoryPublic = new TokenFactoryPublic(
+  toTokenContractAddress,
+  ChainId.MAINNET
+);
+
+const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
+
+const balanceOf = await tokenFactoryPublic.balanceOf(ethereumAddress);
+
+console.log(allowance);
+// '0x00';
+```
+
+### totalSupply
+
+This method will return the total supply of tokens which exist. This always returned as a hex.
+
+```ts
+async totalSupply(): Promise<string>
+```
+
+#### Usage
+
+```ts
+import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+
+const tokenFactoryPublic = new TokenFactoryPublic(
+  toTokenContractAddress,
+  ChainId.MAINNET
+);
+
+const totalSupply = await tokenFactoryPublic.totalSupply();
+
+console.log(totalSupply);
+// '0x09195731e2ce35eb000000';
+```
+
+### generateApproveAllowanceData
+
+This method will generate the data for the approval of being able to move tokens for the user. You have to send the transaction yourself, this only generates the data for you to send.
+
+```ts
+generateApproveAllowanceData(spender: string, value: string): string
+```
+
+#### Usage
+
+```ts
+import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+
+const tokenFactoryPublic = new TokenFactoryPublic(
+  toTokenContractAddress,
+  ChainId.MAINNET
+);
+
+// the contract address for which you are allowing to move tokens on your behalf
+const spender = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
+
+// the amount you wish to allow them to move, this example just uses the max
+// hex. If not each time they do a operation which needs to move tokens then
+// it will cost them 2 transactions, 1 to approve the allowance then 1 to actually
+// do the contract call to move the tokens.
+const value =
+  '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+
+const data = tokenFactoryPublic.generateApproveAllowanceData(spender, value);
+console.log(data);
+// '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+```
+
 ### Contract calls
 
 Along side this we also expose in here the uniswap pair contract calls. Any methods which are state changing will return you the data and you will have to send it. Only use these if your doing any bespoke stuff with pairs. The `UniswapPairContractFactoryPublic` is also exposed in the package which you can pass it a chainId or a providerUrl
 
 ```ts
 export interface UniswapPair {
-  allPairs(
+  async allPairs(
     parameter0: BigNumberish,
   ): Promise<string>;
 
-  allPairsLength(): Promise<string>;
+  async allPairsLength(): Promise<string>;
 
   // state changing
-  createPair(
+  async createPair(
     tokenA: string,
     tokenB: string,
   ): Promise<string>;
 
-  feeTo(): Promise<string>;
+  async feeTo(): Promise<string>;
 
-  feeToSetter(): Promise<string>;
+  async feeToSetter(): Promise<string>;
 
-  getPair(
+  async getPair(
     parameter0: string,
     parameter1: string,
   ): Promise<string>;
 
   // state changing
-  setFeeTo(
+  async setFeeTo(
     _feeTo: string,
   ): Promise<string>;
 
   // state changing
-  setFeeToSetter(
+  async setFeeToSetter(
     _feeToSetter: string,
   ): Promise<string>;
 ```
@@ -930,21 +1093,247 @@ uniswapPairFactory.contractCalls;
 
 #### Using UniswapPairContractFactoryPublic on its own
 
-// TODO
+```ts
+import { UniswapPairContractFactoryPublic, ChainId } from 'uniswap-sdk';
 
-### TokenFactoryPublic
+const uniswapPairContractFactoryPublic = new UniswapPairContractFactoryPublic(
+  ChainId.MAINNET
+);
 
-Along side the above we also have exposed some helpful token calls.
-
-// TODO
+// contract calls our here, this is only for the uniswap pair contract https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
+uniswapPairContractFactoryPublic;
+```
 
 ### UniswapContractFactoryPublic
 
-// TODO
+```ts
+async allPairs(parameter0: BigNumberish): Promise<string>;
+
+async allPairsLength(): Promise<string>;
+
+// state changing
+acreatePair(tokenA: string, tokenB: string): string;
+
+async getPair(token0: string, token1: string): Promise<string>;
+```
+
+### Usage
+
+```ts
+import { UniswapContractFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const uniswapContractFactoryPublic = new UniswapContractFactoryPublic(
+  ChainId.MAINNET
+);
+
+// contract calls our here https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
+uniswapContractFactoryPublic;
+```
 
 ### UniswapRouterContractFactoryPublic
 
-// TODO
+```ts
+// state changing
+addLiquidity(
+  tokenA: string,
+  tokenB: string,
+  amountADesired: BigNumberish,
+  amountBDesired: BigNumberish,
+  amountAMin: BigNumberish,
+  amountBMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+addLiquidityETH(
+  token: string,
+  amountTokenDesired: BigNumberish,
+  amountTokenMin: BigNumberish,
+  amountETHMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish
+): string;
+
+async factory(): Promise<string>;
+
+async getAmountsOut(
+  amountIn: BigNumberish,
+  path: string[]
+): Promise<string[]>;
+
+async quote(
+  amountA: BigNumberish,
+  reserveA: BigNumberish,
+  reserveB: BigNumberish
+): Promise<string>;
+
+// state changing
+removeLiquidity(
+  tokenA: string,
+  tokenB: string,
+  liquidity: BigNumberish,
+  amountAMin: BigNumberish,
+  amountBMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+removeLiquidityETH(
+  token: string,
+  liquidity: BigNumberish,
+  amountTokenMin: BigNumberish,
+  amountETHMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+removeLiquidityETHSupportingFeeOnTransferTokens(
+  token: string,
+  liquidity: BigNumberish,
+  amountTokenMin: BigNumberish,
+  amountETHMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+removeLiquidityETHWithPermit(
+  token: string,
+  liquidity: BigNumberish,
+  amountTokenMin: BigNumberish,
+  amountETHMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish,
+  approveMax: boolean,
+  v: BigNumberish,
+  r: BytesLike,
+  s: BytesLike
+);
+
+// state changing
+removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
+  token: string,
+  liquidity: BigNumberish,
+  amountTokenMin: BigNumberish,
+  amountETHMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish,
+  approveMax: boolean,
+  v: BigNumberish,
+  r: BytesLike,
+  s: BytesLike
+): string
+
+// state changing
+removeLiquidityWithPermit(
+  tokenA: string,
+  tokenB: string,
+  liquidity: BigNumberish,
+  amountAMin: BigNumberish,
+  amountBMin: BigNumberish,
+  to: string,
+  deadline: BigNumberish,
+  approveMax: boolean,
+  v: BigNumberish,
+  r: BytesLike,
+  s: BytesLike
+): string;
+
+// state changing
+swapExactETHForTokens(
+  amountOutMin: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string
+
+// state changing
+swapETHForExactTokens(
+  amountOut: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string
+
+// state changing
+swapExactETHForTokensSupportingFeeOnTransferTokens(
+  amountIn: BigNumberish,
+  amountOutMin: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+swapExactTokensForETH(
+  amountIn: BigNumberish,
+  amountOutMin: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+swapTokensForExactETH(
+  amountOut: BigNumberish,
+  amountInMax: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+swapExactTokensForETHSupportingFeeOnTransferTokens(
+  amountIn: BigNumberish,
+  amountOutMin: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+swapExactTokensForTokens(
+  amountIn: BigNumberish,
+  amountOutMin: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string;
+
+// state changing
+swapTokensForExactTokens(
+  amountOut: BigNumberish,
+  amountInMax: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string
+
+// state changing
+swapExactTokensForTokensSupportingFeeOnTransferTokens(
+  amountIn: BigNumberish,
+  amountOutMin: BigNumberish,
+  path: string[],
+  to: string,
+  deadline: BigNumberish
+): string
+```
+
+### Usage
+
+```ts
+import { UniswapRouterContractFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const uniswapRouterContractFactoryPublic = new UniswapRouterContractFactoryPublic(
+  ChainId.MAINNET
+);
+
+// contract calls our here https://etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D#code
+uniswapRouterContractFactoryPublic;
+```
 
 ## Issues
 
