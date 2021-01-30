@@ -1,9 +1,14 @@
+import { ContractCallContext, Multicall } from 'ethereum-multicall';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { EthersProvider } from '../../ethers-provider';
 import { Token } from './models/token';
 
 export class TokenFactory {
+  private _multicall = new Multicall({
+    ethersProvider: this._ethersProvider.provider,
+  });
+
   private _erc20TokenContracy = this._ethersProvider.getContract<ERC20ContractContext>(
     JSON.stringify(ContractContext.erc20Abi),
     this._tokenContractAddress
@@ -18,16 +23,38 @@ export class TokenFactory {
    * Get the token details
    */
   public async getToken(): Promise<Token> {
-    const symbol = await this._erc20TokenContracy.symbol();
-    const decimals = await this._erc20TokenContracy.decimals();
-    const name = await this._erc20TokenContracy.name();
+    const contractCallContext: ContractCallContext = {
+      reference: 'token',
+      contractAddress: this._tokenContractAddress,
+      abi: ContractContext.erc20Abi,
+      calls: [
+        {
+          reference: `symbol`,
+          methodName: 'symbol',
+          methodParameters: [],
+        },
+        {
+          reference: `decimals`,
+          methodName: 'decimals',
+          methodParameters: [],
+        },
+        {
+          reference: `name`,
+          methodName: 'name',
+          methodParameters: [],
+        },
+      ],
+    };
+
+    const contractCallResults = await this._multicall.call(contractCallContext);
+    const results = contractCallResults.results[contractCallContext.reference];
 
     return {
       chainId: this._ethersProvider.network().chainId,
       contractAddress: this._tokenContractAddress,
-      decimals,
-      symbol,
-      name,
+      symbol: results.callsReturnContext[0].returnValues[0],
+      decimals: results.callsReturnContext[1].returnValues[0],
+      name: results.callsReturnContext[2].returnValues[0],
     };
   }
 
