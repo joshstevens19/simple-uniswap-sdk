@@ -214,8 +214,6 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
-    const allowance = await this.allowance();
-
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -228,7 +226,9 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
-      hasEnoughAllowance: new BigNumber(allowance).isGreaterThan(erc20Amount),
+      hasEnoughAllowance: await this.hasGotEnoughAllowance(
+        erc20Amount.toFixed()
+      ),
     };
 
     return priceContext;
@@ -251,8 +251,6 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
-    const allowance = await this.allowance();
-
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -265,7 +263,9 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
-      hasEnoughAllowance: new BigNumber(allowance).isGreaterThan(erc20Amount),
+      hasEnoughAllowance: await this.hasGotEnoughAllowance(
+        erc20Amount.toFixed()
+      ),
     };
 
     return priceContext;
@@ -299,7 +299,7 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
-      hasEnoughAllowance: true,
+      hasEnoughAllowance: await this.hasGotEnoughAllowance(ethAmount.toFixed()),
     };
 
     return priceContext;
