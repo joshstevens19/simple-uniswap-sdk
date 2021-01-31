@@ -41,4 +41,14 @@ export class EthersProvider {
   public get provider(): providers.BaseProvider {
     return this._ethersProvider;
   }
+
+  /**
+   * Get eth amount
+   * @param ethereumAddress The ethereum address
+   */
+  public async balanceOf(ethereumAddress: string): Promise<string> {
+    return (
+      await this._ethersProvider.getBalance(ethereumAddress)
+    ).toHexString();
+  }
 }

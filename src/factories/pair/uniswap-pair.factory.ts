@@ -135,6 +135,66 @@ export class UniswapPairFactory {
   }
 
   /**
+   * Has got enough balance to do the trade (erc20 check only)
+   * @param amount The amount you want to swap
+   */
+  public async hasGotEnoughBalanceErc20(
+    amount: string
+  ): Promise<{
+    hasEnough: boolean;
+    balance: string;
+  }> {
+    const balance = await this._fromTokenFactory.balanceOf(
+      this._uniswapPairContext.ethereumAddress
+    );
+
+    const bigNumberBalance = new BigNumber(balance).shiftedBy(
+      this.fromToken.decimals * -1
+    );
+
+    if (new BigNumber(amount).isGreaterThan(bigNumberBalance)) {
+      return {
+        hasEnough: false,
+        balance: bigNumberBalance.toFixed(),
+      };
+    }
+
+    return {
+      hasEnough: true,
+      balance: bigNumberBalance.toFixed(),
+    };
+  }
+
+  /**
+   * Has got enough balance to do the trade (eth check only)
+   * @param amount The amount you want to swap
+   */
+  public async hasGotEnoughBalanceEth(
+    amount: string
+  ): Promise<{
+    hasEnough: boolean;
+    balance: string;
+  }> {
+    const balance = await this._uniswapPairContext.ethersProvider.balanceOf(
+      this._uniswapPairContext.ethereumAddress
+    );
+
+    const bigNumberBalance = new BigNumber(balance).shiftedBy(18 * -1);
+
+    if (new BigNumber(amount).isGreaterThan(bigNumberBalance)) {
+      return {
+        hasEnough: false,
+        balance: bigNumberBalance.toFixed(),
+      };
+    }
+
+    return {
+      hasEnough: true,
+      balance: bigNumberBalance.toFixed(),
+    };
+  }
+
+  /**
    * Get the allowance for the amount which can be moved from the `fromToken`
    * on the users behalf. Only valid when the `fromToken` is a ERC20 token.
    */
@@ -229,6 +289,7 @@ export class UniswapPairFactory {
       hasEnoughAllowance: await this.hasGotEnoughAllowance(
         erc20Amount.toFixed()
       ),
+      fromBalance: await this.hasGotEnoughBalanceErc20(erc20Amount.toFixed()),
     };
 
     return priceContext;
@@ -266,6 +327,7 @@ export class UniswapPairFactory {
       hasEnoughAllowance: await this.hasGotEnoughAllowance(
         erc20Amount.toFixed()
       ),
+      fromBalance: await this.hasGotEnoughBalanceErc20(erc20Amount.toFixed()),
     };
 
     return priceContext;
@@ -300,6 +362,7 @@ export class UniswapPairFactory {
         bestRouteQuote.routePathArray
       ),
       hasEnoughAllowance: await this.hasGotEnoughAllowance(ethAmount.toFixed()),
+      fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
     };
 
     return priceContext;

@@ -1,3 +1,4 @@
+import { WETH } from '..';
 import { ChainId } from '../enums/chain-id';
 import { UniswapPair } from '../factories/pair/uniswap-pair';
 
@@ -7,7 +8,7 @@ const routeTest = async () => {
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair(
-    fromTokenContractAddress,
+    WETH.MAINNET().contractAddress,
     toTokenContractAddress,
     ethereumAddress,
     ChainId.MAINNET
@@ -15,14 +16,14 @@ const routeTest = async () => {
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  // const trade = await uniswapPairFactory.trade('10');
-  // console.log(JSON.stringify(trade));
+  const trade = await uniswapPairFactory.trade('10');
+  console.log(JSON.stringify(trade));
 
-  const toToken = uniswapPairFactory.toToken;
-  console.log(toToken);
+  // const toToken = uniswapPairFactory.toToken;
+  // console.log(toToken);
 
-  const fromToken = uniswapPairFactory.fromToken;
-  console.log(fromToken);
+  // const fromToken = uniswapPairFactory.fromToken;
+  // console.log(fromToken);
 
   // const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
