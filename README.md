@@ -185,6 +185,7 @@ export interface PriceContext {
   // the pure route path, only had the arrays in nothing else
   routePath: string[];
   // full list of every route it tried with the expected convert quotes
+  // this will be ordered from the best expected convert quote to worse [0] = best
   allTriedRoutesQuotes: {
     expectedConvertQuote: string;
     routePathArrayTokenMap: Token[];
