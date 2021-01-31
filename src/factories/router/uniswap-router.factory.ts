@@ -19,6 +19,7 @@ import { TradePath } from '../../enums/trade-path';
 import { EthersProvider } from '../../ethers-provider';
 import { Token } from '../token/models/token';
 import { RouterDirection } from './enums/router-direction';
+import { BestRouteQuotes } from './models/best-route-quotes';
 import { RouteQuote } from './models/route-quote';
 import { TokenRoutes } from './models/token-routes';
 
@@ -171,8 +172,22 @@ export class UniswapRouterFactory {
     return this.buildRouteQuotesFromResults(results);
   }
 
-  public async findBestRoute(amountToTrade: BigNumber): Promise<RouteQuote> {
-    return (await this.getAllPossibleRoutesWithQuotes(amountToTrade))[0];
+  public async findBestRoute(
+    amountToTrade: BigNumber
+  ): Promise<BestRouteQuotes> {
+    const allRoutes = await this.getAllPossibleRoutesWithQuotes(amountToTrade);
+
+    return {
+      bestRouteQuote: allRoutes[0],
+      triedRoutesQuote: allRoutes.map((route) => {
+        return {
+          expectedConvertQuote: route.expectedConvertQuote,
+          routePathArrayTokenMap: route.routePathArrayTokenMap,
+          routeText: route.routeText,
+          routePathArray: route.routePathArray,
+        };
+      }),
+    };
   }
 
   private workOutAllPossibleRoutes(
@@ -346,10 +361,18 @@ export class UniswapRouterFactory {
     }
 
     return result.sort((a, b) => {
-      if (a.convertQuote.isGreaterThan(b.convertQuote)) {
+      if (
+        new BigNumber(a.expectedConvertQuote).isGreaterThan(
+          b.expectedConvertQuote
+        )
+      ) {
         return -1;
       }
-      return a.convertQuote.isLessThan(b.convertQuote) ? 1 : 0;
+      return new BigNumber(a.expectedConvertQuote).isLessThan(
+        b.expectedConvertQuote
+      )
+        ? 1
+        : 0;
     });
   }
 
@@ -376,9 +399,9 @@ export class UniswapRouterFactory {
       ].hex
     );
     return {
-      convertQuote: convertQuoteUnformatted.shiftedBy(
-        this._toToken.decimals * -1
-      ),
+      expectedConvertQuote: convertQuoteUnformatted
+        .shiftedBy(this._toToken.decimals * -1)
+        .toFixed(),
       routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
         (c: string) => {
           return this.allTokens.find((t) => t.contractAddress === c);
@@ -407,7 +430,9 @@ export class UniswapRouterFactory {
       ].hex
     );
     return {
-      convertQuote: new BigNumber(formatEther(convertQuoteUnformatted)),
+      expectedConvertQuote: new BigNumber(
+        formatEther(convertQuoteUnformatted)
+      ).toFixed(),
       routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
         (c: string) => {
           return this.allTokens.find((t) => t.contractAddress === c);

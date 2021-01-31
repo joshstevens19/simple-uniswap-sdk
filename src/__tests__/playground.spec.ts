@@ -1,4 +1,3 @@
-import { WETH } from '..';
 import { ChainId } from '../enums/chain-id';
 import { UniswapPair } from '../factories/pair/uniswap-pair';
 
@@ -8,7 +7,7 @@ const routeTest = async () => {
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair(
-    WETH.MAINNET().contractAddress,
+    fromTokenContractAddress,
     toTokenContractAddress,
     ethereumAddress,
     ChainId.MAINNET

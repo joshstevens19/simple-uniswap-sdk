@@ -7,6 +7,7 @@ import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
 import { getTradePath } from '../../common/utils/trade-path';
 import { TradePath } from '../../enums/trade-path';
+import { BestRouteQuotes } from '../router/models/best-route-quotes';
 import { RouteQuote } from '../router/models/route-quote';
 import { UniswapRouterContractFactory } from '../router/uniswap-router-contract.factory';
 import { UniswapRouterFactory } from '../router/uniswap-router.factory';
@@ -92,7 +93,7 @@ export class UniswapPairFactory {
    * Find the best route rate out of all the route quotes
    * @param amountToTrade The amount to trade
    */
-  public async findBestRoute(amountToTrade: string): Promise<RouteQuote> {
+  public async findBestRoute(amountToTrade: string): Promise<BestRouteQuotes> {
     return await this._routes.findBestRoute(new BigNumber(amountToTrade));
   }
 
@@ -273,12 +274,13 @@ export class UniswapPairFactory {
   private async findBestPriceAndPathErc20ToEth(
     erc20Amount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this._routes.findBestRoute(erc20Amount);
+    const bestRouteQuotes = await this._routes.findBestRoute(erc20Amount);
+    const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
 
     const convertQuoteWithSlippage = new BigNumber(
-      bestRouteQuote.convertQuote
+      bestRouteQuote.expectedConvertQuote
     ).minus(
-      bestRouteQuote.convertQuote
+      new BigNumber(bestRouteQuote.expectedConvertQuote)
         .times(this._uniswapPairContext.settings.slippage)
         .toFixed(this.fromToken.decimals)
     );
@@ -294,10 +296,11 @@ export class UniswapPairFactory {
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
-      expectedConvertQuote: bestRouteQuote.convertQuote.toFixed(),
+      expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
+      allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
       hasEnoughAllowance: this.hasGotEnoughAllowance(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
@@ -319,12 +322,13 @@ export class UniswapPairFactory {
   private async findBestPriceAndPathErc20ToErc20(
     erc20Amount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this._routes.findBestRoute(erc20Amount);
+    const bestRouteQuotes = await this._routes.findBestRoute(erc20Amount);
+    const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
 
     const convertQuoteWithSlippage = new BigNumber(
-      bestRouteQuote.convertQuote
+      bestRouteQuote.expectedConvertQuote
     ).minus(
-      bestRouteQuote.convertQuote
+      new BigNumber(bestRouteQuote.expectedConvertQuote)
         .times(this._uniswapPairContext.settings.slippage)
         .toFixed(this.fromToken.decimals)
     );
@@ -340,7 +344,7 @@ export class UniswapPairFactory {
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
-      expectedConvertQuote: bestRouteQuote.convertQuote.toFixed(),
+      expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
@@ -353,6 +357,7 @@ export class UniswapPairFactory {
         allowanceAndBalanceOf.balanceOf
       ),
       transaction: this.buildUpTransactionErc20(data),
+      allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
     };
 
     return priceContext;
@@ -365,12 +370,13 @@ export class UniswapPairFactory {
   private async findBestPriceAndPathEthToErc20(
     ethAmount: BigNumber
   ): Promise<PriceContext> {
-    const bestRouteQuote = await this._routes.findBestRoute(ethAmount);
+    const bestRouteQuotes = await this._routes.findBestRoute(ethAmount);
+    const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
 
     const convertQuoteWithSlippage = new BigNumber(
-      bestRouteQuote.convertQuote
+      bestRouteQuote.expectedConvertQuote
     ).minus(
-      bestRouteQuote.convertQuote
+      new BigNumber(bestRouteQuote.expectedConvertQuote)
         .times(this._uniswapPairContext.settings.slippage)
         .toFixed(this.toToken.decimals)
     );
@@ -383,13 +389,14 @@ export class UniswapPairFactory {
     const priceContext: PriceContext = {
       baseConvertRequest: ethAmount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
-      expectedConvertQuote: bestRouteQuote.convertQuote.toFixed(),
+      expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
       hasEnoughAllowance: true,
       fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
       transaction: this.buildUpTransactionEth(ethAmount, data),
+      allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
     };
 
     return priceContext;
