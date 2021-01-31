@@ -1,7 +1,9 @@
 import { ContractCallContext, Multicall } from 'ethereum-multicall';
+import { BigNumber } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { EthersProvider } from '../../ethers-provider';
+import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
 export class TokenFactory {
@@ -106,5 +108,46 @@ export class TokenFactory {
     const totalSupply = await this._erc20TokenContracy.totalSupply();
 
     return totalSupply.toHexString();
+  }
+
+  /**
+   * Get allowance and balance
+   * @param ethereumAddress
+   */
+  public async getAllowanceAndBalanceOf(
+    ethereumAddress: string
+  ): Promise<AllowanceAndBalanceOf> {
+    const ALLOWANCE = 0;
+    const BALANCEOF = 1;
+
+    const contractCallContext: ContractCallContext = {
+      reference: 'allowance-and-balance-of',
+      contractAddress: this._tokenContractAddress,
+      abi: ContractContext.erc20Abi,
+      calls: [
+        {
+          reference: 'allowance',
+          methodName: 'allowance',
+          methodParameters: [ethereumAddress, ContractContext.routerAddress],
+        },
+        {
+          reference: 'balanceOf',
+          methodName: 'balanceOf',
+          methodParameters: [ethereumAddress],
+        },
+      ],
+    };
+
+    const contractCallResults = await this._multicall.call(contractCallContext);
+    const results = contractCallResults.results[contractCallContext.reference];
+
+    return {
+      allowance: BigNumber.from(
+        results.callsReturnContext[ALLOWANCE].returnValues[0]
+      ).toHexString(),
+      balanceOf: BigNumber.from(
+        results.callsReturnContext[BALANCEOF].returnValues[0]
+      ).toHexString(),
+    };
   }
 }

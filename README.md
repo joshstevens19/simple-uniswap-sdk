@@ -1032,7 +1032,7 @@ import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
 const tokenFactoryPublic = new TokenFactoryPublic(
-  toTokenContractAddress,
+  tokenContractAddress,
   ChainId.MAINNET
 );
 
@@ -1049,6 +1049,45 @@ const value =
 const data = tokenFactoryPublic.generateApproveAllowanceData(spender, value);
 console.log(data);
 // '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+```
+
+### getAllowanceAndBalanceOf
+
+This method will get the allowance and balance for the token in a multicall request. Will return as hex and NOT formatted via decimal places.
+
+```ts
+async getAllowanceAndBalanceOf(ethereumAddress: string): Promise<AllowanceAndBalanceOf>
+```
+
+```ts
+export interface AllowanceAndBalanceOf {
+  allowance: string;
+  balanceOf: string;
+}
+```
+
+#### Usage
+
+```ts
+import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+
+const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+
+const tokenFactoryPublic = new TokenFactoryPublic(
+  tokenContractAddress,
+  ChainId.MAINNET
+);
+
+const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
+
+const result = await tokenFactoryPublic.getAllowanceAndBalanceOf(
+  ethereumAddress
+);
+console.log(result);
+{
+  allowance: '0x2386f01852b720',
+  balanceOf: '0x4d3f3832f7'
+}
 ```
 
 ## TokensFactoryPublic

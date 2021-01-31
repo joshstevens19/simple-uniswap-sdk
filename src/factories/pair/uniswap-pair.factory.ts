@@ -8,6 +8,7 @@ import { TradePath } from '../../enums/trade-path';
 import { RouteQuote } from '../router/models/route-quote';
 import { UniswapRouterContractFactory } from '../router/uniswap-router-contract.factory';
 import { UniswapRouterFactory } from '../router/uniswap-router.factory';
+import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
 import { PriceContext } from './models/price-context';
@@ -113,15 +114,12 @@ export class UniswapPairFactory {
 
   /**
    * Has got enough allowance to do the trade
-   * @param ethereumAddress The ethereum address
    * @param amount The amount you want to swap
    */
-  public async hasGotEnoughAllowance(amount: string): Promise<boolean> {
+  public hasGotEnoughAllowance(amount: string, allowance: string): boolean {
     if (this.tradePath() === TradePath.ethToErc20) {
       return true;
     }
-
-    const allowance = await this.allowance();
 
     const bigNumberAllowance = new BigNumber(allowance).shiftedBy(
       this.fromToken.decimals * -1
@@ -138,16 +136,13 @@ export class UniswapPairFactory {
    * Has got enough balance to do the trade (erc20 check only)
    * @param amount The amount you want to swap
    */
-  public async hasGotEnoughBalanceErc20(
-    amount: string
-  ): Promise<{
+  public hasGotEnoughBalanceErc20(
+    amount: string,
+    balance: string
+  ): {
     hasEnough: boolean;
     balance: string;
-  }> {
-    const balance = await this._fromTokenFactory.balanceOf(
-      this._uniswapPairContext.ethereumAddress
-    );
-
+  } {
     const bigNumberBalance = new BigNumber(balance).shiftedBy(
       this.fromToken.decimals * -1
     );
@@ -192,6 +187,15 @@ export class UniswapPairFactory {
       hasEnough: true,
       balance: bigNumberBalance.toFixed(),
     };
+  }
+
+  /**
+   * Get the allowance and balance for the from token (erc20 > blah) only
+   */
+  public async getAllowanceAndBalanceOfForFromToken(): Promise<AllowanceAndBalanceOf> {
+    return await this._fromTokenFactory.getAllowanceAndBalanceOf(
+      this._uniswapPairContext.ethereumAddress
+    );
   }
 
   /**
@@ -274,6 +278,8 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
+    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
+
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -286,10 +292,14 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
-      hasEnoughAllowance: await this.hasGotEnoughAllowance(
-        erc20Amount.toFixed()
+      hasEnoughAllowance: this.hasGotEnoughAllowance(
+        erc20Amount.toFixed(),
+        allowanceAndBalanceOf.allowance
       ),
-      fromBalance: await this.hasGotEnoughBalanceErc20(erc20Amount.toFixed()),
+      fromBalance: this.hasGotEnoughBalanceErc20(
+        erc20Amount.toFixed(),
+        allowanceAndBalanceOf.balanceOf
+      ),
     };
 
     return priceContext;
@@ -312,6 +322,8 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
+    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
+
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -324,10 +336,14 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
-      hasEnoughAllowance: await this.hasGotEnoughAllowance(
-        erc20Amount.toFixed()
+      hasEnoughAllowance: this.hasGotEnoughAllowance(
+        erc20Amount.toFixed(),
+        allowanceAndBalanceOf.allowance
       ),
-      fromBalance: await this.hasGotEnoughBalanceErc20(erc20Amount.toFixed()),
+      fromBalance: this.hasGotEnoughBalanceErc20(
+        erc20Amount.toFixed(),
+        allowanceAndBalanceOf.balanceOf
+      ),
     };
 
     return priceContext;
@@ -361,7 +377,7 @@ export class UniswapPairFactory {
         convertQuoteWithSlippage,
         bestRouteQuote.routePathArray
       ),
-      hasEnoughAllowance: await this.hasGotEnoughAllowance(ethAmount.toFixed()),
+      hasEnoughAllowance: true,
       fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
     };
 
