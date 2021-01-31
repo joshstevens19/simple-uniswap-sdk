@@ -1,8 +1,10 @@
 import BigNumber from 'bignumber.js';
+import { Constants } from '../../common/constants';
 import { ContractContext } from '../../common/contract-context';
 import { getCurrentUnixTime } from '../../common/utils/get-current-unix-time';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
+import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
 import { getTradePath } from '../../common/utils/trade-path';
 import { TradePath } from '../../enums/trade-path';
 import { RouteQuote } from '../router/models/route-quote';
@@ -12,6 +14,7 @@ import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
 import { PriceContext } from './models/price-context';
+import { Transaction } from './models/transaction';
 import { UniswapPairContext } from './models/uniswap-pair-context';
 import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
 
@@ -174,7 +177,9 @@ export class UniswapPairFactory {
       this._uniswapPairContext.ethereumAddress
     );
 
-    const bigNumberBalance = new BigNumber(balance).shiftedBy(18 * -1);
+    const bigNumberBalance = new BigNumber(balance).shiftedBy(
+      Constants.ETH_MAX_DECIMALS * -1
+    );
 
     if (new BigNumber(amount).isGreaterThan(bigNumberBalance)) {
       return {
@@ -280,6 +285,12 @@ export class UniswapPairFactory {
 
     const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
 
+    const data = this.generateTradeDataErc20ToEth(
+      erc20Amount,
+      convertQuoteWithSlippage,
+      bestRouteQuote.routePathArray
+    );
+
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -287,11 +298,6 @@ export class UniswapPairFactory {
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      data: this.generateTradeDataErc20ToEth(
-        erc20Amount,
-        convertQuoteWithSlippage,
-        bestRouteQuote.routePathArray
-      ),
       hasEnoughAllowance: this.hasGotEnoughAllowance(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
@@ -300,6 +306,7 @@ export class UniswapPairFactory {
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.balanceOf
       ),
+      transaction: this.buildUpTransactionErc20(data),
     };
 
     return priceContext;
@@ -324,6 +331,12 @@ export class UniswapPairFactory {
 
     const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
 
+    const data = this.generateTradeDataErc20ToErc20(
+      erc20Amount,
+      convertQuoteWithSlippage,
+      bestRouteQuote.routePathArray
+    );
+
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -331,11 +344,6 @@ export class UniswapPairFactory {
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      data: this.generateTradeDataErc20ToErc20(
-        erc20Amount,
-        convertQuoteWithSlippage,
-        bestRouteQuote.routePathArray
-      ),
       hasEnoughAllowance: this.hasGotEnoughAllowance(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
@@ -344,6 +352,7 @@ export class UniswapPairFactory {
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.balanceOf
       ),
+      transaction: this.buildUpTransactionErc20(data),
     };
 
     return priceContext;
@@ -366,6 +375,11 @@ export class UniswapPairFactory {
         .toFixed(this.toToken.decimals)
     );
 
+    const data = this.generateTradeDataEthToErc20(
+      convertQuoteWithSlippage,
+      bestRouteQuote.routePathArray
+    );
+
     const priceContext: PriceContext = {
       baseConvertRequest: ethAmount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
@@ -373,12 +387,9 @@ export class UniswapPairFactory {
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      data: this.generateTradeDataEthToErc20(
-        convertQuoteWithSlippage,
-        bestRouteQuote.routePathArray
-      ),
       hasEnoughAllowance: true,
       fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
+      transaction: this.buildUpTransactionEth(ethAmount, data),
     };
 
     return priceContext;
@@ -461,6 +472,36 @@ export class UniswapPairFactory {
       this._uniswapPairContext.ethereumAddress,
       this.generateTradeDeadlineUnixTime()
     );
+  }
+
+  /**
+   * Build up a transaction for erc20 from
+   * @param data The data
+   */
+  private buildUpTransactionErc20(data: string): Transaction {
+    return {
+      to: ContractContext.routerAddress,
+      from: this._uniswapPairContext.ethereumAddress,
+      data,
+      value: Constants.EMPTY_HEX_STRING,
+    };
+  }
+
+  /**
+   * Build up a transaction for eth from
+   * @param ethValue The eth value
+   * @param data The data
+   */
+  private buildUpTransactionEth(
+    ethValue: BigNumber,
+    data: string
+  ): Transaction {
+    return {
+      to: ContractContext.routerAddress,
+      from: this._uniswapPairContext.ethereumAddress,
+      data,
+      value: toEthersBigNumber(parseEther(ethValue)).toHexString(),
+    };
   }
 
   /**

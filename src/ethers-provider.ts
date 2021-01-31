@@ -51,4 +51,12 @@ export class EthersProvider {
       await this._ethersProvider.getBalance(ethereumAddress)
     ).toHexString();
   }
+
+  /**
+   * Get the current nonce
+   * @param ethereumAddress The ethereum address
+   */
+  public async nonce(ethereumAddress: string): Promise<number> {
+    return this._ethersProvider.getTransactionCount(ethereumAddress);
+  }
 }
