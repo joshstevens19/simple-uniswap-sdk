@@ -215,6 +215,24 @@ export interface PriceContext {
 }
 ```
 
+```ts
+export interface Token {
+  chainId: ChainId;
+  contractAddress: string;
+  decimals: number;
+  symbol: string;
+  name: string;
+}
+
+export enum ChainId {
+  MAINNET = 1,
+  ROPSTEN = 3,
+  RINKEBY = 4,
+  GÖRLI = 5,
+  KOVAN = 42,
+}
+```
+
 #### Usage
 
 #### ERC20 > ERC20
