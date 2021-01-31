@@ -240,27 +240,36 @@ console.log(trade);
   baseConvertRequest: '10',
   minAmountConvertQuote: '0.014400465273974444',
   expectedConvertQuote: '0.014472825273974444',
-  routePathTokenMap:
-   [ { chainId: 1,
+  routePathTokenMap: [
+     {
+       chainId: 1,
        contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
        decimals: 8,
        symbol: 'FUN',
-       name: 'FunFair' },
-     { chainId: 1,
+       name: 'FunFair'
+     },
+     {
+       chainId: 1,
        contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
        decimals: 18,
        symbol: 'DAI',
-       name: 'Wrapped Ether' },
-     { chainId: 1,
+       name: 'Dai Stablecoin'
+     },
+     {
+       chainId: 1,
        contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
        decimals: 18,
        symbol: 'WETH',
-       name: 'Wrapped Ether' },
-     { chainId: 1,
+       name: 'Wrapped Ether'
+     },
+     {
+       chainId: 1,
        contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
        decimals: 18,
        symbol: 'REP',
-       name: 'Reputation' } ],
+       name: 'Reputation'
+     }
+   ],
   routeText: 'FUN > DAI > WETH > REP',
   routePath:['0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b', '0x6B175474E89094C44Da98b954EedeAC495271d0F', '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2','0x1985365e9f78359a9B6AD760e32412f4a445E862' ],
   hasEnoughAllowance: true,
@@ -606,7 +615,7 @@ console.log(bestRoute);
         contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         decimals: 18,
         symbol: 'DAI',
-        name: 'Wrapped Ether',
+        name: 'Dai Stablecoin',
       },
       {
         chainId: 1,
@@ -678,7 +687,7 @@ console.log(bestRoute);
         contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         decimals: 18,
         symbol: 'USDC',
-        name: 'Wrapped Ether',
+        name: 'USD Coin',
       },
       {
         chainId: 1,
@@ -718,7 +727,7 @@ console.log(bestRoute);
         contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         decimals: 18,
         symbol: 'USDT',
-        name: 'Wrapped Ether',
+        name: 'Tether USD',
       },
       {
         chainId: 1,
@@ -825,7 +834,7 @@ console.log(bestRoute);
       contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
       decimals: 18,
       symbol: 'USDT',
-      name: 'Wrapped Ether',
+      name: 'Tether USD',
     },
     {
       chainId: 1,
@@ -855,7 +864,7 @@ console.log(bestRoute);
       contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
       decimals: 18,
       symbol: 'USDC',
-      name: 'Wrapped Ether',
+      name: 'USD Coin',
     },
     {
       chainId: 1,
@@ -885,7 +894,7 @@ console.log(bestRoute);
       contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
       decimals: 18,
       symbol: 'DAI',
-      name: 'Wrapped Ether',
+      name: 'Dai Stablecoin',
     },
     {
       chainId: 1,

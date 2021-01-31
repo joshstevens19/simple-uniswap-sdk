@@ -10,7 +10,7 @@ export class USDC {
       contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
       decimals: 18,
       symbol: 'USDC',
-      name: 'Wrapped Ether',
+      name: 'USD Coin',
     };
   }
 
@@ -20,7 +20,7 @@ export class USDC {
       contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
       decimals: 18,
       symbol: 'USDC',
-      name: 'Wrapped Ether',
+      name: 'USD Coin',
     };
   }
 
@@ -30,7 +30,7 @@ export class USDC {
       contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
       decimals: 18,
       symbol: 'USDC',
-      name: 'Wrapped Ether',
+      name: 'USD Coin',
     };
   }
 
@@ -40,7 +40,7 @@ export class USDC {
       contractAddress: '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6',
       decimals: 18,
       symbol: 'USDC',
-      name: 'Wrapped Ether',
+      name: 'USD Coin',
     };
   }
 
@@ -50,7 +50,7 @@ export class USDC {
       contractAddress: '0xd0A1E359811322d97991E03f863a0C30C2cF029C',
       decimals: 18,
       symbol: 'USDC',
-      name: 'Wrapped Ether',
+      name: 'USD Coin',
     };
   }
 

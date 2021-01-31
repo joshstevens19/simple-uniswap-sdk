@@ -10,7 +10,7 @@ export class COMP {
       contractAddress: '0xc00e94Cb662C3520282E6f5717214004A7f26888',
       decimals: 18,
       symbol: 'COMP',
-      name: 'Wrapped Ether',
+      name: 'Compound',
     };
   }
 
@@ -20,7 +20,7 @@ export class COMP {
       contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
       decimals: 18,
       symbol: 'COMP',
-      name: 'Wrapped Ether',
+      name: 'Compound',
     };
   }
 
@@ -30,7 +30,7 @@ export class COMP {
       contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
       decimals: 18,
       symbol: 'COMP',
-      name: 'Wrapped Ether',
+      name: 'Compound',
     };
   }
 
@@ -40,7 +40,7 @@ export class COMP {
       contractAddress: '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6',
       decimals: 18,
       symbol: 'COMP',
-      name: 'Wrapped Ether',
+      name: 'Compound',
     };
   }
 
@@ -50,7 +50,7 @@ export class COMP {
       contractAddress: '0xd0A1E359811322d97991E03f863a0C30C2cF029C',
       decimals: 18,
       symbol: 'COMP',
-      name: 'Wrapped Ether',
+      name: 'Compound',
     };
   }
 
