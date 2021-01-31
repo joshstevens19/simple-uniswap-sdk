@@ -8,4 +8,5 @@ export { UniswapPairFactory } from './factories/pair/uniswap-pair.factory';
 export { UniswapRouterContractFactoryPublic } from './factories/router/uniswap-router-contract.factory.public';
 export { Token } from './factories/token/models/token';
 export { TokenFactoryPublic } from './factories/token/token.factory.public';
+export { TokensFactoryPublic } from './factories/token/tokens.factory.public';
 export { UniswapContractFactoryPublic } from './factories/uniswap-factory/uniswap-contract.factory.public';

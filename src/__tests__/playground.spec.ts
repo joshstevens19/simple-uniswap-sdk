@@ -15,8 +15,14 @@ const routeTest = async () => {
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  const trade = await uniswapPairFactory.trade('10');
-  console.log(JSON.stringify(trade));
+  // const trade = await uniswapPairFactory.trade('10');
+  // console.log(JSON.stringify(trade));
+
+  const toToken = uniswapPairFactory.toToken;
+  console.log(toToken);
+
+  const fromToken = uniswapPairFactory.fromToken;
+  console.log(fromToken);
 
   // const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 

@@ -23,6 +23,10 @@ export class TokenFactory {
    * Get the token details
    */
   public async getToken(): Promise<Token> {
+    const SYMBOL = 0;
+    const DECIMALS = 1;
+    const NAME = 2;
+
     const contractCallContext: ContractCallContext = {
       reference: 'token',
       contractAddress: this._tokenContractAddress,
@@ -52,9 +56,9 @@ export class TokenFactory {
     return {
       chainId: this._ethersProvider.network().chainId,
       contractAddress: this._tokenContractAddress,
-      symbol: results.callsReturnContext[0].returnValues[0],
-      decimals: results.callsReturnContext[1].returnValues[0],
-      name: results.callsReturnContext[2].returnValues[0],
+      symbol: results.callsReturnContext[SYMBOL].returnValues[0],
+      decimals: results.callsReturnContext[DECIMALS].returnValues[0],
+      name: results.callsReturnContext[NAME].returnValues[0],
     };
   }
 

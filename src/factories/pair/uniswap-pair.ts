@@ -1,6 +1,6 @@
 import { ChainId } from '../../enums/chain-id';
 import { EthersProvider } from '../../ethers-provider';
-import { TokenFactory } from '../token/token.factory';
+import { TokensFactory } from '../token/tokens.factory';
 import { UniswapPairContext } from './models/uniswap-pair-context';
 import { UniswapPairSettings } from './models/uniswap-pair-settings';
 import { UniswapPairFactory } from './uniswap-pair.factory';
@@ -22,23 +22,19 @@ export class UniswapPair {
    * Create factory to be able to call methods on the 2 tokens
    */
   public async createFactory(): Promise<UniswapPairFactory> {
-    const fromTokenContext = new TokenFactory(
+    const tokensFactory = new TokensFactory(this._ethersProvider);
+    const tokens = await tokensFactory.getTokens([
       this._fromTokenContractAddress,
-      this._ethersProvider
-    );
-
-    const fromToken = await fromTokenContext.getToken();
-
-    const toTokenContext = new TokenFactory(
       this._toTokenContractAddress,
-      this._ethersProvider
-    );
-
-    const toToken = await toTokenContext.getToken();
+    ]);
 
     const uniswapFactoryContext: UniswapPairContext = {
-      fromToken,
-      toToken,
+      fromToken: tokens.find(
+        (t) => t.contractAddress === this._fromTokenContractAddress
+      )!,
+      toToken: tokens.find(
+        (t) => t.contractAddress === this._toTokenContractAddress
+      )!,
       ethereumAddress: this._ethereumAddress,
       settings: this._settings,
       ethersProvider: this._ethersProvider,

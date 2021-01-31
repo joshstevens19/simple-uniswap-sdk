@@ -49,7 +49,7 @@ export class UniswapRouterFactory {
       [[this._fromToken, this._toToken]],
     ];
 
-    const contractCallContext: ContractCallContext<Token[][][]> = {
+    const contractCallContext: ContractCallContext = {
       reference: 'uniswap-pairs',
       contractAddress: ContractContext.pairAddress,
       abi: ContractContext.pairAbi,
