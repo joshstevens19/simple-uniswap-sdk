@@ -7,6 +7,7 @@ export interface PriceContext {
   baseConvertRequest: string;
   minAmountConvertQuote: string;
   expectedConvertQuote: string;
+  liquidityProviderFee: string;
   routePathTokenMap: Token[];
   routeText: string;
   routePath: string[];

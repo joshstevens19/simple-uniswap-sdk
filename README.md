@@ -210,7 +210,7 @@ export interface PriceContext {
   // this will be formatted in readable number
   // so you can render straight out the box
   baseConvertRequest: string;
-  // the min amount you will receive
+  // the min amount you will receive taking off the slippage
   // if the price changes below that then
   // the uniswap contract will throw
   // this will be formatted in readable number
@@ -220,6 +220,10 @@ export interface PriceContext {
   // this will be formatted in readable number
   // so you can render straight out the box
   expectedConvertQuote: string;
+  // A portion of each trade (0.03%) goes to
+  // liquidity providers as a protocol of
+  // incentive
+  liquidityProviderFee: string;
   // the route path mapped with full token info
   routePathTokenMap: Token[];
   // the route text so you can display it on the dApp easily
@@ -333,6 +337,7 @@ console.log(trade);
   baseConvertRequest: '10',
   minAmountConvertQuote: '0.014400465273974444',
   expectedConvertQuote: '0.014730394044348867',
+  liquidityProviderFee: '0.030000000000000000',
   routePathTokenMap: [
      {
        chainId: 1,
@@ -575,6 +580,7 @@ console.log(trade);
   baseConvertRequest: '10',
   minAmountConvertQuote: '446878.20758208',
   expectedConvertQuote: '449123.82671566',
+  liquidityProviderFee: '0.030000000000000000',
   routePathTokenMap: [
     {
       chainId: 1,
@@ -1975,6 +1981,7 @@ console.log(trade);
   baseConvertRequest: '10',
   minAmountConvertQuote: '0.00022040807282109',
   expectedConvertQuote: '0.00022151807282109',
+  liquidityProviderFee: '0.03000000',
   routePathTokenMap: [
     {
       chainId: 1,

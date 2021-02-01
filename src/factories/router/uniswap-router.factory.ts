@@ -400,7 +400,7 @@ export class UniswapRouterFactory {
     return {
       expectedConvertQuote: convertQuoteUnformatted
         .shiftedBy(this._toToken.decimals * -1)
-        .toFixed(),
+        .toFixed(this._toToken.decimals),
       routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
         (c: string) => {
           return this.allTokens.find((t) => t.contractAddress === c);
@@ -431,7 +431,7 @@ export class UniswapRouterFactory {
     return {
       expectedConvertQuote: new BigNumber(
         formatEther(convertQuoteUnformatted)
-      ).toFixed(),
+      ).toFixed(this._toToken.decimals),
       routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
         (c: string) => {
           return this.allTokens.find((t) => t.contractAddress === c);

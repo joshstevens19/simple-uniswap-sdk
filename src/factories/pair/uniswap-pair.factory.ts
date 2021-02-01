@@ -21,6 +21,8 @@ import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context
 import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
 
 export class UniswapPairFactory {
+  private readonly LIQUIDITY_PROVIDER_FEE = 0.003;
+
   private _fromTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.fromToken.contractAddress,
     this._uniswapPairFactoryContext.ethersProvider
@@ -333,8 +335,13 @@ export class UniswapPairFactory {
 
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
-      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
+      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
+        this.toToken.decimals
+      ),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
+      liquidityProviderFee: erc20Amount
+        .times(this.LIQUIDITY_PROVIDER_FEE)
+        .toFixed(this.fromToken.decimals),
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
@@ -383,8 +390,13 @@ export class UniswapPairFactory {
 
     const priceContext: PriceContext = {
       baseConvertRequest: erc20Amount.toFixed(),
-      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
+      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
+        this.toToken.decimals
+      ),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
+      liquidityProviderFee: erc20Amount
+        .times(this.LIQUIDITY_PROVIDER_FEE)
+        .toFixed(this.fromToken.decimals),
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
@@ -430,8 +442,13 @@ export class UniswapPairFactory {
 
     const priceContext: PriceContext = {
       baseConvertRequest: ethAmount.toFixed(),
-      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(),
+      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
+        this.toToken.decimals
+      ),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
+      liquidityProviderFee: ethAmount
+        .times(this.LIQUIDITY_PROVIDER_FEE)
+        .toFixed(this.fromToken.decimals),
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,

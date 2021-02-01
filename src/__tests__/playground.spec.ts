@@ -8,8 +8,8 @@ const routeTest = async () => {
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
-    fromTokenContractAddress,
-    toTokenContractAddress,
+    fromTokenContractAddress: toTokenContractAddress,
+    toTokenContractAddress: fromTokenContractAddress,
     ethereumAddress,
     chainId: ChainId.MAINNET,
     settings: new UniswapPairSettings({
@@ -24,11 +24,7 @@ const routeTest = async () => {
   const uniswapPairFactory = await uniswapPair.createFactory();
 
   const trade = await uniswapPairFactory.trade('10');
-  console.log('First price', trade.expectedConvertQuote);
-  trade.quoteChanged$.subscribe((value) => {
-    console.log('Next price', value.expectedConvertQuote);
-    // console.log('CHANGED PRICE', value);
-  });
+  console.log(trade);
 
   process.stdin.resume();
 
