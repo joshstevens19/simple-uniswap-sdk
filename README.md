@@ -237,6 +237,8 @@ This will generate you the trade with all the information you need to show to th
 
 It will also return a `hasEnoughAllowance` in the `TradeContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the transaction for the user to appove moving of the tokens.
 
+Please note `ROPSTEN`, `RINKEBY`, `GÖRLI` and `KOVAN` will only use `WETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
+
 ```ts
 async trade(amount: string): Promise<TradeContext>
 ```

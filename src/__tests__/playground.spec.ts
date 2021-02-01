@@ -1,18 +1,19 @@
+import { WETH } from '../common/tokens';
 import { ChainId } from '../enums/chain-id';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
 import { UniswapPair } from '../factories/pair/uniswap-pair';
 
 const routeTest = async () => {
   console.log(new Date().getTime());
-  const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-  const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
+  const fromTokenContractAddress = '0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
+  // const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
-    fromTokenContractAddress: toTokenContractAddress,
-    toTokenContractAddress: fromTokenContractAddress,
+    fromTokenContractAddress,
+    toTokenContractAddress: WETH.RINKEBY().contractAddress,
     ethereumAddress,
-    chainId: ChainId.MAINNET,
+    chainId: ChainId.RINKEBY,
     settings: new UniswapPairSettings({
       // if not supplied it use `0.005` which is 0.5%;
       // all figures

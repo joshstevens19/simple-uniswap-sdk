@@ -14,56 +14,61 @@ export class TokensFactory {
    * Get the tokens details
    */
   public async getTokens(tokenContractAddresses: string[]): Promise<Token[]> {
-    const SYMBOL = 0;
-    const DECIMALS = 1;
-    const NAME = 2;
+    try {
+      const SYMBOL = 0;
+      const DECIMALS = 1;
+      const NAME = 2;
 
-    const contractCallContexts: ContractCallContext[] = [];
-    for (let i = 0; i < tokenContractAddresses.length; i++) {
-      const contractCallContext: ContractCallContext = {
-        reference: `token${i}`,
-        contractAddress: tokenContractAddresses[i],
-        abi: ContractContext.erc20Abi,
-        calls: [
-          {
-            reference: `symbol`,
-            methodName: 'symbol',
-            methodParameters: [],
-          },
-          {
-            reference: `decimals`,
-            methodName: 'decimals',
-            methodParameters: [],
-          },
-          {
-            reference: `name`,
-            methodName: 'name',
-            methodParameters: [],
-          },
-        ],
-      };
+      const contractCallContexts: ContractCallContext[] = [];
+      for (let i = 0; i < tokenContractAddresses.length; i++) {
+        const contractCallContext: ContractCallContext = {
+          reference: `token${i}`,
+          contractAddress: tokenContractAddresses[i],
+          abi: ContractContext.erc20Abi,
+          calls: [
+            {
+              reference: `symbol`,
+              methodName: 'symbol',
+              methodParameters: [],
+            },
+            {
+              reference: `decimals`,
+              methodName: 'decimals',
+              methodParameters: [],
+            },
+            {
+              reference: `name`,
+              methodName: 'name',
+              methodParameters: [],
+            },
+          ],
+        };
 
-      contractCallContexts.push(contractCallContext);
+        contractCallContexts.push(contractCallContext);
+      }
+
+      const contractCallResults = await this._multicall.call(
+        contractCallContexts
+      );
+
+      const tokens: Token[] = [];
+
+      for (const result in contractCallResults.results) {
+        const tokenInfo = contractCallResults.results[result];
+
+        tokens.push({
+          chainId: this._ethersProvider.network().chainId,
+          contractAddress:
+            tokenInfo.originalContractCallContext.contractAddress,
+          symbol: tokenInfo.callsReturnContext[SYMBOL].returnValues[0],
+          decimals: tokenInfo.callsReturnContext[DECIMALS].returnValues[0],
+          name: tokenInfo.callsReturnContext[NAME].returnValues[0],
+        });
+      }
+
+      return tokens;
+    } catch (error) {
+      throw new Error('invalid from or to contract tokens');
     }
-
-    const contractCallResults = await this._multicall.call(
-      contractCallContexts
-    );
-
-    const tokens: Token[] = [];
-
-    for (const result in contractCallResults.results) {
-      const tokenInfo = contractCallResults.results[result];
-
-      tokens.push({
-        chainId: this._ethersProvider.network().chainId,
-        contractAddress: tokenInfo.originalContractCallContext.contractAddress,
-        symbol: tokenInfo.callsReturnContext[SYMBOL].returnValues[0],
-        decimals: tokenInfo.callsReturnContext[DECIMALS].returnValues[0],
-        name: tokenInfo.callsReturnContext[NAME].returnValues[0],
-      });
-    }
-
-    return tokens;
   }
 }

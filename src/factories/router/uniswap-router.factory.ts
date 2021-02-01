@@ -15,6 +15,7 @@ import { formatEther } from '../../common/utils/format-ether';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { getTradePath } from '../../common/utils/trade-path';
+import { ChainId } from '../../enums/chain-id';
 import { TradePath } from '../../enums/trade-path';
 import { EthersProvider } from '../../ethers-provider';
 import { Token } from '../token/models/token';
@@ -480,33 +481,50 @@ export class UniswapRouterFactory {
   }
 
   private get allMainTokens(): Token[] {
-    return [
-      this.USDTTokenForConnectedNetwork,
-      this.COMPTokenForConnectedNetwork,
-      this.USDCTokenForConnectedNetwork,
-      this.DAITokenForConnectedNetwork,
-      this.WETHTokenForConnectedNetwork,
-    ];
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      return [
+        this.USDTTokenForConnectedNetwork,
+        this.COMPTokenForConnectedNetwork,
+        this.USDCTokenForConnectedNetwork,
+        this.DAITokenForConnectedNetwork,
+        this.WETHTokenForConnectedNetwork,
+      ];
+    }
+
+    return [this.WETHTokenForConnectedNetwork];
   }
 
   private get mainCurrenciesPairsForFromToken(): Token[][] {
-    const pairs = [
-      [this._fromToken, this.USDTTokenForConnectedNetwork],
-      [this._fromToken, this.COMPTokenForConnectedNetwork],
-      [this._fromToken, this.USDCTokenForConnectedNetwork],
-      [this._fromToken, this.DAITokenForConnectedNetwork],
-      [this._fromToken, this.WETHTokenForConnectedNetwork],
-    ];
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      const pairs = [
+        [this._fromToken, this.USDTTokenForConnectedNetwork],
+        [this._fromToken, this.COMPTokenForConnectedNetwork],
+        [this._fromToken, this.USDCTokenForConnectedNetwork],
+        [this._fromToken, this.DAITokenForConnectedNetwork],
+        [this._fromToken, this.WETHTokenForConnectedNetwork],
+      ];
 
+      return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
+    }
+
+    const pairs = [[this._fromToken, this.WETHTokenForConnectedNetwork]];
     return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
   }
 
   private get mainCurrenciesPairsForToToken(): Token[][] {
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      const pairs: Token[][] = [
+        [this.USDTTokenForConnectedNetwork, this._toToken],
+        [this.COMPTokenForConnectedNetwork, this._toToken],
+        [this.USDCTokenForConnectedNetwork, this._toToken],
+        [this.DAITokenForConnectedNetwork, this._toToken],
+        [this.WETHTokenForConnectedNetwork, this._toToken],
+      ];
+
+      return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
+    }
+
     const pairs: Token[][] = [
-      [this.USDTTokenForConnectedNetwork, this._toToken],
-      [this.COMPTokenForConnectedNetwork, this._toToken],
-      [this.USDCTokenForConnectedNetwork, this._toToken],
-      [this.DAITokenForConnectedNetwork, this._toToken],
       [this.WETHTokenForConnectedNetwork, this._toToken],
     ];
 
@@ -514,48 +532,68 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForUSDT(): Token[][] {
-    return [
-      [this.USDTTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
-      [this.USDTTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
-      [this.USDTTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
-      [this.USDTTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
-    ];
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      return [
+        [this.USDTTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
+        [this.USDTTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
+        [this.USDTTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+        [this.USDTTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
+      ];
+    }
+
+    return [];
   }
 
   private get mainCurrenciesPairsForCOMP(): Token[][] {
-    return [
-      [this.COMPTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
-      [this.COMPTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
-      [this.COMPTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
-      [this.COMPTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
-    ];
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      return [
+        [this.COMPTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
+        [this.COMPTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
+        [this.COMPTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+        [this.COMPTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
+      ];
+    }
+
+    return [];
   }
 
   private get mainCurrenciesPairsForDAI(): Token[][] {
-    return [
-      [this.DAITokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
-      [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
-      [this.DAITokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
-      [this.DAITokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
-    ];
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      return [
+        [this.DAITokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
+        [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
+        [this.DAITokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+        [this.DAITokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
+      ];
+    }
+
+    return [];
   }
 
   private get mainCurrenciesPairsForUSDC(): Token[][] {
-    return [
-      [this.USDCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
-      [this.USDCTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
-      [this.USDCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
-      [this.USDCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
-    ];
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      return [
+        [this.USDCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
+        [this.USDCTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
+        [this.USDCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
+        [this.USDCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
+      ];
+    }
+
+    return [];
   }
 
   private get mainCurrenciesPairsForWETH(): Token[][] {
-    return [
-      [this.WETHTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
-      [this.WETHTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
-      [this.WETHTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
-      [this.WETHTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
-    ];
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      return [
+        [this.WETHTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
+        [this.WETHTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
+        [this.WETHTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
+        [this.WETHTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+      ];
+    }
+
+    return [];
   }
 
   private get USDTTokenForConnectedNetwork() {

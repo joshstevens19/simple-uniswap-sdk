@@ -29,5 +29,12 @@
   },
   "devDependencies": {
     "ethereum-abi-types-generator": "^1.0.10"
-  }
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "LICENSE"
+  ]
 }
