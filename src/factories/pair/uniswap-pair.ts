@@ -45,20 +45,24 @@ export class UniswapPair {
       throw new Error('`ethereumAddress` is not a valid address');
     }
 
-    const chainIdOrProviderUrl = (<UniswapPairContextForChainId>(
+    const chainId = (<UniswapPairContextForChainId>this._uniswapPairContext)
+      .chainId;
+
+    if (chainId) {
+      this._ethersProvider = new EthersProvider(chainId);
+      return;
+    }
+
+    const providerUrl = (<UniswapPairContextForProviderUrl>(
       this._uniswapPairContext
-    )).chainId;
-    if (!chainIdOrProviderUrl) {
-      (<UniswapPairContextForProviderUrl>this._uniswapPairContext).providerUrl;
+    )).providerUrl;
+
+    if (providerUrl) {
+      this._ethersProvider = new EthersProvider(providerUrl);
+      return;
     }
 
-    if (!chainIdOrProviderUrl) {
-      throw new Error(
-        'You must have a chainId or a providerUrl on the context.'
-      );
-    }
-
-    this._ethersProvider = new EthersProvider(chainIdOrProviderUrl);
+    throw new Error('You must have a chainId or a providerUrl on the context.');
   }
 
   /**
