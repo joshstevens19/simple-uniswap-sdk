@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js';
+import { Subject } from 'rxjs';
 import { Constants } from '../../common/constants';
 import { ContractContext } from '../../common/contract-context';
 import { getCurrentUnixTime } from '../../common/utils/get-current-unix-time';
@@ -39,6 +40,9 @@ export class UniswapPairFactory {
     this._uniswapPairContext.ethersProvider
   );
 
+  private _quoteChangeTimeout: NodeJS.Timeout | undefined;
+  private _quoteChanged$: Subject<PriceContext> = new Subject<PriceContext>();
+
   constructor(private _uniswapPairContext: UniswapPairContext) {}
 
   /**
@@ -63,23 +67,50 @@ export class UniswapPairFactory {
   }
 
   /**
+   * Execute the trade path
+   * @param amount The amount
+   */
+  private async executeTradePath(amount: BigNumber): Promise<PriceContext> {
+    switch (this.tradePath()) {
+      case TradePath.erc20ToEth:
+        return await this.getTokenTradeAmountErc20ToEth(amount);
+      case TradePath.ethToErc20:
+        return await this.getTokenTradeAmountEthToErc20(amount);
+      case TradePath.erc20ToErc20:
+        return await this.getTokenTradeAmountErc20ToErc20(amount);
+      default:
+        throw new Error(`${this.tradePath()} is not defined`);
+    }
+  }
+
+  /**
+   * Destroy the trade instance watchers + subscriptions
+   */
+  private destroy(): void {
+    for (let i = 0; i < this._quoteChanged$.observers.length; i++) {
+      this._quoteChanged$.observers[i].complete();
+    }
+
+    if (this._quoteChangeTimeout) {
+      clearTimeout(this._quoteChangeTimeout);
+    }
+  }
+
+  /**
    * Generate trade - this will return amount but you still need to send the transaction
    * if you want it to be executed on the blockchain
    * @amount The amount you want to swap, this is the FROM token amount.
    */
   public async trade(amount: string): Promise<PriceContext> {
-    const amountBigNumber = new BigNumber(amount);
+    this.destroy();
 
-    switch (this.tradePath()) {
-      case TradePath.erc20ToEth:
-        return await this.getTokenTradeAmountErc20ToEth(amountBigNumber);
-      case TradePath.ethToErc20:
-        return await this.getTokenTradeAmountEthToErc20(amountBigNumber);
-      case TradePath.erc20ToErc20:
-        return await this.getTokenTradeAmountErc20ToErc20(amountBigNumber);
-      default:
-        throw new Error(`${this.tradePath()} is not defined`);
-    }
+    const priceContext: PriceContext = await this.executeTradePath(
+      new BigNumber(amount)
+    );
+
+    this.watchTradePrice(priceContext);
+
+    return priceContext;
   }
 
   /**
@@ -307,7 +338,6 @@ export class UniswapPairFactory {
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
       hasEnoughAllowance: this.hasGotEnoughAllowance(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
@@ -317,6 +347,9 @@ export class UniswapPairFactory {
         allowanceAndBalanceOf.balanceOf
       ),
       transaction: this.buildUpTransactionErc20(data),
+      allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
+      quoteChanged$: this._quoteChanged$,
+      destroy: () => this.destroy(),
     };
 
     return priceContext;
@@ -365,6 +398,8 @@ export class UniswapPairFactory {
       ),
       transaction: this.buildUpTransactionErc20(data),
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
+      quoteChanged$: this._quoteChanged$,
+      destroy: () => this.destroy(),
     };
 
     return priceContext;
@@ -404,6 +439,8 @@ export class UniswapPairFactory {
       fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
       transaction: this.buildUpTransactionEth(ethAmount, data),
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
+      quoteChanged$: this._quoteChanged$,
+      destroy: () => this.destroy(),
     };
 
     return priceContext;
@@ -533,5 +570,34 @@ export class UniswapPairFactory {
     const timestamp =
       getCurrentUnixTime() + this._uniswapPairContext.settings.deadlineMinutes;
     return timestamp.toString();
+  }
+
+  /**
+   * Watch trade price move automatically emitting the stream if it changes
+   * @param priceContext The price context
+   */
+  private async watchTradePrice(priceContext: PriceContext): Promise<void> {
+    this._quoteChangeTimeout = setTimeout(async () => {
+      if (this._quoteChanged$.observers.length > 0) {
+        const trade = await this.executeTradePath(
+          new BigNumber(priceContext.baseConvertRequest)
+        );
+        if (
+          !new BigNumber(trade.expectedConvertQuote).eq(
+            priceContext.expectedConvertQuote
+          ) ||
+          trade.routeText !== trade.routeText
+        ) {
+          this._quoteChanged$.next(priceContext);
+          this.watchTradePrice(trade);
+        } else {
+          this.watchTradePrice(priceContext);
+        }
+      } else {
+        this.watchTradePrice(priceContext);
+      }
+      // maybe make config
+      // query new prices every 10 seconds
+    }, 10000);
   }
 }

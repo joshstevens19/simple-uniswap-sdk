@@ -168,7 +168,6 @@ export class UniswapRouterFactory {
     const contractCallResults = await this._multicall.call(contractCallContext);
 
     const results = contractCallResults.results[contractCallContext.reference];
-
     return this.buildRouteQuotesFromResults(results);
   }
 

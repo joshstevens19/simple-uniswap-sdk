@@ -24,7 +24,8 @@
   "dependencies": {
     "bignumber.js": "^9.0.1",
     "ethereum-multicall": "^2.0.1",
-    "ethers": "^5.0.26"
+    "ethers": "^5.0.26",
+    "rxjs": "^6.6.3"
   },
   "devDependencies": {
     "ethereum-abi-types-generator": "^1.0.10"

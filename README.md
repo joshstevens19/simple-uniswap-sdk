@@ -212,6 +212,19 @@ export interface PriceContext {
     data: string;
     value: string;
   };
+  // this is a stream which emits if the quote has changed, this will emit
+  // not matter what you should listen to this for the source of truth
+  // for a reactive dApp. If you dont listen to this the user could end up
+  // sending a uniswap transaction which price is now out of date
+  quoteChanged$: Observable<PriceContext>;
+  // when you generate a trade it does more then just return data, it makes
+  // sure your data stays in sync with the `quoteChanged$`, so once you have
+  // finished with a trade please call this to do a general clear up so we do
+  // not keep timeouts and streams running.
+  // when you call this it will kill all `quoteChanged$` subscriptions and
+  // some watcher timeouts. If you execute a new trade with a new amount on
+  // the same instance it will clear it for you.
+  destroy: () => void;
 }
 ```
 
@@ -258,9 +271,16 @@ const uniswapPair = new UniswapPair(
 const uniswapPairFactory = await uniswapPair.createFactory();
 
 // the amount is the proper entered amount
-// so if they enter 10 pass in 10 or the hex of 10 and
+// so if they enter 10 pass in 10
 // it will work it all out for you
 const trade = await uniswapPairFactory.trade('10');
+
+// subscribe to quote changes
+trade.quoteChanged$.subscribe((value: PriceContext) => {
+  // value will hold the same info as below but obviously with
+  // the new trade info.
+});
+
 console.log(trade);
 {
   baseConvertRequest: '10',
@@ -464,6 +484,9 @@ console.log(trade);
     value: "0x00"
   }
 }
+
+// once done with trade aka they have sent it and you don't need it anymore call
+trade.destroy();
 ```
 
 #### ETH > ERC20
@@ -491,9 +514,17 @@ const uniswapPair = new UniswapPair(
 const uniswapPairFactory = await uniswapPair.createFactory();
 
 // the amount is the proper entered amount
-// so if they enter 10 pass in 10 or the hex of 10 and
+// so if they enter 10 pass in 10 and
 // it will work it all out for you
 const trade = await uniswapPairFactory.trade('10');
+
+
+// subscribe to quote changes
+trade.quoteChanged$.subscribe((value: PriceContext) => {
+  // value will hold the same info as below but obviously with
+  // the new trade info.
+});
+
 console.log(trade);
 {
   baseConvertRequest: '10',
@@ -1855,6 +1886,10 @@ console.log(trade);
     },
   ],
 }
+
+// once done with trade aka they have sent it and you don't need it anymore call
+trade.destroy();
+
 ```
 
 #### ERC20 > ETH
@@ -1882,9 +1917,16 @@ const uniswapPair = new UniswapPair(
 const uniswapPairFactory = await uniswapPair.createFactory();
 
 // the amount is the proper entered amount
-// so if they enter 10 pass in 10 or the hex of 10 and
+// so if they enter 10 pass in 10
 // it will work it all out for you
 const trade = await uniswapPairFactory.trade('10');
+
+// subscribe to quote changes
+trade.quoteChanged$.subscribe((value: PriceContext) => {
+  // value will hold the same info as below but obviously with
+  // the new trade info.
+});
+
 console.log(trade);
 {
   baseConvertRequest: '10',
@@ -3262,6 +3304,9 @@ console.log(trade);
     value: '0x00',
   },
 }
+
+// once done with trade aka they have sent it and you don't need it anymore call
+trade.destroy();
 ```
 
 ### hasGotEnoughAllowance
