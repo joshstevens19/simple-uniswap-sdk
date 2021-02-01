@@ -1950,7 +1950,7 @@ import { UniswapPair, WETH, ChainId, TradeContext } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'.
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // use the WETH import from the lib, bare in mind you should use the
   // network which yours on, so if your on rinkeby you should use
   // WETH.RINKEBY
@@ -3374,7 +3374,7 @@ import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
@@ -3409,7 +3409,7 @@ import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
@@ -3458,7 +3458,7 @@ const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
@@ -3497,7 +3497,7 @@ import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
@@ -3563,7 +3563,7 @@ import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'.
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
@@ -3759,7 +3759,7 @@ import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
