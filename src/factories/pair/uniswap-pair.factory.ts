@@ -140,7 +140,7 @@ export class UniswapPairFactory {
    * Has got enough balance to do the trade (erc20 check only)
    * @param amount The amount you want to swap
    */
-  public hasGotEnoughBalanceErc20(
+  private hasGotEnoughBalanceErc20(
     amount: string,
     balance: string
   ): {
@@ -168,7 +168,7 @@ export class UniswapPairFactory {
    * Has got enough balance to do the trade (eth check only)
    * @param amount The amount you want to swap
    */
-  public async hasGotEnoughBalanceEth(
+  private async hasGotEnoughBalanceEth(
     amount: string
   ): Promise<{
     hasEnough: boolean;
