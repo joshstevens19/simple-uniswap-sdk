@@ -8,7 +8,9 @@ export class EthersProvider {
       this._ethersProvider = new providers.JsonRpcProvider(
         this._chainIdOrProviderUrl
       );
+      return;
     }
+
     this._ethersProvider = new providers.InfuraProvider(
       this._chainIdOrProviderUrl
     );
