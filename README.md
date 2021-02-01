@@ -3595,7 +3595,7 @@ console.log(bestRoute);
 }
 ```
 
-### findAllPossibleRoutes
+### findAllPossibleRoutesWithQuote
 
 This method will return you all the possible routes with quotes ordered by the best quote first (index 0).
 
