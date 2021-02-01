@@ -2,7 +2,7 @@
   "name": "uniswap-sdk",
   "version": "1.0.0",
   "description": "Simple easy to understand SDK for uniswap",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gen-erc20-abi": "abi-types-generator ./src/ABI/erc-20-abi.json --output=./src/ABI/types --name=erc20-contract --provider=ethers_v5",
