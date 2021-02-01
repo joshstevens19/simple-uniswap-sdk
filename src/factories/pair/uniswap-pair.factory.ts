@@ -17,46 +17,46 @@ import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
 import { PriceContext } from './models/price-context';
 import { Transaction } from './models/transaction';
-import { UniswapPairContext } from './models/uniswap-pair-context';
+import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
 import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
 
 export class UniswapPairFactory {
   private _fromTokenFactory = new TokenFactory(
-    this._uniswapPairContext.fromToken.contractAddress,
-    this._uniswapPairContext.ethersProvider
+    this._uniswapPairFactoryContext.fromToken.contractAddress,
+    this._uniswapPairFactoryContext.ethersProvider
   );
 
   private _uniswapRouterContractFactory = new UniswapRouterContractFactory(
-    this._uniswapPairContext.ethersProvider
+    this._uniswapPairFactoryContext.ethersProvider
   );
 
   private _uniswapPairFactory = new UniswapPairContractFactory(
-    this._uniswapPairContext.ethersProvider
+    this._uniswapPairFactoryContext.ethersProvider
   );
 
   private _uniswapRouterFactory = new UniswapRouterFactory(
-    this._uniswapPairContext.fromToken,
-    this._uniswapPairContext.toToken,
-    this._uniswapPairContext.ethersProvider
+    this._uniswapPairFactoryContext.fromToken,
+    this._uniswapPairFactoryContext.toToken,
+    this._uniswapPairFactoryContext.ethersProvider
   );
 
   private _quoteChangeTimeout: NodeJS.Timeout | undefined;
   private _quoteChanged$: Subject<PriceContext> = new Subject<PriceContext>();
 
-  constructor(private _uniswapPairContext: UniswapPairContext) {}
+  constructor(private _uniswapPairFactoryContext: UniswapPairFactoryContext) {}
 
   /**
    * The to token
    */
   public get toToken(): Token {
-    return this._uniswapPairContext.toToken;
+    return this._uniswapPairFactoryContext.toToken;
   }
 
   /**
    * The from token
    */
   public get fromToken(): Token {
-    return this._uniswapPairContext.fromToken;
+    return this._uniswapPairFactoryContext.fromToken;
   }
 
   /**
@@ -205,8 +205,8 @@ export class UniswapPairFactory {
     hasEnough: boolean;
     balance: string;
   }> {
-    const balance = await this._uniswapPairContext.ethersProvider.balanceOf(
-      this._uniswapPairContext.ethereumAddress
+    const balance = await this._uniswapPairFactoryContext.ethersProvider.balanceOf(
+      this._uniswapPairFactoryContext.ethereumAddress
     );
 
     const bigNumberBalance = new BigNumber(balance).shiftedBy(
@@ -231,7 +231,7 @@ export class UniswapPairFactory {
    */
   public async getAllowanceAndBalanceOfForFromToken(): Promise<AllowanceAndBalanceOf> {
     return await this._fromTokenFactory.getAllowanceAndBalanceOf(
-      this._uniswapPairContext.ethereumAddress
+      this._uniswapPairFactoryContext.ethereumAddress
     );
   }
 
@@ -245,7 +245,7 @@ export class UniswapPairFactory {
     }
 
     const allowance = await this._fromTokenFactory.allowance(
-      this._uniswapPairContext.ethereumAddress
+      this._uniswapPairFactoryContext.ethereumAddress
     );
 
     return allowance;
@@ -269,7 +269,7 @@ export class UniswapPairFactory {
 
     return {
       to: this.toToken.contractAddress,
-      from: this._uniswapPairContext.ethereumAddress,
+      from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: Constants.EMPTY_HEX_STRING,
     };
@@ -319,7 +319,7 @@ export class UniswapPairFactory {
       bestRouteQuote.expectedConvertQuote
     ).minus(
       new BigNumber(bestRouteQuote.expectedConvertQuote)
-        .times(this._uniswapPairContext.settings.slippage)
+        .times(this._uniswapPairFactoryContext.settings.slippage)
         .toFixed(this.fromToken.decimals)
     );
 
@@ -369,7 +369,7 @@ export class UniswapPairFactory {
       bestRouteQuote.expectedConvertQuote
     ).minus(
       new BigNumber(bestRouteQuote.expectedConvertQuote)
-        .times(this._uniswapPairContext.settings.slippage)
+        .times(this._uniswapPairFactoryContext.settings.slippage)
         .toFixed(this.fromToken.decimals)
     );
 
@@ -419,7 +419,7 @@ export class UniswapPairFactory {
       bestRouteQuote.expectedConvertQuote
     ).minus(
       new BigNumber(bestRouteQuote.expectedConvertQuote)
-        .times(this._uniswapPairContext.settings.slippage)
+        .times(this._uniswapPairFactoryContext.settings.slippage)
         .toFixed(this.toToken.decimals)
     );
 
@@ -465,7 +465,7 @@ export class UniswapPairFactory {
     return this._uniswapRouterContractFactory.swapExactETHForTokens(
       hex,
       routePathArray,
-      this._uniswapPairContext.ethereumAddress,
+      this._uniswapPairFactoryContext.ethereumAddress,
       this.generateTradeDeadlineUnixTime()
     );
   }
@@ -492,7 +492,7 @@ export class UniswapPairFactory {
       hexlify(amountIn),
       ethAmountOutWei,
       routePathArray,
-      this._uniswapPairContext.ethereumAddress,
+      this._uniswapPairFactoryContext.ethereumAddress,
       this.generateTradeDeadlineUnixTime()
     );
   }
@@ -520,7 +520,7 @@ export class UniswapPairFactory {
       hexlify(amountIn),
       hexlify(amountMin),
       routePathArray,
-      this._uniswapPairContext.ethereumAddress,
+      this._uniswapPairFactoryContext.ethereumAddress,
       this.generateTradeDeadlineUnixTime()
     );
   }
@@ -532,7 +532,7 @@ export class UniswapPairFactory {
   private buildUpTransactionErc20(data: string): Transaction {
     return {
       to: ContractContext.routerAddress,
-      from: this._uniswapPairContext.ethereumAddress,
+      from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: Constants.EMPTY_HEX_STRING,
     };
@@ -549,7 +549,7 @@ export class UniswapPairFactory {
   ): Transaction {
     return {
       to: ContractContext.routerAddress,
-      from: this._uniswapPairContext.ethereumAddress,
+      from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: toEthersBigNumber(parseEther(ethValue)).toHexString(),
     };
@@ -559,7 +559,7 @@ export class UniswapPairFactory {
    * Get the trade path
    */
   private tradePath(): TradePath {
-    const network = this._uniswapPairContext.ethersProvider.network();
+    const network = this._uniswapPairFactoryContext.ethersProvider.network();
     return getTradePath(network.chainId, this.fromToken, this.toToken);
   }
 
@@ -568,7 +568,8 @@ export class UniswapPairFactory {
    */
   private generateTradeDeadlineUnixTime(): string {
     const timestamp =
-      getCurrentUnixTime() + this._uniswapPairContext.settings.deadlineMinutes;
+      getCurrentUnixTime() +
+      this._uniswapPairFactoryContext.settings.deadlineMinutes;
     return timestamp.toString();
   }
 

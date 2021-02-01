@@ -1,7 +1,11 @@
-import { ChainId } from '../../enums/chain-id';
+import { isAddress } from '../../common/utils/is-address';
 import { EthersProvider } from '../../ethers-provider';
 import { TokensFactory } from '../token/tokens.factory';
-import { UniswapPairContext } from './models/uniswap-pair-context';
+import {
+  UniswapPairContextForChainId,
+  UniswapPairContextForProviderUrl,
+} from './models/uniswap-pair-contexts';
+import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
 import { UniswapPairSettings } from './models/uniswap-pair-settings';
 import { UniswapPairFactory } from './uniswap-pair.factory';
 
@@ -9,13 +13,52 @@ export class UniswapPair {
   private _ethersProvider: EthersProvider;
 
   constructor(
-    private _fromTokenContractAddress: string,
-    private _toTokenContractAddress: string,
-    private _ethereumAddress: string,
-    private _chainIdOrProviderUrl: ChainId | string,
-    private _settings: UniswapPairSettings = new UniswapPairSettings()
+    private _uniswapPairContext:
+      | UniswapPairContextForChainId
+      | UniswapPairContextForProviderUrl
   ) {
-    this._ethersProvider = new EthersProvider(this._chainIdOrProviderUrl);
+    if (!this._uniswapPairContext.fromTokenContractAddress) {
+      throw new Error('Must have a `fromTokenContractAddress` on the context');
+    }
+
+    if (!isAddress(this._uniswapPairContext.fromTokenContractAddress)) {
+      throw new Error(
+        '`fromTokenContractAddress` is not a valid contract address'
+      );
+    }
+
+    if (!this._uniswapPairContext.toTokenContractAddress) {
+      throw new Error('Must have a `toTokenContractAddress` on the context');
+    }
+
+    if (!isAddress(this._uniswapPairContext.toTokenContractAddress)) {
+      throw new Error(
+        '`toTokenContractAddress` is not a valid contract address'
+      );
+    }
+
+    if (!this._uniswapPairContext.ethereumAddress) {
+      throw new Error('Must have a `ethereumAddress` on the context');
+    }
+
+    if (!isAddress(this._uniswapPairContext.ethereumAddress)) {
+      throw new Error('`ethereumAddress` is not a valid address');
+    }
+
+    const chainIdOrProviderUrl = (<UniswapPairContextForChainId>(
+      this._uniswapPairContext
+    )).chainId;
+    if (!chainIdOrProviderUrl) {
+      (<UniswapPairContextForProviderUrl>this._uniswapPairContext).providerUrl;
+    }
+
+    if (!chainIdOrProviderUrl) {
+      throw new Error(
+        'You must have a chainId or a providerUrl on the context.'
+      );
+    }
+
+    this._ethersProvider = new EthersProvider(chainIdOrProviderUrl);
   }
 
   /**
@@ -24,19 +67,22 @@ export class UniswapPair {
   public async createFactory(): Promise<UniswapPairFactory> {
     const tokensFactory = new TokensFactory(this._ethersProvider);
     const tokens = await tokensFactory.getTokens([
-      this._fromTokenContractAddress,
-      this._toTokenContractAddress,
+      this._uniswapPairContext.fromTokenContractAddress,
+      this._uniswapPairContext.toTokenContractAddress,
     ]);
 
-    const uniswapFactoryContext: UniswapPairContext = {
+    const uniswapFactoryContext: UniswapPairFactoryContext = {
       fromToken: tokens.find(
-        (t) => t.contractAddress === this._fromTokenContractAddress
+        (t) =>
+          t.contractAddress ===
+          this._uniswapPairContext.fromTokenContractAddress
       )!,
       toToken: tokens.find(
-        (t) => t.contractAddress === this._toTokenContractAddress
+        (t) =>
+          t.contractAddress === this._uniswapPairContext.toTokenContractAddress
       )!,
-      ethereumAddress: this._ethereumAddress,
-      settings: this._settings,
+      ethereumAddress: this._uniswapPairContext.ethereumAddress,
+      settings: this._uniswapPairContext.settings || new UniswapPairSettings(),
       ethersProvider: this._ethersProvider,
     };
 

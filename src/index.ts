@@ -2,6 +2,10 @@ export * from './common/tokens';
 export { ChainId } from './enums/chain-id';
 export { PriceContext } from './factories/pair/models/price-context';
 export { Transaction } from './factories/pair/models/transaction';
+export {
+  UniswapPairContextForChainId,
+  UniswapPairContextForProviderUrl,
+} from './factories/pair/models/uniswap-pair-contexts';
 export { UniswapPairSettings } from './factories/pair/models/uniswap-pair-settings';
 export { UniswapPair } from './factories/pair/uniswap-pair';
 export { UniswapPairContractFactoryPublic } from './factories/pair/uniswap-pair-contract.factory.public';

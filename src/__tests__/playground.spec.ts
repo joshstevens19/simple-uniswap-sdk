@@ -1,4 +1,5 @@
 import { ChainId } from '../enums/chain-id';
+import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
 import { UniswapPair } from '../factories/pair/uniswap-pair';
 
 const routeTest = async () => {
@@ -6,17 +7,35 @@ const routeTest = async () => {
   const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
-  const uniswapPair = new UniswapPair(
+  const uniswapPair = new UniswapPair({
     fromTokenContractAddress,
     toTokenContractAddress,
     ethereumAddress,
-    ChainId.MAINNET
-  );
+    chainId: ChainId.MAINNET,
+    settings: new UniswapPairSettings({
+      // if not supplied it use `0.005` which is 0.5%;
+      // all figures
+      slippage: 0.005,
+      // if not supplied it will use 20 a deadline minutes
+      deadlineMinutes: 20,
+    }),
+  });
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
   const trade = await uniswapPairFactory.trade('10');
-  console.log(JSON.stringify(trade));
+  console.log('First price', trade.expectedConvertQuote);
+  trade.quoteChanged$.subscribe((value) => {
+    console.log('Next price', value.expectedConvertQuote);
+    // console.log('CHANGED PRICE', value);
+  });
+
+  process.stdin.resume();
+
+  // console.log(JSON.stringify(trade));
+
+  // const data = await uniswapPairFactory.generateApproveMaxAllowanceData();
+  // console.log(data);
 
   // const toToken = uniswapPairFactory.toToken;
   // console.log(toToken);

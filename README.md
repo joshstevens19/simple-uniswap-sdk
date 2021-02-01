@@ -17,29 +17,76 @@ NEED TO PUBLISH NPM PACKAGE
 The uniswap pair factory is an instance which is joint together with the `from` token and the `to` token, it is all self contained in the instance and exposes easy methods for you to call to start using uniswap.
 
 ```ts
+export class UniswapPair {
+  constructor(
+    private _uniswapPairContext:
+      | UniswapPairContextForChainId
+      | UniswapPairContextForProviderUrl
+)
+```
+
+```ts
+export enum ChainId {
+  MAINNET = 1,
+  ROPSTEN = 3,
+  RINKEBY = 4,
+  GÖRLI = 5,
+  KOVAN = 42,
+}
+
+export interface UniswapPairContextForChainId extends UniswapPairContextBase {
+  chainId: ChainId;
+}
+
+export interface UniswapPairContextForProviderUrl
+  extends UniswapPairContextBase {
+  providerUrl: string;
+}
+
+interface UniswapPairContextBase {
+  fromTokenContractAddress: string;
+  toTokenContractAddress: string;
+  ethereumAddress: string;
+  settings?: UniswapPairSettings | undefined;
+}
+```
+
+```ts
+export class UniswapPairSettings {
+  slippage: number;
+  deadlineMinutes: number;
+
+  constructor(settings?: {
+    slippage?: number | undefined;
+    deadlineMinutes?: number | undefined;
+  }) {
+    this.slippage = settings?.slippage || 0.005;
+    this.deadlineMinutes = settings?.deadlineMinutes || 20;
+  }
+}
+```
+
+```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  fromTokenContractAddress,
-  toTokenContractAddress,
-  ethereumAddress,
-  // you can also put your providerUrl in here if you wanted
-  ChainId.MAINNET,
-  {
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+  settings: new UniswapPairSettings({
     // if not supplied it use `0.005` which is 0.5%;
     // all figures
     slippage: 0.005,
     // if not supplied it will use 20 a deadline minutes
     deadlineMinutes: 20,
-  }
-);
+  }),
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -70,19 +117,17 @@ export interface Token {
 ```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  fromTokenContractAddress,
-  toTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -122,20 +167,17 @@ export interface Token {
 ```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-
-const uniswapPair = new UniswapPair(
-  fromTokenContractAddress,
-  toTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -260,12 +302,17 @@ const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
-const uniswapPair = new UniswapPair(
-  fromTokenContractAddress,
-  toTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -494,21 +541,19 @@ trade.destroy();
 ```ts
 import { UniswapPair, WETH, ChainId } from 'uniswap-sdk';
 
-// use the WETH import from the lib, bare in mind you should use the
-// network which yours on, so if your on rinkeby you should use
-// WETH.RINKEBY
-const fromTokenContractAddress = WETH.MAINNET().contractAddress;
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  fromTokenContractAddress,
-  toTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // use the WETH import from the lib, bare in mind you should use the
+  // network which yours on, so if your on rinkeby you should use
+  // WETH.RINKEBY
+  fromTokenContractAddress: WETH.MAINNET().contractAddress,
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -1897,21 +1942,19 @@ trade.destroy();
 ```ts
 import { UniswapPair, WETH, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'
-// use the WETH import from the lib, bare in mind you should use the
-// network which yours on, so if your on rinkeby you should use
-// WETH.RINKEBY
-const toTokenContractAddress = WETH.MAINNET().contractAddress
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  fromTokenContractAddress,
-  toTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'.
+  // use the WETH import from the lib, bare in mind you should use the
+  // network which yours on, so if your on rinkeby you should use
+  // WETH.RINKEBY
+  toTokenContractAddress: WETH.MAINNET().contractAddress,
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -3322,19 +3365,17 @@ async hasGotEnoughAllowance(amount: string): Promise<boolean>
 ```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  toTokenContractAddress,
-  fromTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -3359,19 +3400,17 @@ async allowance(): Promise<string>
 ```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  toTokenContractAddress,
-  fromTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -3410,12 +3449,17 @@ const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
-const uniswapPair = new UniswapPair(
-  toTokenContractAddress,
-  fromTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -3444,19 +3488,17 @@ async findBestRoute(amountToTrade: string): Promise<RouteQuote>
 ```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  toTokenContractAddress,
-  fromTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -3512,19 +3554,17 @@ async findAllPossibleRoutesWithQuote(amountToTrade: string): Promise<RouteQuote[
 ```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  toTokenContractAddress,
-  fromTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'.
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
@@ -3710,19 +3750,17 @@ export interface Token {
 ```ts
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  toTokenContractAddress,
-  fromTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-);
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862'.
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can change this to pass in providerUrl
+  // on the other interface
+  chainId: ChainId.MAINNET,
+});
 
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
