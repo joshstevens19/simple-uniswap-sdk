@@ -153,7 +153,21 @@ export class UniswapPairFactory {
    * Has got enough allowance to do the trade
    * @param amount The amount you want to swap
    */
-  public hasGotEnoughAllowance(amount: string, allowance: string): boolean {
+  public async hasGotEnoughAllowance(amount: string): Promise<boolean> {
+    if (this.tradePath() === TradePath.ethToErc20) {
+      return true;
+    }
+
+    const allowance = await this.allowance();
+
+    return this._hasGotEnoughAllowance(amount, allowance);
+  }
+
+  /**
+   * Has got enough allowance to do the trade
+   * @param amount The amount you want to swap
+   */
+  private _hasGotEnoughAllowance(amount: string, allowance: string): boolean {
     if (this.tradePath() === TradePath.ethToErc20) {
       return true;
     }
@@ -345,7 +359,7 @@ export class UniswapPairFactory {
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      hasEnoughAllowance: this.hasGotEnoughAllowance(
+      hasEnoughAllowance: this._hasGotEnoughAllowance(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
       ),
@@ -400,7 +414,7 @@ export class UniswapPairFactory {
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      hasEnoughAllowance: this.hasGotEnoughAllowance(
+      hasEnoughAllowance: this._hasGotEnoughAllowance(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
       ),
