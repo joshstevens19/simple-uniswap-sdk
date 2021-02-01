@@ -224,6 +224,11 @@ export interface TradeContext {
   // liquidity providers as a protocol of
   // incentive
   liquidityProviderFee: string;
+  // A unix datestamp in when this trade expires
+  // if it does expiry while looking at it as long
+  // as you are hooked onto `quoteChanged$` that will
+  // emit you a new valid quote
+  tradeExpires: number;
   // the route path mapped with full token info
   routePathTokenMap: Token[];
   // the route text so you can display it on the dApp easily
@@ -338,6 +343,7 @@ console.log(trade);
   minAmountConvertQuote: '0.014400465273974444',
   expectedConvertQuote: '0.014730394044348867',
   liquidityProviderFee: '0.030000000000000000',
+  tradeExpires: 1612189240,
   routePathTokenMap: [
      {
        chainId: 1,
@@ -581,6 +587,7 @@ console.log(trade);
   minAmountConvertQuote: '446878.20758208',
   expectedConvertQuote: '449123.82671566',
   liquidityProviderFee: '0.030000000000000000',
+  tradeExpires: 1612189240,
   routePathTokenMap: [
     {
       chainId: 1,
@@ -1982,6 +1989,7 @@ console.log(trade);
   minAmountConvertQuote: '0.00022040807282109',
   expectedConvertQuote: '0.00022151807282109',
   liquidityProviderFee: '0.03000000',
+  tradeExpires: 1612189240,
   routePathTokenMap: [
     {
       chainId: 1,

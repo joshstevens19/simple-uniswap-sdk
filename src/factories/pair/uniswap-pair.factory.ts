@@ -339,13 +339,16 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
-    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
+    const tradeExpires = this.generateTradeDeadlineUnixTime();
 
     const data = this.generateTradeDataErc20ToEth(
       erc20Amount,
       convertQuoteWithSlippage,
-      bestRouteQuote.routePathArray
+      bestRouteQuote.routePathArray,
+      tradeExpires.toString()
     );
+
+    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
 
     const tradeContext: TradeContext = {
       baseConvertRequest: erc20Amount.toFixed(),
@@ -356,6 +359,7 @@ export class UniswapPairFactory {
       liquidityProviderFee: erc20Amount
         .times(this.LIQUIDITY_PROVIDER_FEE)
         .toFixed(this.fromToken.decimals),
+      tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
@@ -394,13 +398,16 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
-    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
+    const tradeExpires = this.generateTradeDeadlineUnixTime();
 
     const data = this.generateTradeDataErc20ToErc20(
       erc20Amount,
       convertQuoteWithSlippage,
-      bestRouteQuote.routePathArray
+      bestRouteQuote.routePathArray,
+      tradeExpires.toString()
     );
+
+    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
 
     const tradeContext: TradeContext = {
       baseConvertRequest: erc20Amount.toFixed(),
@@ -411,6 +418,7 @@ export class UniswapPairFactory {
       liquidityProviderFee: erc20Amount
         .times(this.LIQUIDITY_PROVIDER_FEE)
         .toFixed(this.fromToken.decimals),
+      tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
@@ -449,9 +457,12 @@ export class UniswapPairFactory {
         .toFixed(this.toToken.decimals)
     );
 
+    const tradeExpires = this.generateTradeDeadlineUnixTime();
+
     const data = this.generateTradeDataEthToErc20(
       convertQuoteWithSlippage,
-      bestRouteQuote.routePathArray
+      bestRouteQuote.routePathArray,
+      tradeExpires.toString()
     );
 
     const tradeContext: TradeContext = {
@@ -463,6 +474,7 @@ export class UniswapPairFactory {
       liquidityProviderFee: ethAmount
         .times(this.LIQUIDITY_PROVIDER_FEE)
         .toFixed(this.fromToken.decimals),
+      tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
@@ -481,10 +493,12 @@ export class UniswapPairFactory {
    * Generate trade data eth > erc20
    * @param tokenAmount The token amount
    * @param routePath The route path
+   * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataEthToErc20(
     tokenAmount: BigNumber,
-    routePathArray: string[]
+    routePathArray: string[],
+    deadline: string
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const convertedMinTokens = tokenAmount
@@ -506,11 +520,13 @@ export class UniswapPairFactory {
    * @param tokenAmount The token amount
    * @param ethAmountOutMin The min eth in eth not wei this converts it
    * @param routePathArray The route path array
+   * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataErc20ToEth(
     tokenAmount: BigNumber,
     ethAmountOutMin: BigNumber,
-    routePathArray: string[]
+    routePathArray: string[],
+    deadline: string
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
@@ -524,7 +540,7 @@ export class UniswapPairFactory {
       ethAmountOutWei,
       routePathArray,
       this._uniswapPairFactoryContext.ethereumAddress,
-      this.generateTradeDeadlineUnixTime()
+      deadline
     );
   }
 
@@ -533,11 +549,13 @@ export class UniswapPairFactory {
    * @param tokenAmount The token amount
    * @param tokenAmountOut The min token amount out
    * @param routePathArray The route path array
+   * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataErc20ToErc20(
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
-    routePathArray: string[]
+    routePathArray: string[],
+    deadline: string
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
@@ -552,7 +570,7 @@ export class UniswapPairFactory {
       hexlify(amountMin),
       routePathArray,
       this._uniswapPairFactoryContext.ethereumAddress,
-      this.generateTradeDeadlineUnixTime()
+      deadline
     );
   }
 
@@ -595,18 +613,18 @@ export class UniswapPairFactory {
   }
 
   /**
-   * Generates the trade dateline unix time
+   * Generates the trade datetime unix time
    */
-  private generateTradeDeadlineUnixTime(): string {
+  private generateTradeDeadlineUnixTime(): number {
     const timestamp =
       getCurrentUnixTime() +
       this._uniswapPairFactoryContext.settings.deadlineMinutes;
-    return timestamp.toString();
+    return timestamp;
   }
 
   /**
    * Watch trade price move automatically emitting the stream if it changes
-   * @param tradeContext The price context
+   * @param tradeContext The old trade context aka the current one
    */
   private async watchTradePrice(tradeContext: TradeContext): Promise<void> {
     this._quoteChangeTimeout = setTimeout(async () => {
@@ -618,13 +636,21 @@ export class UniswapPairFactory {
           !new BigNumber(trade.expectedConvertQuote).eq(
             tradeContext.expectedConvertQuote
           ) ||
-          trade.routeText !== trade.routeText
+          trade.routeText !== tradeContext.routeText
         ) {
-          this._quoteChanged$.next(tradeContext);
+          this._quoteChanged$.next(trade);
           this.watchTradePrice(trade);
-        } else {
-          this.watchTradePrice(tradeContext);
+          return;
         }
+
+        // it has expired send another one to them
+        if (tradeContext.tradeExpires > this.generateTradeDeadlineUnixTime()) {
+          this._quoteChanged$.next(trade);
+          this.watchTradePrice(trade);
+          return;
+        }
+
+        this.watchTradePrice(tradeContext);
       } else {
         this.watchTradePrice(tradeContext);
       }

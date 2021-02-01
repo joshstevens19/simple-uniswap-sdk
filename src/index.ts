@@ -1,3 +1,7 @@
+export {
+  Observable as UniswapStream,
+  Subscription as UniswapSubscription,
+} from 'rxjs';
 export * from './common/tokens';
 export { ChainId } from './enums/chain-id';
 export { TradeContext } from './factories/pair/models/trade-context';
