@@ -614,7 +614,7 @@ export class UniswapPairFactory {
       } else {
         this.watchTradePrice(tradeContext);
       }
-      // maybe make config
+      // maybe make config???
       // query new prices every 10 seconds
     }, 10000);
   }
