@@ -224,17 +224,24 @@ export class UniswapPairFactory {
    * Generate the from token approve data max allowance to move the tokens.
    * This will return the data for you to send as a transaction
    */
-  public generateApproveMaxAllowanceData(): string {
+  public async generateApproveMaxAllowanceData(): Promise<Transaction> {
     if (this.tradePath() === TradePath.ethToErc20) {
       throw new Error(
         'You do not need to generate approve uniswap allowance when doing eth > erc20'
       );
     }
 
-    return this._fromTokenFactory.generateApproveAllowanceData(
+    const data = this._fromTokenFactory.generateApproveAllowanceData(
       ContractContext.routerAddress,
       '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
     );
+
+    return {
+      to: this.toToken.contractAddress,
+      from: this._uniswapPairContext.ethereumAddress,
+      data,
+      value: Constants.EMPTY_HEX_STRING,
+    };
   }
 
   /**

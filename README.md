@@ -154,7 +154,7 @@ console.log(fromToken);
 
 ### Trade
 
-This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. You will still need to send the transaction if they confirm, we generate the transaction for you but you will still need to estimate the gas and get them to sign and send it on the dApp once they confirm it.
+This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. You will still need to send the transaction if they confirm, we generate the transaction for you but you will still need to estimate the gas and get them to sign and send it on the dApp once they confirm the swap.
 
 It will also return a `hasEnoughAllowance` in the `PriceContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the data to appoving moving of the tokens.
 
@@ -3338,10 +3338,19 @@ console.log(allowance);
 
 ### generateApproveMaxAllowanceData
 
-This method will generate the data for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to move later. You have to send the transaction yourself, this only generates the data for you to send. Remember when they do not have enough allowance it will meaning doing 2 transaction, 1 to extend the allowance using this data then the next one to actually execute the trade. If you call this when doing `eth` > `erc20` it will always throw an error as you only need to check this when moving erc20 > eth and erc20 > erc20.
+This method will generate the transaction for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later. Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again. You have to send the transaction and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction, 1 to extend the allowance using this transaction then the next one to actually execute the trade. If you call this when doing `eth` > `erc20` it will always throw an error as you only need to do this when moving erc20 > eth and erc20 > erc20.
 
 ```ts
-generateApproveMaxAllowanceData(): string
+async generateApproveMaxAllowanceData(): Promise<Transaction>
+```
+
+```ts
+export interface Transaction {
+  to: string;
+  from: string;
+  data: string;
+  value: string;
+}
 ```
 
 #### Usage
@@ -3366,9 +3375,15 @@ const uniswapPair = new UniswapPair(
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
 
-const data = uniswapPairFactory.generateApproveMaxAllowanceData();
-console.log(data);
-// '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+const transaction = await uniswapPairFactory.generateApproveMaxAllowanceData();
+console.log(transaction);
+{
+  to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  data:
+   '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+  value: '0x00'
+}
 ```
 
 ### findBestRoute
@@ -3404,24 +3419,36 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 const bestRoute = await uniswapPairFactory.findBestRoute('10');
 console.log(bestRoute);
 {
-  // sort this convert quote out
-  convertQuote: BigNumber { s: 1, e: -2, c: [ 1562073588233, 96260000000000 ] },
+  convertQuote: "0.014634280991384697",
   routePathArrayTokenMap: [
-      { chainId: 1,
-       contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-       decimals: 8,
-       symbol: 'FUN',
-       name: 'FunFair' },
-     { chainId: 1,
+      {
+        chainId: 1,
+        contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+        decimals: 8,
+        symbol: 'FUN',
+        name: 'FunFair'
+      },
+      {
+        chainId: 1,
+        contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+        decimals: 18,
+        symbol: 'DAI',
+        name: 'Dai Stablecoin',
+      },
+     {
+       chainId: 1,
        contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
        decimals: 18,
        symbol: 'WETH',
-       name: 'Wrapped Ether' },
+       name: 'Wrapped Ether'
+     },
      { chainId: 1,
        contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
        decimals: 18,
        symbol: 'REP',
-       name: 'Reputation' } ],
+       name: 'Reputation'
+      }
+    ],
   routeText: 'FUN > WETH > REP',
   routePathArray: ['0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b', '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' '0x1985365e9f78359a9B6AD760e32412f4a445E862']
 }
@@ -3441,9 +3468,9 @@ async findAllPossibleRoutesWithQuote(amountToTrade: string): Promise<RouteQuote[
 import { UniswapPair, ChainId } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
+const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 // the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
+const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
 // the ethereum address of the user using this part of the dApp
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
@@ -3461,7 +3488,7 @@ const bestRoute = await uniswapPairFactory.findAllPossibleRoutesWithQuote('10');
 console.log(bestRoute);
 [
   {
-    convertQuote: BigNumber { s: 1, e: -2, c: [ 1562073588233, 96260000000000 ] },
+    convertQuote: "0.014634280991384697",
     routePathArrayTokenMap: [
       {
         chainId: 1,
@@ -3501,7 +3528,7 @@ console.log(bestRoute);
     ],
   },
   {
-    convertQuote: BigNumber { s: 1, e: -2, c: [ 1562073588233, 96260000000000 ] },
+    convertQuote: "0.014506490902564688",
     routePathArrayTokenMap: [
       {
         chainId: 1,
@@ -3573,7 +3600,7 @@ console.log(bestRoute);
     ],
   },
   {
-    convertQuote: BigNumber { s: 1, e: -2, c: [ 1562073588233, 96260000000000 ] },
+    convertQuote: "0.000000291402712857",
     routePathArrayTokenMap: [
       {
         chainId: 1,
