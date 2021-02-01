@@ -1,6 +1,6 @@
 export * from './common/tokens';
 export { ChainId } from './enums/chain-id';
-export { PriceContext } from './factories/pair/models/price-context';
+export { TradeContext } from './factories/pair/models/trade-context';
 export { Transaction } from './factories/pair/models/transaction';
 export {
   UniswapPairContextForChainId,

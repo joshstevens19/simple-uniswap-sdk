@@ -3,7 +3,7 @@ import { RouteQuote } from '../../router/models/route-quote';
 import { Token } from '../../token/models/token';
 import { Transaction } from './transaction';
 
-export interface PriceContext {
+export interface TradeContext {
   baseConvertRequest: string;
   minAmountConvertQuote: string;
   expectedConvertQuote: string;
@@ -18,6 +18,6 @@ export interface PriceContext {
     balance: string;
   };
   transaction: Transaction;
-  quoteChanged$: Observable<PriceContext>;
+  quoteChanged$: Observable<TradeContext>;
   destroy: () => void;
 }

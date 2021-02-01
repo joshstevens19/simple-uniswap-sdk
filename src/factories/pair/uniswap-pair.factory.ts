@@ -15,7 +15,7 @@ import { UniswapRouterFactory } from '../router/uniswap-router.factory';
 import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
-import { PriceContext } from './models/price-context';
+import { TradeContext } from './models/trade-context';
 import { Transaction } from './models/transaction';
 import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
 import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
@@ -43,7 +43,7 @@ export class UniswapPairFactory {
   );
 
   private _quoteChangeTimeout: NodeJS.Timeout | undefined;
-  private _quoteChanged$: Subject<PriceContext> = new Subject<PriceContext>();
+  private _quoteChanged$: Subject<TradeContext> = new Subject<TradeContext>();
 
   constructor(private _uniswapPairFactoryContext: UniswapPairFactoryContext) {}
 
@@ -72,7 +72,7 @@ export class UniswapPairFactory {
    * Execute the trade path
    * @param amount The amount
    */
-  private async executeTradePath(amount: BigNumber): Promise<PriceContext> {
+  private async executeTradePath(amount: BigNumber): Promise<TradeContext> {
     switch (this.tradePath()) {
       case TradePath.erc20ToEth:
         return await this.getTokenTradeAmountErc20ToEth(amount);
@@ -103,16 +103,16 @@ export class UniswapPairFactory {
    * if you want it to be executed on the blockchain
    * @amount The amount you want to swap, this is the FROM token amount.
    */
-  public async trade(amount: string): Promise<PriceContext> {
+  public async trade(amount: string): Promise<TradeContext> {
     this.destroy();
 
-    const priceContext: PriceContext = await this.executeTradePath(
+    const tradeContext: TradeContext = await this.executeTradePath(
       new BigNumber(amount)
     );
 
-    this.watchTradePrice(priceContext);
+    this.watchTradePrice(tradeContext);
 
-    return priceContext;
+    return tradeContext;
   }
 
   /**
@@ -283,7 +283,7 @@ export class UniswapPairFactory {
    */
   private async getTokenTradeAmountErc20ToEth(
     amount: BigNumber
-  ): Promise<PriceContext> {
+  ): Promise<TradeContext> {
     return await this.findBestPriceAndPathErc20ToEth(amount);
   }
 
@@ -293,7 +293,7 @@ export class UniswapPairFactory {
    */
   private async getTokenTradeAmountEthToErc20(
     ethAmount: BigNumber
-  ): Promise<PriceContext> {
+  ): Promise<TradeContext> {
     return await this.findBestPriceAndPathEthToErc20(ethAmount);
   }
 
@@ -303,7 +303,7 @@ export class UniswapPairFactory {
    */
   private async getTokenTradeAmountErc20ToErc20(
     amount: BigNumber
-  ): Promise<PriceContext> {
+  ): Promise<TradeContext> {
     return await this.findBestPriceAndPathErc20ToErc20(amount);
   }
 
@@ -313,7 +313,7 @@ export class UniswapPairFactory {
    */
   private async findBestPriceAndPathErc20ToEth(
     erc20Amount: BigNumber
-  ): Promise<PriceContext> {
+  ): Promise<TradeContext> {
     const bestRouteQuotes = await this._routes.findBestRoute(erc20Amount);
     const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
 
@@ -333,7 +333,7 @@ export class UniswapPairFactory {
       bestRouteQuote.routePathArray
     );
 
-    const priceContext: PriceContext = {
+    const tradeContext: TradeContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
         this.toToken.decimals
@@ -359,7 +359,7 @@ export class UniswapPairFactory {
       destroy: () => this.destroy(),
     };
 
-    return priceContext;
+    return tradeContext;
   }
 
   /**
@@ -368,7 +368,7 @@ export class UniswapPairFactory {
    */
   private async findBestPriceAndPathErc20ToErc20(
     erc20Amount: BigNumber
-  ): Promise<PriceContext> {
+  ): Promise<TradeContext> {
     const bestRouteQuotes = await this._routes.findBestRoute(erc20Amount);
     const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
 
@@ -388,7 +388,7 @@ export class UniswapPairFactory {
       bestRouteQuote.routePathArray
     );
 
-    const priceContext: PriceContext = {
+    const tradeContext: TradeContext = {
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
         this.toToken.decimals
@@ -414,7 +414,7 @@ export class UniswapPairFactory {
       destroy: () => this.destroy(),
     };
 
-    return priceContext;
+    return tradeContext;
   }
 
   /**
@@ -423,7 +423,7 @@ export class UniswapPairFactory {
    */
   private async findBestPriceAndPathEthToErc20(
     ethAmount: BigNumber
-  ): Promise<PriceContext> {
+  ): Promise<TradeContext> {
     const bestRouteQuotes = await this._routes.findBestRoute(ethAmount);
     const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
 
@@ -440,7 +440,7 @@ export class UniswapPairFactory {
       bestRouteQuote.routePathArray
     );
 
-    const priceContext: PriceContext = {
+    const tradeContext: TradeContext = {
       baseConvertRequest: ethAmount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
         this.toToken.decimals
@@ -460,7 +460,7 @@ export class UniswapPairFactory {
       destroy: () => this.destroy(),
     };
 
-    return priceContext;
+    return tradeContext;
   }
 
   /**
@@ -592,27 +592,27 @@ export class UniswapPairFactory {
 
   /**
    * Watch trade price move automatically emitting the stream if it changes
-   * @param priceContext The price context
+   * @param tradeContext The price context
    */
-  private async watchTradePrice(priceContext: PriceContext): Promise<void> {
+  private async watchTradePrice(tradeContext: TradeContext): Promise<void> {
     this._quoteChangeTimeout = setTimeout(async () => {
       if (this._quoteChanged$.observers.length > 0) {
         const trade = await this.executeTradePath(
-          new BigNumber(priceContext.baseConvertRequest)
+          new BigNumber(tradeContext.baseConvertRequest)
         );
         if (
           !new BigNumber(trade.expectedConvertQuote).eq(
-            priceContext.expectedConvertQuote
+            tradeContext.expectedConvertQuote
           ) ||
           trade.routeText !== trade.routeText
         ) {
-          this._quoteChanged$.next(priceContext);
+          this._quoteChanged$.next(tradeContext);
           this.watchTradePrice(trade);
         } else {
-          this.watchTradePrice(priceContext);
+          this.watchTradePrice(tradeContext);
         }
       } else {
-        this.watchTradePrice(priceContext);
+        this.watchTradePrice(tradeContext);
       }
       // maybe make config
       // query new prices every 10 seconds

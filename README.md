@@ -198,14 +198,14 @@ console.log(fromToken);
 
 This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. You will still need to send the transaction if they confirm, we generate the transaction for you but you will still need to estimate the gas and get them to sign and send it on the dApp once they confirm the swap.
 
-It will also return a `hasEnoughAllowance` in the `PriceContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the data to appoving moving of the tokens.
+It will also return a `hasEnoughAllowance` in the `TradeContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the data to appoving moving of the tokens.
 
 ```ts
-async trade(amount: string): Promise<PriceContext>
+async trade(amount: string): Promise<TradeContext>
 ```
 
 ```ts
-export interface PriceContext {
+export interface TradeContext {
   // the amount you requested to convert
   // this will be formatted in readable number
   // so you can render straight out the box
@@ -262,7 +262,7 @@ export interface PriceContext {
   // not matter what you should listen to this for the source of truth
   // for a reactive dApp. If you dont listen to this the user could end up
   // sending a uniswap transaction which price is now out of date
-  quoteChanged$: Observable<PriceContext>;
+  quoteChanged$: Observable<TradeContext>;
   // when you generate a trade it does more then just return data, it makes
   // sure your data stays in sync with the `quoteChanged$`, so once you have
   // finished with a trade please call this to do a general clear up so we do
@@ -297,7 +297,7 @@ export enum ChainId {
 #### ERC20 > ERC20
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId, TradeContext } from 'uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
@@ -327,7 +327,7 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 const trade = await uniswapPairFactory.trade('10');
 
 // subscribe to quote changes
-trade.quoteChanged$.subscribe((value: PriceContext) => {
+trade.quoteChanged$.subscribe((value: TradeContext) => {
   // value will hold the same info as below but obviously with
   // the new trade info.
 });
@@ -544,7 +544,7 @@ trade.destroy();
 #### ETH > ERC20
 
 ```ts
-import { UniswapPair, WETH, ChainId } from 'uniswap-sdk';
+import { UniswapPair, WETH, ChainId, TradeContext } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // use the WETH import from the lib, bare in mind you should use the
@@ -570,7 +570,7 @@ const trade = await uniswapPairFactory.trade('10');
 
 
 // subscribe to quote changes
-trade.quoteChanged$.subscribe((value: PriceContext) => {
+trade.quoteChanged$.subscribe((value: TradeContext) => {
   // value will hold the same info as below but obviously with
   // the new trade info.
 });
@@ -1946,7 +1946,7 @@ trade.destroy();
 #### ERC20 > ETH
 
 ```ts
-import { UniswapPair, WETH, ChainId } from 'uniswap-sdk';
+import { UniswapPair, WETH, ChainId, TradeContext } from 'uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -1971,7 +1971,7 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 const trade = await uniswapPairFactory.trade('10');
 
 // subscribe to quote changes
-trade.quoteChanged$.subscribe((value: PriceContext) => {
+trade.quoteChanged$.subscribe((value: TradeContext) => {
   // value will hold the same info as below but obviously with
   // the new trade info.
 });
