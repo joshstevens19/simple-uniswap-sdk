@@ -1,20 +1,22 @@
 # uniswap-sdk
 
-Uniswap SDK which handles the routes automatically for you, change in price subscriptions, exposure to loads of nice information, bringing back the best prices and much more. All the uniswap logic for you in a simple to easy understand interface to hook straight into your dApp without having to understand how it all works.
+Uniswap SDK which handles the routes automatically for you, changes in trade quotes reactive subscriptions, exposure to formatted easy to understand information, bringing back the best trade quotes automatically, generating transactions for you and much more. All the uniswap logic for you in a simple to easy understand interface to hook straight into your dApp without having to understand how it all works.
 
 ## Features 🚀
 
 🚀 Queries all the best routes and finds the best price for you
 <br/>
-🚀 Exposes all the route path it tried so you can see every detail in how it worked out the best price
+🚀 Exposes all the route paths it tried so you can see every detail in how it worked out the best price
 <br/>
 🚀 Easy subscriptions to get alerted when the price moves or the trade expires
 <br/>
-🚀 The transaction is generated for you, just fill in with gas choices and send it on its way
+🚀 The transaction is generated for you, just fill it with the gas details and send it on its way
 <br/>
-🚀 All the figures are all formatted for you, no need to worry about times it back to its decimal place, just render it straight onto your UI
+🚀 All the figures are all formatted for you, no need to worry about timing it back to its decimal formatted place, just render it straight onto your UI
 <br/>
-🚀 Exposes all the contract metadata for you
+🚀 Exposes all the tokens metadata for you, name, symbol, decimals
+<br/>
+🚀 Uses [multicall](https://github.com/joshstevens19/ethereum-multicall) for every on chain lookup, so even though it could be doing 100 JSONRPC calls it is all put into a few calls meaning it can stay very fast
 <br/>
 🚀 Tidy bundle size
 <br/>
@@ -33,7 +35,7 @@ Uniswap SDK which handles the routes automatically for you, change in price subs
 
 As a ethereum dApp developer you try to get your dApp experience as integrated as possible, Ethereum right now is hard to show in a web2.0 world as it is. On top of this as a developer you have to learn all the complex stuff for the blockchain which can take its toll on you.
 
-When I was integrating uniswap on our wallet I found that their `SDK` was a bit too much for what I needed. Deepdown I really cared about getting the best price for the user with all the fees related. I also found myself having to write a lot of custom code which I thought could be abstracted away so nobody has to deal with that again. A lot of the uniswap features like routing is all done in their client itself which is great but not when you want to use it in a more integrated approach.
+When I was integrating uniswap on our wallet I found that their `SDK` was a bit too much for what I needed. Deepdown I really cared about getting the best price for the user with all the fees related. I also found myself having to write a lot of custom code which I thought could be abstracted away so nobody has to deal with that again. A lot of the uniswap features like routing is all done in their client itself which is great but not when you want to use it in a more integrated approach in your on dApp.
 
 `Uniswap` is one of the BEST projects on ethereum and one of my favourites. My motivation here is to create a library which allows more people to integrate it on their dApp without having to worry about how their amazing software links together. This makes the whole user experience better and allows more developers to get involved integrating uniswap in their dApp with a web2.0 experience, and on top of this also growing the usage of it.
 
@@ -229,9 +231,9 @@ console.log(fromToken);
 
 ### Trade
 
-This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. You will still need to send the transaction if they confirm, we generate the transaction for you but you will still need to estimate the gas and get them to sign and send it on the dApp once they confirm the swap.
+This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. You will still need to send the transaction if they confirm the swap, we generate the transaction for you but you will still need to estimate the gas and get them to sign and send it on the dApp once they confirm the swap.
 
-It will also return a `hasEnoughAllowance` in the `TradeContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the data to appoving moving of the tokens.
+It will also return a `hasEnoughAllowance` in the `TradeContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the transaction for the user to appove moving of the tokens.
 
 ```ts
 async trade(amount: string): Promise<TradeContext>
@@ -3402,7 +3404,7 @@ trade.destroy();
 
 ### hasGotEnoughAllowance
 
-This method will return true or false if the user has enough allowance to move the tokens. If you call this when doing `eth` > `erc20` it will always return true as you only need to check this when moving erc20 > eth and erc20 > erc20.
+This method will return `true` or `false` if the user has enough allowance to move the tokens. If you call this when doing `eth` > `erc20` it will always return true as you only need to check this when moving `erc20 > eth` and `erc20 > erc20`.
 
 ```ts
 async hasGotEnoughAllowance(amount: string): Promise<boolean>
@@ -3437,7 +3439,7 @@ true;
 
 ### allowance
 
-This method will return the allowance the user has to move tokens from the from token they have picked. This is always returned as a hex. If you call this when doing `eth` > `erc20` it will always return the max hex as you only need to check this when moving erc20 > eth and erc20 > erc20.
+This method will return the allowance the user has to move tokens from the from token they have picked. This is always returned as a hex and is not formatted for you. If you call this when doing `eth` > `erc20` it will always return the max hex as you only need to check this when moving `erc20 > eth` and `erc20 > erc20`.
 
 ```ts
 async allowance(): Promise<string>
@@ -3470,7 +3472,7 @@ console.log(allowance);
 
 ### generateApproveMaxAllowanceData
 
-This method will generate the transaction for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later. Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again. You have to send the transaction and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction, 1 to extend the allowance using this transaction then the next one to actually execute the trade. If you call this when doing `eth` > `erc20` it will always throw an error as you only need to do this when moving erc20 > eth and erc20 > erc20.
+This method will generate the transaction for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later. Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again. You have to send the and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction, 1 to extend the allowance using this transaction then the next one to actually execute the trade. If you call this when doing `eth` > `erc20` it will always throw an error as you only need to do this when moving `erc20 > eth` and `erc20 > erc20`.
 
 ```ts
 async generateApproveMaxAllowanceData(): Promise<Transaction>
@@ -3554,7 +3556,7 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 const bestRoute = await uniswapPairFactory.findBestRoute('10');
 console.log(bestRoute);
 {
-  convertQuote: "0.014634280991384697",
+  expectedConvertQuote: "0.014634280991384697",
   routePathArrayTokenMap: [
       {
         chainId: 1,
@@ -3617,11 +3619,13 @@ const uniswapPair = new UniswapPair({
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
 
-const bestRoute = await uniswapPairFactory.findAllPossibleRoutesWithQuote('10');
-console.log(bestRoute);
+const allPossibleRoutes = await uniswapPairFactory.findAllPossibleRoutesWithQuote(
+  '10'
+);
+console.log(allPossibleRoutes);
 [
   {
-    convertQuote: "0.014634280991384697",
+    expectedConvertQuote: '0.014634280991384697',
     routePathArrayTokenMap: [
       {
         chainId: 1,
@@ -3661,7 +3665,7 @@ console.log(bestRoute);
     ],
   },
   {
-    convertQuote: "0.014506490902564688",
+    expectedConvertQuote: '0.014506490902564688',
     routePathArrayTokenMap: [
       {
         chainId: 1,
@@ -3693,7 +3697,7 @@ console.log(bestRoute);
     ],
   },
   {
-    convertQuote: BigNumber { s: 1, e: -2, c: [ 1562073588233, 96260000000000 ] },
+    expectedConvertQuote: '0.011506490902564688',
     routePathArrayTokenMap: [
       {
         chainId: 1,
@@ -3733,7 +3737,7 @@ console.log(bestRoute);
     ],
   },
   {
-    convertQuote: "0.000000291402712857",
+    expectedConvertQuote: '0.000000291402712857',
     routePathArrayTokenMap: [
       {
         chainId: 1,
@@ -3813,8 +3817,8 @@ const uniswapPair = new UniswapPair({
 // now to create the factory you just do
 const uniswapPairFactory = await uniswapPair.createFactory();
 
-const bestRoute = await uniswapPairFactory.findAllPossibleRoutes();
-console.log(bestRoute);
+const allRoutes = await uniswapPairFactory.findAllPossibleRoutes();
+console.log(allRoutes);
 [
   [
     {
@@ -3967,8 +3971,7 @@ const tokenFactoryPublic = new TokenFactoryPublic(
 );
 
 const token = await tokenFactoryPublic.getToken();
-
-console.log(token):
+console.log(token);
 {
   chainId: 1,
   contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -3980,7 +3983,7 @@ console.log(token):
 
 ### allowance
 
-This method will return the allowance the user has allowed to be able to be moved on his behalf. Uniswap needs this allowance to be higher then the amount swapping for it to be able to move the tokens for the user. This always returned as a hex.
+This method will return the allowance the user has allowed to be able to be moved on his behalf. Uniswap needs this allowance to be higher then the amount swapping for it to be able to move the tokens for the user. This is always returned as a hex and not formatted for you.
 
 ```ts
 async allowance(ethereumAddress: string): Promise<string>
@@ -4001,14 +4004,13 @@ const tokenFactoryPublic = new TokenFactoryPublic(
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
 const allowance = await tokenFactoryPublic.allowance(ethereumAddress);
-
 console.log(allowance);
 // '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 ```
 
 ### balanceOf
 
-This method will return the balance this user holds of this token. This always returned as a hex.
+This method will return the balance this user holds of this token. This always returned as a hex and not formatted for you.
 
 ```ts
 async balanceOf(ethereumAddress: string): Promise<string>
@@ -4029,8 +4031,7 @@ const tokenFactoryPublic = new TokenFactoryPublic(
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
 const balanceOf = await tokenFactoryPublic.balanceOf(ethereumAddress);
-
-console.log(allowance);
+console.log(balanceOf);
 // '0x00';
 ```
 
@@ -4055,7 +4056,6 @@ const tokenFactoryPublic = new TokenFactoryPublic(
 );
 
 const totalSupply = await tokenFactoryPublic.totalSupply();
-
 console.log(totalSupply);
 // '0x09195731e2ce35eb000000';
 ```
@@ -4097,7 +4097,7 @@ console.log(data);
 
 ### getAllowanceAndBalanceOf
 
-This method will get the allowance and balance for the token in a multicall request. Will return as hex and NOT formatted via decimal places.
+This method will get the allowance and balance for the token in a multicall request. Will return as hex and NOT formatted for you.
 
 ```ts
 async getAllowanceAndBalanceOf(ethereumAddress: string): Promise<AllowanceAndBalanceOf>
@@ -4161,29 +4161,29 @@ export interface Token {
 ```ts
 import { TokensFactoryPublic, ChainId } from 'uniswap-sdk';
 
-const tokensFactoryPublic = new TokensFactoryPublic(
-  ChainId.MAINNET
-);
+const tokensFactoryPublic = new TokensFactoryPublic(ChainId.MAINNET);
 
-const tokens = await tokensFactoryPublic.getTokens(['0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b', '0x1985365e9f78359a9B6AD760e32412f4a445E862']);
-
-console.log(tokens):
+const tokens = await tokensFactoryPublic.getTokens([
+  '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+]);
+console.log(tokens);
 [
   {
     chainId: 1,
     contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
     symbol: 'REP',
     decimals: 18,
-    name: 'Reputation'
+    name: 'Reputation',
   },
   {
     chainId: 1,
     contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
     symbol: 'FUN',
     decimals: 8,
-    name: 'FunFair'
-  }
-]
+    name: 'FunFair',
+  },
+];
 ```
 
 ### Contract calls
