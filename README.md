@@ -1,10 +1,43 @@
 # uniswap-sdk
 
-Uniswap SDK which handles the routes, best prices and all the uniswap logic for you in a simple to easy understand interface.
+Uniswap SDK which handles the routes automatically for you, change in price subscriptions, exposure to loads of nice information, bringing back the best prices and much more. All the uniswap logic for you in a simple to easy understand interface to hook straight into your dApp without having to understand how it all works.
+
+## Features 🚀
+
+🚀 Queries all the best routes and finds the best price for you
+<br/>
+🚀 Exposes all the route path it tried so you can see every detail in how it worked out the best price
+<br/>
+🚀 Easy subscriptions to get alerted when the price moves or the trade expires
+<br/>
+🚀 The transaction is generated for you, just fill in with gas choices and send it on its way
+<br/>
+🚀 All the figures are all formatted for you, no need to worry about times it back to its decimal place, just render it straight onto your UI
+<br/>
+🚀 Exposes all the contract metadata for you
+<br/>
+🚀 Tidy bundle size
+<br/>
+🚀 Fully typescript supported with full generated typings
+<br/>
+🚀 Other cool internal stuff exposed for your use
+<br/>
+
+- 🚀query many tokens in 1 jsonrpc call perfect to get token metadata fast
+  <br/>
+- 🚀all the uniswap contracts are all exposed for your use with full typings if you wanted to call a more bespoke method
+  <br/>
+- 🚀 and much more!!
 
 # Motivation
 
-As a ethereum dApp developer you try to get your dApp experience as integrated as possible, Ethereum right now is hard to show in a web2.0 world. On top of this as a developer you have to learn all the complex stuff for the blockchain. When I was integrating uniswap on our wallet I found the their `SDK` to be a bit too much for what I needed. I also found myself having to write a lot of custom code which I thought could be abstracted away so nobody has to deal with that again. `Uniswap` is one of the best projects on ethereum at the moment and my motivation here is to great a library which allows more people to integrate it on their dApp making the whole user experience better. Also growing the usage of it.
+As a ethereum dApp developer you try to get your dApp experience as integrated as possible, Ethereum right now is hard to show in a web2.0 world as it is. On top of this as a developer you have to learn all the complex stuff for the blockchain which can take its toll on you.
+
+When I was integrating uniswap on our wallet I found that their `SDK` was a bit too much for what I needed. Deepdown I really cared about getting the best price for the user with all the fees related. I also found myself having to write a lot of custom code which I thought could be abstracted away so nobody has to deal with that again. A lot of the uniswap features like routing is all done in their client itself which is great but not when you want to use it in a more integrated approach.
+
+`Uniswap` is one of the BEST projects on ethereum and one of my favourites. My motivation here is to create a library which allows more people to integrate it on their dApp without having to worry about how their amazing software links together. This makes the whole user experience better and allows more developers to get involved integrating uniswap in their dApp with a web2.0 experience, and on top of this also growing the usage of it.
+
+p.s I have huge love for unicorns
 
 # Installing
 
