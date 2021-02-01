@@ -2,6 +2,8 @@
 
 Uniswap SDK which handles the routes automatically for you, changes in trade quotes reactive subscriptions, exposure to formatted easy to understand information, bringing back the best trade quotes automatically, generating transactions for you and much more. All the uniswap logic for you in a simple to easy understand interface to hook straight into your dApp without having to understand how it all works.
 
+Please note this is not owned or maintained by uniswap and is a open source package for anyone to use freely.
+
 ## Features 🚀
 
 🚀 Queries all the best routes and finds the best price for you
