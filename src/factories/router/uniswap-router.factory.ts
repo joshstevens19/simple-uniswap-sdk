@@ -172,6 +172,10 @@ export class UniswapRouterFactory {
     return this.buildRouteQuotesFromResults(results);
   }
 
+  /**
+   * Finds the best route
+   * @param amountToTrade The amount they want to trade
+   */
   public async findBestRoute(
     amountToTrade: BigNumber
   ): Promise<BestRouteQuotes> {
@@ -190,6 +194,12 @@ export class UniswapRouterFactory {
     };
   }
 
+  /**
+   * Works out every possible route it can take
+   * @param fromTokenRoutes The from token routes
+   * @param toTokenRoutes The to token routes
+   * @param allMainRoutes All the main routes
+   */
   private workOutAllPossibleRoutes(
     fromTokenRoutes: TokenRoutes,
     toTokenRoutes: TokenRoutes,
