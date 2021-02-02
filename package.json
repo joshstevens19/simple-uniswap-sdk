@@ -4,7 +4,7 @@
   "description": "Simple easy to understand SDK for uniswap",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "gen-erc20-abi": "abi-types-generator ./src/ABI/erc-20-abi.json --output=./src/ABI/types --name=erc20-contract --provider=ethers_v5",
     "gen-uniswap-router-v2-abi": "abi-types-generator ./src/ABI/uniswap-router-v2.json --output=./src/ABI/types --name=uniswap-router --provider=ethers_v5",
     "gen-uniswap-factory-v2-abi": "abi-types-generator ./src/ABI/uniswap-factory-v2.json --output=./src/ABI/types --name=uniswap-factory --provider=ethers_v5",
@@ -28,7 +28,10 @@
     "rxjs": "^6.6.3"
   },
   "devDependencies": {
-    "ethereum-abi-types-generator": "^1.0.10"
+    "ethereum-abi-types-generator": "^1.0.10",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^4.1.3"
   },
   "files": [
     "dist",
