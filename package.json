@@ -1,5 +1,5 @@
 {
-  "name": "uniswap-sdk",
+  "name": "simple-uniswap-sdk",
   "version": "1.0.0",
   "description": "Simple easy to understand SDK for uniswap",
   "main": "dist/index.js",
@@ -9,18 +9,24 @@
     "gen-uniswap-router-v2-abi": "abi-types-generator ./src/ABI/uniswap-router-v2.json --output=./src/ABI/types --name=uniswap-router --provider=ethers_v5",
     "gen-uniswap-factory-v2-abi": "abi-types-generator ./src/ABI/uniswap-factory-v2.json --output=./src/ABI/types --name=uniswap-factory --provider=ethers_v5",
     "gen-uniswap-pair-v2-abi": "abi-types-generator ./src/ABI/uniswap-pair-v2.json --output=./src/ABI/types --name=uniswap-pair --provider=ethers_v5",
-    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi && npm run gen-uniswap-pair-v2-abi"
+    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi && npm run gen-uniswap-pair-v2-abi",
+    "prepublishOnly": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshstevens19/uniswap-sdk.git"
+    "url": "git+https://github.com/joshstevens19/simple-uniswap-sdk.git"
   },
   "author": "",
   "license": "ISC",
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "uniswap"
+  ],
   "bugs": {
-    "url": "https://github.com/joshstevens19/uniswap-sdk/issues"
+    "url": "https://github.com/joshstevens19/simple-uniswap-sdk/issues"
   },
-  "homepage": "https://github.com/joshstevens19/uniswap-sdk#readme",
+  "homepage": "https://github.com/joshstevens19/simple-uniswap-sdk#readme",
   "dependencies": {
     "bignumber.js": "^9.0.1",
     "ethereum-multicall": "^2.0.1",

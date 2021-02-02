@@ -1,4 +1,4 @@
-# uniswap-sdk
+# simple-uniswap-sdk
 
 Uniswap SDK which handles the routes automatically for you, changes in trade quotes reactive subscriptions, exposure to formatted easy to understand information, bringing back the best trade quotes automatically, generating transactions for you and much more. All the uniswap logic for you in a simple to easy understand interface to hook straight into your dApp without having to understand how it all works.
 
@@ -45,7 +45,17 @@ p.s I have huge love for unicorns
 
 # Installing
 
-NEED TO PUBLISH NPM PACKAGE
+## npm
+
+```bash
+$ npm install simple-uniswap-sdk
+```
+
+## yarn
+
+```bash
+$ yarn add simple-uniswap-sdk
+```
 
 # SDK guide
 
@@ -104,7 +114,7 @@ export class UniswapPairSettings {
 ```
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -192,7 +202,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -242,7 +252,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -392,7 +402,7 @@ export enum ChainId {
 #### ERC20 > ERC20
 
 ```ts
-import { UniswapPair, ChainId, TradeContext } from 'uniswap-sdk';
+import { UniswapPair, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
@@ -654,7 +664,7 @@ trade.destroy();
 #### ETH > ERC20
 
 ```ts
-import { UniswapPair, WETH, ChainId, TradeContext } from 'uniswap-sdk';
+import { UniswapPair, WETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // use the WETH import from the lib, bare in mind you should use the
@@ -2071,7 +2081,7 @@ trade.destroy();
 #### ERC20 > ETH
 
 ```ts
-import { UniswapPair, WETH, ChainId, TradeContext } from 'uniswap-sdk';
+import { UniswapPair, WETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3510,7 +3520,7 @@ async hasGotEnoughAllowance(amount: string): Promise<boolean>
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3545,7 +3555,7 @@ async allowance(): Promise<string>
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3587,7 +3597,7 @@ export interface Transaction {
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -3633,7 +3643,7 @@ async findBestRoute(amountToTrade: string): Promise<RouteQuote>
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3699,7 +3709,7 @@ async findAllPossibleRoutesWithQuote(amountToTrade: string): Promise<RouteQuote[
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3897,7 +3907,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -4058,7 +4068,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4089,7 +4099,7 @@ async allowance(ethereumAddress: string): Promise<string>
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4116,7 +4126,7 @@ async balanceOf(ethereumAddress: string): Promise<string>
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4143,7 +4153,7 @@ async totalSupply(): Promise<string>
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4170,7 +4180,7 @@ generateApproveAllowanceData(spender: string, value: string): string
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4214,7 +4224,7 @@ export interface AllowanceAndBalanceOf {
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4262,7 +4272,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { TokensFactoryPublic, ChainId } from 'uniswap-sdk';
+import { TokensFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokensFactoryPublic = new TokensFactoryPublic(
   ChainId.MAINNET
@@ -4336,7 +4346,7 @@ export interface UniswapPair {
 #### In UniswapPairFactory
 
 ```ts
-import { UniswapPair, ChainId } from 'uniswap-sdk';
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
 
 // the contract address of the token you want to convert FROM
 const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
@@ -4364,7 +4374,7 @@ uniswapPairFactory.contractCalls;
 #### Using UniswapPairContractFactoryPublic on its own
 
 ```ts
-import { UniswapPairContractFactoryPublic, ChainId } from 'uniswap-sdk';
+import { UniswapPairContractFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapPairContractFactoryPublic = new UniswapPairContractFactoryPublic(
   ChainId.MAINNET
@@ -4392,7 +4402,7 @@ async getPair(token0: string, token1: string): Promise<string>;
 ### Usage
 
 ```ts
-import { UniswapContractFactoryPublic, ChainId } from 'uniswap-sdk';
+import { UniswapContractFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const uniswapContractFactoryPublic = new UniswapContractFactoryPublic(
   ChainId.MAINNET
@@ -4599,7 +4609,10 @@ swapExactTokensForTokensSupportingFeeOnTransferTokens(
 ### Usage
 
 ```ts
-import { UniswapRouterContractFactoryPublic, ChainId } from 'uniswap-sdk';
+import {
+  UniswapRouterContractFactoryPublic,
+  ChainId,
+} from 'simple-uniswap-sdk';
 
 const uniswapRouterContractFactoryPublic = new UniswapRouterContractFactoryPublic(
   ChainId.MAINNET
