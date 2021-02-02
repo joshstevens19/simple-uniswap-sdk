@@ -38,6 +38,7 @@ export class UniswapPairFactory {
   private _uniswapRouterFactory = new UniswapRouterFactory(
     this._uniswapPairFactoryContext.fromToken,
     this._uniswapPairFactoryContext.toToken,
+    this._uniswapPairFactoryContext.settings.disableMultihops,
     this._uniswapPairFactoryContext.ethersProvider
   );
 

@@ -32,6 +32,7 @@ export class UniswapRouterFactory {
   constructor(
     private _fromToken: Token,
     private _toToken: Token,
+    private _disableMultihops: boolean,
     private _ethersProvider: EthersProvider
   ) {}
 
@@ -40,16 +41,23 @@ export class UniswapRouterFactory {
    * you go.
    */
   public async getAllPossibleRoutes(): Promise<Token[][]> {
-    const findPairs: Token[][][] = [
-      this.mainCurrenciesPairsForFromToken,
-      this.mainCurrenciesPairsForToToken,
-      this.mainCurrenciesPairsForUSDT,
-      this.mainCurrenciesPairsForCOMP,
-      this.mainCurrenciesPairsForDAI,
-      this.mainCurrenciesPairsForUSDC,
-      this.mainCurrenciesPairsForWETH,
-      [[this._fromToken, this._toToken]],
-    ];
+    let findPairs: Token[][][] = [];
+
+    if (!this._disableMultihops) {
+      findPairs = [
+        this.mainCurrenciesPairsForFromToken,
+        this.mainCurrenciesPairsForToToken,
+        this.mainCurrenciesPairsForUSDT,
+        this.mainCurrenciesPairsForCOMP,
+        this.mainCurrenciesPairsForDAI,
+        this.mainCurrenciesPairsForUSDC,
+        this.mainCurrenciesPairsForWETH,
+        [[this._fromToken, this._toToken]],
+      ];
+    } else {
+      // multihops turned off so only go direct
+      findPairs = [[[this._fromToken, this._toToken]]];
+    }
 
     const contractCallContext: ContractCallContext = {
       reference: 'uniswap-pairs',
@@ -169,6 +177,7 @@ export class UniswapRouterFactory {
     const contractCallResults = await this._multicall.call(contractCallContext);
 
     const results = contractCallResults.results[contractCallContext.reference];
+
     return this.buildRouteQuotesFromResults(results);
   }
 
@@ -180,6 +189,11 @@ export class UniswapRouterFactory {
     amountToTrade: BigNumber
   ): Promise<BestRouteQuotes> {
     const allRoutes = await this.getAllPossibleRoutesWithQuotes(amountToTrade);
+    if (allRoutes.length === 0) {
+      throw new Error(
+        `No routes found for ${this._fromToken.contractAddress} > ${this._toToken.contractAddress}`
+      );
+    }
 
     return {
       bestRouteQuote: allRoutes[0],
@@ -346,44 +360,49 @@ export class UniswapRouterFactory {
 
     const result: RouteQuote[] = [];
 
-    for (
-      let i = 0;
-      i < contractCallReturnContext.callsReturnContext.length;
-      i++
-    ) {
-      const callReturnContext = contractCallReturnContext.callsReturnContext[i];
+    if (contractCallReturnContext) {
+      for (
+        let i = 0;
+        i < contractCallReturnContext.callsReturnContext.length;
+        i++
+      ) {
+        const callReturnContext =
+          contractCallReturnContext.callsReturnContext[i];
 
-      switch (tradePath) {
-        case TradePath.ethToErc20:
-          result.push(this.buildRouteQuoteForEthToErc20(callReturnContext));
-          break;
-        case TradePath.erc20ToEth:
-          result.push(this.buildRouteQuoteForErc20ToEth(callReturnContext));
-          break;
-        case TradePath.erc20ToErc20:
-          result.push(this.buildRouteQuoteForErc20ToErc20(callReturnContext));
-          break;
-        default:
-          throw new Error(
-            `${tradePath} not found in InternalTradePath defined`
-          );
+        switch (tradePath) {
+          case TradePath.ethToErc20:
+            result.push(this.buildRouteQuoteForEthToErc20(callReturnContext));
+            break;
+          case TradePath.erc20ToEth:
+            result.push(this.buildRouteQuoteForErc20ToEth(callReturnContext));
+            break;
+          case TradePath.erc20ToErc20:
+            result.push(this.buildRouteQuoteForErc20ToErc20(callReturnContext));
+            break;
+          default:
+            throw new Error(
+              `${tradePath} not found in InternalTradePath defined`
+            );
+        }
       }
-    }
 
-    return result.sort((a, b) => {
-      if (
-        new BigNumber(a.expectedConvertQuote).isGreaterThan(
+      return result.sort((a, b) => {
+        if (
+          new BigNumber(a.expectedConvertQuote).isGreaterThan(
+            b.expectedConvertQuote
+          )
+        ) {
+          return -1;
+        }
+        return new BigNumber(a.expectedConvertQuote).isLessThan(
           b.expectedConvertQuote
         )
-      ) {
-        return -1;
-      }
-      return new BigNumber(a.expectedConvertQuote).isLessThan(
-        b.expectedConvertQuote
-      )
-        ? 1
-        : 0;
-    });
+          ? 1
+          : 0;
+      });
+    }
+
+    return result;
   }
 
   /**

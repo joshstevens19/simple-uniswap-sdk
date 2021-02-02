@@ -117,11 +117,16 @@ const uniswapPair = new UniswapPair({
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
   settings: new UniswapPairSettings({
-    // if not supplied it use `0.005` which is 0.5%;
-    // all figures
+    // if not supplied it will use `0.005` which is 0.5%
+    // please pass it in as a full number decimal so 0.7%
+    // would be 0.007
     slippage: 0.005,
     // if not supplied it will use 20 a deadline minutes
     deadlineMinutes: 20,
+    // if not supplied it will try to use multihops
+    // if this is true it will require swaps to direct
+    // pairs
+    disableMultihops: false,
   }),
 });
 
