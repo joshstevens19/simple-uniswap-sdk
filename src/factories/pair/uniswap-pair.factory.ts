@@ -2,7 +2,6 @@ import BigNumber from 'bignumber.js';
 import { Subject } from 'rxjs';
 import { Constants } from '../../common/constants';
 import { ContractContext } from '../../common/contract-context';
-import { getCurrentUnixTime } from '../../common/utils/get-current-unix-time';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
@@ -367,6 +366,8 @@ export class UniswapPairFactory {
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
       ),
+      toToken: this.toToken,
+      fromToken: this.fromToken,
       fromBalance: this.hasGotEnoughBalanceErc20(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.balanceOf
@@ -426,6 +427,8 @@ export class UniswapPairFactory {
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.allowance
       ),
+      toToken: this.toToken,
+      fromToken: this.fromToken,
       fromBalance: this.hasGotEnoughBalanceErc20(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.balanceOf
@@ -479,6 +482,8 @@ export class UniswapPairFactory {
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
       hasEnoughAllowance: true,
+      toToken: this.toToken,
+      fromToken: this.fromToken,
       fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
       transaction: this.buildUpTransactionEth(ethAmount, data),
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
@@ -616,10 +621,12 @@ export class UniswapPairFactory {
    * Generates the trade datetime unix time
    */
   private generateTradeDeadlineUnixTime(): number {
-    const timestamp =
-      getCurrentUnixTime() +
-      this._uniswapPairFactoryContext.settings.deadlineMinutes;
-    return timestamp;
+    const now = new Date();
+    const expiryDate = new Date(
+      now.getTime() +
+        this._uniswapPairFactoryContext.settings.deadlineMinutes * 60000
+    );
+    return (expiryDate.getTime() / 1e3) | 0;
   }
 
   /**

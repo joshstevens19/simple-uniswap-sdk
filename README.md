@@ -284,8 +284,19 @@ export interface TradeContext {
   }[];
   // if the allowance approved for moving tokens is below the amount sending to the
   // uniswap router this will be false if not true
+  // this is not reactive so if you get the trade quote
+  // and this returns false but then you do the approval
+  // transaction, this old context will still say false
   hasEnoughAllowance: boolean;
+  // the from token info
+  fromToken: Token;
+  // the to token info
+  toToken: Token;
   // holds the from balance context
+  // this is not reactive so if they top
+  // up their account after this is generated
+  // then you need to query that yourself
+  // or regen the trade info
   fromBalance: {
     // if the balance of the users has enough to perform this trade, does not consider gas prices
     // right now if your doing ETH > ERC20
@@ -570,6 +581,20 @@ console.log(trade);
       },
   ],
   hasEnoughAllowance: true,
+  toToken: {
+    chainId: 1,
+    contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+    decimals: 18,
+    symbol: 'REP',
+    name: 'Reputation'
+  },
+  fromToken: {
+    chainId: 1,
+    contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+    decimals: 8,
+    symbol: 'FUN',
+    name: 'FunFair'
+  },
   fromBalance: {
     hasEnough: true,
     balance: "3317.73129463"
@@ -649,6 +674,20 @@ console.log(trade);
     '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   ],
   hasEnoughAllowance: true,
+  toToken: {
+    chainId: 1,
+    contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+    symbol: 'FUN',
+    decimals: 8,
+    name: 'FunFair',
+  },
+  fromToken: {
+    chainId: 1,
+    contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    symbol: 'WETH',
+    decimals: 18,
+    name: 'Wrapped Ether',
+  },
   fromBalance: {
     hasEnough: false,
     balance: '0.008474677789598637',
@@ -3389,6 +3428,20 @@ console.log(trade);
     },
   ],
   hasEnoughAllowance: true,
+  toToken: {
+    chainId: 1,
+    contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    symbol: 'WETH',
+    decimals: 18,
+    name: 'Wrapped Ether',
+  },
+  fromToken: {
+    chainId: 1,
+    contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+    symbol: 'FUN',
+    decimals: 8,
+    name: 'FunFair',
+  },
   fromBalance: {
     hasEnough: true,
     balance: '3317.73129463',
