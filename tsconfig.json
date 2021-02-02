@@ -68,5 +68,6 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "resolveJsonModule": true
   },
-  "include": ["src/ABI/**/*.json", "src/**/*"]
+  "include": ["src/ABI/**/*.json", "src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.mock.ts", "src/jest/**/*"]
 }
