@@ -1,19 +1,23 @@
 import { Contract, ContractInterface, providers } from 'ethers';
-import { ChainId } from './enums/chain-id';
+import { ChainId, ChainNames } from './enums/chain-id';
 
 export class EthersProvider {
   private _ethersProvider: providers.BaseProvider;
-  constructor(private _chainIdOrProviderUrl: ChainId | string) {
-    if (typeof this._chainIdOrProviderUrl === 'string') {
-      this._ethersProvider = new providers.JsonRpcProvider(
-        this._chainIdOrProviderUrl
-      );
+  constructor(chainId: ChainId, providerUrl?: string | undefined) {
+    if (providerUrl) {
+      const chainName = ChainNames.get(chainId);
+      if (!chainName) {
+        throw new Error(`Can not find chain name for ${chainId}`);
+      }
+
+      this._ethersProvider = new providers.JsonRpcProvider(providerUrl, {
+        name: chainName,
+        chainId,
+      });
       return;
     }
 
-    this._ethersProvider = new providers.InfuraProvider(
-      this._chainIdOrProviderUrl
-    );
+    this._ethersProvider = new providers.InfuraProvider(chainId);
   }
 
   /**

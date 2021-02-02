@@ -284,7 +284,7 @@ export class UniswapPairFactory {
     );
 
     return {
-      to: this.toToken.contractAddress,
+      to: this.fromToken.contractAddress,
       from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: Constants.EMPTY_HEX_STRING,

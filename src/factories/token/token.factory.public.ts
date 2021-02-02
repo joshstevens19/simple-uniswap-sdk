@@ -5,8 +5,9 @@ import { TokenFactory } from './token.factory';
 export class TokenFactoryPublic extends TokenFactory {
   constructor(
     tokenContractAddress: string,
-    chainIdOrProviderUrl: ChainId | string
+    chainId: ChainId,
+    providerUrl?: string | undefined
   ) {
-    super(tokenContractAddress, new EthersProvider(chainIdOrProviderUrl));
+    super(tokenContractAddress, new EthersProvider(chainId, providerUrl));
   }
 }

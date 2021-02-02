@@ -71,20 +71,20 @@ export enum ChainId {
   KOVAN = 42,
 }
 
-export interface UniswapPairContextForChainId extends UniswapPairContextBase {
-  chainId: ChainId;
-}
-
-export interface UniswapPairContextForProviderUrl
-  extends UniswapPairContextBase {
-  providerUrl: string;
-}
-
 interface UniswapPairContextBase {
   fromTokenContractAddress: string;
   toTokenContractAddress: string;
   ethereumAddress: string;
   settings?: UniswapPairSettings | undefined;
+}
+
+export interface UniswapPairContextForChainId extends UniswapPairContextBase {
+  chainId: ChainId | number;
+}
+
+export interface UniswapPairContextForProviderUrl
+  extends UniswapPairContextForChainId {
+  providerUrl: string;
 }
 ```
 
@@ -113,9 +113,9 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
   chainId: ChainId.MAINNET,
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   settings: new UniswapPairSettings({
     // if not supplied it use `0.005` which is 0.5%;
     // all figures
@@ -161,8 +161,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -211,8 +211,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -357,8 +357,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -600,8 +600,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -2003,8 +2003,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: WETH.MAINNET().contractAddress,
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -3426,8 +3426,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -3461,8 +3461,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -3510,8 +3510,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -3549,8 +3549,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -3615,8 +3615,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -3813,8 +3813,8 @@ const uniswapPair = new UniswapPair({
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can change this to pass in providerUrl
-  // on the other interface
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
   chainId: ChainId.MAINNET,
 });
 
@@ -4057,6 +4057,8 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 const tokenFactoryPublic = new TokenFactoryPublic(
   toTokenContractAddress,
   ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
 );
 
 const totalSupply = await tokenFactoryPublic.totalSupply();
@@ -4082,6 +4084,8 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 const tokenFactoryPublic = new TokenFactoryPublic(
   tokenContractAddress,
   ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
 );
 
 // the contract address for which you are allowing to move tokens on your behalf
@@ -4124,6 +4128,8 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 const tokenFactoryPublic = new TokenFactoryPublic(
   tokenContractAddress,
   ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
 );
 
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
@@ -4165,7 +4171,11 @@ export interface Token {
 ```ts
 import { TokensFactoryPublic, ChainId } from 'uniswap-sdk';
 
-const tokensFactoryPublic = new TokensFactoryPublic(ChainId.MAINNET);
+const tokensFactoryPublic = new TokensFactoryPublic(
+  ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
+);
 
 const tokens = await tokensFactoryPublic.getTokens([
   '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -4247,6 +4257,8 @@ const uniswapPair = new UniswapPair(
   fromTokenContractAddress,
   ethereumAddress,
   ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
 );
 
 // now to create the factory you just do
@@ -4263,6 +4275,8 @@ import { UniswapPairContractFactoryPublic, ChainId } from 'uniswap-sdk';
 
 const uniswapPairContractFactoryPublic = new UniswapPairContractFactoryPublic(
   ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
 );
 
 // contract calls our here, this is only for the uniswap pair contract https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
@@ -4289,6 +4303,8 @@ import { UniswapContractFactoryPublic, ChainId } from 'uniswap-sdk';
 
 const uniswapContractFactoryPublic = new UniswapContractFactoryPublic(
   ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
 );
 
 // contract calls our here https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
@@ -4494,6 +4510,8 @@ import { UniswapRouterContractFactoryPublic, ChainId } from 'uniswap-sdk';
 
 const uniswapRouterContractFactoryPublic = new UniswapRouterContractFactoryPublic(
   ChainId.MAINNET
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
 );
 
 // contract calls our here https://etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D#code

@@ -59,7 +59,7 @@ export class WETH {
    * Get WETH token info by chain id
    * @param chainId The chain id
    */
-  public static token(chainId: ChainId) {
+  public static token(chainId: ChainId | number) {
     switch (chainId) {
       case ChainId.MAINNET:
         return this.MAINNET();

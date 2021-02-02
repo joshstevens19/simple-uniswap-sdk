@@ -57,8 +57,8 @@ export class UniswapPair {
       this._uniswapPairContext
     )).providerUrl;
 
-    if (providerUrl) {
-      this._ethersProvider = new EthersProvider(providerUrl);
+    if (providerUrl && chainId) {
+      this._ethersProvider = new EthersProvider(chainId, providerUrl);
       return;
     }
 
