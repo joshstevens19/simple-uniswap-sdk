@@ -4611,6 +4611,16 @@ const uniswapRouterContractFactoryPublic = new UniswapRouterContractFactoryPubli
 uniswapRouterContractFactoryPublic;
 ```
 
+## Tests
+
+The whole repo is covered in tests output below:
+
+Test Suites: 21 passed, 21 total
+Tests: 133 passed, 133 total
+Snapshots: 0 total
+Time: 32.287s
+Ran all test suites.
+
 ## Issues
 
 Please raise any issues in the below link.
