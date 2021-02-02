@@ -28,6 +28,7 @@
     "rxjs": "^6.6.3"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "ethereum-abi-types-generator": "^1.0.10",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
