@@ -2,6 +2,8 @@ export {
   Observable as UniswapStream,
   Subscription as UniswapSubscription,
 } from 'rxjs';
+export { ErrorCodes } from './common/errors/error-codes';
+export { UniswapError } from './common/errors/uniswap-error';
 export * from './common/tokens';
 export { ChainId } from './enums/chain-id';
 export { TradeContext } from './factories/pair/models/trade-context';

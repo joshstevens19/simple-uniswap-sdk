@@ -19,16 +19,20 @@ const routeTest = async () => {
       slippage: 0.005,
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
-      disableMultihops: false,
+      disableMultihops: true,
     }),
   });
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  const trade = await uniswapPairFactory.trade('10');
-  console.log(trade);
+  try {
+    const trade = await uniswapPairFactory.trade('10');
+    console.log(trade);
 
-  console.log(new Date().getTime());
+    console.log(new Date().getTime());
+  } catch (error) {
+    console.log(error.message);
+  }
 
   process.stdin.resume();
 

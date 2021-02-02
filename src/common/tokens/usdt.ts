@@ -1,4 +1,6 @@
 import { ChainId } from '../../enums/chain-id';
+import { ErrorCodes } from '../errors/error-codes';
+import { UniswapError } from '../errors/uniswap-error';
 
 /**
  * USDT token context CHANGE CONTRACT ADDRESS INFO ETC
@@ -23,7 +25,10 @@ export class USDT {
       case ChainId.MAINNET:
         return this.MAINNET();
       default:
-        throw new Error(`${chainId} is not allowed`);
+        throw new UniswapError(
+          `${chainId} is not allowed`,
+          ErrorCodes.tokenChainIdContractDoesNotExist
+        );
     }
   }
 }

@@ -6,6 +6,8 @@ import {
   Multicall,
 } from 'ethereum-multicall';
 import { ContractContext } from '../../common/contract-context';
+import { ErrorCodes } from '../../common/errors/error-codes';
+import { UniswapError } from '../../common/errors/uniswap-error';
 import { COMP } from '../../common/tokens/comp';
 import { DAI } from '../../common/tokens/dai';
 import { USDC } from '../../common/tokens/usdc';
@@ -190,8 +192,9 @@ export class UniswapRouterFactory {
   ): Promise<BestRouteQuotes> {
     const allRoutes = await this.getAllPossibleRoutesWithQuotes(amountToTrade);
     if (allRoutes.length === 0) {
-      throw new Error(
-        `No routes found for ${this._fromToken.contractAddress} > ${this._toToken.contractAddress}`
+      throw new UniswapError(
+        `No routes found for ${this._fromToken.contractAddress} > ${this._toToken.contractAddress}`,
+        ErrorCodes.noRoutesFound
       );
     }
 
@@ -380,8 +383,9 @@ export class UniswapRouterFactory {
             result.push(this.buildRouteQuoteForErc20ToErc20(callReturnContext));
             break;
           default:
-            throw new Error(
-              `${tradePath} not found in InternalTradePath defined`
+            throw new UniswapError(
+              `${tradePath} not found`,
+              ErrorCodes.tradePathIsNotSupported
             );
         }
       }
@@ -491,8 +495,9 @@ export class UniswapRouterFactory {
       case TradePath.erc20ToErc20:
         return hexlify(amountToTrade.shiftedBy(this._fromToken.decimals));
       default:
-        throw new Error(
-          `Internal trade path ${this.tradePath()} is not supported`
+        throw new UniswapError(
+          `Internal trade path ${this.tradePath()} is not supported`,
+          ErrorCodes.tradePathIsNotSupported
         );
     }
   }

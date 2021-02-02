@@ -1,3 +1,5 @@
+import { ErrorCodes } from '../../common/errors/error-codes';
+import { UniswapError } from '../../common/errors/uniswap-error';
 import { isAddress } from '../../common/utils/is-address';
 import { EthersProvider } from '../../ethers-provider';
 import { TokensFactory } from '../token/tokens.factory';
@@ -18,31 +20,45 @@ export class UniswapPair {
       | UniswapPairContextForProviderUrl
   ) {
     if (!this._uniswapPairContext.fromTokenContractAddress) {
-      throw new Error('Must have a `fromTokenContractAddress` on the context');
+      throw new UniswapError(
+        'Must have a `fromTokenContractAddress` on the context',
+        ErrorCodes.fromTokenContractAddressRequired
+      );
     }
 
     if (!isAddress(this._uniswapPairContext.fromTokenContractAddress)) {
-      throw new Error(
-        '`fromTokenContractAddress` is not a valid contract address'
+      throw new UniswapError(
+        '`fromTokenContractAddress` is not a valid contract address',
+        ErrorCodes.fromTokenContractAddressNotValid
       );
     }
 
     if (!this._uniswapPairContext.toTokenContractAddress) {
-      throw new Error('Must have a `toTokenContractAddress` on the context');
+      throw new UniswapError(
+        'Must have a `toTokenContractAddress` on the context',
+        ErrorCodes.toTokenContractAddressRequired
+      );
     }
 
     if (!isAddress(this._uniswapPairContext.toTokenContractAddress)) {
-      throw new Error(
-        '`toTokenContractAddress` is not a valid contract address'
+      throw new UniswapError(
+        '`toTokenContractAddress` is not a valid contract address',
+        ErrorCodes.toTokenContractAddressNotValid
       );
     }
 
     if (!this._uniswapPairContext.ethereumAddress) {
-      throw new Error('Must have a `ethereumAddress` on the context');
+      throw new UniswapError(
+        'Must have a `ethereumAddress` on the context',
+        ErrorCodes.ethereumAddressRequired
+      );
     }
 
     if (!isAddress(this._uniswapPairContext.ethereumAddress)) {
-      throw new Error('`ethereumAddress` is not a valid address');
+      throw new UniswapError(
+        '`ethereumAddress` is not a valid address',
+        ErrorCodes.ethereumAddressNotValid
+      );
     }
 
     const chainId = (<UniswapPairContextForChainId>this._uniswapPairContext)
@@ -62,7 +78,10 @@ export class UniswapPair {
       return;
     }
 
-    throw new Error('You must have a chainId or a providerUrl on the context.');
+    throw new UniswapError(
+      'You must have a chainId on the context.',
+      ErrorCodes.youMustSupplyAChainId
+    );
   }
 
   /**

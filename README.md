@@ -134,6 +134,41 @@ const uniswapPair = new UniswapPair({
 const uniswapPairFactory = await uniswapPair.createFactory();
 ```
 
+## Catching error
+
+I know randomly throwing errors with no error codes is a pain when writing dApps. In this package when we throw we have our own custom error. This has error codes you can map to what actually happened to allow your dApp to handle them gracefully.
+
+```ts
+export class UniswapError extends Error {
+  public name = 'UniswapError';
+  public code: ErrorCodes;
+  public message: string;
+  constructor(message: string, code: ErrorCodes) {
+    super(message);
+    this.message = message;
+    this.code = code;
+  }
+}
+```
+
+```ts
+export enum ErrorCodes {
+  noRoutesFound = 1,
+  canNotFindChainId = 2,
+  tokenChainIdContractDoesNotExist = 3,
+  tradePathIsNotSupported = 4,
+  generateApproveMaxAllowanceDataNotAllowed = 5,
+  fromTokenContractAddressRequired = 6,
+  fromTokenContractAddressNotValid = 7,
+  toTokenContractAddressRequired = 8,
+  toTokenContractAddressNotValid = 9,
+  ethereumAddressRequired = 10,
+  ethereumAddressNotValid = 11,
+  youMustSupplyAChainId = 12,
+  invalidFromOrToContractToken = 13,
+}
+```
+
 ## Uniswap pair factory
 
 ### toToken

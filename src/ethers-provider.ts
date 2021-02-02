@@ -1,4 +1,6 @@
 import { Contract, ContractInterface, providers } from 'ethers';
+import { ErrorCodes } from './common/errors/error-codes';
+import { UniswapError } from './common/errors/uniswap-error';
 import { ChainId, ChainNames } from './enums/chain-id';
 
 export class EthersProvider {
@@ -7,7 +9,10 @@ export class EthersProvider {
     if (providerUrl) {
       const chainName = ChainNames.get(chainId);
       if (!chainName) {
-        throw new Error(`Can not find chain name for ${chainId}`);
+        throw new UniswapError(
+          `Can not find chain name for ${chainId}`,
+          ErrorCodes.canNotFindChainId
+        );
       }
 
       this._ethersProvider = new providers.JsonRpcProvider(providerUrl, {

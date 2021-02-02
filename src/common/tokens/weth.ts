@@ -1,5 +1,7 @@
 import { ChainId } from '../../enums/chain-id';
 import { Token } from '../../factories/token/models/token';
+import { ErrorCodes } from '../errors/error-codes';
+import { UniswapError } from '../errors/uniswap-error';
 
 /**
  * WETH token context
@@ -72,7 +74,10 @@ export class WETH {
       case ChainId.KOVAN:
         return this.KOVAN();
       default:
-        throw new Error(`${chainId} is not allowed`);
+        throw new UniswapError(
+          `${chainId} is not allowed`,
+          ErrorCodes.tokenChainIdContractDoesNotExist
+        );
     }
   }
 }

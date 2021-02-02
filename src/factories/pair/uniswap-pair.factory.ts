@@ -2,6 +2,8 @@ import BigNumber from 'bignumber.js';
 import { Subject } from 'rxjs';
 import { Constants } from '../../common/constants';
 import { ContractContext } from '../../common/contract-context';
+import { ErrorCodes } from '../../common/errors/error-codes';
+import { UniswapError } from '../../common/errors/uniswap-error';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
@@ -81,7 +83,10 @@ export class UniswapPairFactory {
       case TradePath.erc20ToErc20:
         return await this.getTokenTradeAmountErc20ToErc20(amount);
       default:
-        throw new Error(`${this.tradePath()} is not defined`);
+        throw new UniswapError(
+          `${this.tradePath()} is not defined`,
+          ErrorCodes.tradePathIsNotSupported
+        );
     }
   }
 
@@ -273,8 +278,9 @@ export class UniswapPairFactory {
    */
   public async generateApproveMaxAllowanceData(): Promise<Transaction> {
     if (this.tradePath() === TradePath.ethToErc20) {
-      throw new Error(
-        'You do not need to generate approve uniswap allowance when doing eth > erc20'
+      throw new UniswapError(
+        'You do not need to generate approve uniswap allowance when doing eth > erc20',
+        ErrorCodes.generateApproveMaxAllowanceDataNotAllowed
       );
     }
 
