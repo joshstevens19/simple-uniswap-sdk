@@ -19,7 +19,7 @@ import { TokenFactory } from '../token/token.factory';
 import { TradeContext } from './models/trade-context';
 import { Transaction } from './models/transaction';
 import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
-import { UniswapPairContractFactory } from './uniswap-pair-contract-factory';
+import { UniswapPairContractFactory } from './uniswap-pair-contract.factory';
 
 export class UniswapPairFactory {
   private readonly LIQUIDITY_PROVIDER_FEE = 0.003;
