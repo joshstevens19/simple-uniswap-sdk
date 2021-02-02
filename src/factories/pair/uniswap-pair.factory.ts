@@ -523,7 +523,7 @@ export class UniswapPairFactory {
       hex,
       routePathArray,
       this._uniswapPairFactoryContext.ethereumAddress,
-      this.generateTradeDeadlineUnixTime()
+      deadline
     );
   }
 
