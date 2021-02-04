@@ -64,17 +64,17 @@ export class UniswapPair {
     const chainId = (<UniswapPairContextForChainId>this._uniswapPairContext)
       .chainId;
 
-    if (chainId) {
-      this._ethersProvider = new EthersProvider(chainId);
-      return;
-    }
-
     const providerUrl = (<UniswapPairContextForProviderUrl>(
       this._uniswapPairContext
     )).providerUrl;
 
     if (providerUrl && chainId) {
       this._ethersProvider = new EthersProvider(chainId, providerUrl);
+      return;
+    }
+
+    if (chainId) {
+      this._ethersProvider = new EthersProvider(chainId);
       return;
     }
 
