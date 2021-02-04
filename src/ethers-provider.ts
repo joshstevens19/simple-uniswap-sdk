@@ -15,7 +15,7 @@ export class EthersProvider {
         );
       }
 
-      this._ethersProvider = new providers.JsonRpcProvider(providerUrl, {
+      this._ethersProvider = new providers.StaticJsonRpcProvider(providerUrl, {
         name: chainName,
         chainId,
       });
