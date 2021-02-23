@@ -594,9 +594,7 @@ export class UniswapRouterFactory {
   private get mainCurrenciesPairsForDAI(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
       return [
-        [this.DAITokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
-        [this.DAITokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
         [this.DAITokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
       ];
     }
