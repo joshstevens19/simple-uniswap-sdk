@@ -15,6 +15,7 @@ import { USDT } from '../../common/tokens/usdt';
 import { WETH } from '../../common/tokens/weth';
 import { formatEther } from '../../common/utils/format-ether';
 import { hexlify } from '../../common/utils/hexlify';
+import { onlyUnique } from '../../common/utils/only-unique';
 import { parseEther } from '../../common/utils/parse-ether';
 import { getTradePath } from '../../common/utils/trade-path';
 import { ChainId } from '../../enums/chain-id';
@@ -259,12 +260,18 @@ export class UniswapRouterFactory {
                 pair.contractAddress === fromSupportedToken.contractAddress
             )
           ) {
-            routes.push([
+            const workedOutFromRoute = [
               fromTokenRoutes.token,
               fromSupportedToken,
               tokenRoute.token,
               toTokenRoutes.token,
-            ]);
+            ];
+            if (
+              workedOutFromRoute.filter(onlyUnique).length ===
+              workedOutFromRoute.length
+            ) {
+              routes.push(workedOutFromRoute);
+            }
           }
         }
 
@@ -276,12 +283,19 @@ export class UniswapRouterFactory {
                 pair.contractAddress === toSupportedToken.contractAddress
             )
           ) {
-            routes.push([
+            const workedOutToRoute = [
               fromTokenRoutes.token,
               tokenRoute.token,
               toSupportedToken,
               toTokenRoutes.token,
-            ]);
+            ];
+
+            if (
+              workedOutToRoute.filter(onlyUnique).length ===
+              workedOutToRoute.length
+            ) {
+              routes.push(workedOutToRoute);
+            }
           }
         }
       }
