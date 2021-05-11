@@ -29,6 +29,11 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.ethersProvider
   );
 
+  private _toTokenFactory = new TokenFactory(
+    this._uniswapPairFactoryContext.toToken.contractAddress,
+    this._uniswapPairFactoryContext.ethersProvider
+  );
+
   private _uniswapRouterContractFactory = new UniswapRouterContractFactory(
     this._uniswapPairFactoryContext.ethersProvider
   );
@@ -68,6 +73,32 @@ export class UniswapPairFactory {
    */
   public get contractCalls(): UniswapPairContractFactory {
     return this._uniswapPairFactory;
+  }
+
+  /**
+   * Get the to token balance
+   */
+  public async getFromTokenBalance(): Promise<string> {
+    if (this.tradePath() === TradePath.ethToErc20) {
+      const ethBalanceContext = await this.getEthBalance();
+      return ethBalanceContext.toFixed();
+    }
+
+    const erc20BalanceContext = await this.getAllowanceAndBalanceOfForFromToken();
+    return erc20BalanceContext.balanceOf;
+  }
+
+  /**
+   * Get the to token balance
+   */
+  public async getToTokenBalance(): Promise<string> {
+    if (this.tradePath() === TradePath.erc20ToEth) {
+      const ethBalanceContext = await this.getEthBalance();
+      return ethBalanceContext.toFixed();
+    }
+
+    const erc20BalanceContext = await this.getAllowanceAndBalanceOfForToToken();
+    return erc20BalanceContext.balanceOf;
   }
 
   /**
@@ -226,25 +257,30 @@ export class UniswapPairFactory {
     hasEnough: boolean;
     balance: string;
   }> {
-    const balance = await this._uniswapPairFactoryContext.ethersProvider.balanceOf(
-      this._uniswapPairFactoryContext.ethereumAddress
-    );
+    const balance = await this.getEthBalance();
 
-    const bigNumberBalance = new BigNumber(balance).shiftedBy(
-      Constants.ETH_MAX_DECIMALS * -1
-    );
-
-    if (new BigNumber(amount).isGreaterThan(bigNumberBalance)) {
+    if (new BigNumber(amount).isGreaterThan(balance)) {
       return {
         hasEnough: false,
-        balance: bigNumberBalance.toFixed(),
+        balance: balance.toFixed(),
       };
     }
 
     return {
       hasEnough: true,
-      balance: bigNumberBalance.toFixed(),
+      balance: balance.toFixed(),
     };
+  }
+
+  /**
+   * Get eth balance
+   */
+  private async getEthBalance(): Promise<BigNumber> {
+    const balance = await this._uniswapPairFactoryContext.ethersProvider.balanceOf(
+      this._uniswapPairFactoryContext.ethereumAddress
+    );
+
+    return new BigNumber(balance).shiftedBy(Constants.ETH_MAX_DECIMALS * -1);
   }
 
   /**
@@ -252,6 +288,15 @@ export class UniswapPairFactory {
    */
   public async getAllowanceAndBalanceOfForFromToken(): Promise<AllowanceAndBalanceOf> {
     return await this._fromTokenFactory.getAllowanceAndBalanceOf(
+      this._uniswapPairFactoryContext.ethereumAddress
+    );
+  }
+
+  /**
+   * Get the allowance and balance for to from token (eth > erc20) only
+   */
+  public async getAllowanceAndBalanceOfForToToken(): Promise<AllowanceAndBalanceOf> {
+    return await this._toTokenFactory.getAllowanceAndBalanceOf(
       this._uniswapPairFactoryContext.ethereumAddress
     );
   }
