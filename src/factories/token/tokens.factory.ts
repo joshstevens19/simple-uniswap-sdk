@@ -5,8 +5,8 @@ import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { EthersProvider } from '../../ethers-provider';
-import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
+import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 
 export class TokensFactory {
   private _multicall = new Multicall({
@@ -90,12 +90,12 @@ export class TokensFactory {
     ethereumAddress: string,
     tokenContractAddresses: string[],
     format = false
-  ): Promise<
-    { allowanceAndBalanceOf: AllowanceAndBalanceOf; contractAddress: string }[]
-  > {
+  ): Promise<TokenWithAllowanceInfo[]> {
     const ALLOWANCE = 0;
     const BALANCEOF = 1;
     const DECIMALS = 2;
+    const SYMBOL = 3;
+    const NAME = 4;
 
     const contractCallContexts: ContractCallContext[] = [];
     for (let i = 0; i < tokenContractAddresses.length; i++) {
@@ -119,6 +119,16 @@ export class TokensFactory {
             methodName: 'decimals',
             methodParameters: [],
           },
+          {
+            reference: 'symbol',
+            methodName: 'symbol',
+            methodParameters: [],
+          },
+          {
+            reference: 'name',
+            methodName: 'name',
+            methodParameters: [],
+          },
         ],
       };
 
@@ -129,10 +139,7 @@ export class TokensFactory {
       contractCallContexts
     );
 
-    const results: {
-      allowanceAndBalanceOf: AllowanceAndBalanceOf;
-      contractAddress: string;
-    }[] = [];
+    const results: TokenWithAllowanceInfo[] = [];
 
     for (const result in contractCallResults.results) {
       const resultInfo = contractCallResults.results[result];
@@ -147,8 +154,14 @@ export class TokensFactory {
               resultInfo.callsReturnContext[BALANCEOF].returnValues[0]
             ).toHexString(),
           },
-          contractAddress:
-            resultInfo.originalContractCallContext.contractAddress,
+          token: {
+            chainId: this._ethersProvider.network().chainId,
+            contractAddress:
+              resultInfo.originalContractCallContext.contractAddress,
+            symbol: resultInfo.callsReturnContext[SYMBOL].returnValues[0],
+            decimals: resultInfo.callsReturnContext[DECIMALS].returnValues[0],
+            name: resultInfo.callsReturnContext[NAME].returnValues[0],
+          },
         });
       } else {
         results.push({
@@ -172,8 +185,14 @@ export class TokensFactory {
               )
               .toFixed(),
           },
-          contractAddress:
-            resultInfo.originalContractCallContext.contractAddress,
+          token: {
+            chainId: this._ethersProvider.network().chainId,
+            contractAddress:
+              resultInfo.originalContractCallContext.contractAddress,
+            symbol: resultInfo.callsReturnContext[SYMBOL].returnValues[0],
+            decimals: resultInfo.callsReturnContext[DECIMALS].returnValues[0],
+            name: resultInfo.callsReturnContext[NAME].returnValues[0],
+          },
         });
       }
     }
