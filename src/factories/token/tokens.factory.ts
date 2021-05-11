@@ -1,8 +1,11 @@
+import BigNumber from 'bignumber.js';
 import { ContractCallContext, Multicall } from 'ethereum-multicall';
+import { BigNumber as EthersBigNumber } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { EthersProvider } from '../../ethers-provider';
+import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
 export class TokensFactory {
@@ -29,17 +32,17 @@ export class TokensFactory {
           abi: ContractContext.erc20Abi,
           calls: [
             {
-              reference: `symbol`,
+              reference: 'symbol',
               methodName: 'symbol',
               methodParameters: [],
             },
             {
-              reference: `decimals`,
+              reference: 'decimals',
               methodName: 'decimals',
               methodParameters: [],
             },
             {
-              reference: `name`,
+              reference: 'name',
               methodName: 'name',
               methodParameters: [],
             },
@@ -75,5 +78,106 @@ export class TokensFactory {
         ErrorCodes.invalidFromOrToContractToken
       );
     }
+  }
+
+  /**
+   * Get allowance and balance for many contracts
+   * @param ethereumAddress The ethereum address
+   * @param tokenContractAddresses The token contract addresses
+   * @param format If you want it to format it for you to the correct decimal place
+   */
+  public async getAllowanceAndBalanceOfForContracts(
+    ethereumAddress: string,
+    tokenContractAddresses: string[],
+    format = false
+  ): Promise<
+    { allowanceAndBalanceOf: AllowanceAndBalanceOf; contractAddress: string }[]
+  > {
+    const ALLOWANCE = 0;
+    const BALANCEOF = 1;
+    const DECIMALS = 2;
+
+    const contractCallContexts: ContractCallContext[] = [];
+    for (let i = 0; i < tokenContractAddresses.length; i++) {
+      const contractCallContext: ContractCallContext = {
+        reference: `allowance-and-balance-of-${i}`,
+        contractAddress: tokenContractAddresses[i],
+        abi: ContractContext.erc20Abi,
+        calls: [
+          {
+            reference: 'allowance',
+            methodName: 'allowance',
+            methodParameters: [ethereumAddress, ContractContext.routerAddress],
+          },
+          {
+            reference: 'balanceOf',
+            methodName: 'balanceOf',
+            methodParameters: [ethereumAddress],
+          },
+          {
+            reference: 'decimals',
+            methodName: 'decimals',
+            methodParameters: [],
+          },
+        ],
+      };
+
+      contractCallContexts.push(contractCallContext);
+    }
+
+    const contractCallResults = await this._multicall.call(
+      contractCallContexts
+    );
+
+    const results: {
+      allowanceAndBalanceOf: AllowanceAndBalanceOf;
+      contractAddress: string;
+    }[] = [];
+
+    for (const result in contractCallResults.results) {
+      const resultInfo = contractCallResults.results[result];
+
+      if (!format) {
+        results.push({
+          allowanceAndBalanceOf: {
+            allowance: EthersBigNumber.from(
+              resultInfo.callsReturnContext[ALLOWANCE].returnValues[0]
+            ).toHexString(),
+            balanceOf: EthersBigNumber.from(
+              resultInfo.callsReturnContext[BALANCEOF].returnValues[0]
+            ).toHexString(),
+          },
+          contractAddress:
+            resultInfo.originalContractCallContext.contractAddress,
+        });
+      } else {
+        results.push({
+          allowanceAndBalanceOf: {
+            allowance: new BigNumber(
+              EthersBigNumber.from(
+                resultInfo.callsReturnContext[ALLOWANCE].returnValues[0]
+              ).toHexString()
+            )
+              .shiftedBy(
+                resultInfo.callsReturnContext[DECIMALS].returnValues[0] * -1
+              )
+              .toFixed(),
+            balanceOf: new BigNumber(
+              EthersBigNumber.from(
+                resultInfo.callsReturnContext[BALANCEOF].returnValues[0]
+              ).toHexString()
+            )
+              .shiftedBy(
+                resultInfo.callsReturnContext[DECIMALS].returnValues[0] * -1
+              )
+              .toFixed(),
+          },
+          contractAddress:
+            resultInfo.originalContractCallContext.contractAddress,
+        });
+      }
+    }
+
+    return results;
   }
 }
