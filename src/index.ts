@@ -6,6 +6,7 @@ export { ErrorCodes } from './common/errors/error-codes';
 export { UniswapError } from './common/errors/uniswap-error';
 export * from './common/tokens';
 export { ChainId } from './enums/chain-id';
+export { EthersProvider } from './ethers-provider';
 export { TradeContext } from './factories/pair/models/trade-context';
 export { Transaction } from './factories/pair/models/transaction';
 export {
