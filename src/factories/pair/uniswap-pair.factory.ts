@@ -85,7 +85,9 @@ export class UniswapPairFactory {
     }
 
     const erc20BalanceContext = await this.getAllowanceAndBalanceOfForFromToken();
-    return erc20BalanceContext.balanceOf;
+    return new BigNumber(erc20BalanceContext.balanceOf)
+      .shiftedBy(this.fromToken.decimals * -1)
+      .toFixed();
   }
 
   /**
@@ -98,7 +100,9 @@ export class UniswapPairFactory {
     }
 
     const erc20BalanceContext = await this.getAllowanceAndBalanceOfForToToken();
-    return erc20BalanceContext.balanceOf;
+    return new BigNumber(erc20BalanceContext.balanceOf)
+      .shiftedBy(this.toToken.decimals * -1)
+      .toFixed();
   }
 
   /**
