@@ -11,7 +11,7 @@ export class TokenFactory {
     ethersProvider: this._ethersProvider.provider,
   });
 
-  private _erc20TokenContracy = this._ethersProvider.getContract<ERC20ContractContext>(
+  private _erc20TokenContract = this._ethersProvider.getContract<ERC20ContractContext>(
     JSON.stringify(ContractContext.erc20Abi),
     this._tokenContractAddress
   );
@@ -70,7 +70,7 @@ export class TokenFactory {
    * @ethereumAddress The users ethereum address
    */
   public async allowance(ethereumAddress: string): Promise<string> {
-    const allowance = await this._erc20TokenContracy.allowance(
+    const allowance = await this._erc20TokenContract.allowance(
       ethereumAddress,
       ContractContext.routerAddress
     );
@@ -85,7 +85,7 @@ export class TokenFactory {
    * @value The amount you want to allow them to do
    */
   public generateApproveAllowanceData(spender: string, value: string): string {
-    return this._erc20TokenContracy.interface.encodeFunctionData('approve', [
+    return this._erc20TokenContract.interface.encodeFunctionData('approve', [
       spender,
       value,
     ]);
@@ -96,7 +96,7 @@ export class TokenFactory {
    * @ethereumAddress The users ethereum address
    */
   public async balanceOf(ethereumAddress: string): Promise<string> {
-    const balance = await this._erc20TokenContracy.balanceOf(ethereumAddress);
+    const balance = await this._erc20TokenContract.balanceOf(ethereumAddress);
 
     return balance.toHexString();
   }
@@ -105,7 +105,7 @@ export class TokenFactory {
    * Get the total supply of tokens which exist
    */
   public async totalSupply(): Promise<string> {
-    const totalSupply = await this._erc20TokenContracy.totalSupply();
+    const totalSupply = await this._erc20TokenContract.totalSupply();
 
     return totalSupply.toHexString();
   }
