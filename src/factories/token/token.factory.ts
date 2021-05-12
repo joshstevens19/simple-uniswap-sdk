@@ -1,5 +1,5 @@
 import { ContractCallContext, Multicall } from 'ethereum-multicall';
-import { BigNumber } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { EthersProvider } from '../../ethers-provider';
@@ -31,7 +31,7 @@ export class TokenFactory {
 
     const contractCallContext: ContractCallContext = {
       reference: 'token',
-      contractAddress: this._tokenContractAddress,
+      contractAddress: ethers.utils.getAddress(this._tokenContractAddress),
       abi: ContractContext.erc20Abi,
       calls: [
         {
@@ -57,7 +57,7 @@ export class TokenFactory {
 
     return {
       chainId: this._ethersProvider.network().chainId,
-      contractAddress: this._tokenContractAddress,
+      contractAddress: results.originalContractCallContext.contractAddress,
       symbol: results.callsReturnContext[SYMBOL].returnValues[0],
       decimals: results.callsReturnContext[DECIMALS].returnValues[0],
       name: results.callsReturnContext[NAME].returnValues[0],
@@ -122,7 +122,7 @@ export class TokenFactory {
 
     const contractCallContext: ContractCallContext = {
       reference: 'allowance-and-balance-of',
-      contractAddress: this._tokenContractAddress,
+      contractAddress: ethers.utils.getAddress(this._tokenContractAddress),
       abi: ContractContext.erc20Abi,
       calls: [
         {

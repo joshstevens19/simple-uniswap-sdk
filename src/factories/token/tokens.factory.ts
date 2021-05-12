@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 import { ContractCallContext, Multicall } from 'ethereum-multicall';
-import { BigNumber as EthersBigNumber } from 'ethers';
+import { BigNumber as EthersBigNumber, ethers } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
@@ -28,7 +28,7 @@ export class TokensFactory {
       for (let i = 0; i < tokenContractAddresses.length; i++) {
         const contractCallContext: ContractCallContext = {
           reference: `token${i}`,
-          contractAddress: tokenContractAddresses[i],
+          contractAddress: ethers.utils.getAddress(tokenContractAddresses[i]),
           abi: ContractContext.erc20Abi,
           calls: [
             {
@@ -101,7 +101,7 @@ export class TokensFactory {
     for (let i = 0; i < tokenContractAddresses.length; i++) {
       const contractCallContext: ContractCallContext = {
         reference: `allowance-and-balance-of-${i}`,
-        contractAddress: tokenContractAddresses[i],
+        contractAddress: ethers.utils.getAddress(tokenContractAddresses[i]),
         abi: ContractContext.erc20Abi,
         calls: [
           {
