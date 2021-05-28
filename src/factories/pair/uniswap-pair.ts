@@ -1,3 +1,4 @@
+import { ethers } from 'ethers';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { isAddress } from '../../common/utils/is-address';
@@ -33,6 +34,10 @@ export class UniswapPair {
       );
     }
 
+    this._uniswapPairContext.fromTokenContractAddress = ethers.utils.getAddress(
+      this._uniswapPairContext.fromTokenContractAddress
+    );
+
     if (!this._uniswapPairContext.toTokenContractAddress) {
       throw new UniswapError(
         'Must have a `toTokenContractAddress` on the context',
@@ -47,6 +52,10 @@ export class UniswapPair {
       );
     }
 
+    this._uniswapPairContext.toTokenContractAddress = ethers.utils.getAddress(
+      this._uniswapPairContext.toTokenContractAddress
+    );
+
     if (!this._uniswapPairContext.ethereumAddress) {
       throw new UniswapError(
         'Must have a `ethereumAddress` on the context',
@@ -60,6 +69,10 @@ export class UniswapPair {
         ErrorCodes.ethereumAddressNotValid
       );
     }
+
+    this._uniswapPairContext.ethereumAddress = ethers.utils.getAddress(
+      this._uniswapPairContext.ethereumAddress
+    );
 
     const chainId = (<UniswapPairContextForChainId>this._uniswapPairContext)
       .chainId;
