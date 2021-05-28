@@ -1,7 +1,7 @@
 import { ContractCallContext, Multicall } from 'ethereum-multicall';
-import { ChainId } from '../../../dist';
-import { EthersProvider } from '../../ethers-provider';
-import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
+import { ChainId } from '../../../../dist';
+import { EthersProvider } from '../../../ethers-provider';
+import { UniswapContractContextV3 } from '../../../uniswap-contract-context/uniswap-contract-context-v3';
 import { UniswapContractQuoterV3Public } from './uniswap-contract.quoter.v3.public';
 
 export enum FeeAmount {

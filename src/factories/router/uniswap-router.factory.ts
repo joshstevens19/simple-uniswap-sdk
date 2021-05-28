@@ -24,12 +24,12 @@ import { EthersProvider } from '../../ethers-provider';
 import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
 import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
 import { Token } from '../token/models/token';
-import { FeeAmount } from './enums/fee-amount-v3';
 import { RouterDirection } from './enums/router-direction';
 import { AllPossibleRoutes } from './models/all-possible-routes';
 import { BestRouteQuotes } from './models/best-route-quotes';
 import { RouteQuote } from './models/route-quote';
 import { TokenRoutes } from './models/token-routes';
+import { FeeAmount } from './v3/enums/fee-amount-v3';
 
 export class UniswapRouterFactory {
   private _multicall = new Multicall({

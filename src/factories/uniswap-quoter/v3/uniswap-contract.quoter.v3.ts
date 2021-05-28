@@ -1,7 +1,7 @@
 import { BigNumber, BigNumberish, BytesLike as Arrayish } from 'ethers';
-import { ContractContext as QuoterContractContext } from '../../ABI/types/uniswap-quoter-v3';
-import { EthersProvider } from '../../ethers-provider';
-import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
+import { ContractContext as QuoterContractContext } from '../../../ABI/types/uniswap-quoter-v3';
+import { EthersProvider } from '../../../ethers-provider';
+import { UniswapContractContextV3 } from '../../../uniswap-contract-context/uniswap-contract-context-v3';
 
 export class UniswapContractQuoterV3 {
   private _uniswapQuoterContract = this._ethersProvider.getContract<QuoterContractContext>(
