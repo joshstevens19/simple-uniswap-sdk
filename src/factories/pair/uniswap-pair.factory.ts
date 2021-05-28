@@ -23,9 +23,10 @@ import { TokenFactory } from '../token/token.factory';
 import { TradeContext } from './models/trade-context';
 import { Transaction } from './models/transaction';
 import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
-import { UniswapPairContractFactory } from './uniswap-pair-contract.factory';
+import { UniswapPairContractFactoryV2 } from './v2/uniswap-pair-contract.factory.v2';
 
 export class UniswapPairFactory {
+  // MOVE TO JOKER NOW AS ONLY FIXED ON V2 NOT V3
   private readonly LIQUIDITY_PROVIDER_FEE = 0.003;
 
   private _fromTokenFactory = new TokenFactory(
@@ -45,7 +46,7 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.ethersProvider
   );
 
-  private _uniswapPairFactory = new UniswapPairContractFactory(
+  private _uniswapPairFactoryV2 = new UniswapPairContractFactoryV2(
     this._uniswapPairFactoryContext.ethersProvider
   );
 
@@ -79,8 +80,8 @@ export class UniswapPairFactory {
   /**
    * Get the contract calls
    */
-  public get contractCalls(): UniswapPairContractFactory {
-    return this._uniswapPairFactory;
+  public get contractCalls(): UniswapPairContractFactoryV2 {
+    return this._uniswapPairFactoryV2;
   }
 
   /**
@@ -407,9 +408,8 @@ export class UniswapPairFactory {
     const data = this.generateTradeDataErc20ToEth(
       erc20Amount,
       convertQuoteWithSlippage,
-      bestRouteQuote.routePathArray,
-      tradeExpires.toString(),
-      bestRouteQuote.uniswapVersion
+      bestRouteQuote,
+      tradeExpires.toString()
     );
 
     const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
@@ -470,9 +470,8 @@ export class UniswapPairFactory {
     const data = this.generateTradeDataErc20ToErc20(
       erc20Amount,
       convertQuoteWithSlippage,
-      bestRouteQuote.routePathArray,
-      tradeExpires.toString(),
-      bestRouteQuote.uniswapVersion
+      bestRouteQuote,
+      tradeExpires.toString()
     );
 
     const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
@@ -532,9 +531,8 @@ export class UniswapPairFactory {
 
     const data = this.generateTradeDataEthToErc20(
       convertQuoteWithSlippage,
-      bestRouteQuote.routePathArray,
-      tradeExpires.toString(),
-      bestRouteQuote.uniswapVersion
+      bestRouteQuote,
+      tradeExpires.toString()
     );
 
     const tradeContext: TradeContext = {
@@ -567,25 +565,24 @@ export class UniswapPairFactory {
   /**
    * Generate trade data eth > erc20
    * @param tokenAmount The token amount
-   * @param routePath The route path
+   * @param routeQuote The route quote
    * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataEthToErc20(
     tokenAmount: BigNumber,
-    routePathArray: string[],
-    deadline: string,
-    uniswapVersion: UniswapVersion
+    routeQuote: RouteQuote,
+    deadline: string
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const convertedMinTokens = tokenAmount
       .shiftedBy(this.toToken.decimals)
       .decimalPlaces(0);
 
-    switch (uniswapVersion) {
+    switch (routeQuote.uniswapVersion) {
       case UniswapVersion.v2:
         return this._uniswapRouterContractFactoryV2.swapExactETHForTokens(
           hexlify(convertedMinTokens),
-          routePathArray,
+          routeQuote.routePathArray,
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -593,7 +590,7 @@ export class UniswapPairFactory {
         return this.generateTradeDataForV3(
           tokenAmount,
           convertedMinTokens,
-          routePathArray,
+          routeQuote.routePathArray,
           deadline
         );
       default:
@@ -608,27 +605,26 @@ export class UniswapPairFactory {
    * Generate trade amount erc20 > eth
    * @param tokenAmount The token amount
    * @param ethAmountOutMin The min eth in eth not wei this converts it
-   * @param routePathArray The route path array
+   * @param routeQuote The route quote
    * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataErc20ToEth(
     tokenAmount: BigNumber,
     ethAmountOutMin: BigNumber,
-    routePathArray: string[],
-    deadline: string,
-    uniswapVersion: UniswapVersion
+    routeQuote: RouteQuote,
+    deadline: string
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
       .shiftedBy(this.fromToken.decimals)
       .decimalPlaces(0);
 
-    switch (uniswapVersion) {
+    switch (routeQuote.uniswapVersion) {
       case UniswapVersion.v2:
         return this._uniswapRouterContractFactoryV2.swapExactTokensForETH(
           hexlify(amountIn),
           hexlify(parseEther(ethAmountOutMin)),
-          routePathArray,
+          routeQuote.routePathArray,
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -636,7 +632,7 @@ export class UniswapPairFactory {
         return this.generateTradeDataForV3(
           amountIn,
           parseEther(ethAmountOutMin),
-          routePathArray,
+          routeQuote.routePathArray,
           deadline
         );
       default:
@@ -651,15 +647,14 @@ export class UniswapPairFactory {
    * Generate trade amount erc20 > erc20
    * @param tokenAmount The token amount
    * @param tokenAmountOut The min token amount out
-   * @param routePathArray The route path array
+   * @param routeQuote The route quote
    * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataErc20ToErc20(
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
-    routePathArray: string[],
-    deadline: string,
-    uniswapVersion: UniswapVersion
+    routeQuote: RouteQuote,
+    deadline: string
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
@@ -669,12 +664,12 @@ export class UniswapPairFactory {
       .shiftedBy(this.toToken.decimals)
       .decimalPlaces(0);
 
-    switch (uniswapVersion) {
+    switch (routeQuote.uniswapVersion) {
       case UniswapVersion.v2:
         return this._uniswapRouterContractFactoryV2.swapExactTokensForTokens(
           hexlify(amountIn),
           hexlify(amountMin),
-          routePathArray,
+          routeQuote.routePathArray,
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -682,7 +677,7 @@ export class UniswapPairFactory {
         return this.generateTradeDataForV3(
           amountIn,
           amountMin,
-          routePathArray,
+          routeQuote.routePathArray,
           deadline
         );
       default:

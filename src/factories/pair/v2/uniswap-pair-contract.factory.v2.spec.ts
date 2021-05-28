@@ -1,13 +1,13 @@
 import { isHexString } from 'ethers/lib/utils';
-import { ChainId, WETH } from '../..';
-import { EthersProvider } from '../../ethers-provider';
-import { MOCKFUN } from '../../mocks/fun-token.mock';
-import { UniswapPairContractFactory } from './uniswap-pair-contract.factory';
+import { ChainId, WETH } from '../../..';
+import { EthersProvider } from '../../../ethers-provider';
+import { MOCKFUN } from '../../../mocks/fun-token.mock';
+import { UniswapPairContractFactoryV2 } from './uniswap-pair-contract.factory.v2';
 
-describe('UniswapPairContractFactory', () => {
+describe('UniswapPairContractFactoryV2', () => {
   const ethersProvider = new EthersProvider(ChainId.MAINNET);
 
-  const uniswapPairContractFactory = new UniswapPairContractFactory(
+  const uniswapPairContractFactory = new UniswapPairContractFactoryV2(
     ethersProvider
   );
 
