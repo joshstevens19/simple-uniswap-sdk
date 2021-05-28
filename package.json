@@ -6,10 +6,13 @@
   "scripts": {
     "test": "jest",
     "gen-erc20-abi": "abi-types-generator ./src/ABI/erc-20-abi.json --output=./src/ABI/types --name=erc20-contract --provider=ethers_v5",
-    "gen-uniswap-router-v2-abi": "abi-types-generator ./src/ABI/uniswap-router-v2.json --output=./src/ABI/types --name=uniswap-router --provider=ethers_v5",
-    "gen-uniswap-factory-v2-abi": "abi-types-generator ./src/ABI/uniswap-factory-v2.json --output=./src/ABI/types --name=uniswap-factory --provider=ethers_v5",
-    "gen-uniswap-pair-v2-abi": "abi-types-generator ./src/ABI/uniswap-pair-v2.json --output=./src/ABI/types --name=uniswap-pair --provider=ethers_v5",
-    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi && npm run gen-uniswap-pair-v2-abi",
+    "gen-uniswap-router-v2-abi": "abi-types-generator ./src/ABI/uniswap-router-v2.json --output=./src/ABI/types --name=uniswap-router-v2 --provider=ethers_v5",
+    "gen-uniswap-router-v3-abi": "abi-types-generator ./src/ABI/uniswap-router-v3.json --output=./src/ABI/types --name=uniswap-router-v3 --provider=ethers_v5",
+    "gen-uniswap-factory-v2-abi": "abi-types-generator ./src/ABI/uniswap-factory-v2.json --output=./src/ABI/types --name=uniswap-factory-v2 --provider=ethers_v5",
+    "gen-uniswap-factory-v3-abi": "abi-types-generator ./src/ABI/uniswap-factory-v3.json --output=./src/ABI/types --name=uniswap-factory-v3 --provider=ethers_v5",
+    "gen-uniswap-pair-v2-abi": "abi-types-generator ./src/ABI/uniswap-pair-v2.json --output=./src/ABI/types --name=uniswap-pair-v2 --provider=ethers_v5",
+    "gen-uniswap-quoter-v3-abi": "abi-types-generator ./src/ABI/uniswap-quoter-v3.json --output=./src/ABI/types --name=uniswap-quoter-v3 --provider=ethers_v5",
+    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi && npm run gen-uniswap-pair-v2-abi && npm run gen-uniswap-factory-v3-abi && npm run gen-uniswap-router-v3-abi && npm run gen-uniswap-quoter-v3-abi",
     "prepublishOnly": "tsc"
   },
   "repository": {
@@ -35,7 +38,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
-    "ethereum-abi-types-generator": "^1.0.10",
+    "ethereum-abi-types-generator": "^1.1.6",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
     "typescript": "^4.1.3"

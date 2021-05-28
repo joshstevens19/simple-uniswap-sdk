@@ -1,12 +1,12 @@
 import { BigNumberish } from 'ethers';
-import { ContractContext as FactoryContractContext } from '../../ABI/types/uniswap-factory';
-import { ContractContext } from '../../common/contract-context';
-import { EthersProvider } from '../../ethers-provider';
+import { ContractContext as FactoryContractContext } from '../../../ABI/types/uniswap-factory-v2';
+import { EthersProvider } from '../../../ethers-provider';
+import { UniswapContractContextV2 } from '../../../uniswap-contract-context/uniswap-contract-context-v2';
 
-export class UniswapContractFactory {
+export class UniswapContractFactoryV2 {
   private _uniswapFactoryContract = this._ethersProvider.getContract<FactoryContractContext>(
-    JSON.stringify(ContractContext.factoryAbi),
-    ContractContext.factoryAddress
+    JSON.stringify(UniswapContractContextV2.factoryAbi),
+    UniswapContractContextV2.factoryAddress
   );
 
   constructor(private _ethersProvider: EthersProvider) {}

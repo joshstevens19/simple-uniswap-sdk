@@ -12,4 +12,6 @@ export enum ErrorCodes {
   ethereumAddressNotValid = 11,
   youMustSupplyAChainId = 12,
   invalidFromOrToContractToken = 13,
+  uniswapVersionNotSupported = 14,
+  uniswapVersionsMustNotBeAnEmptyArray = 15,
 }

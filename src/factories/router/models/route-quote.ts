@@ -1,3 +1,4 @@
+import { UniswapVersion } from '../../../enums/uniswap-version';
 import { Token } from '../../token/models/token';
 
 export interface RouteQuote {
@@ -5,4 +6,6 @@ export interface RouteQuote {
   routePathArrayTokenMap: Token[];
   routeText: string;
   routePathArray: string[];
+  uniswapVersion: UniswapVersion;
+  //liquidityProviderPercent: number;
 }

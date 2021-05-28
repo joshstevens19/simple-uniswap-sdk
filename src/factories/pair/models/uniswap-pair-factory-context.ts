@@ -1,3 +1,4 @@
+import { UniswapVersion } from '../../../enums/uniswap-version';
 import { EthersProvider } from '../../../ethers-provider';
 import { Token } from '../../token/models/token';
 import { UniswapPairSettings } from './uniswap-pair-settings';
@@ -8,4 +9,5 @@ export interface UniswapPairFactoryContext {
   ethereumAddress: string;
   settings: UniswapPairSettings;
   ethersProvider: EthersProvider;
+  uniswapVersions: UniswapVersion[];
 }

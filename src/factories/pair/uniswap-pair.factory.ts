@@ -1,7 +1,6 @@
 import BigNumber from 'bignumber.js';
 import { Subject } from 'rxjs';
 import { Constants } from '../../common/constants';
-import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { hexlify } from '../../common/utils/hexlify';
@@ -9,10 +8,15 @@ import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
 import { getTradePath } from '../../common/utils/trade-path';
 import { TradePath } from '../../enums/trade-path';
+import { UniswapVersion } from '../../enums/uniswap-version';
+import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
+import { FeeAmount } from '../router/enums/fee-amount-v3';
+import { AllPossibleRoutes } from '../router/models/all-possible-routes';
 import { BestRouteQuotes } from '../router/models/best-route-quotes';
 import { RouteQuote } from '../router/models/route-quote';
-import { UniswapRouterContractFactory } from '../router/uniswap-router-contract.factory';
 import { UniswapRouterFactory } from '../router/uniswap-router.factory';
+import { UniswapRouterContractFactoryV2 } from '../router/v2/uniswap-router-contract.factory.v2';
+import { UniswapRouterContractFactoryV3 } from '../router/v3/uniswap-router-contract.factory.v3';
 import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
@@ -34,7 +38,10 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.ethersProvider
   );
 
-  private _uniswapRouterContractFactory = new UniswapRouterContractFactory(
+  private _uniswapRouterContractFactoryV2 = new UniswapRouterContractFactoryV2(
+    this._uniswapPairFactoryContext.ethersProvider
+  );
+  private _uniswapRouterContractFactoryV3 = new UniswapRouterContractFactoryV3(
     this._uniswapPairFactoryContext.ethersProvider
   );
 
@@ -46,6 +53,7 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.fromToken,
     this._uniswapPairFactoryContext.toToken,
     this._uniswapPairFactoryContext.settings.disableMultihops,
+    this._uniswapPairFactoryContext.uniswapVersions,
     this._uniswapPairFactoryContext.ethersProvider
   );
 
@@ -185,7 +193,7 @@ export class UniswapPairFactory {
   /**
    * Find all possible routes
    */
-  public async findAllPossibleRoutes(): Promise<Token[][]> {
+  public async findAllPossibleRoutes(): Promise<AllPossibleRoutes> {
     return await this._routes.getAllPossibleRoutes();
   }
 
@@ -334,7 +342,7 @@ export class UniswapPairFactory {
     }
 
     const data = this._fromTokenFactory.generateApproveAllowanceData(
-      ContractContext.routerAddress,
+      UniswapContractContextV2.routerAddress,
       '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
     );
 
@@ -400,12 +408,14 @@ export class UniswapPairFactory {
       erc20Amount,
       convertQuoteWithSlippage,
       bestRouteQuote.routePathArray,
-      tradeExpires.toString()
+      tradeExpires.toString(),
+      bestRouteQuote.uniswapVersion
     );
 
     const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
 
     const tradeContext: TradeContext = {
+      uniswapVersion: bestRouteQuote.uniswapVersion,
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
         this.toToken.decimals
@@ -461,12 +471,14 @@ export class UniswapPairFactory {
       erc20Amount,
       convertQuoteWithSlippage,
       bestRouteQuote.routePathArray,
-      tradeExpires.toString()
+      tradeExpires.toString(),
+      bestRouteQuote.uniswapVersion
     );
 
     const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
 
     const tradeContext: TradeContext = {
+      uniswapVersion: bestRouteQuote.uniswapVersion,
       baseConvertRequest: erc20Amount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
         this.toToken.decimals
@@ -521,10 +533,12 @@ export class UniswapPairFactory {
     const data = this.generateTradeDataEthToErc20(
       convertQuoteWithSlippage,
       bestRouteQuote.routePathArray,
-      tradeExpires.toString()
+      tradeExpires.toString(),
+      bestRouteQuote.uniswapVersion
     );
 
     const tradeContext: TradeContext = {
+      uniswapVersion: bestRouteQuote.uniswapVersion,
       baseConvertRequest: ethAmount.toFixed(),
       minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
         this.toToken.decimals
@@ -559,21 +573,35 @@ export class UniswapPairFactory {
   private generateTradeDataEthToErc20(
     tokenAmount: BigNumber,
     routePathArray: string[],
-    deadline: string
+    deadline: string,
+    uniswapVersion: UniswapVersion
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const convertedMinTokens = tokenAmount
       .shiftedBy(this.toToken.decimals)
       .decimalPlaces(0);
 
-    const hex = hexlify(convertedMinTokens);
-
-    return this._uniswapRouterContractFactory.swapExactETHForTokens(
-      hex,
-      routePathArray,
-      this._uniswapPairFactoryContext.ethereumAddress,
-      deadline
-    );
+    switch (uniswapVersion) {
+      case UniswapVersion.v2:
+        return this._uniswapRouterContractFactoryV2.swapExactETHForTokens(
+          hexlify(convertedMinTokens),
+          routePathArray,
+          this._uniswapPairFactoryContext.ethereumAddress,
+          deadline
+        );
+      case UniswapVersion.v3:
+        return this.generateTradeDataForV3(
+          tokenAmount,
+          convertedMinTokens,
+          routePathArray,
+          deadline
+        );
+      default:
+        throw new UniswapError(
+          'Uniswap version not supported',
+          ErrorCodes.uniswapVersionNotSupported
+        );
+    }
   }
 
   /**
@@ -587,22 +615,36 @@ export class UniswapPairFactory {
     tokenAmount: BigNumber,
     ethAmountOutMin: BigNumber,
     routePathArray: string[],
-    deadline: string
+    deadline: string,
+    uniswapVersion: UniswapVersion
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
       .shiftedBy(this.fromToken.decimals)
       .decimalPlaces(0);
 
-    const ethAmountOutWei = hexlify(parseEther(ethAmountOutMin));
-
-    return this._uniswapRouterContractFactory.swapExactTokensForETH(
-      hexlify(amountIn),
-      ethAmountOutWei,
-      routePathArray,
-      this._uniswapPairFactoryContext.ethereumAddress,
-      deadline
-    );
+    switch (uniswapVersion) {
+      case UniswapVersion.v2:
+        return this._uniswapRouterContractFactoryV2.swapExactTokensForETH(
+          hexlify(amountIn),
+          hexlify(parseEther(ethAmountOutMin)),
+          routePathArray,
+          this._uniswapPairFactoryContext.ethereumAddress,
+          deadline
+        );
+      case UniswapVersion.v3:
+        return this.generateTradeDataForV3(
+          amountIn,
+          parseEther(ethAmountOutMin),
+          routePathArray,
+          deadline
+        );
+      default:
+        throw new UniswapError(
+          'Uniswap version not supported',
+          ErrorCodes.uniswapVersionNotSupported
+        );
+    }
   }
 
   /**
@@ -616,7 +658,8 @@ export class UniswapPairFactory {
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
     routePathArray: string[],
-    deadline: string
+    deadline: string,
+    uniswapVersion: UniswapVersion
   ): string {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
@@ -626,13 +669,56 @@ export class UniswapPairFactory {
       .shiftedBy(this.toToken.decimals)
       .decimalPlaces(0);
 
-    return this._uniswapRouterContractFactory.swapExactTokensForTokens(
-      hexlify(amountIn),
-      hexlify(amountMin),
-      routePathArray,
-      this._uniswapPairFactoryContext.ethereumAddress,
-      deadline
-    );
+    switch (uniswapVersion) {
+      case UniswapVersion.v2:
+        return this._uniswapRouterContractFactoryV2.swapExactTokensForTokens(
+          hexlify(amountIn),
+          hexlify(amountMin),
+          routePathArray,
+          this._uniswapPairFactoryContext.ethereumAddress,
+          deadline
+        );
+      case UniswapVersion.v3:
+        return this.generateTradeDataForV3(
+          amountIn,
+          amountMin,
+          routePathArray,
+          deadline
+        );
+      default:
+        throw new UniswapError(
+          'Uniswap version not supported',
+          ErrorCodes.uniswapVersionNotSupported
+        );
+    }
+  }
+
+  /**
+   * Generate trade data for v3
+   * @param tokenAmount The token amount
+   * @param tokenAmountOut The min token amount out
+   * @param routePathArray The route path array
+   * @param deadline The deadline it expiries unix time
+   */
+  private generateTradeDataForV3(
+    tokenAmount: BigNumber,
+    tokenAmountMin: BigNumber,
+    routePathArray: string[],
+    deadline: string
+  ): string {
+    const params = {
+      path: this._uniswapRouterFactory.encodeRoutePathV3(
+        routePathArray,
+        new Array(routePathArray.length - 1).fill(FeeAmount.MEDIUM)
+      ),
+      // recipient: outputIsWETH9 ? router.address : trader.address,
+      recipient: this._uniswapPairFactoryContext.ethereumAddress,
+      deadline,
+      amountIn: hexlify(tokenAmount),
+      amountOutMinimum: hexlify(tokenAmountMin),
+    };
+
+    return this._uniswapRouterContractFactoryV3.exactInput(params);
   }
 
   /**
@@ -641,7 +727,7 @@ export class UniswapPairFactory {
    */
   private buildUpTransactionErc20(data: string): Transaction {
     return {
-      to: ContractContext.routerAddress,
+      to: UniswapContractContextV2.routerAddress,
       from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: Constants.EMPTY_HEX_STRING,
@@ -658,7 +744,7 @@ export class UniswapPairFactory {
     data: string
   ): Transaction {
     return {
-      to: ContractContext.routerAddress,
+      to: UniswapContractContextV2.routerAddress,
       from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: toEthersBigNumber(parseEther(ethValue)).toHexString(),

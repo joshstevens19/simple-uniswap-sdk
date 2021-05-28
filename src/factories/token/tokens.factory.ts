@@ -5,6 +5,7 @@ import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { EthersProvider } from '../../ethers-provider';
+import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
 import { Token } from './models/token';
 import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 
@@ -107,7 +108,10 @@ export class TokensFactory {
           {
             reference: 'allowance',
             methodName: 'allowance',
-            methodParameters: [ethereumAddress, ContractContext.routerAddress],
+            methodParameters: [
+              ethereumAddress,
+              UniswapContractContextV2.routerAddress,
+            ],
           },
           {
             reference: 'balanceOf',

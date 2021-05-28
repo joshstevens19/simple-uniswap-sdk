@@ -8,10 +8,10 @@ import {
 import { EthersContractContextV5 } from 'ethereum-abi-types-generator';
 
 export type ContractContext = EthersContractContextV5<
-  UniswapPair,
-  UniswapPairMethodNames,
-  UniswapPairEventsContext,
-  UniswapPairEvents
+  UniswapFactoryV2,
+  UniswapFactoryV2MethodNames,
+  UniswapFactoryV2EventsContext,
+  UniswapFactoryV2Events
 >;
 
 export declare type EventFilter = {
@@ -54,11 +54,11 @@ export interface ContractCallOverrides {
    */
   gasLimit?: number;
 }
-export type UniswapPairEvents = 'PairCreated';
-export interface UniswapPairEventsContext {
+export type UniswapFactoryV2Events = 'PairCreated';
+export interface UniswapFactoryV2EventsContext {
   PairCreated(...parameters: any): EventFilter;
 }
-export type UniswapPairMethodNames =
+export type UniswapFactoryV2MethodNames =
   | 'new'
   | 'allPairs'
   | 'allPairsLength'
@@ -68,7 +68,7 @@ export type UniswapPairMethodNames =
   | 'getPair'
   | 'setFeeTo'
   | 'setFeeToSetter';
-export interface UniswapPair {
+export interface UniswapFactoryV2 {
   /**
    * Payable: false
    * Constant: false

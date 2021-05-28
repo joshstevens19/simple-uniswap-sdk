@@ -3,6 +3,7 @@ import { BigNumber, ethers } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { EthersProvider } from '../../ethers-provider';
+import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
 import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
@@ -72,7 +73,7 @@ export class TokenFactory {
   public async allowance(ethereumAddress: string): Promise<string> {
     const allowance = await this._erc20TokenContract.allowance(
       ethereumAddress,
-      ContractContext.routerAddress
+      UniswapContractContextV2.routerAddress
     );
 
     return allowance.toHexString();
@@ -128,7 +129,10 @@ export class TokenFactory {
         {
           reference: 'allowance',
           methodName: 'allowance',
-          methodParameters: [ethereumAddress, ContractContext.routerAddress],
+          methodParameters: [
+            ethereumAddress,
+            UniswapContractContextV2.routerAddress,
+          ],
         },
         {
           reference: 'balanceOf',
