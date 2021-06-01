@@ -1,11 +1,17 @@
+import {
+  ContractTransaction,
+  ContractInterface,
+  BytesLike as Arrayish,
+  BigNumber,
+  BigNumberish,
+} from 'ethers';
 import { EthersContractContextV5 } from 'ethereum-abi-types-generator';
-import { BigNumber, BigNumberish, ContractTransaction } from 'ethers';
 
 export type ContractContext = EthersContractContextV5<
-  UniswapFactory,
-  UniswapFactoryMethodNames,
-  UniswapFactoryEventsContext,
-  UniswapFactoryEvents
+  UniswapFactoryV3,
+  UniswapFactoryV3MethodNames,
+  UniswapFactoryV3EventsContext,
+  UniswapFactoryV3Events
 >;
 
 export declare type EventFilter = {
@@ -48,50 +54,45 @@ export interface ContractCallOverrides {
    */
   gasLimit?: number;
 }
-export type UniswapFactoryEvents = 'PairCreated';
-export interface UniswapFactoryEventsContext {
-  PairCreated(...parameters: any): EventFilter;
+export type UniswapFactoryV3Events =
+  | 'FeeAmountEnabled'
+  | 'OwnerChanged'
+  | 'PoolCreated';
+export interface UniswapFactoryV3EventsContext {
+  FeeAmountEnabled(...parameters: any): EventFilter;
+  OwnerChanged(...parameters: any): EventFilter;
+  PoolCreated(...parameters: any): EventFilter;
 }
-export type UniswapFactoryMethodNames =
+export type UniswapFactoryV3MethodNames =
   | 'new'
-  | 'allPairs'
-  | 'allPairsLength'
-  | 'createPair'
-  | 'feeTo'
-  | 'feeToSetter'
-  | 'getPair'
-  | 'setFeeTo'
-  | 'setFeeToSetter';
-export interface UniswapFactory {
+  | 'createPool'
+  | 'enableFeeAmount'
+  | 'feeAmountTickSpacing'
+  | 'getPool'
+  | 'owner'
+  | 'parameters'
+  | 'setOwner';
+export interface ParametersResponse {
+  factory: string;
+  0: string;
+  token0: string;
+  1: string;
+  token1: string;
+  2: string;
+  fee: number;
+  3: number;
+  tickSpacing: number;
+  4: number;
+  length: 5;
+}
+export interface UniswapFactoryV3 {
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
    * Type: constructor
-   * @param _feeToSetter Type: address, Indexed: false
    */
-  'new'(
-    _feeToSetter: string,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   * @param parameter0 Type: uint256, Indexed: false
-   */
-  allPairs(
-    parameter0: BigNumberish,
-    overrides?: ContractCallOverrides
-  ): Promise<string>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  allPairsLength(overrides?: ContractCallOverrides): Promise<BigNumber>;
+  'new'(overrides?: ContractTransactionOverrides): Promise<ContractTransaction>;
   /**
    * Payable: false
    * Constant: false
@@ -99,10 +100,25 @@ export interface UniswapFactory {
    * Type: function
    * @param tokenA Type: address, Indexed: false
    * @param tokenB Type: address, Indexed: false
+   * @param fee Type: uint24, Indexed: false
    */
-  createPair(
+  createPool(
     tokenA: string,
     tokenB: string,
+    fee: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param fee Type: uint24, Indexed: false
+   * @param tickSpacing Type: int24, Indexed: false
+   */
+  enableFeeAmount(
+    fee: BigNumberish,
+    tickSpacing: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -110,15 +126,12 @@ export interface UniswapFactory {
    * Constant: true
    * StateMutability: view
    * Type: function
+   * @param parameter0 Type: uint24, Indexed: false
    */
-  feeTo(overrides?: ContractCallOverrides): Promise<string>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  feeToSetter(overrides?: ContractCallOverrides): Promise<string>;
+  feeAmountTickSpacing(
+    parameter0: BigNumberish,
+    overrides?: ContractCallOverrides
+  ): Promise<number>;
   /**
    * Payable: false
    * Constant: true
@@ -126,32 +139,37 @@ export interface UniswapFactory {
    * Type: function
    * @param parameter0 Type: address, Indexed: false
    * @param parameter1 Type: address, Indexed: false
+   * @param parameter2 Type: uint24, Indexed: false
    */
-  getPair(
+  getPool(
     parameter0: string,
     parameter1: string,
+    parameter2: BigNumberish,
     overrides?: ContractCallOverrides
   ): Promise<string>;
   /**
    * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
+   * Constant: true
+   * StateMutability: view
    * Type: function
-   * @param _feeTo Type: address, Indexed: false
    */
-  setFeeTo(
-    _feeTo: string,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
+  owner(overrides?: ContractCallOverrides): Promise<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  parameters(overrides?: ContractCallOverrides): Promise<ParametersResponse>;
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param _feeToSetter Type: address, Indexed: false
+   * @param _owner Type: address, Indexed: false
    */
-  setFeeToSetter(
-    _feeToSetter: string,
+  setOwner(
+    _owner: string,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
 }

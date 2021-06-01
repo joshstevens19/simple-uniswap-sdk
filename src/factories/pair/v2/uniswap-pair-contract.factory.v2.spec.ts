@@ -1,24 +1,28 @@
 import { isHexString } from 'ethers/lib/utils';
-import { ChainId, UniswapContractFactoryPublic, WETH } from '../..';
-import { MOCKFUN } from '../../mocks/fun-token.mock';
+import { ChainId, WETH } from '../../..';
+import { EthersProvider } from '../../../ethers-provider';
+import { MOCKFUN } from '../../../mocks/fun-token.mock';
+import { UniswapPairContractFactoryV2 } from './uniswap-pair-contract.factory.v2';
 
-describe('UniswapContractFactoryPublic', () => {
-  const uniswapContractFactoryPublic = new UniswapContractFactoryPublic(
-    ChainId.MAINNET
+describe('UniswapPairContractFactoryV2', () => {
+  const ethersProvider = new EthersProvider(ChainId.MAINNET);
+
+  const uniswapPairContractFactory = new UniswapPairContractFactoryV2(
+    ethersProvider
   );
 
   it('allPairs', async () => {
-    const result = await uniswapContractFactoryPublic.allPairs('0x01');
+    const result = await uniswapPairContractFactory.allPairs('0x01');
     expect(result).toEqual('0x3139Ffc91B99aa94DA8A2dc13f1fC36F9BDc98eE');
   });
 
   it('allPairsLength', async () => {
-    const result = await uniswapContractFactoryPublic.allPairsLength();
+    const result = await uniswapPairContractFactory.allPairsLength();
     expect(isHexString(result)).toEqual(true);
   });
 
   it('createPair', () => {
-    const result = uniswapContractFactoryPublic.createPair(
+    const result = uniswapPairContractFactory.createPair(
       MOCKFUN().contractAddress,
       WETH.MAINNET().contractAddress
     );
@@ -28,17 +32,17 @@ describe('UniswapContractFactoryPublic', () => {
   });
 
   it('feeTo', async () => {
-    const result = await uniswapContractFactoryPublic.feeTo();
+    const result = await uniswapPairContractFactory.feeTo();
     expect(isHexString(result)).toEqual(true);
   });
 
   it('feeToSetter', async () => {
-    const result = await uniswapContractFactoryPublic.feeToSetter();
+    const result = await uniswapPairContractFactory.feeToSetter();
     expect(isHexString(result)).toEqual(true);
   });
 
   it('getPair', async () => {
-    const result = await uniswapContractFactoryPublic.getPair(
+    const result = await uniswapPairContractFactory.getPair(
       WETH.MAINNET().contractAddress,
       MOCKFUN().contractAddress
     );
@@ -46,7 +50,7 @@ describe('UniswapContractFactoryPublic', () => {
   });
 
   it('setFeeTo', async () => {
-    const result = await uniswapContractFactoryPublic.setFeeTo(
+    const result = await uniswapPairContractFactory.setFeeTo(
       '0x05B0c1D8839eF3a989B33B6b63D3aA96cB7Ec142'
     );
     expect(result).toEqual(
@@ -55,7 +59,7 @@ describe('UniswapContractFactoryPublic', () => {
   });
 
   it('setFeeToSetter', async () => {
-    const result = await uniswapContractFactoryPublic.setFeeToSetter(
+    const result = await uniswapPairContractFactory.setFeeToSetter(
       '0x05B0c1D8839eF3a989B33B6b63D3aA96cB7Ec142'
     );
     expect(result).toEqual(

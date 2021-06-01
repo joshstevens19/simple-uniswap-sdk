@@ -6,6 +6,7 @@ import {
   UniswapPairSettings,
   WETH,
 } from '../..';
+import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
 import { MOCKFUN } from '../../mocks/fun-token.mock';
@@ -74,64 +75,145 @@ describe('UniswapPairFactory', () => {
     });
 
     describe('hasGotEnoughAllowance', () => {
-      it('should return true if i have enough allowance', async () => {
-        const result = await uniswapPairFactory.hasGotEnoughAllowance('1');
-        expect(result).toEqual(true);
-      });
-
-      it('should return false if i do not have enough allowance', async () => {
-        const factory = new UniswapPairFactory({
-          fromToken: MOCKREP(),
-          toToken: MOCKFUN(),
-          ethereumAddress: MockEthereumAddress(),
-          settings: new UniswapPairSettings(),
-          ethersProvider,
+      describe('v2', () => {
+        it('should return true if i have enough allowance', async () => {
+          const result = await uniswapPairFactory.hasGotEnoughAllowance(
+            UniswapVersion.v2,
+            '1'
+          );
+          expect(result).toEqual(true);
         });
 
-        const result = await factory.hasGotEnoughAllowance('1');
-        expect(result).toEqual(false);
+        it('should return false if i do not have enough allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: MOCKFUN(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.hasGotEnoughAllowance(
+            UniswapVersion.v2,
+            '1'
+          );
+          expect(result).toEqual(false);
+        });
+      });
+
+      describe('v3', () => {
+        xit('should return true if i have enough allowance', async () => {
+          const result = await uniswapPairFactory.hasGotEnoughAllowance(
+            UniswapVersion.v3,
+            '1'
+          );
+          expect(result).toEqual(true);
+        });
+
+        it('should return false if i do not have enough allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: MOCKFUN(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.hasGotEnoughAllowance(
+            UniswapVersion.v3,
+            '1'
+          );
+          expect(result).toEqual(false);
+        });
       });
     });
 
-    describe('getAllowanceAndBalanceOfForFromToken', () => {});
-
     describe('allowance', () => {
-      it('should return more then 0', async () => {
-        const factory = new UniswapPairFactory({
-          fromToken: MOCKFUN(),
-          toToken: MOCKREP(),
-          ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
-          settings: new UniswapPairSettings(),
-          ethersProvider,
+      describe('v2', () => {
+        it('should return more then 0', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKFUN(),
+            toToken: MOCKREP(),
+            ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v2);
+          expect(result).not.toEqual('0x00');
         });
 
-        const result = await factory.allowance();
-        expect(result).not.toEqual('0x00');
+        it('should return 0 allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: MOCKFUN(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v2);
+          expect(result).toEqual('0x00');
+        });
       });
 
-      it('should return 0 allowance', async () => {
-        const factory = new UniswapPairFactory({
-          fromToken: MOCKREP(),
-          toToken: MOCKFUN(),
-          ethereumAddress: MockEthereumAddress(),
-          settings: new UniswapPairSettings(),
-          ethersProvider,
+      describe('v3', () => {
+        xit('should return more then 0', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKFUN(),
+            toToken: MOCKREP(),
+            ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v3);
+          expect(result).not.toEqual('0x00');
         });
 
-        const result = await factory.allowance();
-        expect(result).toEqual('0x00');
+        it('should return 0 allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: MOCKFUN(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v3);
+          expect(result).toEqual('0x00');
+        });
       });
     });
 
     describe('generateApproveMaxAllowanceData', () => {
-      it('should generate the approve max allowance data', async () => {
-        const result = await uniswapPairFactory.generateApproveMaxAllowanceData();
-        expect(result).toEqual({
-          data:
-            '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-          from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-          to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-          value: '0x00',
+      describe('v2', () => {
+        it('should generate the approve max allowance data', async () => {
+          const result =
+            await uniswapPairFactory.generateApproveMaxAllowanceData(
+              UniswapVersion.v2
+            );
+          expect(result).toEqual({
+            data: '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+            from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+            to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+            value: '0x00',
+          });
+        });
+      });
+
+      describe('v2', () => {
+        it('should generate the approve max allowance data', async () => {
+          const result =
+            await uniswapPairFactory.generateApproveMaxAllowanceData(
+              UniswapVersion.v3
+            );
+          expect(result).toEqual({
+            data: '0x095ea7b3000000000000000000000000e592427a0aece92de3edee1f18e0157c05861564ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+            from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+            to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+            value: '0x00',
+          });
         });
       });
     });
@@ -193,64 +275,145 @@ describe('UniswapPairFactory', () => {
     });
 
     describe('hasGotEnoughAllowance', () => {
-      it('should return true if i have enough allowance', async () => {
-        const result = await uniswapPairFactory.hasGotEnoughAllowance('1');
-        expect(result).toEqual(true);
-      });
-
-      it('should return false if i do not have enough allowance', async () => {
-        const factory = new UniswapPairFactory({
-          fromToken: MOCKREP(),
-          toToken: WETH.MAINNET(),
-          ethereumAddress: MockEthereumAddress(),
-          settings: new UniswapPairSettings(),
-          ethersProvider,
+      describe('v2', () => {
+        it('should return true if i have enough allowance', async () => {
+          const result = await uniswapPairFactory.hasGotEnoughAllowance(
+            UniswapVersion.v2,
+            '1'
+          );
+          expect(result).toEqual(true);
         });
 
-        const result = await factory.hasGotEnoughAllowance('1');
-        expect(result).toEqual(false);
+        it('should return false if i do not have enough allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: WETH.MAINNET(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.hasGotEnoughAllowance(
+            UniswapVersion.v2,
+            '1'
+          );
+          expect(result).toEqual(false);
+        });
+      });
+
+      describe('v3', () => {
+        xit('should return true if i have enough allowance', async () => {
+          const result = await uniswapPairFactory.hasGotEnoughAllowance(
+            UniswapVersion.v3,
+            '1'
+          );
+          expect(result).toEqual(true);
+        });
+
+        it('should return false if i do not have enough allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: WETH.MAINNET(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.hasGotEnoughAllowance(
+            UniswapVersion.v3,
+            '1'
+          );
+          expect(result).toEqual(false);
+        });
       });
     });
 
-    describe('getAllowanceAndBalanceOfForFromToken', () => {});
-
     describe('allowance', () => {
-      it('should return more then 0', async () => {
-        const factory = new UniswapPairFactory({
-          fromToken: MOCKFUN(),
-          toToken: WETH.MAINNET(),
-          ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
-          settings: new UniswapPairSettings(),
-          ethersProvider,
+      describe('v2', () => {
+        it('should return more then 0', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKFUN(),
+            toToken: WETH.MAINNET(),
+            ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v2);
+          expect(result).not.toEqual('0x00');
         });
 
-        const result = await factory.allowance();
-        expect(result).not.toEqual('0x00');
+        it('should return 0 allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: WETH.MAINNET(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v2);
+          expect(result).toEqual('0x00');
+        });
       });
 
-      it('should return 0 allowance', async () => {
-        const factory = new UniswapPairFactory({
-          fromToken: MOCKREP(),
-          toToken: WETH.MAINNET(),
-          ethereumAddress: MockEthereumAddress(),
-          settings: new UniswapPairSettings(),
-          ethersProvider,
+      describe('v3', () => {
+        xit('should return more then 0', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKFUN(),
+            toToken: WETH.MAINNET(),
+            ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v3);
+          expect(result).not.toEqual('0x00');
         });
 
-        const result = await factory.allowance();
-        expect(result).toEqual('0x00');
+        it('should return 0 allowance', async () => {
+          const factory = new UniswapPairFactory({
+            fromToken: MOCKREP(),
+            toToken: WETH.MAINNET(),
+            ethereumAddress: MockEthereumAddress(),
+            settings: new UniswapPairSettings(),
+            ethersProvider,
+          });
+
+          const result = await factory.allowance(UniswapVersion.v3);
+          expect(result).toEqual('0x00');
+        });
       });
     });
 
     describe('generateApproveMaxAllowanceData', () => {
-      it('should generate the approve max allowance data', async () => {
-        const result = await uniswapPairFactory.generateApproveMaxAllowanceData();
-        expect(result).toEqual({
-          data:
-            '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-          from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-          to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-          value: '0x00',
+      describe('v2', () => {
+        it('should generate the approve max allowance data', async () => {
+          const result =
+            await uniswapPairFactory.generateApproveMaxAllowanceData(
+              UniswapVersion.v2
+            );
+          expect(result).toEqual({
+            data: '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+            from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+            to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+            value: '0x00',
+          });
+        });
+      });
+
+      describe('v3', () => {
+        it('should generate the approve max allowance data', async () => {
+          const result =
+            await uniswapPairFactory.generateApproveMaxAllowanceData(
+              UniswapVersion.v3
+            );
+          expect(result).toEqual({
+            data: '0x095ea7b3000000000000000000000000e592427a0aece92de3edee1f18e0157c05861564ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+            from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+            to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+            value: '0x00',
+          });
         });
       });
     });
@@ -312,33 +475,76 @@ describe('UniswapPairFactory', () => {
     });
 
     describe('hasGotEnoughAllowance', () => {
-      it('should always return true as not allowance needed', async () => {
-        const result = await uniswapPairFactory.hasGotEnoughAllowance('1');
-        expect(result).toEqual(true);
+      describe('v2', () => {
+        it('should always return true as not allowance needed', async () => {
+          const result = await uniswapPairFactory.hasGotEnoughAllowance(
+            UniswapVersion.v2,
+            '1'
+          );
+          expect(result).toEqual(true);
+        });
+      });
+
+      describe('v3', () => {
+        it('should always return true as not allowance needed', async () => {
+          const result = await uniswapPairFactory.hasGotEnoughAllowance(
+            UniswapVersion.v3,
+            '1'
+          );
+          expect(result).toEqual(true);
+        });
       });
     });
 
-    describe('getAllowanceAndBalanceOfForFromToken', () => {});
-
     describe('allowance', () => {
-      it('should always return max hex', async () => {
-        const result = await uniswapPairFactory.allowance();
-        expect(result).toEqual(
-          '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
-        );
+      describe('v2', () => {
+        it('should always return max hex', async () => {
+          const result = await uniswapPairFactory.allowance(UniswapVersion.v2);
+          expect(result).toEqual(
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+          );
+        });
+      });
+
+      describe('v3', () => {
+        it('should always return max hex', async () => {
+          const result = await uniswapPairFactory.allowance(UniswapVersion.v3);
+          expect(result).toEqual(
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+          );
+        });
       });
     });
 
     describe('generateApproveMaxAllowanceData', () => {
-      it('should generate the approve max allowance data', async () => {
-        await expect(
-          uniswapPairFactory.generateApproveMaxAllowanceData()
-        ).rejects.toThrowError(
-          new UniswapError(
-            'You do not need to generate approve uniswap allowance when doing eth > erc20',
-            ErrorCodes.generateApproveMaxAllowanceDataNotAllowed
-          )
-        );
+      describe('v2', () => {
+        it('should throw when generating the approve max allowance data', async () => {
+          await expect(
+            uniswapPairFactory.generateApproveMaxAllowanceData(
+              UniswapVersion.v2
+            )
+          ).rejects.toThrowError(
+            new UniswapError(
+              'You do not need to generate approve uniswap allowance when doing eth > erc20',
+              ErrorCodes.generateApproveMaxAllowanceDataNotAllowed
+            )
+          );
+        });
+      });
+
+      describe('v3', () => {
+        it('should throw when generating the approve max allowance data', async () => {
+          await expect(
+            uniswapPairFactory.generateApproveMaxAllowanceData(
+              UniswapVersion.v3
+            )
+          ).rejects.toThrowError(
+            new UniswapError(
+              'You do not need to generate approve uniswap allowance when doing eth > erc20',
+              ErrorCodes.generateApproveMaxAllowanceDataNotAllowed
+            )
+          );
+        });
       });
     });
   });

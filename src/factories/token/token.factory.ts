@@ -2,19 +2,24 @@ import { ContractCallContext, Multicall } from 'ethereum-multicall';
 import { BigNumber, ethers } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
+import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
+import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
+import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
 import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
 export class TokenFactory {
   private _multicall = new Multicall({
     ethersProvider: this._ethersProvider.provider,
+    tryAggregate: true,
   });
 
-  private _erc20TokenContract = this._ethersProvider.getContract<ERC20ContractContext>(
-    JSON.stringify(ContractContext.erc20Abi),
-    this._tokenContractAddress
-  );
+  private _erc20TokenContract =
+    this._ethersProvider.getContract<ERC20ContractContext>(
+      JSON.stringify(ContractContext.erc20Abi),
+      this._tokenContractAddress
+    );
 
   constructor(
     private _tokenContractAddress: string,
@@ -67,12 +72,18 @@ export class TokenFactory {
   /**
    * Get the allowance for the amount which can be moved from the contract
    * for a user
+   * @param uniswapVersion The uniswap version
    * @ethereumAddress The users ethereum address
    */
-  public async allowance(ethereumAddress: string): Promise<string> {
+  public async allowance(
+    uniswapVersion: UniswapVersion,
+    ethereumAddress: string
+  ): Promise<string> {
     const allowance = await this._erc20TokenContract.allowance(
       ethereumAddress,
-      ContractContext.routerAddress
+      uniswapVersion === UniswapVersion.v2
+        ? UniswapContractContextV2.routerAddress
+        : UniswapContractContextV3.routerAddress
     );
 
     return allowance.toHexString();
@@ -112,9 +123,11 @@ export class TokenFactory {
 
   /**
    * Get allowance and balance
-   * @param ethereumAddress
+   * @param uniswapVersion The uniswap version
+   * @param ethereumAddress The ethereum address
    */
   public async getAllowanceAndBalanceOf(
+    uniswapVersion: UniswapVersion,
     ethereumAddress: string
   ): Promise<AllowanceAndBalanceOf> {
     const ALLOWANCE = 0;
@@ -128,7 +141,12 @@ export class TokenFactory {
         {
           reference: 'allowance',
           methodName: 'allowance',
-          methodParameters: [ethereumAddress, ContractContext.routerAddress],
+          methodParameters: [
+            ethereumAddress,
+            uniswapVersion === UniswapVersion.v2
+              ? UniswapContractContextV2.routerAddress
+              : UniswapContractContextV3.routerAddress,
+          ],
         },
         {
           reference: 'balanceOf',

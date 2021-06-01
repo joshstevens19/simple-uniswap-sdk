@@ -1,9 +1,10 @@
 import { isHexString } from 'ethers/lib/utils';
-import { ChainId, UniswapPairContractFactoryPublic, WETH } from '../..';
-import { MOCKFUN } from '../../mocks/fun-token.mock';
+import { ChainId, WETH } from '../../..';
+import { MOCKFUN } from '../../../mocks/fun-token.mock';
+import { UniswapPairContractFactoryPublicV2 } from './uniswap-pair-contract.factory.public.v2';
 
-describe('UniswapPairContractFactoryPublic', () => {
-  const uniswapPairContractFactoryPublic = new UniswapPairContractFactoryPublic(
+describe('UniswapPairContractFactoryPublicV2', () => {
+  const uniswapPairContractFactoryPublic = new UniswapPairContractFactoryPublicV2(
     ChainId.MAINNET
   );
 

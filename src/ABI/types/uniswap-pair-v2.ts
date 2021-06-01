@@ -8,10 +8,10 @@ import {
 import { EthersContractContextV5 } from 'ethereum-abi-types-generator';
 
 export type ContractContext = EthersContractContextV5<
-  Erc20Contract,
-  Erc20ContractMethodNames,
-  Erc20ContractEventsContext,
-  Erc20ContractEvents
+  UniswapPairV2,
+  UniswapPairV2MethodNames,
+  UniswapPairV2EventsContext,
+  UniswapPairV2Events
 >;
 
 export declare type EventFilter = {
@@ -54,40 +54,30 @@ export interface ContractCallOverrides {
    */
   gasLimit?: number;
 }
-export type Erc20ContractEvents = 'Approval' | 'Transfer';
-export interface Erc20ContractEventsContext {
-  Approval(...parameters: any): EventFilter;
-  Transfer(...parameters: any): EventFilter;
+export type UniswapPairV2Events = 'PairCreated';
+export interface UniswapPairV2EventsContext {
+  PairCreated(...parameters: any): EventFilter;
 }
-export type Erc20ContractMethodNames =
-  | 'name'
-  | 'approve'
-  | 'totalSupply'
-  | 'transferFrom'
-  | 'decimals'
-  | 'balanceOf'
-  | 'symbol'
-  | 'transfer'
-  | 'allowance';
-export interface Erc20Contract {
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  name(overrides?: ContractCallOverrides): Promise<string>;
+export type UniswapPairV2MethodNames =
+  | 'new'
+  | 'allPairs'
+  | 'allPairsLength'
+  | 'createPair'
+  | 'feeTo'
+  | 'feeToSetter'
+  | 'getPair'
+  | 'setFeeTo'
+  | 'setFeeToSetter';
+export interface UniswapPairV2 {
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
-   * Type: function
-   * @param _spender Type: address, Indexed: false
-   * @param _value Type: uint256, Indexed: false
+   * Type: constructor
+   * @param _feeToSetter Type: address, Indexed: false
    */
-  approve(
-    _spender: string,
-    _value: BigNumberish,
+  'new'(
+    _feeToSetter: string,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -95,59 +85,30 @@ export interface Erc20Contract {
    * Constant: true
    * StateMutability: view
    * Type: function
+   * @param parameter0 Type: uint256, Indexed: false
    */
-  totalSupply(overrides?: ContractCallOverrides): Promise<BigNumber>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param _from Type: address, Indexed: false
-   * @param _to Type: address, Indexed: false
-   * @param _value Type: uint256, Indexed: false
-   */
-  transferFrom(
-    _from: string,
-    _to: string,
-    _value: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  decimals(overrides?: ContractCallOverrides): Promise<number>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   * @param _owner Type: address, Indexed: false
-   */
-  balanceOf(
-    _owner: string,
+  allPairs(
+    parameter0: BigNumberish,
     overrides?: ContractCallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<string>;
   /**
    * Payable: false
    * Constant: true
    * StateMutability: view
    * Type: function
    */
-  symbol(overrides?: ContractCallOverrides): Promise<string>;
+  allPairsLength(overrides?: ContractCallOverrides): Promise<BigNumber>;
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param _to Type: address, Indexed: false
-   * @param _value Type: uint256, Indexed: false
+   * @param tokenA Type: address, Indexed: false
+   * @param tokenB Type: address, Indexed: false
    */
-  transfer(
-    _to: string,
-    _value: BigNumberish,
+  createPair(
+    tokenA: string,
+    tokenB: string,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -155,12 +116,48 @@ export interface Erc20Contract {
    * Constant: true
    * StateMutability: view
    * Type: function
-   * @param _owner Type: address, Indexed: false
-   * @param _spender Type: address, Indexed: false
    */
-  allowance(
-    _owner: string,
-    _spender: string,
+  feeTo(overrides?: ContractCallOverrides): Promise<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  feeToSetter(overrides?: ContractCallOverrides): Promise<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   * @param parameter0 Type: address, Indexed: false
+   * @param parameter1 Type: address, Indexed: false
+   */
+  getPair(
+    parameter0: string,
+    parameter1: string,
     overrides?: ContractCallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<string>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param _feeTo Type: address, Indexed: false
+   */
+  setFeeTo(
+    _feeTo: string,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param _feeToSetter Type: address, Indexed: false
+   */
+  setFeeToSetter(
+    _feeToSetter: string,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
 }

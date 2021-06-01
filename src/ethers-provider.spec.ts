@@ -1,9 +1,9 @@
 import { ChainId, ErrorCodes, UniswapError } from '.';
-import { ContractContext as PairContractContext } from './ABI/types/uniswap-pair';
-import { ContractContext } from './common/contract-context';
+import { ContractContext as PairContractContext } from './ABI/types/uniswap-pair-v2';
 import { EthersProvider } from './ethers-provider';
 import { MockEthereumAddress } from './mocks/ethereum-address.mock';
 import { MOCK_PROVIDER_URL } from './mocks/provider-url.mock';
+import { UniswapContractContextV2 } from './uniswap-contract-context/uniswap-contract-context-v2';
 
 describe('EthersProvider', () => {
   describe('with chain id', () => {
@@ -11,8 +11,8 @@ describe('EthersProvider', () => {
 
     it('getContract', () => {
       const result = ethersProvider.getContract<PairContractContext>(
-        JSON.stringify(ContractContext.pairAbi),
-        ContractContext.pairAddress
+        JSON.stringify(UniswapContractContextV2.pairAbi),
+        UniswapContractContextV2.pairAddress
       );
 
       expect(result).not.toBeUndefined();
@@ -56,8 +56,8 @@ describe('EthersProvider', () => {
 
     it('getContract', () => {
       const result = ethersProvider.getContract<PairContractContext>(
-        JSON.stringify(ContractContext.pairAbi),
-        ContractContext.pairAddress
+        JSON.stringify(UniswapContractContextV2.pairAbi),
+        UniswapContractContextV2.pairAddress
       );
 
       expect(result).not.toBeUndefined();
