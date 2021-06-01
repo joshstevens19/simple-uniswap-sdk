@@ -10,12 +10,14 @@ export interface TradeContext {
   minAmountConvertQuote: string;
   expectedConvertQuote: string;
   liquidityProviderFee: string;
+  liquidityProviderFeePercent: number;
   tradeExpires: number;
   routePathTokenMap: Token[];
   routeText: string;
   routePath: string[];
   allTriedRoutesQuotes: RouteQuote[];
   hasEnoughAllowance: boolean;
+  approvalTransaction?: Transaction | undefined;
   fromToken: Token;
   toToken: Token;
   fromBalance: {

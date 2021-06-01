@@ -5,12 +5,13 @@ export enum FeeAmount {
 }
 
 export const feeToPercent = (feeAmount: FeeAmount) => {
+  console.log(feeAmount);
   switch (feeAmount) {
     case FeeAmount.LOW:
-      return 0.00075;
+      return 0.005;
     case FeeAmount.MEDIUM:
       return 0.003;
     case FeeAmount.HIGH:
-      return 0.0105;
+      return 0.01;
   }
 };

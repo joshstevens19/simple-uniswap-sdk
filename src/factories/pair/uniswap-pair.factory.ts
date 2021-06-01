@@ -10,6 +10,7 @@ import { getTradePath } from '../../common/utils/trade-path';
 import { TradePath } from '../../enums/trade-path';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
+import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
 import { AllPossibleRoutes } from '../router/models/all-possible-routes';
 import { BestRouteQuotes } from '../router/models/best-route-quotes';
 import { RouteQuote } from '../router/models/route-quote';
@@ -26,9 +27,6 @@ import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context
 import { UniswapPairContractFactoryV2 } from './v2/uniswap-pair-contract.factory.v2';
 
 export class UniswapPairFactory {
-  // MOVE TO JOKER NOW AS ONLY FIXED ON V2 NOT V3
-  private readonly LIQUIDITY_PROVIDER_FEE = 0.003;
-
   private _fromTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.fromToken.contractAddress,
     this._uniswapPairFactoryContext.ethersProvider
@@ -93,8 +91,11 @@ export class UniswapPairFactory {
       return ethBalanceContext.toFixed();
     }
 
-    const erc20BalanceContext = await this.getAllowanceAndBalanceOfForFromToken();
-    return new BigNumber(erc20BalanceContext.balanceOf)
+    const erc20BalanceContext = await this._fromTokenFactory.balanceOf(
+      this._uniswapPairFactoryContext.ethereumAddress
+    );
+
+    return new BigNumber(erc20BalanceContext)
       .shiftedBy(this.fromToken.decimals * -1)
       .toFixed();
   }
@@ -108,8 +109,11 @@ export class UniswapPairFactory {
       return ethBalanceContext.toFixed();
     }
 
-    const erc20BalanceContext = await this.getAllowanceAndBalanceOfForToToken();
-    return new BigNumber(erc20BalanceContext.balanceOf)
+    const erc20BalanceContext = await this._toTokenFactory.balanceOf(
+      this._uniswapPairFactoryContext.ethereumAddress
+    );
+
+    return new BigNumber(erc20BalanceContext)
       .shiftedBy(this.toToken.decimals * -1)
       .toFixed();
   }
@@ -200,14 +204,18 @@ export class UniswapPairFactory {
 
   /**
    * Has got enough allowance to do the trade
+   * @param uniswapVersion The uniswap version
    * @param amount The amount you want to swap
    */
-  public async hasGotEnoughAllowance(amount: string): Promise<boolean> {
+  public async hasGotEnoughAllowance(
+    uniswapVersion: UniswapVersion,
+    amount: string
+  ): Promise<boolean> {
     if (this.tradePath() === TradePath.ethToErc20) {
       return true;
     }
 
-    const allowance = await this.allowance();
+    const allowance = await this.allowance(uniswapVersion);
 
     return this._hasGotEnoughAllowance(amount, allowance);
   }
@@ -264,9 +272,7 @@ export class UniswapPairFactory {
    * Has got enough balance to do the trade (eth check only)
    * @param amount The amount you want to swap
    */
-  private async hasGotEnoughBalanceEth(
-    amount: string
-  ): Promise<{
+  private async hasGotEnoughBalanceEth(amount: string): Promise<{
     hasEnough: boolean;
     balance: string;
   }> {
@@ -289,27 +295,36 @@ export class UniswapPairFactory {
    * Get eth balance
    */
   private async getEthBalance(): Promise<BigNumber> {
-    const balance = await this._uniswapPairFactoryContext.ethersProvider.balanceOf(
-      this._uniswapPairFactoryContext.ethereumAddress
-    );
+    const balance =
+      await this._uniswapPairFactoryContext.ethersProvider.balanceOf(
+        this._uniswapPairFactoryContext.ethereumAddress
+      );
 
     return new BigNumber(balance).shiftedBy(Constants.ETH_MAX_DECIMALS * -1);
   }
 
   /**
    * Get the allowance and balance for the from token (erc20 > blah) only
+   * @param uniswapVersion The uniswap version
    */
-  public async getAllowanceAndBalanceOfForFromToken(): Promise<AllowanceAndBalanceOf> {
+  public async getAllowanceAndBalanceOfForFromToken(
+    uniswapVersion: UniswapVersion
+  ): Promise<AllowanceAndBalanceOf> {
     return await this._fromTokenFactory.getAllowanceAndBalanceOf(
+      uniswapVersion,
       this._uniswapPairFactoryContext.ethereumAddress
     );
   }
 
   /**
    * Get the allowance and balance for to from token (eth > erc20) only
+   * @param uniswapVersion The uniswap version
    */
-  public async getAllowanceAndBalanceOfForToToken(): Promise<AllowanceAndBalanceOf> {
+  public async getAllowanceAndBalanceOfForToToken(
+    uniswapVersion: UniswapVersion
+  ): Promise<AllowanceAndBalanceOf> {
     return await this._toTokenFactory.getAllowanceAndBalanceOf(
+      uniswapVersion,
       this._uniswapPairFactoryContext.ethereumAddress
     );
   }
@@ -317,13 +332,15 @@ export class UniswapPairFactory {
   /**
    * Get the allowance for the amount which can be moved from the `fromToken`
    * on the users behalf. Only valid when the `fromToken` is a ERC20 token.
+   * @param uniswapVersion The uniswap version
    */
-  public async allowance(): Promise<string> {
+  public async allowance(uniswapVersion: UniswapVersion): Promise<string> {
     if (this.tradePath() === TradePath.ethToErc20) {
       return '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
     }
 
     const allowance = await this._fromTokenFactory.allowance(
+      uniswapVersion,
       this._uniswapPairFactoryContext.ethereumAddress
     );
 
@@ -333,8 +350,11 @@ export class UniswapPairFactory {
   /**
    * Generate the from token approve data max allowance to move the tokens.
    * This will return the data for you to send as a transaction
+   * @param uniswapVersion The uniswap version
    */
-  public async generateApproveMaxAllowanceData(): Promise<Transaction> {
+  public async generateApproveMaxAllowanceData(
+    uniswapVersion: UniswapVersion
+  ): Promise<Transaction> {
     if (this.tradePath() === TradePath.ethToErc20) {
       throw new UniswapError(
         'You do not need to generate approve uniswap allowance when doing eth > erc20',
@@ -343,7 +363,9 @@ export class UniswapPairFactory {
     }
 
     const data = this._fromTokenFactory.generateApproveAllowanceData(
-      UniswapContractContextV2.routerAddress,
+      uniswapVersion === UniswapVersion.v2
+        ? UniswapContractContextV2.routerAddress
+        : UniswapContractContextV3.routerAddress,
       '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
     );
 
@@ -412,7 +434,15 @@ export class UniswapPairFactory {
       tradeExpires.toString()
     );
 
-    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
+    const allowanceAndBalanceOf =
+      await this.getAllowanceAndBalanceOfForFromToken(
+        bestRouteQuote.uniswapVersion
+      );
+
+    const hasEnoughAllowance = this._hasGotEnoughAllowance(
+      erc20Amount.toFixed(),
+      allowanceAndBalanceOf.allowance
+    );
 
     const tradeContext: TradeContext = {
       uniswapVersion: bestRouteQuote.uniswapVersion,
@@ -422,23 +452,29 @@ export class UniswapPairFactory {
       ),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
       liquidityProviderFee: erc20Amount
-        .times(this.LIQUIDITY_PROVIDER_FEE)
+        .times(bestRouteQuote.liquidityProviderFee)
         .toFixed(this.fromToken.decimals),
+      liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      hasEnoughAllowance: this._hasGotEnoughAllowance(
-        erc20Amount.toFixed(),
-        allowanceAndBalanceOf.allowance
-      ),
+      hasEnoughAllowance,
+      approvalTransaction: !hasEnoughAllowance
+        ? await this.generateApproveMaxAllowanceData(
+            bestRouteQuote.uniswapVersion
+          )
+        : undefined,
       toToken: this.toToken,
       fromToken: this.fromToken,
       fromBalance: this.hasGotEnoughBalanceErc20(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.balanceOf
       ),
-      transaction: this.buildUpTransactionErc20(data),
+      transaction: this.buildUpTransactionErc20(
+        bestRouteQuote.uniswapVersion,
+        data
+      ),
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
       quoteChanged$: this._quoteChanged$,
       destroy: () => this.destroy(),
@@ -474,7 +510,15 @@ export class UniswapPairFactory {
       tradeExpires.toString()
     );
 
-    const allowanceAndBalanceOf = await this.getAllowanceAndBalanceOfForFromToken();
+    const allowanceAndBalanceOf =
+      await this.getAllowanceAndBalanceOfForFromToken(
+        bestRouteQuote.uniswapVersion
+      );
+
+    const hasEnoughAllowance = this._hasGotEnoughAllowance(
+      erc20Amount.toFixed(),
+      allowanceAndBalanceOf.allowance
+    );
 
     const tradeContext: TradeContext = {
       uniswapVersion: bestRouteQuote.uniswapVersion,
@@ -484,23 +528,29 @@ export class UniswapPairFactory {
       ),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
       liquidityProviderFee: erc20Amount
-        .times(this.LIQUIDITY_PROVIDER_FEE)
+        .times(bestRouteQuote.liquidityProviderFee)
         .toFixed(this.fromToken.decimals),
+      liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
       routePath: bestRouteQuote.routePathArray,
-      hasEnoughAllowance: this._hasGotEnoughAllowance(
-        erc20Amount.toFixed(),
-        allowanceAndBalanceOf.allowance
-      ),
+      hasEnoughAllowance,
+      approvalTransaction: !hasEnoughAllowance
+        ? await this.generateApproveMaxAllowanceData(
+            bestRouteQuote.uniswapVersion
+          )
+        : undefined,
       toToken: this.toToken,
       fromToken: this.fromToken,
       fromBalance: this.hasGotEnoughBalanceErc20(
         erc20Amount.toFixed(),
         allowanceAndBalanceOf.balanceOf
       ),
-      transaction: this.buildUpTransactionErc20(data),
+      transaction: this.buildUpTransactionErc20(
+        bestRouteQuote.uniswapVersion,
+        data
+      ),
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
       quoteChanged$: this._quoteChanged$,
       destroy: () => this.destroy(),
@@ -543,8 +593,9 @@ export class UniswapPairFactory {
       ),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
       liquidityProviderFee: ethAmount
-        .times(this.LIQUIDITY_PROVIDER_FEE)
+        .times(bestRouteQuote.liquidityProviderFee)
         .toFixed(this.fromToken.decimals),
+      liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
@@ -553,7 +604,11 @@ export class UniswapPairFactory {
       toToken: this.toToken,
       fromToken: this.fromToken,
       fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
-      transaction: this.buildUpTransactionEth(ethAmount, data),
+      transaction: this.buildUpTransactionEth(
+        bestRouteQuote.uniswapVersion,
+        ethAmount,
+        data
+      ),
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
       quoteChanged$: this._quoteChanged$,
       destroy: () => this.destroy(),
@@ -720,9 +775,15 @@ export class UniswapPairFactory {
    * Build up a transaction for erc20 from
    * @param data The data
    */
-  private buildUpTransactionErc20(data: string): Transaction {
+  private buildUpTransactionErc20(
+    uniswapVersion: UniswapVersion,
+    data: string
+  ): Transaction {
     return {
-      to: UniswapContractContextV2.routerAddress,
+      to:
+        uniswapVersion === UniswapVersion.v2
+          ? UniswapContractContextV2.routerAddress
+          : UniswapContractContextV3.routerAddress,
       from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: Constants.EMPTY_HEX_STRING,
@@ -735,11 +796,15 @@ export class UniswapPairFactory {
    * @param data The data
    */
   private buildUpTransactionEth(
+    uniswapVersion: UniswapVersion,
     ethValue: BigNumber,
     data: string
   ): Transaction {
     return {
-      to: UniswapContractContextV2.routerAddress,
+      to:
+        uniswapVersion === UniswapVersion.v2
+          ? UniswapContractContextV2.routerAddress
+          : UniswapContractContextV3.routerAddress,
       from: this._uniswapPairFactoryContext.ethereumAddress,
       data,
       value: toEthersBigNumber(parseEther(ethValue)).toHexString(),

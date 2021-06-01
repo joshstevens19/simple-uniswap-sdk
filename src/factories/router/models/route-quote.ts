@@ -7,5 +7,5 @@ export interface RouteQuote {
   routeText: string;
   routePathArray: string[];
   uniswapVersion: UniswapVersion;
-  //liquidityProviderPercent: number;
+  liquidityProviderFee: number;
 }

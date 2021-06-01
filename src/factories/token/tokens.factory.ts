@@ -4,8 +4,10 @@ import { BigNumber as EthersBigNumber, ethers } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
+import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
+import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
 import { Token } from './models/token';
 import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 
@@ -83,11 +85,13 @@ export class TokensFactory {
 
   /**
    * Get allowance and balance for many contracts
+   * @param uniswapVersion The uniswap version
    * @param ethereumAddress The ethereum address
    * @param tokenContractAddresses The token contract addresses
    * @param format If you want it to format it for you to the correct decimal place
    */
   public async getAllowanceAndBalanceOfForContracts(
+    uniswapVersion: UniswapVersion,
     ethereumAddress: string,
     tokenContractAddresses: string[],
     format = false
@@ -110,7 +114,9 @@ export class TokensFactory {
             methodName: 'allowance',
             methodParameters: [
               ethereumAddress,
-              UniswapContractContextV2.routerAddress,
+              uniswapVersion === UniswapVersion.v2
+                ? UniswapContractContextV2.routerAddress
+                : UniswapContractContextV3.routerAddress,
             ],
           },
           {
