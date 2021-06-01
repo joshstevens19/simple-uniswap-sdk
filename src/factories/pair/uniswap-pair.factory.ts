@@ -52,7 +52,7 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.fromToken,
     this._uniswapPairFactoryContext.toToken,
     this._uniswapPairFactoryContext.settings.disableMultihops,
-    this._uniswapPairFactoryContext.uniswapVersions,
+    this._uniswapPairFactoryContext.settings.uniswapVersions,
     this._uniswapPairFactoryContext.ethersProvider
   );
 
@@ -580,6 +580,7 @@ export class UniswapPairFactory {
     const tradeExpires = this.generateTradeDeadlineUnixTime();
 
     const data = this.generateTradeDataEthToErc20(
+      ethAmount,
       convertQuoteWithSlippage,
       bestRouteQuote,
       tradeExpires.toString()
@@ -624,6 +625,7 @@ export class UniswapPairFactory {
    * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataEthToErc20(
+    ethAmountIn: BigNumber,
     tokenAmount: BigNumber,
     routeQuote: RouteQuote,
     deadline: string
@@ -643,7 +645,7 @@ export class UniswapPairFactory {
         );
       case UniswapVersion.v3:
         return this.generateTradeDataForV3(
-          tokenAmount,
+          parseEther(ethAmountIn),
           convertedMinTokens,
           routeQuote.routePathArray,
           deadline

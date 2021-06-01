@@ -2,7 +2,6 @@ import { ethers } from 'ethers';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { isAddress } from '../../common/utils/is-address';
-import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { TokensFactory } from '../token/tokens.factory';
 import {
@@ -71,16 +70,6 @@ export class UniswapPair {
       );
     }
 
-    if (
-      Array.isArray(this._uniswapPairContext.uniswapVersions) &&
-      this._uniswapPairContext.uniswapVersions.length === 0
-    ) {
-      throw new UniswapError(
-        '`uniswapVersions` must not be an empty array',
-        ErrorCodes.uniswapVersionsMustNotBeAnEmptyArray
-      );
-    }
-
     this._uniswapPairContext.ethereumAddress = ethers.utils.getAddress(
       this._uniswapPairContext.ethereumAddress
     );
@@ -131,10 +120,6 @@ export class UniswapPair {
       ethereumAddress: this._uniswapPairContext.ethereumAddress,
       settings: this._uniswapPairContext.settings || new UniswapPairSettings(),
       ethersProvider: this._ethersProvider,
-      uniswapVersions: this._uniswapPairContext.uniswapVersions || [
-        UniswapVersion.v2,
-        UniswapVersion.v3,
-      ],
     };
 
     return new UniswapPairFactory(uniswapFactoryContext);

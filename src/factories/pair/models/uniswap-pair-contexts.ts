@@ -1,5 +1,4 @@
 import { ChainId } from '../../../enums/chain-id';
-import { UniswapVersion } from '../../../enums/uniswap-version';
 import { UniswapPairSettings } from './uniswap-pair-settings';
 
 interface UniswapPairContextBase {
@@ -7,8 +6,6 @@ interface UniswapPairContextBase {
   toTokenContractAddress: string;
   ethereumAddress: string;
   settings?: UniswapPairSettings | undefined;
-  // if undefined then it use all uniswap versions
-  uniswapVersions?: UniswapVersion[] | undefined;
 }
 
 export interface UniswapPairContextForChainId extends UniswapPairContextBase {
