@@ -3,12 +3,16 @@
 [![npm version](https://badge.fury.io/js/simple-uniswap-sdk.svg)](https://badge.fury.io/js/simple-uniswap-sdk)
 ![downloads](https://img.shields.io/npm/dw/simple-uniswap-sdk)
 
+🚀 Supports uniswap v2 and v3 prices together and returns you the best price
+
 Uniswap SDK which handles the routes automatically for you, changes in trade quotes reactive subscriptions, exposure to formatted easy to understand information, bringing back the best trade quotes automatically, generating transactions for you and much more. All the uniswap logic for you in a simple to easy understand interface to hook straight into your dApp without having to understand how it all works.
 
 Please note this is not owned or maintained by uniswap and is a open source package for anyone to use freely.
 
 ## Features 🚀
 
+🚀 Supports uniswap v2 and v3 prices together and returns you the best price, so you do not need to query both yourself
+<br/>
 🚀 Queries all the best routes and finds the best price for you
 <br/>
 🚀 Exposes all the route paths it tried so you can see every detail in how it worked out the best price
@@ -27,14 +31,9 @@ Please note this is not owned or maintained by uniswap and is a open source pack
 <br/>
 🚀 Fully typescript supported with full generated typings
 <br/>
-🚀 Other cool internal stuff exposed for your use
+🚀 query many tokens in 1 jsonrpc call perfect to get token metadata fast
 <br/>
-
-- 🚀query many tokens in 1 jsonrpc call perfect to get token metadata fast
-  <br/>
-- 🚀all the uniswap contracts are all exposed for your use with full typings if you wanted to call a more bespoke method
-  <br/>
-- 🚀 and much more!!
+🚀 and much more!!
 
 # Motivation
 
@@ -106,6 +105,7 @@ export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
+  uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
 
   constructor(settings?: {
     slippage?: number | undefined;
@@ -115,12 +115,30 @@ export class UniswapPairSettings {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
+
+    if (
+      Array.isArray(settings?.uniswapVersions) &&
+      settings?.uniswapVersions.length === 0
+    ) {
+      throw new UniswapError(
+        '`uniswapVersions` must not be an empty array',
+        ErrorCodes.uniswapVersionsMustNotBeAnEmptyArray
+      );
+    }
+
+    if (
+      settings &&
+      Array.isArray(settings.uniswapVersions) &&
+      settings.uniswapVersions.length > 0
+    ) {
+      this.uniswapVersions = settings?.uniswapVersions;
+    }
   }
 }
 ```
 
 ```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -143,6 +161,10 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
+    // for example if you only wanted to turn on quotes for v3 and not v3
+    // you can only support the v3 enum same works if you only want v2 quotes
+    // if you do not supply anything it query both v2 and v3
+    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
   }),
 });
 
@@ -182,6 +204,8 @@ export enum ErrorCodes {
   ethereumAddressNotValid = 11,
   youMustSupplyAChainId = 12,
   invalidFromOrToContractToken = 13,
+  uniswapVersionNotSupported = 14,
+  uniswapVersionsMustNotBeAnEmptyArray = 15,
 }
 ```
 
@@ -301,6 +325,9 @@ async trade(amount: string): Promise<TradeContext>
 
 ```ts
 export interface TradeContext {
+  // this tells you the uniswap version the best quotes is at so for example
+  // you sometimes may get better quotes on v2 then v3.
+  uniswapVersion: UniswapVersion;
   // the amount you requested to convert
   // this will be formatted in readable number
   // so you can render straight out the box
@@ -315,10 +342,26 @@ export interface TradeContext {
   // this will be formatted in readable number
   // so you can render straight out the box
   expectedConvertQuote: string;
-  // A portion of each trade (0.03%) goes to
-  // liquidity providers as a protocol of
-  // incentive
+  // A portion of each trade goes to
+  // liquidity providers as a protocol of incentive
+  // v2 always = (0.3%)
+  // v3 depends on the fee amount sent on that pool
+  // - low = 0.05%
+  // - medium = 0.3%
+  // - high = 1%
   liquidityProviderFee: string;
+  // A portion of each trade goes to
+  // liquidity providers as a protocol of incentive
+  // v2 always = (0.3%)
+  // v3 depends on the fee amount sent on that pool
+  // - low = 0.05%
+  // - medium = 0.3%
+  // - high = 1%
+  // the amount will always come back as full figures
+  // aka 0.05% = 0.0005
+  // 0.3% = 0.003
+  // 1% = 0.01
+  liquidityProviderFeePercent: number;
   // A unix datestamp in when this trade expires
   // if it does expiry while looking at it as long
   // as you are hooked onto `quoteChanged$` that will
@@ -337,6 +380,8 @@ export interface TradeContext {
     routePathArrayTokenMap: Token[];
     routeText: string;
     routePathArray: string[];
+    uniswapVersion: UniswapVersion;
+    liquidityProviderFee: number;
   }[];
   // if the allowance approved for moving tokens is below the amount sending to the
   // uniswap router this will be false if not true
@@ -344,6 +389,19 @@ export interface TradeContext {
   // and this returns false but then you do the approval
   // transaction, this old context will still say false
   hasEnoughAllowance: boolean;
+  // this is the transaction you need to send first if approve the swap
+  // but do not have any allowance for the router to move the token on their
+  // behalf. This will be undefined if you do not need to send this transaction.
+  // it DOES not estimate gas so you should fill in those blanks before
+  // you send it (most dApps have a picker to choose the speed)
+  approvalTransaction:
+    | {
+        to: string;
+        from: string;
+        data: string;
+        value: string;
+      }
+    | undefined;
   // the from token info
   fromToken: Token;
   // the to token info
@@ -401,6 +459,11 @@ export enum ChainId {
   GÖRLI = 5,
   KOVAN = 42,
 }
+
+export enum UniswapVersion {
+  v2 = 'v2',
+  v3 = 'v3',
+}
 ```
 
 #### Usage
@@ -445,10 +508,12 @@ trade.quoteChanged$.subscribe((value: TradeContext) => {
 
 console.log(trade);
 {
+  uniswapVersion: 'v3',
   baseConvertRequest: '10',
   minAmountConvertQuote: '0.014400465273974444',
   expectedConvertQuote: '0.014730394044348867',
   liquidityProviderFee: '0.030000000000000000',
+  liquidityProviderFeePercent: 0.003,
   tradeExpires: 1612189240,
   routePathTokenMap: [
      {
@@ -514,6 +579,8 @@ console.log(trade);
           '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
+        uniswapVersion: 'v2',
+        liquidityProviderFee: 0.003
       },
       {
         expectedConvertQuote: '0.014606303273323544',
@@ -554,6 +621,8 @@ console.log(trade);
           '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
+        uniswapVersion: 'v3',
+        liquidityProviderFee: 0.0005
       },
       {
         expectedConvertQuote: '0.013997397994408657',
@@ -594,6 +663,8 @@ console.log(trade);
           '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
+        uniswapVersion: 'v3',
+        liquidityProviderFee: 0.0005
       },
       {
         expectedConvertQuote: '0.000000298264906505',
@@ -634,9 +705,12 @@ console.log(trade);
           '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
+        uniswapVersion: 'v3',
+        liquidityProviderFee: 0.0005
       },
   ],
   hasEnoughAllowance: true,
+  approvalTransaction: undefined,
   toToken: {
     chainId: 1,
     contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
@@ -703,10 +777,12 @@ trade.quoteChanged$.subscribe((value: TradeContext) => {
 
 console.log(trade);
 {
+  uniswapVersion: 'v3',
   baseConvertRequest: '10',
   minAmountConvertQuote: '446878.20758208',
   expectedConvertQuote: '449123.82671566',
   liquidityProviderFee: '0.030000000000000000',
+  liquidityProviderFeePercent: 0.003,
   tradeExpires: 1612189240,
   routePathTokenMap: [
     {
@@ -730,6 +806,7 @@ console.log(trade);
     '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   ],
   hasEnoughAllowance: true,
+  approvalTransaction: undefined,
   toToken: {
     chainId: 1,
     contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -779,6 +856,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v2',
+      liquidityProviderFee: 0.003
     },
     {
       expectedConvertQuote: '446400.4834047',
@@ -811,6 +890,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '446400.4834047',
@@ -843,6 +924,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '446356.68778218',
@@ -875,6 +958,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '446356.68778218',
@@ -907,6 +992,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '446345.24608428',
@@ -939,6 +1026,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '446345.24608428',
@@ -971,6 +1060,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '347402.73288796',
@@ -1003,6 +1094,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '346246.52439964',
@@ -1043,6 +1136,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '346246.52439964',
@@ -1083,6 +1178,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '346246.52439964',
@@ -1123,6 +1220,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '345845.48248206',
@@ -1163,6 +1262,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '345845.48248206',
@@ -1203,6 +1304,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '345845.48248206',
@@ -1243,6 +1346,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '153353.27776886',
@@ -1275,6 +1380,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '153171.51955671',
@@ -1315,6 +1422,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '153171.51955671',
@@ -1355,6 +1464,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '153171.51955671',
@@ -1395,6 +1506,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '153099.84287111',
@@ -1435,6 +1548,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '153099.84287111',
@@ -1475,6 +1590,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '153099.84287111',
@@ -1515,6 +1632,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '10090.42827381',
@@ -1555,6 +1674,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '10090.42827381',
@@ -1595,6 +1716,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '176.25846115',
@@ -1635,6 +1758,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '176.25846115',
@@ -1675,6 +1800,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1715,6 +1842,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1755,6 +1884,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1795,6 +1926,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1827,6 +1960,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1867,6 +2002,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1907,6 +2044,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1947,6 +2086,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -1987,6 +2128,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2027,6 +2170,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
   ],
 }
@@ -2071,10 +2216,12 @@ trade.quoteChanged$.subscribe((value: TradeContext) => {
 
 console.log(trade);
 {
+  uniswapVersion: 'v3',
   baseConvertRequest: '10',
   minAmountConvertQuote: '0.00022040807282109',
   expectedConvertQuote: '0.00022151807282109',
   liquidityProviderFee: '0.03000000',
+  liquidityProviderFeePercent: 0.003,
   tradeExpires: 1612189240,
   routePathTokenMap: [
     {
@@ -2153,6 +2300,8 @@ console.log(trade);
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v2',
+      liquidityProviderFee: 0.003
     },
     {
       expectedConvertQuote: '0.00022151807282109',
@@ -2193,6 +2342,8 @@ console.log(trade);
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000217400884509221',
@@ -2217,6 +2368,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000216692105524981',
@@ -2249,6 +2402,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000216165414503092',
@@ -2289,6 +2444,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000216165414503092',
@@ -2329,6 +2486,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000216165414503092',
@@ -2369,6 +2528,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000216113740987982',
@@ -2409,6 +2570,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000216113740987982',
@@ -2449,6 +2612,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000216113740987982',
@@ -2489,6 +2654,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000207416610491746',
@@ -2521,6 +2688,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000206879660311982',
@@ -2561,6 +2730,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000206879660311982',
@@ -2601,6 +2772,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000206879660311982',
@@ -2641,6 +2814,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000206675889551395',
@@ -2681,6 +2856,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000206675889551395',
@@ -2721,6 +2898,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000206675889551395',
@@ -2761,6 +2940,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000201332888879835',
@@ -2801,6 +2982,8 @@ console.log(trade);
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000201332888879835',
@@ -2841,6 +3024,8 @@ console.log(trade);
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00000000454541448',
@@ -2881,6 +3066,8 @@ console.log(trade);
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.00000000454541448',
@@ -2921,6 +3108,8 @@ console.log(trade);
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000000004421040886',
@@ -2953,6 +3142,8 @@ console.log(trade);
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000000004406314787',
@@ -2993,6 +3184,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000000004406314787',
@@ -3033,6 +3226,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000000004406314787',
@@ -3073,6 +3268,8 @@ console.log(trade);
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000000003689610342',
@@ -3113,6 +3310,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000000003689610342',
@@ -3153,6 +3352,8 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
     {
       expectedConvertQuote: '0.000000003689610342',
@@ -3193,9 +3394,12 @@ console.log(trade);
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
     },
   ],
   hasEnoughAllowance: true,
+  approvalTransaction: undefined,
   toToken: {
     chainId: 1,
     contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
@@ -3227,539 +3431,9 @@ console.log(trade);
 trade.destroy();
 ```
 
-### hasGotEnoughAllowance
+## Approval transaction
 
-This method will return `true` or `false` if the user has enough allowance to move the tokens. If you call this when doing `eth` > `erc20` it will always return true as you only need to check this when moving `erc20 > eth` and `erc20 > erc20`.
-
-```ts
-async hasGotEnoughAllowance(amount: string): Promise<boolean>
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const hasGotEnoughAllowance = await uniswapPairFactory.hasGotEnoughAllowance(
-  '10'
-);
-console.log(hasGotEnoughAllowance);
-true;
-```
-
-### allowance
-
-This method will return the allowance the user has to move tokens from the from token they have picked. This is always returned as a hex and is not formatted for you. If you call this when doing `eth` > `erc20` it will always return the max hex as you only need to check this when moving `erc20 > eth` and `erc20 > erc20`.
-
-```ts
-async allowance(): Promise<string>
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const allowance = await uniswapPairFactory.allowance();
-console.log(allowance);
-// '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
-```
-
-### generateApproveMaxAllowanceData
-
-This method will generate the transaction for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later. Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again. You have to send the and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction, 1 to extend the allowance using this transaction then the next one to actually execute the trade. If you call this when doing `eth` > `erc20` it will always throw an error as you only need to do this when moving `erc20 > eth` and `erc20 > erc20`.
-
-```ts
-async generateApproveMaxAllowanceData(): Promise<Transaction>
-```
-
-```ts
-export interface Transaction {
-  to: string;
-  from: string;
-  data: string;
-  value: string;
-}
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const transaction = await uniswapPairFactory.generateApproveMaxAllowanceData();
-console.log(transaction);
-{
-  to: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  from: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  data:
-   '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-  value: '0x00'
-}
-```
-
-### findBestRoute
-
-This method will return you the best route for the amount you want to trade.
-
-```ts
-async findBestRoute(amountToTrade: string): Promise<RouteQuote>
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const bestRoute = await uniswapPairFactory.findBestRoute('10');
-console.log(bestRoute);
-{
-  expectedConvertQuote: "0.014634280991384697",
-  routePathArrayTokenMap: [
-      {
-        chainId: 1,
-        contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        decimals: 8,
-        symbol: 'FUN',
-        name: 'FunFair'
-      },
-      {
-        chainId: 1,
-        contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-        decimals: 18,
-        symbol: 'DAI',
-        name: 'Dai Stablecoin',
-      },
-     {
-       chainId: 1,
-       contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-       decimals: 18,
-       symbol: 'WETH',
-       name: 'Wrapped Ether'
-     },
-     { chainId: 1,
-       contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-       decimals: 18,
-       symbol: 'REP',
-       name: 'Reputation'
-      }
-    ],
-  routeText: 'FUN > WETH > REP',
-  routePathArray: ['0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b', '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' '0x1985365e9f78359a9B6AD760e32412f4a445E862']
-}
-```
-
-### findAllPossibleRoutesWithQuote
-
-This method will return you all the possible routes with quotes ordered by the best quote first (index 0).
-
-```ts
-async findAllPossibleRoutesWithQuote(amountToTrade: string): Promise<RouteQuote[]>
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const allPossibleRoutes = await uniswapPairFactory.findAllPossibleRoutesWithQuote(
-  '10'
-);
-console.log(allPossibleRoutes);
-[
-  {
-    expectedConvertQuote: '0.014634280991384697',
-    routePathArrayTokenMap: [
-      {
-        chainId: 1,
-        contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        decimals: 8,
-        symbol: 'FUN',
-        name: 'FunFair',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-        decimals: 18,
-        symbol: 'DAI',
-        name: 'Dai Stablecoin',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-        decimals: 18,
-        symbol: 'WETH',
-        name: 'Wrapped Ether',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-        decimals: 18,
-        symbol: 'REP',
-        name: 'Reputation',
-      },
-    ],
-    routeText: 'FUN > DAI > WETH > REP',
-    routePathArray: [
-      '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-    ],
-  },
-  {
-    expectedConvertQuote: '0.014506490902564688',
-    routePathArrayTokenMap: [
-      {
-        chainId: 1,
-        contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        decimals: 8,
-        symbol: 'FUN',
-        name: 'FunFair',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-        decimals: 18,
-        symbol: 'WETH',
-        name: 'Wrapped Ether',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-        decimals: 18,
-        symbol: 'REP',
-        name: 'Reputation',
-      },
-    ],
-    routeText: 'FUN > WETH > REP',
-    routePathArray: [
-      '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-    ],
-  },
-  {
-    expectedConvertQuote: '0.011506490902564688',
-    routePathArrayTokenMap: [
-      {
-        chainId: 1,
-        contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        decimals: 8,
-        symbol: 'FUN',
-        name: 'FunFair',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        decimals: 18,
-        symbol: 'USDC',
-        name: 'USD Coin',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-        decimals: 18,
-        symbol: 'WETH',
-        name: 'Wrapped Ether',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-        decimals: 18,
-        symbol: 'REP',
-        name: 'Reputation',
-      },
-    ],
-    routeText: 'FUN > USDC > WETH > REP',
-    routePathArray: [
-      '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-    ],
-  },
-  {
-    expectedConvertQuote: '0.000000291402712857',
-    routePathArrayTokenMap: [
-      {
-        chainId: 1,
-        contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        decimals: 8,
-        symbol: 'FUN',
-        name: 'FunFair',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-        decimals: 18,
-        symbol: 'USDT',
-        name: 'Tether USD',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-        decimals: 18,
-        symbol: 'WETH',
-        name: 'Wrapped Ether',
-      },
-      {
-        chainId: 1,
-        contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-        decimals: 18,
-        symbol: 'REP',
-        name: 'Reputation',
-      },
-    ],
-    routeText: 'FUN > USDT > WETH > REP',
-    routePathArray: [
-      '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-    ],
-  },
-];
-```
-
-### findAllPossibleRoutes
-
-This method will return you the all the possible routes you can take when trading.
-
-```ts
-async findAllPossibleRoutes(): Promise<Token[][]>
-```
-
-```ts
-export interface Token {
-  chainId: ChainId;
-  contractAddress: string;
-  decimals: number;
-  symbol: string;
-  name: string;
-}
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const allRoutes = await uniswapPairFactory.findAllPossibleRoutes();
-console.log(allRoutes);
-[
-  [
-    {
-      chainId: 1,
-      contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      decimals: 8,
-      symbol: 'FUN',
-      name: 'FunFair',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      decimals: 18,
-      symbol: 'WETH',
-      name: 'Wrapped Ether',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-      decimals: 18,
-      symbol: 'REP',
-      name: 'Reputation',
-    },
-  ],
-  [
-    {
-      chainId: 1,
-      contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      decimals: 8,
-      symbol: 'FUN',
-      name: 'FunFair',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-      decimals: 18,
-      symbol: 'USDT',
-      name: 'Tether USD',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      decimals: 18,
-      symbol: 'WETH',
-      name: 'Wrapped Ether',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-      decimals: 18,
-      symbol: 'REP',
-      name: 'Reputation',
-    },
-  ],
-  [
-    {
-      chainId: 1,
-      contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      decimals: 8,
-      symbol: 'FUN',
-      name: 'FunFair',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-      decimals: 18,
-      symbol: 'USDC',
-      name: 'USD Coin',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      decimals: 18,
-      symbol: 'WETH',
-      name: 'Wrapped Ether',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-      decimals: 18,
-      symbol: 'REP',
-      name: 'Reputation',
-    },
-  ],
-  [
-    {
-      chainId: 1,
-      contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      decimals: 8,
-      symbol: 'FUN',
-      name: 'FunFair',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-      decimals: 18,
-      symbol: 'DAI',
-      name: 'Dai Stablecoin',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      decimals: 18,
-      symbol: 'WETH',
-      name: 'Wrapped Ether',
-    },
-    {
-      chainId: 1,
-      contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-      decimals: 18,
-      symbol: 'REP',
-      name: 'Reputation',
-    },
-  ],
-];
-```
+Please note when you do your trade if `approvalTransaction` is defined the user has not enough allowance to perform this trade aka the router can not move on behalf of the user. This will generate the transaction for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later. Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again. You have to send the and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction, 1 to extend the allowance using this transaction then the next one to actually execute the trade. On `eth` > `erc20` the `approvalTransaction` will always be undefined it will always throw an error as you only need to do this when moving `erc20 > eth` and `erc20 > erc20`.
 
 ## TokenFactoryPublic
 
@@ -3811,13 +3485,17 @@ console.log(token);
 This method will return the allowance the user has allowed to be able to be moved on his behalf. Uniswap needs this allowance to be higher then the amount swapping for it to be able to move the tokens for the user. This is always returned as a hex and not formatted for you.
 
 ```ts
-async allowance(ethereumAddress: string): Promise<string>
+async allowance(uniswapVersion: UniswapVersion, ethereumAddress: string): Promise<string>
 ```
 
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
+import {
+  TokenFactoryPublic,
+  ChainId,
+  UniswapVersion,
+} from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -3828,7 +3506,10 @@ const tokenFactoryPublic = new TokenFactoryPublic(
 
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
-const allowance = await tokenFactoryPublic.allowance(ethereumAddress);
+const allowance = await tokenFactoryPublic.allowance(
+  UniswapVersion.v3,
+  ethereumAddress
+);
 console.log(allowance);
 // '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 ```
@@ -3929,7 +3610,7 @@ console.log(data);
 This method will get the allowance and balance for the token in a multicall request. Will return as hex and NOT formatted for you.
 
 ```ts
-async getAllowanceAndBalanceOf(ethereumAddress: string): Promise<AllowanceAndBalanceOf>
+async getAllowanceAndBalanceOf(uniswapVersion: UniswapVersion, ethereumAddress: string): Promise<AllowanceAndBalanceOf>
 ```
 
 ```ts
@@ -3942,7 +3623,7 @@ export interface AllowanceAndBalanceOf {
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
+import { TokenFactoryPublic, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -3956,6 +3637,7 @@ const tokenFactoryPublic = new TokenFactoryPublic(
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
 const result = await tokenFactoryPublic.getAllowanceAndBalanceOf(
+  UniswapVersion.v3,
   ethereumAddress
 );
 console.log(result);
@@ -4021,335 +3703,14 @@ console.log(tokens);
 ];
 ```
 
-### Contract calls
-
-Along side this we also expose in here the uniswap pair contract calls. Any methods which are state changing will return you the data and you will have to send it. Only use these if your doing any bespoke stuff with pairs. The `UniswapPairContractFactoryPublic` is also exposed in the package which you can pass it a chainId or a providerUrl
-
-```ts
-export interface UniswapPair {
-  async allPairs(
-    parameter0: BigNumberish,
-  ): Promise<string>;
-
-  async allPairsLength(): Promise<string>;
-
-  // state changing
-  async createPair(
-    tokenA: string,
-    tokenB: string,
-  ): Promise<string>;
-
-  async feeTo(): Promise<string>;
-
-  async feeToSetter(): Promise<string>;
-
-  async getPair(
-    parameter0: string,
-    parameter1: string,
-  ): Promise<string>;
-
-  // state changing
-  async setFeeTo(
-    _feeTo: string,
-  ): Promise<string>;
-
-  // state changing
-  async setFeeToSetter(
-    _feeToSetter: string,
-  ): Promise<string>;
-```
-
-#### Usage
-
-#### In UniswapPairFactory
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
-
-const uniswapPair = new UniswapPair(
-  toTokenContractAddress,
-  fromTokenContractAddress,
-  ethereumAddress,
-  ChainId.MAINNET
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-);
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-// contract calls our here, this is only for the uniswap pair contract https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
-uniswapPairFactory.contractCalls;
-```
-
-#### Using UniswapPairContractFactoryPublic on its own
-
-```ts
-import { UniswapPairContractFactoryPublic, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPairContractFactoryPublic = new UniswapPairContractFactoryPublic(
-  ChainId.MAINNET
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-);
-
-// contract calls our here, this is only for the uniswap pair contract https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
-uniswapPairContractFactoryPublic;
-```
-
-### UniswapContractFactoryPublic
-
-```ts
-async allPairs(parameter0: BigNumberish): Promise<string>;
-
-async allPairsLength(): Promise<string>;
-
-// state changing
-acreatePair(tokenA: string, tokenB: string): string;
-
-async getPair(token0: string, token1: string): Promise<string>;
-```
-
-### Usage
-
-```ts
-import { UniswapContractFactoryPublic, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapContractFactoryPublic = new UniswapContractFactoryPublic(
-  ChainId.MAINNET
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-);
-
-// contract calls our here https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code
-uniswapContractFactoryPublic;
-```
-
-### UniswapRouterContractFactoryPublic
-
-```ts
-// state changing
-addLiquidity(
-  tokenA: string,
-  tokenB: string,
-  amountADesired: BigNumberish,
-  amountBDesired: BigNumberish,
-  amountAMin: BigNumberish,
-  amountBMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-addLiquidityETH(
-  token: string,
-  amountTokenDesired: BigNumberish,
-  amountTokenMin: BigNumberish,
-  amountETHMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish
-): string;
-
-async factory(): Promise<string>;
-
-async getAmountsOut(
-  amountIn: BigNumberish,
-  path: string[]
-): Promise<string[]>;
-
-async quote(
-  amountA: BigNumberish,
-  reserveA: BigNumberish,
-  reserveB: BigNumberish
-): Promise<string>;
-
-// state changing
-removeLiquidity(
-  tokenA: string,
-  tokenB: string,
-  liquidity: BigNumberish,
-  amountAMin: BigNumberish,
-  amountBMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-removeLiquidityETH(
-  token: string,
-  liquidity: BigNumberish,
-  amountTokenMin: BigNumberish,
-  amountETHMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-removeLiquidityETHSupportingFeeOnTransferTokens(
-  token: string,
-  liquidity: BigNumberish,
-  amountTokenMin: BigNumberish,
-  amountETHMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-removeLiquidityETHWithPermit(
-  token: string,
-  liquidity: BigNumberish,
-  amountTokenMin: BigNumberish,
-  amountETHMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish,
-  approveMax: boolean,
-  v: BigNumberish,
-  r: BytesLike,
-  s: BytesLike
-);
-
-// state changing
-removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
-  token: string,
-  liquidity: BigNumberish,
-  amountTokenMin: BigNumberish,
-  amountETHMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish,
-  approveMax: boolean,
-  v: BigNumberish,
-  r: BytesLike,
-  s: BytesLike
-): string
-
-// state changing
-removeLiquidityWithPermit(
-  tokenA: string,
-  tokenB: string,
-  liquidity: BigNumberish,
-  amountAMin: BigNumberish,
-  amountBMin: BigNumberish,
-  to: string,
-  deadline: BigNumberish,
-  approveMax: boolean,
-  v: BigNumberish,
-  r: BytesLike,
-  s: BytesLike
-): string;
-
-// state changing
-swapExactETHForTokens(
-  amountOutMin: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string
-
-// state changing
-swapETHForExactTokens(
-  amountOut: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string
-
-// state changing
-swapExactETHForTokensSupportingFeeOnTransferTokens(
-  amountIn: BigNumberish,
-  amountOutMin: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-swapExactTokensForETH(
-  amountIn: BigNumberish,
-  amountOutMin: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-swapTokensForExactETH(
-  amountOut: BigNumberish,
-  amountInMax: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-swapExactTokensForETHSupportingFeeOnTransferTokens(
-  amountIn: BigNumberish,
-  amountOutMin: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-swapExactTokensForTokens(
-  amountIn: BigNumberish,
-  amountOutMin: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string;
-
-// state changing
-swapTokensForExactTokens(
-  amountOut: BigNumberish,
-  amountInMax: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string
-
-// state changing
-swapExactTokensForTokensSupportingFeeOnTransferTokens(
-  amountIn: BigNumberish,
-  amountOutMin: BigNumberish,
-  path: string[],
-  to: string,
-  deadline: BigNumberish
-): string
-```
-
-### Usage
-
-```ts
-import {
-  UniswapRouterContractFactoryPublic,
-  ChainId,
-} from 'simple-uniswap-sdk';
-
-const uniswapRouterContractFactoryPublic = new UniswapRouterContractFactoryPublic(
-  ChainId.MAINNET
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-);
-
-// contract calls our here https://etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D#code
-uniswapRouterContractFactoryPublic;
-```
-
 ## Tests
 
 The whole repo is covered in tests output below:
 
 Test Suites: 21 passed, 21 total
-Tests: 133 passed, 133 total
+Tests: 4 skipped, 160 passed, 164 total
 Snapshots: 0 total
-Time: 32.287s
+Time: 22.435s, estimated 23s
 Ran all test suites.
 
 ## Issues

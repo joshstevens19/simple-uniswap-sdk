@@ -132,9 +132,13 @@ describe('UniswapRouterFactory', () => {
 
       it('should find best route', async () => {
         const result = await uniswapRouterFactory.findBestRoute(
-          new BigNumber(100)
+          new BigNumber(1000)
         );
-        expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
+        if (result.bestRouteQuote.uniswapVersion === UniswapVersion.v2) {
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH > UNI');
+        } else {
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
+        }
       });
 
       it('should throw an error as there is no best route with disableMultihops turned on', async () => {

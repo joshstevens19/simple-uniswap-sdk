@@ -12,8 +12,8 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 
 const routeTest = async () => {
   console.log(new Date().getTime());
-  const fromTokenContractAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
-  const toTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
+  const fromTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
+  const toTokenContractAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
@@ -21,32 +21,32 @@ const routeTest = async () => {
     toTokenContractAddress,
     ethereumAddress,
     chainId: ChainId.MAINNET,
-    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
     settings: new UniswapPairSettings({
       // if not supplied it use `0.005` which is 0.5%;
       // all figures
       slippage: 0.005,
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
-      disableMultihops: false,
+      disableMultihops: true,
+      uniswapVersions: [UniswapVersion.v3],
     }),
   });
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  try {
-    const trade = await uniswapPairFactory.trade('1000');
-    console.log(trade);
-    console.log(
-      trade.allTriedRoutesQuotes.filter(
-        (c) => c.uniswapVersion === UniswapVersion.v3
-      )
-    );
+  // try {
+  const trade = await uniswapPairFactory.trade('10');
+  console.log(trade);
+  // console.log(
+  //   trade.allTriedRoutesQuotes.filter(
+  //     (c) => c.uniswapVersion === UniswapVersion.v3
+  //   )
+  // );
 
-    console.log(new Date().getTime());
-  } catch (error) {
-    console.log(error.message);
-  }
+  console.log(new Date().getTime());
+  // } catch (error) {
+  //   console.log(error.message);
+  // }
 
   process.stdin.resume();
 

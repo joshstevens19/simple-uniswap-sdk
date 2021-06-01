@@ -24,7 +24,6 @@ import { TokenFactory } from '../token/token.factory';
 import { TradeContext } from './models/trade-context';
 import { Transaction } from './models/transaction';
 import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
-import { UniswapPairContractFactoryV2 } from './v2/uniswap-pair-contract.factory.v2';
 
 export class UniswapPairFactory {
   private _fromTokenFactory = new TokenFactory(
@@ -41,10 +40,6 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.ethersProvider
   );
   private _uniswapRouterContractFactoryV3 = new UniswapRouterContractFactoryV3(
-    this._uniswapPairFactoryContext.ethersProvider
-  );
-
-  private _uniswapPairFactoryV2 = new UniswapPairContractFactoryV2(
     this._uniswapPairFactoryContext.ethersProvider
   );
 
@@ -73,13 +68,6 @@ export class UniswapPairFactory {
    */
   public get fromToken(): Token {
     return this._uniswapPairFactoryContext.fromToken;
-  }
-
-  /**
-   * Get the contract calls
-   */
-  public get contractCalls(): UniswapPairContractFactoryV2 {
-    return this._uniswapPairFactoryV2;
   }
 
   /**

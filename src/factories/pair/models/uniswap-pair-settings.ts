@@ -6,7 +6,7 @@ export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
-  uniswapVersions: UniswapVersion[];
+  uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
 
   constructor(settings?: {
     slippage?: number | undefined;
@@ -18,11 +18,6 @@ export class UniswapPairSettings {
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
 
-    if (!settings?.uniswapVersions) {
-      this.uniswapVersions = [UniswapVersion.v2, UniswapVersion.v3];
-      return;
-    }
-
     if (
       Array.isArray(settings?.uniswapVersions) &&
       settings?.uniswapVersions.length === 0
@@ -33,6 +28,12 @@ export class UniswapPairSettings {
       );
     }
 
-    this.uniswapVersions = settings?.uniswapVersions;
+    if (
+      settings &&
+      Array.isArray(settings.uniswapVersions) &&
+      settings.uniswapVersions.length > 0
+    ) {
+      this.uniswapVersions = settings?.uniswapVersions;
+    }
   }
 }
