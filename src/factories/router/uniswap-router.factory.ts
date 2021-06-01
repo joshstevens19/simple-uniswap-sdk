@@ -30,7 +30,11 @@ import { BestRouteQuotes } from './models/best-route-quotes';
 import { RouteContext } from './models/route-context';
 import { RouteQuote } from './models/route-quote';
 import { TokenRoutes } from './models/token-routes';
-import { FeeAmount, feeToPercent } from './v3/enums/fee-amount-v3';
+import {
+  FeeAmount,
+  feeToPercent,
+  percentToFeeAmount,
+} from './v3/enums/fee-amount-v3';
 
 export class UniswapRouterFactory {
   private _multicall = new Multicall({
@@ -103,10 +107,7 @@ export class UniswapRouterFactory {
     }
 
     // for now v3 quotes will just be direct aka UNI > AAVE etc!
-    if (
-      this._uniswapVersions.includes(UniswapVersion.v3) &&
-      !this._disableMultihops
-    ) {
+    if (this._uniswapVersions.includes(UniswapVersion.v3)) {
       contractCallContext.push({
         reference: UniswapVersion.v3,
         contractAddress: UniswapContractContextV3.factoryAddress,
@@ -205,10 +206,7 @@ export class UniswapRouterFactory {
       );
     }
 
-    if (
-      this._uniswapVersions.includes(UniswapVersion.v3) &&
-      !this._disableMultihops
-    ) {
+    if (this._uniswapVersions.includes(UniswapVersion.v3)) {
       const results = contractCallResults.results[UniswapVersion.v3];
 
       for (let i = 0; i < results.callsReturnContext.length; i++) {
@@ -294,10 +292,9 @@ export class UniswapRouterFactory {
           reference: `route${i}`,
           methodName: 'quoteExactInput',
           methodParameters: [
-            this.encodeRoutePathV3(
-              routeCombo,
-              new Array(routeCombo.length - 1).fill(FeeAmount.MEDIUM)
-            ),
+            this.encodeRoutePathV3(routeCombo, [
+              percentToFeeAmount(routes.v3[i].liquidityProviderFee),
+            ]),
             tradeAmount,
           ],
         });
@@ -674,7 +671,7 @@ export class UniswapRouterFactory {
             .shiftedBy(this._toToken.decimals * -1)
             .toFixed(this._toToken.decimals),
           routePathArrayTokenMap: [this._fromToken, this._toToken],
-          routeText: `${this._fromToken.name} > ${this._toToken.name}`,
+          routeText: `${this._fromToken.symbol} > ${this._toToken.symbol}`,
           routePathArray: [
             this._fromToken.contractAddress,
             this._toToken.contractAddress,
@@ -730,7 +727,7 @@ export class UniswapRouterFactory {
             .shiftedBy(this._toToken.decimals * -1)
             .toFixed(this._toToken.decimals),
           routePathArrayTokenMap: [this._fromToken, this._toToken],
-          routeText: `${this._fromToken.name} > ${this._toToken.name}`,
+          routeText: `${this._fromToken.symbol} > ${this._toToken.symbol}`,
           routePathArray: [
             this._fromToken.contractAddress,
             this._toToken.contractAddress,

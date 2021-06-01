@@ -14,3 +14,16 @@ export const feeToPercent = (feeAmount: FeeAmount) => {
       return 0.01;
   }
 };
+
+export const percentToFeeAmount = (percent: number) => {
+  switch (percent) {
+    case 0.005:
+      return FeeAmount.LOW;
+    case 0.003:
+      return FeeAmount.MEDIUM;
+    case 0.01:
+      return FeeAmount.HIGH;
+    default:
+      return FeeAmount.MEDIUM;
+  }
+};
