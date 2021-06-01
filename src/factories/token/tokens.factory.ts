@@ -14,6 +14,7 @@ import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 export class TokensFactory {
   private _multicall = new Multicall({
     ethersProvider: this._ethersProvider.provider,
+    tryAggregate: true,
   });
 
   constructor(private _ethersProvider: EthersProvider) {}

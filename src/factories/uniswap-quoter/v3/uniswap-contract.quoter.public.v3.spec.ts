@@ -54,8 +54,7 @@ describe('UniswapContractQuoterV3Public > Multicall', () => {
   it('quoteExactOutput', async () => {
     const multicall = new Multicall({
       ethersProvider: new EthersProvider(ChainId.MAINNET).provider,
-      multicallCustomContractAddress:
-        '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
+      tryAggregate: true,
     });
 
     const contractCallContext: ContractCallContext = {

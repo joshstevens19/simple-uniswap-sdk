@@ -12,6 +12,7 @@ import { Token } from './models/token';
 export class TokenFactory {
   private _multicall = new Multicall({
     ethersProvider: this._ethersProvider.provider,
+    tryAggregate: true,
   });
 
   private _erc20TokenContract =

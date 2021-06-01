@@ -5,7 +5,6 @@ export enum FeeAmount {
 }
 
 export const feeToPercent = (feeAmount: FeeAmount) => {
-  console.log(feeAmount);
   switch (feeAmount) {
     case FeeAmount.LOW:
       return 0.005;

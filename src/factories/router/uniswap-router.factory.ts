@@ -35,8 +35,7 @@ import { FeeAmount, feeToPercent } from './v3/enums/fee-amount-v3';
 export class UniswapRouterFactory {
   private _multicall = new Multicall({
     ethersProvider: this._ethersProvider.provider,
-    multicallCustomContractAddress:
-      '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
+    tryAggregate: true,
   });
 
   private readonly LIQUIDITY_PROVIDER_FEE_V2 = 0.003;
@@ -306,6 +305,7 @@ export class UniswapRouterFactory {
     }
 
     const contractCallResults = await this._multicall.call(contractCallContext);
+
     return this.buildRouteQuotesFromResults(contractCallResults);
   }
 
@@ -547,6 +547,10 @@ export class UniswapRouterFactory {
         ) {
           const callReturnContext =
             contractCallReturnContext.callsReturnContext[i];
+
+          if (!callReturnContext.success) {
+            continue;
+          }
 
           switch (tradePath) {
             case TradePath.ethToErc20:
