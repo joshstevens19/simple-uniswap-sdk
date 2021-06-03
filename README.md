@@ -109,6 +109,7 @@ export class UniswapPairSettings {
     slippage?: number | undefined;
     deadlineMinutes?: number | undefined;
     disableMultihops?: boolean | undefined;
+    uniswapVersions?: UniswapVersion[] | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
