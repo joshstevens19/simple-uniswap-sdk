@@ -1,6 +1,6 @@
 {
   "name": "simple-uniswap-sdk",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Simple easy to understand SDK for uniswap which looks over best v2 and v3 to find you the best swap quote",
   "main": "dist/index.js",
   "scripts": {
