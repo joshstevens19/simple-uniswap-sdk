@@ -71,6 +71,13 @@ export class UniswapPairFactory {
   }
 
   /**
+   * Get the provider url
+   */
+  public get providerUrl(): string {
+    return this._uniswapPairFactoryContext.ethersProvider.getProviderUrl();
+  }
+
+  /**
    * Get the to token balance
    */
   public async getFromTokenBalance(): Promise<string> {
