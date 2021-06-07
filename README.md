@@ -549,7 +549,7 @@ const web3TradeExample = async () => {
       })
       .once('receipt', async (receipt) => {
         console.log('approved receipt', receipt);
-        await executeTrade(web3, trade.transaction);
+        await executeTrade(web3, trade);
       })
       .on('error', async (error: any) => {
         console.log(`ERROR ${error.message}`);
@@ -558,7 +558,7 @@ const web3TradeExample = async () => {
     console.log(
       'already has approved uniswap to move tokens on your behalf or its eth > erc20 token swap'
     );
-    await executeTrade(web3, trade.transaction);
+    await executeTrade(web3, trade);
   }
 };
 
