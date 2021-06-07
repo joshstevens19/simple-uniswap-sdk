@@ -83,8 +83,8 @@ describe('TokenFactoryPublic', () => {
         MockEthereumAddress()
       );
       expect(result).toEqual({
-        allowance: '0x2386f01852b720',
-        balanceOf: '0x4d3f3832f7',
+        allowance: '0x2386c18764e720',
+        balanceOf: '0x1eae4a62f7',
       });
     });
 
@@ -95,7 +95,7 @@ describe('TokenFactoryPublic', () => {
       );
       expect(result).toEqual({
         allowance: '0x00',
-        balanceOf: '0x4d3f3832f7',
+        balanceOf: '0x1eae4a62f7',
       });
     });
   });
