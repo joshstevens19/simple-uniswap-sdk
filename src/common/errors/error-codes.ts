@@ -14,4 +14,5 @@ export enum ErrorCodes {
   invalidFromOrToContractToken = 13,
   uniswapVersionNotSupported = 14,
   uniswapVersionsMustNotBeAnEmptyArray = 15,
+  canNotFindProviderUrl = 16,
 }
