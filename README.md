@@ -205,116 +205,15 @@ export enum ErrorCodes {
   invalidFromOrToContractToken = 13,
   uniswapVersionNotSupported = 14,
   uniswapVersionsMustNotBeAnEmptyArray = 15,
+  canNotFindProviderUrl = 16,
 }
 ```
 
 ## Uniswap pair factory
 
-### toToken
-
-This exposes the to token contract information, like decimals, symbol and name.
-
-```ts
-get toToken(): Token
-```
-
-```ts
-export interface Token {
-  chainId: ChainId;
-  contractAddress: string;
-  decimals: number;
-  symbol: string;
-  name: string;
-}
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const toToken = uniswapPairFactory.toToken;
-console.log(toToken);
-// toToken:
-{
-  chainId: 1,
-  contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  decimals: 18,
-  symbol: 'REP',
-  name: 'Reputation'
-}
-```
-
-### fromToken
-
-This exposes the from token contract information, like decimals, symbol and name.
-
-```ts
-get fromToken(): Token
-```
-
-```ts
-export interface Token {
-  chainId: ChainId;
-  contractAddress: string;
-  decimals: number;
-  symbol: string;
-  name: string;
-}
-```
-
-#### Usage
-
-```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-  chainId: ChainId.MAINNET,
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
-
-const fromToken = uniswapPairFactory.fromToken;
-console.log(fromToken);
-// fromToken:
-{
-  chainId: 1,
-  contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  decimals: 8,
-  symbol: 'FUN',
-  name: 'FunFair'
-}
-```
-
 ### Trade
 
 This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. You will still need to send the transaction if they confirm the swap, we generate the transaction for you but you will still need to estimate the gas and get them to sign and send it on the dApp once they confirm the swap.
-
-It will also return a `hasEnoughAllowance` in the `TradeContext` trade response, if the allowance approved for moving tokens is below the amount sending to the uniswap router this will be false if not true. We still return the quote but if this is `false` you need to make sure you send the approval generated data first before being able to do the swap. We advise you check the allowance before you execute the trade which you should do anyway or it will fail onchain. You can use our `hasGotEnoughAllowance` method below to check and also our `generateApproveMaxAllowanceData` to generate the transaction for the user to appove moving of the tokens.
 
 Please note `ROPSTEN`, `RINKEBY`, `GÖRLI` and `KOVAN` will only use `WETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
 
@@ -390,9 +289,7 @@ export interface TradeContext {
   hasEnoughAllowance: boolean;
   // this is the transaction you need to send first if approve the swap
   // but do not have any allowance for the router to move the token on their
-  // behalf. This will be undefined if you do not need to send this transaction.
-  // it DOES not estimate gas so you should fill in those blanks before
-  // you send it (most dApps have a picker to choose the speed)
+  // behalf.
   approvalTransaction:
     | {
         to: string;
@@ -417,9 +314,7 @@ export interface TradeContext {
     // the total balance that user has on the from formatted for you already
     balance: string;
   };
-  // this is the transaction you need to send if they approve the swap
-  // it DOES not estimate gas so you should fill in those blanks before
-  // you send it (most dApps have a picker to choose the speed)
+  // this is the transaction you need to send to execute the trade
   transaction: {
     to: string;
     from: string;
@@ -467,17 +362,238 @@ export enum UniswapVersion {
 
 #### Usage
 
-#### ERC20 > ERC20
+#### ethers example
+
+```ts
+import { ethers } from 'ethers';
+import { ChainId, UniswapPair } from 'simple-uniswap-sdk';
+
+const etherTradeExample = async () => {
+  const uniswapPair = new UniswapPair({
+    // the contract address of the token you want to convert FROM
+    fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+    // the contract address of the token you want to convert TO
+    toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+    // the ethereum address of the user using this part of the dApp
+    ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+    // you can pass in the provider url as well if you want
+    // providerUrl: YOUR_PROVIDER_URL,
+    chainId: ChainId.MAINNET,
+  });
+
+  // this example shows erc20 > erc20 but its a simple change for eth > erc20
+  // or erc20 > eth example below by using `WETH.MAINNET().contractAddress`
+  // which can be imported within `simple-uniswap-sdk`
+  // aka > import { WETH } from 'simple-uniswap-sdk';
+
+  //   ETH > ERC20
+  // const uniswapPair = new UniswapPair({
+  //   fromTokenContractAddress: WETH.MAINNET().contractAddress,
+  //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  //   chainId: ChainId.RINKEBY,
+  // });
+
+  //   ERC20 > ETH
+  // const uniswapPair = new UniswapPair({
+  //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  //   toTokenContractAddress: WETH.MAINNET().contractAddress,,
+  //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  //   chainId: ChainId.RINKEBY,
+  // });
+
+  // now to create the factory you just do
+  const uniswapPairFactory = await uniswapPair.createFactory();
+
+  // the amount is the proper entered amount
+  // so if they enter 10 pass in 10
+  // it will work it all out for you
+  const trade = await uniswapPairFactory.trade('10');
+
+  // you should probably check this before they confirm the swap again
+  // this is just so its simple to read
+  if (!trade.fromBalance.hasEnough) {
+    throw new Error('You do not have enough from balance to execute this swap');
+  }
+
+  // subscribe to quote changes this is just in example so your dont miss it
+  trade.quoteChanged$.subscribe((value: TradeContext) => {
+    // value will hold the same info as below but obviously with
+    // the new trade info.
+  });
+
+  // obviously dont create your provider + wallet everytime again and again!
+  // this is just like this for ease of reading!
+  const provider = new ethers.providers.JsonRpcProvider(
+    uniswapPairFactory.providerUrl
+  );
+  const wallet = new ethers.Wallet(YOUR_PRIVATE_KEY, provider);
+
+  // Please note when you do your trade if `approvalTransaction` is defined the user does not have enough allowance to perform this trade
+  // aka the router can not move their erc20 tokens on their behalf of the user.
+  // This will generate the transaction for the approval of moving tokens for the user.
+  // This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later.
+  // If they have only approved moving on uniswap v2 and try to execute a v3 trade they would have to approve that but again once approved
+  // the v3 router then they will not have to again for that version.
+  // Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again.
+  // You have to send and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction,
+  // 1 to allow uniswap to move tokens on their behalf then the next one to actually execute the trade.
+  // On `eth` > `erc20` the `approvalTransaction` will always be undefined as you only need to do this when moving `erc20 > eth` and `erc20 > erc20`.
+  if (trade.approvalTransaction) {
+    const approved = await wallet.sendTransaction(trade.approvalTransaction);
+    console.log('approved txHash', approved.hash);
+    const approvedReceipt = await approved.wait();
+    console.log('approved receipt', approvedReceipt);
+  }
+
+  const tradeTransaction = await wallet.sendTransaction(trade.transaction);
+  console.log('trade txHash', tradeTransaction.hash);
+  const tradeReceipt = await tradeTransaction.wait();
+  console.log('trade receipt', tradeReceipt);
+
+  // once done with trade aka they have sent it and you don't need it anymore call
+  trade.destroy();
+};
+
+etherTradeExample();
+```
+
+#### web3 example
+
+```ts
+import { ChainId, TradeContext, UniswapPair } from 'simple-uniswap-sdk';
+import Web3 from 'web3';
+
+const web3TradeExample = async () => {
+  const uniswapPair = new UniswapPair({
+    // the contract address of the token you want to convert FROM
+    fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+    // the contract address of the token you want to convert TO
+    toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+    // the ethereum address of the user using this part of the dApp
+    ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+    // you can pass in the provider url as well if you want
+    // providerUrl: YOUR_PROVIDER_URL,
+    chainId: ChainId.RINKEBY,
+  });
+
+  // this example shows erc20 > erc20 but its a simple change for eth > erc20
+  // or erc20 > eth example below by using `WETH.MAINNET().contractAddress`
+  // which can be imported within `simple-uniswap-sdk`
+  // aka > import { WETH } from 'simple-uniswap-sdk';
+
+  //   ETH > ERC20
+  // const uniswapPair = new UniswapPair({
+  //   fromTokenContractAddress: WETH.MAINNET().contractAddress,
+  //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  //   chainId: ChainId.RINKEBY,
+  // });
+
+  //   ERC20 > ETH
+  // const uniswapPair = new UniswapPair({
+  //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  //   toTokenContractAddress: WETH.MAINNET().contractAddress,,
+  //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  //   chainId: ChainId.RINKEBY,
+  // });
+
+  // now to create the factory you just do
+  const uniswapPairFactory = await uniswapPair.createFactory();
+
+  // the amount is the proper entered amount
+  // so if they enter 10 pass in 10
+  // it will work it all out for you
+  const trade = await uniswapPairFactory.trade('10');
+
+  // you should probably check this before they confirm the swap again
+  // this is just so its simple to read
+  if (!trade.fromBalance.hasEnough) {
+    throw new Error('You do not have enough from balance to execute this swap');
+  }
+
+  // subscribe to quote changes this is just in example so your dont miss it
+  trade.quoteChanged$.subscribe((value: TradeContext) => {
+    // value will hold the same info as below but obviously with
+    // the new trade info.
+  });
+
+  // obviously dont create your web3 instance everytime again and again!
+  // this is just like this for ease of reading!
+  const web3 = new Web3(uniswapPairFactory.providerUrl);
+
+  // Please note when you do your trade if `approvalTransaction` is defined the user does not have enough allowance to perform this trade
+  // aka the router can not move their erc20 tokens on their behalf of the user.
+  // This will generate the transaction for the approval of moving tokens for the user.
+  // This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later.
+  // If they have only approved moving on uniswap v2 and try to execute a v3 trade they would have to approve that but again once approved
+  // the v3 router then they will not have to again for that version.
+  // Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again.
+  // You have to send and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction,
+  // 1 to allow uniswap to move tokens on their behalf then the next one to actually execute the trade.
+  // On `eth` > `erc20` the `approvalTransaction` will always be undefined as you only need to do this when moving `erc20 > eth` and `erc20 > erc20`.
+  if (trade.approvalTransaction) {
+    const signedTransaction = await web3.eth.accounts.signTransaction(
+      trade.approvalTransaction,
+      YOUR_PRIVATE_KEY
+    );
+
+    if (!signedTransaction.rawTransaction) {
+      throw new Error('Could not find tx');
+    }
+
+    web3.eth
+      .sendSignedTransaction(signedTransaction.rawTransaction)
+      .once('transactionHash', (transactionHash) => {
+        console.log('approved txHash', transactionHash);
+      })
+      .once('receipt', async (receipt) => {
+        console.log('approved receipt', receipt);
+        await executeTrade(web3, trade.transaction);
+      })
+      .on('error', async (error: any) => {
+        console.log(`ERROR ${error.message}`);
+      });
+  } else {
+    console.log(
+      'already has approved uniswap to move tokens on your behalf or its eth > erc20 token swap'
+    );
+    await executeTrade(web3, trade.transaction);
+  }
+};
+
+const executeTrade = async (web3: Web3, trade: TradeContext) => {
+  const signedTransaction = await web3.eth.accounts.signTransaction(
+    trade.transaction,
+    YOUR_PRIVATE_KEY
+  );
+
+  if (!signedTransaction.rawTransaction) {
+    throw new Error('Could not find tx');
+  }
+
+  web3.eth
+    .sendSignedTransaction(signedTransaction.rawTransaction)
+    .once('transactionHash', (transactionHash) => {
+      console.log('trade txHash', transactionHash);
+    })
+    .once('receipt', (receipt) => {
+      console.log('trade receipt', receipt);
+      // once done with trade aka they have sent it and you don't need it anymore call
+      trade.destroy();
+    })
+    .on('error', async (error: any) => {
+      console.log(`ERROR ${error.message}`);
+    });
+};
+
+web3TradeExample();
+```
+
+#### ERC20 > ERC20 Output example
 
 ```ts
 import { UniswapPair, ChainId, TradeContext } from 'simple-uniswap-sdk';
-
-// the contract address of the token you want to convert FROM
-const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
-// the contract address of the token you want to convert TO
-const toTokenContractAddress = '0x1985365e9f78359a9B6AD760e32412f4a445E862';
-// the ethereum address of the user using this part of the dApp
-const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -740,7 +856,7 @@ console.log(trade);
 trade.destroy();
 ```
 
-#### ETH > ERC20
+#### ETH > ERC20 Output example
 
 ```ts
 import { UniswapPair, WETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
@@ -2180,7 +2296,7 @@ trade.destroy();
 
 ```
 
-#### ERC20 > ETH
+#### ERC20 > ETH Output example
 
 ```ts
 import { UniswapPair, WETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
@@ -3430,9 +3546,138 @@ console.log(trade);
 trade.destroy();
 ```
 
-## Approval transaction
+### toToken
 
-Please note when you do your trade if `approvalTransaction` is defined the user has not enough allowance to perform this trade aka the router can not move on behalf of the user. This will generate the transaction for the approval of moving tokens for the user. This uses the max hex possible which means they will not have to do this again if they want to swap from the SAME from token again later. Please note the approval is per each erc20 token, so if they picked another from token after they swapped they would need to do this again. You have to send the and sign the transaction from within your dApp. Remember when they do not have enough allowance it will mean doing 2 transaction, 1 to extend the allowance using this transaction then the next one to actually execute the trade. On `eth` > `erc20` the `approvalTransaction` will always be undefined it will always throw an error as you only need to do this when moving `erc20 > eth` and `erc20 > erc20`.
+This exposes the to token contract information, like decimals, symbol and name.
+
+```ts
+get toToken(): Token
+```
+
+```ts
+export interface Token {
+  chainId: ChainId;
+  contractAddress: string;
+  decimals: number;
+  symbol: string;
+  name: string;
+}
+```
+
+#### Usage
+
+```ts
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
+
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
+  chainId: ChainId.MAINNET,
+});
+
+// now to create the factory you just do
+const uniswapPairFactory = await uniswapPair.createFactory();
+
+const toToken = uniswapPairFactory.toToken;
+console.log(toToken);
+// toToken:
+{
+  chainId: 1,
+  contractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  decimals: 18,
+  symbol: 'REP',
+  name: 'Reputation'
+}
+```
+
+### fromToken
+
+This exposes the from token contract information, like decimals, symbol and name.
+
+```ts
+get fromToken(): Token
+```
+
+```ts
+export interface Token {
+  chainId: ChainId;
+  contractAddress: string;
+  decimals: number;
+  symbol: string;
+  name: string;
+}
+```
+
+#### Usage
+
+```ts
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
+
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
+  chainId: ChainId.MAINNET,
+});
+
+// now to create the factory you just do
+const uniswapPairFactory = await uniswapPair.createFactory();
+
+const fromToken = uniswapPairFactory.fromToken;
+console.log(fromToken);
+// fromToken:
+{
+  chainId: 1,
+  contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  decimals: 8,
+  symbol: 'FUN',
+  name: 'FunFair'
+}
+```
+
+### providerUrl
+
+This exposes the provider url it is using
+
+```ts
+get providerUrl(): string
+```
+
+#### Usage
+
+```ts
+import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
+
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
+  chainId: ChainId.MAINNET,
+});
+
+// now to create the factory you just do
+const uniswapPairFactory = await uniswapPair.createFactory();
+
+const providerUrl = uniswapPairFactory.providerUrl;
+console.log(providerUrl);
+// https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161
+```
 
 ## TokenFactoryPublic
 
