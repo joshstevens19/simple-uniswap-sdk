@@ -51,7 +51,8 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.ethersProvider
   );
 
-  private _quoteChangeTimeout: NodeJS.Timeout | undefined;
+  private _currentTradeContext: TradeContext | undefined;
+  private _quoteChangeInternal: NodeJS.Timeout | undefined;
   private _quoteChanged$: Subject<TradeContext> = new Subject<TradeContext>();
 
   constructor(private _uniswapPairFactoryContext: UniswapPairFactoryContext) {}
@@ -140,10 +141,6 @@ export class UniswapPairFactory {
     for (let i = 0; i < this._quoteChanged$.observers.length; i++) {
       this._quoteChanged$.observers[i].complete();
     }
-
-    if (this._quoteChangeTimeout) {
-      clearTimeout(this._quoteChangeTimeout);
-    }
   }
 
   /**
@@ -154,13 +151,13 @@ export class UniswapPairFactory {
   public async trade(amount: string): Promise<TradeContext> {
     this.destroy();
 
-    const tradeContext: TradeContext = await this.executeTradePath(
+    this._currentTradeContext = await this.executeTradePath(
       new BigNumber(amount)
     );
 
-    this.watchTradePrice(tradeContext);
+    this.watchTradePrice();
 
-    return tradeContext;
+    return this._currentTradeContext;
   }
 
   /**
@@ -830,38 +827,40 @@ export class UniswapPairFactory {
 
   /**
    * Watch trade price move automatically emitting the stream if it changes
-   * @param tradeContext The old trade context aka the current one
    */
-  private async watchTradePrice(tradeContext: TradeContext): Promise<void> {
-    this._quoteChangeTimeout = setTimeout(async () => {
-      if (this._quoteChanged$.observers.length > 0) {
-        const trade = await this.executeTradePath(
-          new BigNumber(tradeContext.baseConvertRequest)
-        );
+  private watchTradePrice(): void {
+    if (!this._quoteChangeInternal) {
+      this._quoteChangeInternal = setInterval(async () => {
         if (
-          !new BigNumber(trade.expectedConvertQuote).eq(
-            tradeContext.expectedConvertQuote
-          ) ||
-          trade.routeText !== tradeContext.routeText
+          this._quoteChanged$.observers.length > 0 &&
+          this._currentTradeContext
         ) {
-          this._quoteChanged$.next(trade);
-          this.watchTradePrice(trade);
-          return;
-        }
+          const trade = await this.executeTradePath(
+            new BigNumber(this._currentTradeContext.baseConvertRequest)
+          );
+          if (
+            trade.expectedConvertQuote !==
+              this._currentTradeContext.expectedConvertQuote ||
+            trade.routeText !== this._currentTradeContext.routeText
+          ) {
+            this._currentTradeContext = trade;
+            this._quoteChanged$.next(trade);
+            return;
+          }
 
-        // it has expired send another one to them
-        if (tradeContext.tradeExpires > this.generateTradeDeadlineUnixTime()) {
-          this._quoteChanged$.next(trade);
-          this.watchTradePrice(trade);
-          return;
+          // it has expired send another one to them
+          if (
+            this._currentTradeContext.tradeExpires >
+            this.generateTradeDeadlineUnixTime()
+          ) {
+            this._currentTradeContext = trade;
+            this._quoteChanged$.next(trade);
+            return;
+          }
         }
-
-        this.watchTradePrice(tradeContext);
-      } else {
-        this.watchTradePrice(tradeContext);
-      }
-      // maybe make config???
-      // query new prices every 10 seconds
-    }, 10000);
+        // maybe make config???
+        // query new prices every 25 seconds
+      }, 25000);
+    }
   }
 }
