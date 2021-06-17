@@ -1,5 +1,6 @@
 import { ChainId } from '../enums/chain-id';
 import { UniswapVersion } from '../enums/uniswap-version';
+import { EthersProvider } from '../ethers-provider';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
 import { UniswapPair } from '../factories/pair/uniswap-pair';
 
@@ -11,10 +12,9 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 // AAVE - 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9
 
 const routeTest = async () => {
-  console.log(new Date().getTime());
-  const fromTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
+  const fromTokenContractAddress = '0x5EeAA2DCb23056F4E8654a349E57eBE5e76b5e6e'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
   const toTokenContractAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
-  const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
+  const ethereumAddress = '0x63D7F5B18d9E899C2c2cd77652841fB047228471';
 
   const uniswapPair = new UniswapPair({
     fromTokenContractAddress,
@@ -28,14 +28,14 @@ const routeTest = async () => {
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
       disableMultihops: true,
-      uniswapVersions: [UniswapVersion.v3],
+      uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
     }),
   });
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
   // try {
-  const trade = await uniswapPairFactory.trade('10');
+  const trade = await uniswapPairFactory.trade('1');
   console.log(trade);
   // console.log(
   //   trade.allTriedRoutesQuotes.filter(
@@ -43,10 +43,12 @@ const routeTest = async () => {
   //   )
   // );
 
-  console.log(new Date().getTime());
   // } catch (error) {
   //   console.log(error.message);
   // }
+
+  const provider = new EthersProvider(ChainId.MAINNET);
+  provider.provider.estimateGas(trade.transaction);
 
   process.stdin.resume();
 

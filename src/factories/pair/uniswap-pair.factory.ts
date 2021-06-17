@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 import { Subject } from 'rxjs';
+import { ExactInputSingleRequest } from '../../ABI/types/uniswap-router-v3';
 import { Constants } from '../../common/constants';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
@@ -16,7 +17,7 @@ import { BestRouteQuotes } from '../router/models/best-route-quotes';
 import { RouteQuote } from '../router/models/route-quote';
 import { UniswapRouterFactory } from '../router/uniswap-router.factory';
 import { UniswapRouterContractFactoryV2 } from '../router/v2/uniswap-router-contract.factory.v2';
-import { FeeAmount } from '../router/v3/enums/fee-amount-v3';
+import { percentToFeeAmount } from '../router/v3/enums/fee-amount-v3';
 import { UniswapRouterContractFactoryV3 } from '../router/v3/uniswap-router-contract.factory.v3';
 import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
@@ -639,7 +640,7 @@ export class UniswapPairFactory {
         return this.generateTradeDataForV3(
           parseEther(ethAmountIn),
           convertedMinTokens,
-          routeQuote.routePathArray,
+          routeQuote.liquidityProviderFee,
           deadline
         );
       default:
@@ -681,7 +682,7 @@ export class UniswapPairFactory {
         return this.generateTradeDataForV3(
           amountIn,
           parseEther(ethAmountOutMin),
-          routeQuote.routePathArray,
+          routeQuote.liquidityProviderFee,
           deadline
         );
       default:
@@ -726,7 +727,7 @@ export class UniswapPairFactory {
         return this.generateTradeDataForV3(
           amountIn,
           amountMin,
-          routeQuote.routePathArray,
+          routeQuote.liquidityProviderFee,
           deadline
         );
       default:
@@ -741,28 +742,27 @@ export class UniswapPairFactory {
    * Generate trade data for v3
    * @param tokenAmount The token amount
    * @param tokenAmountOut The min token amount out
-   * @param routePathArray The route path array
+   * @param liquidityProviderFee The liquidity provider fee
    * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataForV3(
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
-    routePathArray: string[],
+    liquidityProviderFee: number,
     deadline: string
   ): string {
-    const params = {
-      path: this._uniswapRouterFactory.encodeRoutePathV3(
-        routePathArray,
-        new Array(routePathArray.length - 1).fill(FeeAmount.MEDIUM)
-      ),
-      // recipient: outputIsWETH9 ? router.address : trader.address,
+    const params: ExactInputSingleRequest = {
+      tokenIn: this._uniswapPairFactoryContext.fromToken.contractAddress,
+      tokenOut: this._uniswapPairFactoryContext.toToken.contractAddress,
+      fee: percentToFeeAmount(liquidityProviderFee),
       recipient: this._uniswapPairFactoryContext.ethereumAddress,
       deadline,
       amountIn: hexlify(tokenAmount),
       amountOutMinimum: hexlify(tokenAmountMin),
+      sqrtPriceLimitX96: 0,
     };
 
-    return this._uniswapRouterContractFactoryV3.exactInput(params);
+    return this._uniswapRouterContractFactoryV3.exactInputSingle(params);
   }
 
   /**

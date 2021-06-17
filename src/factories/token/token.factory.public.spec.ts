@@ -84,7 +84,7 @@ describe('TokenFactoryPublic', () => {
       );
       expect(result).toEqual({
         allowance: '0x2386c18764e720',
-        balanceOf: '0x1eae4a62f7',
+        balanceOf: '0x1e72af98f7',
       });
     });
 
@@ -95,7 +95,7 @@ describe('TokenFactoryPublic', () => {
       );
       expect(result).toEqual({
         allowance: '0x00',
-        balanceOf: '0x1eae4a62f7',
+        balanceOf: '0x1e72af98f7',
       });
     });
   });
