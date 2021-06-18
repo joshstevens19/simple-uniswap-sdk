@@ -846,7 +846,7 @@ export class UniswapRouterFactory {
           const amountToTradeWei = parseEther(amountToTrade);
           return hexlify(amountToTradeWei);
         } else {
-          return hexlify(amountToTrade.shiftedBy(this._fromToken.decimals));
+          return hexlify(amountToTrade.shiftedBy(this._toToken.decimals));
         }
       case TradePath.erc20ToEth:
         if (direction == TradeDirection.input) {
