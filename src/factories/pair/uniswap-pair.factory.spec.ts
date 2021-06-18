@@ -12,6 +12,7 @@ import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
 import { MOCKFUN } from '../../mocks/fun-token.mock';
 import { MOCK_PROVIDER_URL } from '../../mocks/provider-url.mock';
 import { MOCKREP } from '../../mocks/rep-token.mock';
+import { TradeDirection } from './models/trade-direction';
 import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
 
 describe('UniswapPairFactory', () => {
@@ -52,18 +53,48 @@ describe('UniswapPairFactory', () => {
     });
 
     describe('findBestRoute', () => {
-      it('should return the best route', async () => {
-        const result = await uniswapPairFactory.findBestRoute('1');
-        expect(result).not.toBeUndefined();
+      describe(TradeDirection.input, () => {
+        it('should return the best route', async () => {
+          const result = await uniswapPairFactory.findBestRoute(
+            '1',
+            TradeDirection.input
+          );
+          expect(result).not.toBeUndefined();
+        });
+      });
+
+      describe(TradeDirection.output, () => {
+        it('should return the best route', async () => {
+          const result = await uniswapPairFactory.findBestRoute(
+            '1',
+            TradeDirection.output
+          );
+          expect(result).not.toBeUndefined();
+        });
       });
     });
 
     describe('findAllPossibleRoutesWithQuote', () => {
-      it('should return all possible routes with quotes', async () => {
-        const result = await uniswapPairFactory.findAllPossibleRoutesWithQuote(
-          '1'
-        );
-        expect(result).not.toBeUndefined();
+      describe(TradeDirection.input, () => {
+        it('should return all possible routes with quotes', async () => {
+          const result =
+            await uniswapPairFactory.findAllPossibleRoutesWithQuote(
+              '1',
+              TradeDirection.input
+            );
+          expect(result).not.toBeUndefined();
+        });
+      });
+
+      describe(TradeDirection.output, () => {
+        it('should return all possible routes with quotes', async () => {
+          const result =
+            await uniswapPairFactory.findAllPossibleRoutesWithQuote(
+              '1',
+              TradeDirection.output
+            );
+          expect(result).not.toBeUndefined();
+        });
       });
     });
 
@@ -252,18 +283,48 @@ describe('UniswapPairFactory', () => {
     });
 
     describe('findBestRoute', () => {
-      it('should return the best route', async () => {
-        const result = await uniswapPairFactory.findBestRoute('1');
-        expect(result).not.toBeUndefined();
+      describe(TradeDirection.input, () => {
+        it('should return the best route', async () => {
+          const result = await uniswapPairFactory.findBestRoute(
+            '1',
+            TradeDirection.input
+          );
+          expect(result).not.toBeUndefined();
+        });
+      });
+
+      describe(TradeDirection.output, () => {
+        it('should return the best route', async () => {
+          const result = await uniswapPairFactory.findBestRoute(
+            '1',
+            TradeDirection.output
+          );
+          expect(result).not.toBeUndefined();
+        });
       });
     });
 
     describe('findAllPossibleRoutesWithQuote', () => {
-      it('should return all possible routes with quotes', async () => {
-        const result = await uniswapPairFactory.findAllPossibleRoutesWithQuote(
-          '1'
-        );
-        expect(result).not.toBeUndefined();
+      describe(TradeDirection.input, () => {
+        it('should return all possible routes with quotes', async () => {
+          const result =
+            await uniswapPairFactory.findAllPossibleRoutesWithQuote(
+              '1',
+              TradeDirection.input
+            );
+          expect(result).not.toBeUndefined();
+        });
+      });
+
+      describe(TradeDirection.output, () => {
+        it('should return all possible routes with quotes', async () => {
+          const result =
+            await uniswapPairFactory.findAllPossibleRoutesWithQuote(
+              '1',
+              TradeDirection.output
+            );
+          expect(result).not.toBeUndefined();
+        });
       });
     });
 
@@ -452,18 +513,48 @@ describe('UniswapPairFactory', () => {
     });
 
     describe('findBestRoute', () => {
-      it('should return the best route', async () => {
-        const result = await uniswapPairFactory.findBestRoute('1');
-        expect(result).not.toBeUndefined();
+      describe(TradeDirection.input, () => {
+        it('should return the best route', async () => {
+          const result = await uniswapPairFactory.findBestRoute(
+            '1',
+            TradeDirection.input
+          );
+          expect(result).not.toBeUndefined();
+        });
+      });
+
+      describe(TradeDirection.output, () => {
+        it('should return the best route', async () => {
+          const result = await uniswapPairFactory.findBestRoute(
+            '1',
+            TradeDirection.output
+          );
+          expect(result).not.toBeUndefined();
+        });
       });
     });
 
     describe('findAllPossibleRoutesWithQuote', () => {
-      it('should return all possible routes with quotes', async () => {
-        const result = await uniswapPairFactory.findAllPossibleRoutesWithQuote(
-          '1'
-        );
-        expect(result).not.toBeUndefined();
+      describe(TradeDirection.input, () => {
+        it('should return all possible routes with quotes', async () => {
+          const result =
+            await uniswapPairFactory.findAllPossibleRoutesWithQuote(
+              '1',
+              TradeDirection.input
+            );
+          expect(result).not.toBeUndefined();
+        });
+      });
+
+      describe(TradeDirection.output, () => {
+        it('should return all possible routes with quotes', async () => {
+          const result =
+            await uniswapPairFactory.findAllPossibleRoutesWithQuote(
+              '1',
+              TradeDirection.output
+            );
+          expect(result).not.toBeUndefined();
+        });
       });
     });
 

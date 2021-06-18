@@ -1,4 +1,5 @@
 import { UniswapVersion } from '../../../enums/uniswap-version';
+import { TradeDirection } from '../../pair/models/trade-direction';
 import { Token } from '../../token/models/token';
 
 export interface RouteQuote {
@@ -8,4 +9,5 @@ export interface RouteQuote {
   routePathArray: string[];
   uniswapVersion: UniswapVersion;
   liquidityProviderFee: number;
+  quoteDirection: TradeDirection;
 }

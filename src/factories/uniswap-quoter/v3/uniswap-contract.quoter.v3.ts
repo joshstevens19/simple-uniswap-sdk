@@ -4,10 +4,11 @@ import { EthersProvider } from '../../../ethers-provider';
 import { UniswapContractContextV3 } from '../../../uniswap-contract-context/uniswap-contract-context-v3';
 
 export class UniswapContractQuoterV3 {
-  private _uniswapQuoterContract = this._ethersProvider.getContract<QuoterContractContext>(
-    JSON.stringify(UniswapContractContextV3.quoterAbi),
-    UniswapContractContextV3.quoterAddress
-  );
+  private _uniswapQuoterContract =
+    this._ethersProvider.getContract<QuoterContractContext>(
+      JSON.stringify(UniswapContractContextV3.quoterAbi),
+      UniswapContractContextV3.quoterAddress
+    );
 
   constructor(private _ethersProvider: EthersProvider) {}
 

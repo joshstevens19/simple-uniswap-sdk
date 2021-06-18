@@ -23,6 +23,7 @@ import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
 import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
+import { TradeDirection } from '../pair/models/trade-direction';
 import { Token } from '../token/models/token';
 import { RouterDirection } from './enums/router-direction';
 import { AllPossibleRoutes } from './models/all-possible-routes';
@@ -68,6 +69,7 @@ export class UniswapRouterFactory {
         this.mainCurrenciesPairsForDAI,
         this.mainCurrenciesPairsForUSDC,
         this.mainCurrenciesPairsForWETH,
+        // this.mainCurrenciesPairsForWBTC,
         [[this._fromToken, this._toToken]],
       ];
     } else {
@@ -241,11 +243,13 @@ export class UniswapRouterFactory {
   /**
    * Get all possible routes with the quotes
    * @param amountToTrade The amount to trade
+   * @param direction The direction you want to get the quote from
    */
   public async getAllPossibleRoutesWithQuotes(
-    amountToTrade: BigNumber
+    amountToTrade: BigNumber,
+    direction: TradeDirection
   ): Promise<RouteQuote[]> {
-    const tradeAmount = this.formatAmountToTrade(amountToTrade);
+    const tradeAmount = this.formatAmountToTrade(amountToTrade, direction);
 
     const routes = await this.getAllPossibleRoutes();
 
@@ -266,7 +270,10 @@ export class UniswapRouterFactory {
 
         contractCallContext[0].calls.push({
           reference: `route${i}`,
-          methodName: 'getAmountsOut',
+          methodName:
+            direction === TradeDirection.input
+              ? 'getAmountsOut'
+              : 'getAmountsIn',
           methodParameters: [tradeAmount, routeCombo],
         });
       }
@@ -290,12 +297,16 @@ export class UniswapRouterFactory {
           this._uniswapVersions.includes(UniswapVersion.v2) ? 1 : 0
         ].calls.push({
           reference: `route${i}`,
-          methodName: 'quoteExactInput',
+          methodName:
+            direction === TradeDirection.input
+              ? 'quoteExactInputSingle'
+              : 'quoteExactOutputSingle',
           methodParameters: [
-            this.encodeRoutePathV3(routeCombo, [
-              percentToFeeAmount(routes.v3[i].liquidityProviderFee),
-            ]),
+            routeCombo[0],
+            routeCombo[1],
+            percentToFeeAmount(routes.v3[i].liquidityProviderFee),
             tradeAmount,
+            0,
           ],
         });
       }
@@ -303,17 +314,22 @@ export class UniswapRouterFactory {
 
     const contractCallResults = await this._multicall.call(contractCallContext);
 
-    return this.buildRouteQuotesFromResults(contractCallResults);
+    return this.buildRouteQuotesFromResults(contractCallResults, direction);
   }
 
   /**
    * Finds the best route
    * @param amountToTrade The amount they want to trade
+   * @param direction The direction you want to get the quote from
    */
   public async findBestRoute(
-    amountToTrade: BigNumber
+    amountToTrade: BigNumber,
+    direction: TradeDirection
   ): Promise<BestRouteQuotes> {
-    const allRoutes = await this.getAllPossibleRoutesWithQuotes(amountToTrade);
+    const allRoutes = await this.getAllPossibleRoutesWithQuotes(
+      amountToTrade,
+      direction
+    );
     if (allRoutes.length === 0) {
       throw new UniswapError(
         `No routes found for ${this._fromToken.contractAddress} > ${this._toToken.contractAddress}`,
@@ -331,36 +347,37 @@ export class UniswapRouterFactory {
           routePathArray: route.routePathArray,
           uniswapVersion: route.uniswapVersion,
           liquidityProviderFee: route.liquidityProviderFee,
+          quoteDirection: route.quoteDirection,
         };
       }),
     };
   }
 
-  /**
-   * Encode the route path for v3
-   * @param path The path
-   * @param fees The fees
-   */
-  public encodeRoutePathV3(path: string[], fees: FeeAmount[]): string {
-    // to do move
-    const FEE_SIZE = 3;
+  // /**
+  //  * Encode the route path for v3 ( WILL NEED WHEN WE SUPPORT V3 DOING NONE DIRECT ROUTES)
+  //  * @param path The path
+  //  * @param fees The fees
+  //  */
+  // public encodeRoutePathV3(path: string[], fees: FeeAmount[]): string {
+  //   // to do move
+  //   const FEE_SIZE = 3;
 
-    if (path.length != fees.length + 1) {
-      throw new Error('path/fee lengths do not match');
-    }
+  //   if (path.length != fees.length + 1) {
+  //     throw new Error('path/fee lengths do not match');
+  //   }
 
-    let encoded = '0x';
-    for (let i = 0; i < fees.length; i++) {
-      // 20 byte encoding of the address
-      encoded += path[i].slice(2);
-      // 3 byte encoding of the fee
-      encoded += fees[i].toString(16).padStart(2 * FEE_SIZE, '0');
-    }
-    // encode the final token
-    encoded += path[path.length - 1].slice(2);
+  //   let encoded = '0x';
+  //   for (let i = 0; i < fees.length; i++) {
+  //     // 20 byte encoding of the address
+  //     encoded += path[i].slice(2);
+  //     // 3 byte encoding of the fee
+  //     encoded += fees[i].toString(16).padStart(2 * FEE_SIZE, '0');
+  //   }
+  //   // encode the final token
+  //   encoded += path[path.length - 1].slice(2);
 
-    return encoded.toLowerCase();
-  }
+  //   return encoded.toLowerCase();
+  // }
 
   /**
    * Works out every possible route it can take - v2 only
@@ -526,9 +543,11 @@ export class UniswapRouterFactory {
   /**
    * Build up route quotes from results
    * @param contractCallResults The contract call results
+   * @param direction The direction you want to get the quote from
    */
   private buildRouteQuotesFromResults(
-    contractCallResults: ContractCallResults
+    contractCallResults: ContractCallResults,
+    direction: TradeDirection
   ): RouteQuote[] {
     const tradePath = this.tradePath();
 
@@ -557,6 +576,7 @@ export class UniswapRouterFactory {
                   contractCallReturnContext.originalContractCallContext.context[
                     i
                   ],
+                  direction,
                   contractCallReturnContext.originalContractCallContext
                     .reference as UniswapVersion
                 )
@@ -569,6 +589,7 @@ export class UniswapRouterFactory {
                   contractCallReturnContext.originalContractCallContext.context[
                     i
                   ],
+                  direction,
                   contractCallReturnContext.originalContractCallContext
                     .reference as UniswapVersion
                 )
@@ -581,6 +602,7 @@ export class UniswapRouterFactory {
                   contractCallReturnContext.originalContractCallContext.context[
                     i
                   ],
+                  direction,
                   contractCallReturnContext.originalContractCallContext
                     .reference as UniswapVersion
                 )
@@ -596,51 +618,76 @@ export class UniswapRouterFactory {
       }
     }
 
-    return result.sort((a, b) => {
-      if (
-        new BigNumber(a.expectedConvertQuote).isGreaterThan(
+    if (direction === TradeDirection.input) {
+      return result.sort((a, b) => {
+        if (
+          new BigNumber(a.expectedConvertQuote).isGreaterThan(
+            b.expectedConvertQuote
+          )
+        ) {
+          return -1;
+        }
+        return new BigNumber(a.expectedConvertQuote).isLessThan(
           b.expectedConvertQuote
         )
-      ) {
-        return -1;
-      }
-      return new BigNumber(a.expectedConvertQuote).isLessThan(
-        b.expectedConvertQuote
-      )
-        ? 1
-        : 0;
-    });
+          ? 1
+          : 0;
+      });
+    } else {
+      return result.sort((a, b) => {
+        if (
+          new BigNumber(a.expectedConvertQuote).isLessThan(
+            b.expectedConvertQuote
+          )
+        ) {
+          return -1;
+        }
+        return new BigNumber(a.expectedConvertQuote).isGreaterThan(
+          b.expectedConvertQuote
+        )
+          ? 1
+          : 0;
+      });
+    }
   }
 
   /**
-   * Build up the route quote for erc20 > erc20
+   * Build up the route quote for erc20 > eth
    * @param callReturnContext The call return context
+   * @param routeContext The route context
+   * @param direction The direction you want to get the quote from
+   * @param uniswapVersion The uniswap version
    */
   private buildRouteQuoteForErc20ToErc20(
     callReturnContext: CallReturnContext,
     routeContext: RouteContext,
+    direction: TradeDirection,
     uniswapVersion: UniswapVersion
   ): RouteQuote {
     return this.buildRouteQuoteForEthToErc20(
       callReturnContext,
       routeContext,
+      direction,
       uniswapVersion
     );
   }
 
   /**
-   * Build up route quote for eth > erc20
+   * Build up the route quote for erc20 > eth
    * @param callReturnContext The call return context
+   * @param routeContext The route context
+   * @param direction The direction you want to get the quote from
+   * @param uniswapVersion The uniswap version
    */
   private buildRouteQuoteForEthToErc20(
     callReturnContext: CallReturnContext,
     routeContext: RouteContext,
+    direction: TradeDirection,
     uniswapVersion: UniswapVersion
   ): RouteQuote {
-    const convertQuoteUnformatted = new BigNumber(
-      callReturnContext.returnValues[
-        callReturnContext.returnValues.length - 1
-      ].hex
+    const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
+      callReturnContext,
+      uniswapVersion
     );
 
     switch (uniswapVersion) {
@@ -664,6 +711,7 @@ export class UniswapRouterFactory {
           routePathArray: callReturnContext.methodParameters[1],
           uniswapVersion,
           liquidityProviderFee: routeContext.liquidityProviderFee,
+          quoteDirection: direction,
         };
       case UniswapVersion.v3:
         return {
@@ -678,6 +726,7 @@ export class UniswapRouterFactory {
           ],
           uniswapVersion,
           liquidityProviderFee: routeContext.liquidityProviderFee,
+          quoteDirection: direction,
         };
       default:
         throw new UniswapError('Invalid uniswap version', uniswapVersion);
@@ -687,24 +736,32 @@ export class UniswapRouterFactory {
   /**
    * Build up the route quote for erc20 > eth
    * @param callReturnContext The call return context
+   * @param routeContext The route context
+   * @param direction The direction you want to get the quote from
+   * @param uniswapVersion The uniswap version
    */
   private buildRouteQuoteForErc20ToEth(
     callReturnContext: CallReturnContext,
     routeContext: RouteContext,
+    direction: TradeDirection,
     uniswapVersion: UniswapVersion
   ): RouteQuote {
-    const convertQuoteUnformatted = new BigNumber(
-      callReturnContext.returnValues[
-        callReturnContext.returnValues.length - 1
-      ].hex
+    const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
+      callReturnContext,
+      uniswapVersion
     );
 
     switch (uniswapVersion) {
       case UniswapVersion.v2:
         return {
-          expectedConvertQuote: new BigNumber(
-            formatEther(convertQuoteUnformatted)
-          ).toFixed(this._toToken.decimals),
+          expectedConvertQuote:
+            direction === TradeDirection.input
+              ? new BigNumber(formatEther(convertQuoteUnformatted)).toFixed(
+                  this._toToken.decimals
+                )
+              : convertQuoteUnformatted
+                  .shiftedBy(this._fromToken.decimals * -1)
+                  .toFixed(this._fromToken.decimals),
           routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
             (c: string) => {
               return this.allTokens.find((t) => t.contractAddress === c);
@@ -720,6 +777,7 @@ export class UniswapRouterFactory {
           routePathArray: callReturnContext.methodParameters[1],
           uniswapVersion,
           liquidityProviderFee: routeContext.liquidityProviderFee,
+          quoteDirection: direction,
         };
       case UniswapVersion.v3:
         return {
@@ -734,7 +792,31 @@ export class UniswapRouterFactory {
           ],
           uniswapVersion,
           liquidityProviderFee: routeContext.liquidityProviderFee,
+          quoteDirection: direction,
         };
+      default:
+        throw new UniswapError('Invalid uniswap version', uniswapVersion);
+    }
+  }
+
+  /**
+   * Get the convert quote unformatted from the call return context
+   * @param callReturnContext The call return context
+   * @param uniswapVersion The uniswap version
+   */
+  private getConvertQuoteUnformatted(
+    callReturnContext: CallReturnContext,
+    uniswapVersion: UniswapVersion
+  ): BigNumber {
+    switch (uniswapVersion) {
+      case UniswapVersion.v2:
+        return new BigNumber(callReturnContext.returnValues[0].hex);
+      case UniswapVersion.v3:
+        return new BigNumber(
+          callReturnContext.returnValues[
+            callReturnContext.returnValues.length - 1
+          ].hex
+        );
       default:
         throw new UniswapError('Invalid uniswap version', uniswapVersion);
     }
@@ -743,16 +825,33 @@ export class UniswapRouterFactory {
   /**
    * Format amount to trade into callable formats
    * @param amountToTrade The amount to trade
-   * @param uniswapFactoryContext The uniswap factory context
+   * @param direction The direction you want to get the quote from
    */
-  private formatAmountToTrade(amountToTrade: BigNumber): string {
+  private formatAmountToTrade(
+    amountToTrade: BigNumber,
+    direction: TradeDirection
+  ): string {
     switch (this.tradePath()) {
       case TradePath.ethToErc20:
-        const amountToTradeWei = parseEther(amountToTrade);
-        return hexlify(amountToTradeWei);
+        if (direction == TradeDirection.input) {
+          const amountToTradeWei = parseEther(amountToTrade);
+          return hexlify(amountToTradeWei);
+        } else {
+          return hexlify(amountToTrade.shiftedBy(this._toToken.decimals));
+        }
       case TradePath.erc20ToEth:
+        if (direction == TradeDirection.input) {
+          return hexlify(amountToTrade.shiftedBy(this._fromToken.decimals));
+        } else {
+          const amountToTradeWei = parseEther(amountToTrade);
+          return hexlify(amountToTradeWei);
+        }
       case TradePath.erc20ToErc20:
-        return hexlify(amountToTrade.shiftedBy(this._fromToken.decimals));
+        if (direction == TradeDirection.input) {
+          return hexlify(amountToTrade.shiftedBy(this._fromToken.decimals));
+        } else {
+          return hexlify(amountToTrade.shiftedBy(this._toToken.decimals));
+        }
       default:
         throw new UniswapError(
           `Internal trade path ${this.tradePath()} is not supported`,
@@ -795,6 +894,7 @@ export class UniswapRouterFactory {
         [this._fromToken, this.USDCTokenForConnectedNetwork],
         [this._fromToken, this.DAITokenForConnectedNetwork],
         [this._fromToken, this.WETHTokenForConnectedNetwork],
+        // [this._fromToken, this.WBTCTokenForConnectedNetwork],
       ];
 
       return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
@@ -812,6 +912,7 @@ export class UniswapRouterFactory {
         [this.USDCTokenForConnectedNetwork, this._toToken],
         [this.DAITokenForConnectedNetwork, this._toToken],
         [this.WETHTokenForConnectedNetwork, this._toToken],
+        // [this.WBTCTokenForConnectedNetwork, this._toToken],
       ];
 
       return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
@@ -874,6 +975,16 @@ export class UniswapRouterFactory {
     return [];
   }
 
+  // private get mainCurrenciesPairsForWBTC(): Token[][] {
+  //   if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+  //     return [
+  //       [this.WBTCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
+  //     ];
+  //   }
+
+  //   return [];
+  // }
+
   private get mainCurrenciesPairsForWETH(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
       return [
@@ -881,6 +992,7 @@ export class UniswapRouterFactory {
         [this.WETHTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+        // [this.WETHTokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
       ];
     }
 
@@ -906,4 +1018,8 @@ export class UniswapRouterFactory {
   private get WETHTokenForConnectedNetwork() {
     return WETH.token(this._ethersProvider.provider.network.chainId);
   }
+
+  // private get WBTCTokenForConnectedNetwork() {
+  //   return WBTC.token(this._ethersProvider.provider.network.chainId);
+  // }
 }

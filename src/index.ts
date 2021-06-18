@@ -9,6 +9,7 @@ export { ChainId } from './enums/chain-id';
 export { UniswapVersion } from './enums/uniswap-version';
 export { EthersProvider } from './ethers-provider';
 export { TradeContext } from './factories/pair/models/trade-context';
+export { TradeDirection } from './factories/pair/models/trade-direction';
 export { Transaction } from './factories/pair/models/transaction';
 export {
   UniswapPairContextForChainId,
