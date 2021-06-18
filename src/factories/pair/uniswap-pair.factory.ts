@@ -520,11 +520,11 @@ export class UniswapPairFactory {
    * @param direction The direction you want to get the quote from
    */
   private async findBestPriceAndPathErc20ToErc20(
-    erc20Amount: BigNumber,
+    baseConvertRequest: BigNumber,
     direction: TradeDirection
   ): Promise<TradeContext> {
     const bestRouteQuotes = await this._routes.findBestRoute(
-      erc20Amount,
+      baseConvertRequest,
       direction
     );
     const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
@@ -537,36 +537,68 @@ export class UniswapPairFactory {
         .toFixed(this.fromToken.decimals)
     );
 
+    const tokenAmountInMax = new BigNumber(
+      bestRouteQuote.expectedConvertQuote
+    ).plus(
+      new BigNumber(bestRouteQuote.expectedConvertQuote)
+        .times(this._uniswapPairFactoryContext.settings.slippage)
+        .toFixed(this.fromToken.decimals)
+    );
+
     const tradeExpires = this.generateTradeDeadlineUnixTime();
 
-    const data = this.generateTradeDataErc20ToErc20(
-      erc20Amount,
-      convertQuoteWithSlippage,
-      bestRouteQuote,
-      tradeExpires.toString()
-    );
+    const data =
+      direction === TradeDirection.input
+        ? this.generateTradeDataErc20ToErc20Input(
+            baseConvertRequest,
+            convertQuoteWithSlippage,
+            bestRouteQuote,
+            tradeExpires.toString()
+          )
+        : this.generateTradeDataErc20ToErc20Output(
+            tokenAmountInMax,
+            baseConvertRequest,
+            bestRouteQuote,
+            tradeExpires.toString()
+          );
 
     const allowanceAndBalanceOf =
       await this.getAllowanceAndBalanceOfForFromToken(
         bestRouteQuote.uniswapVersion
       );
 
-    const hasEnoughAllowance = this._hasGotEnoughAllowance(
-      erc20Amount.toFixed(),
-      allowanceAndBalanceOf.allowance
-    );
+    const hasEnoughAllowance =
+      direction === TradeDirection.input
+        ? this._hasGotEnoughAllowance(
+            baseConvertRequest.toFixed(),
+            allowanceAndBalanceOf.allowance
+          )
+        : this._hasGotEnoughAllowance(
+            bestRouteQuote.expectedConvertQuote,
+            allowanceAndBalanceOf.allowance
+          );
 
     const tradeContext: TradeContext = {
       uniswapVersion: bestRouteQuote.uniswapVersion,
-      baseConvertRequest: erc20Amount.toFixed(),
-      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
-        this.toToken.decimals
-      ),
-      maximumSent: null,
+      quoteDirection: direction,
+      baseConvertRequest: baseConvertRequest.toFixed(),
+      minAmountConvertQuote:
+        direction === TradeDirection.input
+          ? convertQuoteWithSlippage.toFixed(this.toToken.decimals)
+          : null,
+      maximumSent:
+        direction === TradeDirection.input
+          ? null
+          : tokenAmountInMax.toFixed(this.toToken.decimals),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee: erc20Amount
-        .times(bestRouteQuote.liquidityProviderFee)
-        .toFixed(this.fromToken.decimals),
+      liquidityProviderFee:
+        direction === TradeDirection.input
+          ? baseConvertRequest
+              .times(bestRouteQuote.liquidityProviderFee)
+              .toFixed(this.fromToken.decimals)
+          : new BigNumber(bestRouteQuote.expectedConvertQuote)
+              .times(bestRouteQuote.liquidityProviderFee)
+              .toFixed(this.fromToken.decimals),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
@@ -580,10 +612,16 @@ export class UniswapPairFactory {
         : undefined,
       toToken: this.toToken,
       fromToken: this.fromToken,
-      fromBalance: this.hasGotEnoughBalanceErc20(
-        erc20Amount.toFixed(),
-        allowanceAndBalanceOf.balanceOf
-      ),
+      fromBalance:
+        direction === TradeDirection.input
+          ? this.hasGotEnoughBalanceErc20(
+              baseConvertRequest.toFixed(),
+              allowanceAndBalanceOf.balanceOf
+            )
+          : this.hasGotEnoughBalanceErc20(
+              bestRouteQuote.expectedConvertQuote,
+              allowanceAndBalanceOf.balanceOf
+            ),
       transaction: this.buildUpTransactionErc20(
         bestRouteQuote.uniswapVersion,
         data
@@ -591,7 +629,6 @@ export class UniswapPairFactory {
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
       quoteChanged$: this._quoteChanged$,
       destroy: () => this.destroy(),
-      quoteDirection: direction,
     };
 
     return tradeContext;
@@ -788,13 +825,13 @@ export class UniswapPairFactory {
   }
 
   /**
-   * Generate trade amount erc20 > erc20
+   * Generate trade amount erc20 > erc20 for input
    * @param tokenAmount The token amount
    * @param tokenAmountOut The min token amount out
    * @param routeQuote The route quote
    * @param deadline The deadline it expiries unix time
    */
-  private generateTradeDataErc20ToErc20(
+  private generateTradeDataErc20ToErc20Input(
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
     routeQuote: RouteQuote,
@@ -822,6 +859,52 @@ export class UniswapPairFactory {
           amountIn,
           amountMin,
           routeQuote.liquidityProviderFee,
+          deadline
+        );
+      default:
+        throw new UniswapError(
+          'Uniswap version not supported',
+          ErrorCodes.uniswapVersionNotSupported
+        );
+    }
+  }
+
+  /**
+   * Generate trade amount erc20 > erc20 for output
+   * @param tokenAmount The token amount
+   * @param tokenAmountOut The min token amount out
+   * @param routeQuote The route quote
+   * @param deadline The deadline it expiries unix time
+   */
+  private generateTradeDataErc20ToErc20Output(
+    tokenAmountInMax: BigNumber,
+    tokenAmountOut: BigNumber,
+    routeQuote: RouteQuote,
+    deadline: string
+  ): string {
+    // uniswap adds extra digits on even if the token is say 8 digits long
+    const amountInMax = tokenAmountInMax
+      .shiftedBy(this.fromToken.decimals)
+      .decimalPlaces(0);
+
+    const amountOut = tokenAmountOut
+      .shiftedBy(this.toToken.decimals)
+      .decimalPlaces(0);
+
+    switch (routeQuote.uniswapVersion) {
+      case UniswapVersion.v2:
+        return this._uniswapRouterContractFactoryV2.swapTokensForExactTokens(
+          hexlify(amountOut),
+          hexlify(amountInMax),
+          routeQuote.routePathArray,
+          this._uniswapPairFactoryContext.ethereumAddress,
+          deadline
+        );
+      case UniswapVersion.v3:
+        return this.generateTradeDataForV3Output(
+          amountOut,
+          amountInMax,
+          routeQuote,
           deadline
         );
       default:

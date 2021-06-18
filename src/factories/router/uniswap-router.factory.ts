@@ -318,7 +318,7 @@ export class UniswapRouterFactory {
 
     console.log(
       JSON.stringify(
-        contractCallResults.results[UniswapVersion.v3].callsReturnContext,
+        contractCallResults.results[UniswapVersion.v2].callsReturnContext,
         null,
         4
       )
@@ -695,10 +695,10 @@ export class UniswapRouterFactory {
     direction: TradeDirection,
     uniswapVersion: UniswapVersion
   ): RouteQuote {
-    const convertQuoteUnformatted = new BigNumber(
-      callReturnContext.returnValues[
-        callReturnContext.returnValues.length - 1
-      ].hex
+    const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
+      callReturnContext,
+      direction,
+      uniswapVersion
     );
 
     switch (uniswapVersion) {
