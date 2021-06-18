@@ -69,6 +69,7 @@ export class UniswapRouterFactory {
         this.mainCurrenciesPairsForDAI,
         this.mainCurrenciesPairsForUSDC,
         this.mainCurrenciesPairsForWETH,
+        // this.mainCurrenciesPairsForWBTC,
         [[this._fromToken, this._toToken]],
       ];
     } else {
@@ -686,7 +687,6 @@ export class UniswapRouterFactory {
   ): RouteQuote {
     const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
       callReturnContext,
-      direction,
       uniswapVersion
     );
 
@@ -748,7 +748,6 @@ export class UniswapRouterFactory {
   ): RouteQuote {
     const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
       callReturnContext,
-      direction,
       uniswapVersion
     );
 
@@ -803,23 +802,15 @@ export class UniswapRouterFactory {
   /**
    * Get the convert quote unformatted from the call return context
    * @param callReturnContext The call return context
-   * @param direction The direction you want to get the quote from
    * @param uniswapVersion The uniswap version
    */
   private getConvertQuoteUnformatted(
     callReturnContext: CallReturnContext,
-    direction: TradeDirection,
     uniswapVersion: UniswapVersion
   ): BigNumber {
     switch (uniswapVersion) {
       case UniswapVersion.v2:
-        return new BigNumber(
-          callReturnContext.returnValues[
-            direction === TradeDirection.input
-              ? callReturnContext.returnValues.length - 1
-              : callReturnContext.returnValues.length - 2
-          ].hex
-        );
+        return new BigNumber(callReturnContext.returnValues[0].hex);
       case UniswapVersion.v3:
         return new BigNumber(
           callReturnContext.returnValues[
@@ -903,6 +894,7 @@ export class UniswapRouterFactory {
         [this._fromToken, this.USDCTokenForConnectedNetwork],
         [this._fromToken, this.DAITokenForConnectedNetwork],
         [this._fromToken, this.WETHTokenForConnectedNetwork],
+        // [this._fromToken, this.WBTCTokenForConnectedNetwork],
       ];
 
       return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
@@ -920,6 +912,7 @@ export class UniswapRouterFactory {
         [this.USDCTokenForConnectedNetwork, this._toToken],
         [this.DAITokenForConnectedNetwork, this._toToken],
         [this.WETHTokenForConnectedNetwork, this._toToken],
+        // [this.WBTCTokenForConnectedNetwork, this._toToken],
       ];
 
       return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
@@ -982,6 +975,16 @@ export class UniswapRouterFactory {
     return [];
   }
 
+  // private get mainCurrenciesPairsForWBTC(): Token[][] {
+  //   if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+  //     return [
+  //       [this.WBTCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
+  //     ];
+  //   }
+
+  //   return [];
+  // }
+
   private get mainCurrenciesPairsForWETH(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
       return [
@@ -989,6 +992,7 @@ export class UniswapRouterFactory {
         [this.WETHTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+        // [this.WETHTokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
       ];
     }
 
@@ -1014,4 +1018,8 @@ export class UniswapRouterFactory {
   private get WETHTokenForConnectedNetwork() {
     return WETH.token(this._ethersProvider.provider.network.chainId);
   }
+
+  // private get WBTCTokenForConnectedNetwork() {
+  //   return WBTC.token(this._ethersProvider.provider.network.chainId);
+  // }
 }
