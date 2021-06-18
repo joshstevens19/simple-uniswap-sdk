@@ -6,6 +6,7 @@ import { MOCKAAVE } from '../../mocks/aave-token.mock';
 import { MOCKFUN } from '../../mocks/fun-token.mock';
 import { MOCKREP } from '../../mocks/rep-token.mock';
 import { MOCKUNI } from '../../mocks/uni-token.mock';
+import { TradeDirection } from '../pair/models/trade-direction';
 import { UniswapRouterFactory } from './uniswap-router.factory';
 
 describe('UniswapRouterFactory', () => {
@@ -73,93 +74,214 @@ describe('UniswapRouterFactory', () => {
     });
 
     describe('getAllPossibleRoutesWithQuotes', () => {
-      it('should get all possible routes with quote', async () => {
-        const result =
-          await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
-            new BigNumber(1)
+      describe(TradeDirection.input, () => {
+        it('should get all possible routes with quote', async () => {
+          const result =
+            await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
+              new BigNumber(1),
+              TradeDirection.input
+            );
+          expect(result.length > 0).toEqual(true);
+        });
+
+        it('should only return direct routes (in this case return nothing as there is no direct route)', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
           );
-        expect(result.length > 0).toEqual(true);
+
+          const result = await factory.getAllPossibleRoutesWithQuotes(
+            new BigNumber(1),
+            TradeDirection.input
+          );
+          expect(
+            result.filter((c) => c.routePathArray.length > 2).length === 0
+          ).toEqual(true);
+        });
       });
 
-      it('should only return direct routes (in this case return nothing as there is no direct route)', async () => {
-        const factory = new UniswapRouterFactory(
-          fromToken,
-          toToken,
-          true,
-          [UniswapVersion.v2, UniswapVersion.v3],
-          ethersProvider
-        );
+      describe(TradeDirection.output, () => {
+        it('should get all possible routes with quote', async () => {
+          const result =
+            await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
+              new BigNumber(1),
+              TradeDirection.output
+            );
+          expect(result.length > 0).toEqual(true);
+        });
 
-        const result = await factory.getAllPossibleRoutesWithQuotes(
-          new BigNumber(1)
-        );
-        expect(
-          result.filter((c) => c.routePathArray.length > 2).length === 0
-        ).toEqual(true);
+        it('should only return direct routes (in this case return nothing as there is no direct route)', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
+          );
+
+          const result = await factory.getAllPossibleRoutesWithQuotes(
+            new BigNumber(1),
+            TradeDirection.output
+          );
+          expect(
+            result.filter((c) => c.routePathArray.length > 2).length === 0
+          ).toEqual(true);
+        });
       });
     });
 
     describe('findBestRoute', () => {
       describe('v2', () => {
-        it('should find best route', async () => {
-          const factory = new UniswapRouterFactory(
-            MOCKFUN(),
-            MOCKREP(),
-            false,
-            [UniswapVersion.v2],
-            ethersProvider
-          );
+        describe(TradeDirection.input, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              MOCKFUN(),
+              MOCKREP(),
+              false,
+              [UniswapVersion.v2],
+              ethersProvider
+            );
 
-          const result = await factory.findBestRoute(new BigNumber(10000));
-          expect(result.bestRouteQuote.routeText).toEqual('FUN > WETH > REP');
+            const result = await factory.findBestRoute(
+              new BigNumber(10000),
+              TradeDirection.input
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('FUN > WETH > REP');
+          });
+        });
+
+        describe(TradeDirection.output, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              MOCKFUN(),
+              MOCKREP(),
+              false,
+              [UniswapVersion.v2],
+              ethersProvider
+            );
+
+            const result = await factory.findBestRoute(
+              new BigNumber(50),
+              TradeDirection.output
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('FUN > WETH > REP');
+          });
         });
       });
 
       describe('v3', () => {
-        it('should find best route', async () => {
-          const factory = new UniswapRouterFactory(
-            fromToken,
-            toToken,
-            false,
-            [UniswapVersion.v3],
-            ethersProvider
-          );
+        describe(TradeDirection.input, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              fromToken,
+              toToken,
+              false,
+              [UniswapVersion.v3],
+              ethersProvider
+            );
 
-          const result = await factory.findBestRoute(new BigNumber(100));
-          expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
+            const result = await factory.findBestRoute(
+              new BigNumber(100),
+              TradeDirection.input
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
+          });
+        });
+
+        describe(TradeDirection.output, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              fromToken,
+              toToken,
+              false,
+              [UniswapVersion.v3],
+              ethersProvider
+            );
+
+            const result = await factory.findBestRoute(
+              new BigNumber(100),
+              TradeDirection.output
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
+          });
         });
       });
 
-      it('should find best route', async () => {
-        const result = await uniswapRouterFactory.findBestRoute(
-          new BigNumber(1000)
-        );
-        if (result.bestRouteQuote.uniswapVersion === UniswapVersion.v2) {
-          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH > UNI');
-        } else {
-          expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
-        }
+      describe(TradeDirection.input, () => {
+        it('should find best route', async () => {
+          const result = await uniswapRouterFactory.findBestRoute(
+            new BigNumber(10000),
+            TradeDirection.input
+          );
+          if (result.bestRouteQuote.uniswapVersion === UniswapVersion.v2) {
+            expect(result.bestRouteQuote.routeText).toEqual(
+              'AAVE > WETH > UNI'
+            );
+          } else {
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
+          }
+        });
+
+        it('should throw an error as there is no best route with disableMultihops turned on', async () => {
+          const factory = new UniswapRouterFactory(
+            MOCKFUN(),
+            MOCKREP(),
+            true,
+            [UniswapVersion.v2],
+            ethersProvider
+          );
+
+          await expect(
+            factory.findBestRoute(new BigNumber(100), TradeDirection.input)
+          ).rejects.toThrowError(
+            new UniswapError(
+              `No routes found for ${MOCKFUN().contractAddress} > ${
+                MOCKREP().contractAddress
+              }`,
+              ErrorCodes.noRoutesFound
+            )
+          );
+        });
       });
 
-      it('should throw an error as there is no best route with disableMultihops turned on', async () => {
-        const factory = new UniswapRouterFactory(
-          MOCKFUN(),
-          MOCKREP(),
-          true,
-          [UniswapVersion.v2],
-          ethersProvider
-        );
+      describe(TradeDirection.output, () => {
+        it('should find best route', async () => {
+          const result = await uniswapRouterFactory.findBestRoute(
+            new BigNumber(1000),
+            TradeDirection.output
+          );
+          if (result.bestRouteQuote.uniswapVersion === UniswapVersion.v2) {
+            expect(result.bestRouteQuote.routeText).toEqual(
+              'AAVE > WETH > USDT > UNI'
+            );
+          } else {
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');
+          }
+        });
 
-        await expect(
-          factory.findBestRoute(new BigNumber(100))
-        ).rejects.toThrowError(
-          new UniswapError(
-            `No routes found for ${MOCKFUN().contractAddress} > ${
-              MOCKREP().contractAddress
-            }`,
-            ErrorCodes.noRoutesFound
-          )
-        );
+        it('should throw an error as there is no best route with disableMultihops turned on', async () => {
+          const factory = new UniswapRouterFactory(
+            MOCKFUN(),
+            MOCKREP(),
+            true,
+            [UniswapVersion.v2],
+            ethersProvider
+          );
+
+          await expect(
+            factory.findBestRoute(new BigNumber(100), TradeDirection.output)
+          ).rejects.toThrowError(
+            new UniswapError(
+              `No routes found for ${MOCKFUN().contractAddress} > ${
+                MOCKREP().contractAddress
+              }`,
+              ErrorCodes.noRoutesFound
+            )
+          );
+        });
       });
     });
   });
@@ -231,86 +353,202 @@ describe('UniswapRouterFactory', () => {
     });
 
     describe('getAllPossibleRoutesWithQuotes', () => {
-      it('should get all possible routes with quote', async () => {
-        const result =
-          await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
-            new BigNumber(1)
+      describe(TradeDirection.output, () => {
+        it('should get all possible routes with quote', async () => {
+          const result =
+            await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
+              new BigNumber(1),
+              TradeDirection.output
+            );
+          expect(result.length > 0).toEqual(true);
+        });
+
+        it('should only return direct routes', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
           );
-        expect(result.length > 0).toEqual(true);
+
+          const result = await factory.getAllPossibleRoutesWithQuotes(
+            new BigNumber(1),
+            TradeDirection.output
+          );
+          expect(
+            result.filter((c) => c.routePathArray.length > 2).length > 0
+          ).toEqual(false);
+        });
       });
 
-      it('should only return direct routes', async () => {
-        const factory = new UniswapRouterFactory(
-          fromToken,
-          toToken,
-          true,
-          [UniswapVersion.v2, UniswapVersion.v3],
-          ethersProvider
-        );
+      describe(TradeDirection.input, () => {
+        it('should get all possible routes with quote', async () => {
+          const result =
+            await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
+              new BigNumber(1),
+              TradeDirection.input
+            );
+          expect(result.length > 0).toEqual(true);
+        });
 
-        const result = await factory.getAllPossibleRoutesWithQuotes(
-          new BigNumber(1)
-        );
-        expect(
-          result.filter((c) => c.routePathArray.length > 2).length > 0
-        ).toEqual(false);
+        it('should only return direct routes', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
+          );
+
+          const result = await factory.getAllPossibleRoutesWithQuotes(
+            new BigNumber(1),
+            TradeDirection.input
+          );
+          expect(
+            result.filter((c) => c.routePathArray.length > 2).length > 0
+          ).toEqual(false);
+        });
       });
     });
 
     describe('findBestRoute', () => {
       describe('v2', () => {
-        it('should find best route', async () => {
-          const factory = new UniswapRouterFactory(
-            MOCKFUN(),
-            toToken,
-            false,
-            [UniswapVersion.v2],
-            ethersProvider
-          );
+        describe(TradeDirection.input, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              MOCKFUN(),
+              toToken,
+              false,
+              [UniswapVersion.v2],
+              ethersProvider
+            );
 
-          const result = await factory.findBestRoute(new BigNumber(10000000));
-          expect(result.bestRouteQuote.routeText).toEqual('FUN > WETH');
+            const result = await factory.findBestRoute(
+              new BigNumber(10000000),
+              TradeDirection.input
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('FUN > WETH');
+          });
+        });
+
+        describe(TradeDirection.output, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              MOCKFUN(),
+              toToken,
+              false,
+              [UniswapVersion.v2],
+              ethersProvider
+            );
+
+            const result = await factory.findBestRoute(
+              new BigNumber(1),
+              TradeDirection.output
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('FUN > WETH');
+          });
         });
       });
 
-      describe('v2', () => {
-        it('should find best route', async () => {
-          const factory = new UniswapRouterFactory(
-            MOCKAAVE(),
-            toToken,
-            false,
-            [UniswapVersion.v3],
-            ethersProvider
-          );
+      describe('v3', () => {
+        describe(TradeDirection.input, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              MOCKAAVE(),
+              toToken,
+              false,
+              [UniswapVersion.v3],
+              ethersProvider
+            );
 
-          const result = await factory.findBestRoute(new BigNumber(100));
+            const result = await factory.findBestRoute(
+              new BigNumber(10000),
+              TradeDirection.input
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+          });
+        });
+
+        describe(TradeDirection.output, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              MOCKAAVE(),
+              toToken,
+              false,
+              [UniswapVersion.v3],
+              ethersProvider
+            );
+
+            const result = await factory.findBestRoute(
+              new BigNumber(1),
+              TradeDirection.output
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+          });
+        });
+      });
+
+      describe(TradeDirection.input, () => {
+        it('should find best route', async () => {
+          const result = await uniswapRouterFactory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.input
+          );
           expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
         });
+
+        it('should return best route', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
+          );
+
+          const result = await factory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.input
+          );
+
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+          expect(
+            result.triedRoutesQuote.filter((c) => c.routePathArray.length > 2)
+              .length > 0
+          ).toEqual(false);
+        });
       });
 
-      it('should find best route', async () => {
-        const result = await uniswapRouterFactory.findBestRoute(
-          new BigNumber(100)
-        );
-        expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
-      });
+      describe(TradeDirection.output, () => {
+        it('should find best route', async () => {
+          const result = await uniswapRouterFactory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.output
+          );
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+        });
 
-      it('should return best route', async () => {
-        const factory = new UniswapRouterFactory(
-          fromToken,
-          toToken,
-          true,
-          [UniswapVersion.v2, UniswapVersion.v3],
-          ethersProvider
-        );
+        it('should return best route', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
+          );
 
-        const result = await factory.findBestRoute(new BigNumber(100));
+          const result = await factory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.output
+          );
 
-        expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
-        expect(
-          result.triedRoutesQuote.filter((c) => c.routePathArray.length > 2)
-            .length > 0
-        ).toEqual(false);
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+          expect(
+            result.triedRoutesQuote.filter((c) => c.routePathArray.length > 2)
+              .length > 0
+          ).toEqual(false);
+        });
       });
     });
   });
@@ -382,82 +620,193 @@ describe('UniswapRouterFactory', () => {
     });
 
     describe('getAllPossibleRoutesWithQuotes', () => {
-      it('should get all possible routes with quote', async () => {
-        const result =
-          await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
-            new BigNumber(1)
+      describe(TradeDirection.input, () => {
+        it('should get all possible routes with quote', async () => {
+          const result =
+            await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
+              new BigNumber(1),
+              TradeDirection.input
+            );
+          expect(result.length > 0).toEqual(true);
+        });
+
+        it('should only return direct routes', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
           );
-        expect(result.length > 0).toEqual(true);
+
+          const result = await factory.getAllPossibleRoutesWithQuotes(
+            new BigNumber(1),
+            TradeDirection.input
+          );
+          expect(
+            result.filter((c) => c.routePathArray.length > 2).length > 0
+          ).toEqual(false);
+        });
       });
+      describe(TradeDirection.output, () => {
+        it('should get all possible routes with quote', async () => {
+          const result =
+            await uniswapRouterFactory.getAllPossibleRoutesWithQuotes(
+              new BigNumber(1),
+              TradeDirection.output
+            );
+          expect(result.length > 0).toEqual(true);
+        });
 
-      it('should only return direct routes', async () => {
-        const factory = new UniswapRouterFactory(
-          fromToken,
-          toToken,
-          true,
-          [UniswapVersion.v2, UniswapVersion.v3],
-          ethersProvider
-        );
+        it('should only return direct routes', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            true,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
+          );
 
-        const result = await factory.getAllPossibleRoutesWithQuotes(
-          new BigNumber(1)
-        );
-        expect(
-          result.filter((c) => c.routePathArray.length > 2).length > 0
-        ).toEqual(false);
+          const result = await factory.getAllPossibleRoutesWithQuotes(
+            new BigNumber(1),
+            TradeDirection.output
+          );
+          expect(
+            result.filter((c) => c.routePathArray.length > 2).length > 0
+          ).toEqual(false);
+        });
       });
     });
 
     describe('findBestRoute', () => {
       describe('v2', () => {
-        it('should find best route', async () => {
-          const factory = new UniswapRouterFactory(
-            fromToken,
-            MOCKFUN(),
-            false,
-            [UniswapVersion.v2],
-            ethersProvider
-          );
+        describe(TradeDirection.input, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              fromToken,
+              MOCKFUN(),
+              false,
+              [UniswapVersion.v2],
+              ethersProvider
+            );
 
-          const result = await factory.findBestRoute(new BigNumber(100));
-          expect(result.bestRouteQuote.routeText).toEqual('WETH > FUN');
+            const result = await factory.findBestRoute(
+              new BigNumber(10000),
+              TradeDirection.input
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('WETH > FUN');
+          });
+        });
+
+        describe(TradeDirection.output, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              fromToken,
+              MOCKFUN(),
+              false,
+              [UniswapVersion.v2],
+              ethersProvider
+            );
+
+            const result = await factory.findBestRoute(
+              new BigNumber(10000),
+              TradeDirection.output
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('WETH > FUN');
+          });
         });
       });
 
       describe('v3', () => {
+        describe(TradeDirection.input, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              fromToken,
+              toToken,
+              false,
+              [UniswapVersion.v3],
+              ethersProvider
+            );
+
+            const result = await factory.findBestRoute(
+              new BigNumber(100),
+              TradeDirection.input
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+          });
+        });
+
+        describe(TradeDirection.output, () => {
+          it('should find best route', async () => {
+            const factory = new UniswapRouterFactory(
+              fromToken,
+              toToken,
+              false,
+              [UniswapVersion.v3],
+              ethersProvider
+            );
+
+            const result = await factory.findBestRoute(
+              new BigNumber(100),
+              TradeDirection.output
+            );
+            expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+          });
+        });
+      });
+
+      describe(TradeDirection.input, () => {
         it('should find best route', async () => {
+          const result = await uniswapRouterFactory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.input
+          );
+          expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+        });
+
+        it('should return best route', async () => {
           const factory = new UniswapRouterFactory(
             fromToken,
             toToken,
             false,
-            [UniswapVersion.v3],
+            [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
 
-          const result = await factory.findBestRoute(new BigNumber(100));
+          const result = await factory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.input
+          );
+
           expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
         });
       });
 
-      it('should find best route', async () => {
-        const result = await uniswapRouterFactory.findBestRoute(
-          new BigNumber(100)
-        );
-        expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
-      });
+      describe(TradeDirection.output, () => {
+        it('should find best route', async () => {
+          const result = await uniswapRouterFactory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.output
+          );
+          expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+        });
 
-      it('should return best route', async () => {
-        const factory = new UniswapRouterFactory(
-          fromToken,
-          toToken,
-          false,
-          [UniswapVersion.v2, UniswapVersion.v3],
-          ethersProvider
-        );
+        it('should return best route', async () => {
+          const factory = new UniswapRouterFactory(
+            fromToken,
+            toToken,
+            false,
+            [UniswapVersion.v2, UniswapVersion.v3],
+            ethersProvider
+          );
 
-        const result = await factory.findBestRoute(new BigNumber(100));
+          const result = await factory.findBestRoute(
+            new BigNumber(100),
+            TradeDirection.output
+          );
 
-        expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+          expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+        });
       });
     });
   });
