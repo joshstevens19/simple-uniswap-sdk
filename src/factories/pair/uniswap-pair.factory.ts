@@ -155,7 +155,7 @@ export class UniswapPairFactory {
   /**
    * Generate trade - this will return amount but you still need to send the transaction
    * if you want it to be executed on the blockchain
-   * @param amount The amount you want to swap, this is the FROM token amount.
+   * @param amount The amount you want to swap
    * @param direction The direction you want to get the quote from
    */
   public async trade(
