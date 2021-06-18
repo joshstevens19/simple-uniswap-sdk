@@ -218,14 +218,38 @@ This will generate you the trade with all the information you need to show to th
 Please note `ROPSTEN`, `RINKEBY`, `GÖRLI` and `KOVAN` will only use `WETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
 
 ```ts
-async trade(amount: string): Promise<TradeContext>
+ /**
+   * Generate trade - this will return amount but you still need to send the transaction
+   * if you want it to be executed on the blockchain
+   * @param amount The amount you want to swap formatted. Aka if you want to swap 1 AAVE you pass in 1
+   * @param direction The direction you want to get the quote from
+   */
+async trade(amount: string, direction: TradeDirection = TradeDirection.input): Promise<TradeContext>
 ```
+
+#### Trade direction
+
+Trade direction is a way to ask for quotes for input and output.
+
+- input = information for the quote from the FROM
+- ouput = information for the quote from the TO
+
+for example if i was swapping AAVE > ETH if i pass in amount 1 and trade direction input, the information would be how much ETH you will get back from 1 AAVE. if i pass in amount 1 and trade direction ouput, the information would be how much AAVE you will get back from 1 ETH.
 
 ```ts
 export interface TradeContext {
   // this tells you the uniswap version the best quotes is at so for example
   // you sometimes may get better quotes on v2 then v3.
   uniswapVersion: UniswapVersion;
+  // This will tell you what the trade direction is
+  // input = information for the quote from the FROM
+  // ouput = information for the quote from the TO
+  // for example if i was swapping AAVE > ETH
+  // if i pass in amount 1 and trade direction input, the information
+  // would be how much ETH you will get back from 1 AAVE.
+  // if i pass in amount 1 and trade direction ouput, the information
+  // would be how much AAVE you will get back from 1 ETH.
+  quoteDirection: TradeDirection;
   // the amount you requested to convert
   // this will be formatted in readable number
   // so you can render straight out the box
@@ -235,7 +259,11 @@ export interface TradeContext {
   // the uniswap contract will throw
   // this will be formatted in readable number
   // so you can render straight out the box
-  minAmountConvertQuote: string;
+  // if you have done a output trade direction then this will be null
+  minAmountConvertQuote: string | null;
+  // the maximum amount it will send when doing an output trade direction
+  // will be null if you have done a input trade direction
+  maximumSent: string | null;
   // the expected amount you will receive
   // this will be formatted in readable number
   // so you can render straight out the box
@@ -410,6 +438,10 @@ const etherTradeExample = async () => {
   // it will work it all out for you
   const trade = await uniswapPairFactory.trade('10');
 
+  // can also pass in a trade direction here, for example if you want the output
+  // aka your doing ETH > AAVE but want to know how much you get for 5 AAVE.
+  // const trade = await uniswapPairFactory.trade('10', TradeDirection.output);
+
   // you should probably check this before they confirm the swap again
   // this is just so its simple to read
   if (!trade.fromBalance.hasEnough) {
@@ -504,7 +536,16 @@ const web3TradeExample = async () => {
   // the amount is the proper entered amount
   // so if they enter 10 pass in 10
   // it will work it all out for you
+  // can also pass in a trade direction here if you want for the output
   const trade = await uniswapPairFactory.trade('10');
+
+  // can also pass in a trade direction here, for example if you want the output
+  // aka your doing ETH > AAVE but want to know how much you get for 5 AAVE.
+  // const trade = await uniswapPairFactory.trade('10', TradeDirection.output);
+
+  // can also pass in a trade direction here, for example if you want the output
+  // aka your doing ETH > AAVE but want to know how much you get for 5 AAVE.
+  // const trade = await uniswapPairFactory.trade('10', TradeDirection.output);
 
   // you should probably check this before they confirm the swap again
   // this is just so its simple to read
@@ -624,8 +665,10 @@ trade.quoteChanged$.subscribe((value: TradeContext) => {
 console.log(trade);
 {
   uniswapVersion: 'v3',
+  quoteDirection: 'input'
   baseConvertRequest: '10',
   minAmountConvertQuote: '0.014400465273974444',
+  maximumSent: null,
   expectedConvertQuote: '0.014730394044348867',
   liquidityProviderFee: '0.030000000000000000',
   liquidityProviderFeePercent: 0.003,
@@ -893,8 +936,10 @@ trade.quoteChanged$.subscribe((value: TradeContext) => {
 console.log(trade);
 {
   uniswapVersion: 'v3',
+  quoteDirection: 'input',
   baseConvertRequest: '10',
   minAmountConvertQuote: '446878.20758208',
+  maximumSent: null,
   expectedConvertQuote: '449123.82671566',
   liquidityProviderFee: '0.030000000000000000',
   liquidityProviderFeePercent: 0.003,
@@ -2332,8 +2377,10 @@ trade.quoteChanged$.subscribe((value: TradeContext) => {
 console.log(trade);
 {
   uniswapVersion: 'v3',
+  quoteDirection: 'input',
   baseConvertRequest: '10',
   minAmountConvertQuote: '0.00022040807282109',
+  maximumSent: null,
   expectedConvertQuote: '0.00022151807282109',
   liquidityProviderFee: '0.03000000',
   liquidityProviderFeePercent: 0.003,

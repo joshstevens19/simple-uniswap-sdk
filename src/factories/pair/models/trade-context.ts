@@ -7,6 +7,7 @@ import { Transaction } from './transaction';
 
 export interface TradeContext {
   uniswapVersion: UniswapVersion;
+  quoteDirection: TradeDirection;
   baseConvertRequest: string;
   minAmountConvertQuote: string | null;
   maximumSent: string | null;
@@ -29,5 +30,4 @@ export interface TradeContext {
   transaction: Transaction;
   quoteChanged$: UniswapStream<TradeContext>;
   destroy: () => void;
-  quoteDirection: TradeDirection;
 }
