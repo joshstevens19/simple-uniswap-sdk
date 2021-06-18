@@ -516,7 +516,7 @@ export class UniswapPairFactory {
 
   /**
    * finds the best price and path for Erc20ToErc20
-   * @param amount the erc20Token amount being sent
+   * @param baseConvertRequest The base convert request can be both input or output direction
    * @param direction The direction you want to get the quote from
    */
   private async findBestPriceAndPathErc20ToErc20(
@@ -636,15 +636,15 @@ export class UniswapPairFactory {
 
   /**
    * Find the best price and route path to take (will round down the slippage)
-   * @param ethAmount The eth amount
+   * @param baseConvertRequest The base convert request can be both input or output direction
    * @param direction The direction you want to get the quote from
    */
   private async findBestPriceAndPathEthToErc20(
-    ethAmount: BigNumber,
+    baseConvertRequest: BigNumber,
     direction: TradeDirection
   ): Promise<TradeContext> {
     const bestRouteQuotes = await this._routes.findBestRoute(
-      ethAmount,
+      baseConvertRequest,
       direction
     );
     const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
@@ -657,26 +657,52 @@ export class UniswapPairFactory {
         .toFixed(this.toToken.decimals)
     );
 
+    const tokenAmountInMax = new BigNumber(
+      bestRouteQuote.expectedConvertQuote
+    ).plus(
+      new BigNumber(bestRouteQuote.expectedConvertQuote)
+        .times(this._uniswapPairFactoryContext.settings.slippage)
+        .toFixed(this.fromToken.decimals)
+    );
+
     const tradeExpires = this.generateTradeDeadlineUnixTime();
 
-    const data = this.generateTradeDataEthToErc20(
-      ethAmount,
-      convertQuoteWithSlippage,
-      bestRouteQuote,
-      tradeExpires.toString()
-    );
+    const data =
+      direction === TradeDirection.input
+        ? this.generateTradeDataEthToErc20Input(
+            baseConvertRequest,
+            convertQuoteWithSlippage,
+            bestRouteQuote,
+            tradeExpires.toString()
+          )
+        : this.generateTradeDataEthToErc20Output(
+            tokenAmountInMax,
+            baseConvertRequest,
+            bestRouteQuote,
+            tradeExpires.toString()
+          );
 
     const tradeContext: TradeContext = {
       uniswapVersion: bestRouteQuote.uniswapVersion,
-      baseConvertRequest: ethAmount.toFixed(),
-      minAmountConvertQuote: convertQuoteWithSlippage.toFixed(
-        this.toToken.decimals
-      ),
-      maximumSent: null,
+      quoteDirection: direction,
+      baseConvertRequest: baseConvertRequest.toFixed(),
+      minAmountConvertQuote:
+        direction === TradeDirection.input
+          ? convertQuoteWithSlippage.toFixed(this.toToken.decimals)
+          : null,
+      maximumSent:
+        direction === TradeDirection.input
+          ? null
+          : tokenAmountInMax.toFixed(this.toToken.decimals),
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee: ethAmount
-        .times(bestRouteQuote.liquidityProviderFee)
-        .toFixed(this.fromToken.decimals),
+      liquidityProviderFee:
+        direction === TradeDirection.input
+          ? baseConvertRequest
+              .times(bestRouteQuote.liquidityProviderFee)
+              .toFixed(this.fromToken.decimals)
+          : new BigNumber(bestRouteQuote.expectedConvertQuote)
+              .times(bestRouteQuote.liquidityProviderFee)
+              .toFixed(this.fromToken.decimals),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
@@ -685,16 +711,21 @@ export class UniswapPairFactory {
       hasEnoughAllowance: true,
       toToken: this.toToken,
       fromToken: this.fromToken,
-      fromBalance: await this.hasGotEnoughBalanceEth(ethAmount.toFixed()),
+      fromBalance: await this.hasGotEnoughBalanceEth(
+        direction === TradeDirection.input
+          ? baseConvertRequest.toFixed()
+          : bestRouteQuote.expectedConvertQuote
+      ),
       transaction: this.buildUpTransactionEth(
         bestRouteQuote.uniswapVersion,
-        ethAmount,
+        direction === TradeDirection.input
+          ? baseConvertRequest
+          : new BigNumber(bestRouteQuote.expectedConvertQuote),
         data
       ),
       allTriedRoutesQuotes: bestRouteQuotes.triedRoutesQuote,
       quoteChanged$: this._quoteChanged$,
       destroy: () => this.destroy(),
-      quoteDirection: direction,
     };
 
     return tradeContext;
@@ -706,7 +737,7 @@ export class UniswapPairFactory {
    * @param routeQuote The route quote
    * @param deadline The deadline it expiries unix time
    */
-  private generateTradeDataEthToErc20(
+  private generateTradeDataEthToErc20Input(
     ethAmountIn: BigNumber,
     tokenAmount: BigNumber,
     routeQuote: RouteQuote,
@@ -730,6 +761,46 @@ export class UniswapPairFactory {
           parseEther(ethAmountIn),
           convertedMinTokens,
           routeQuote.liquidityProviderFee,
+          deadline
+        );
+      default:
+        throw new UniswapError(
+          'Uniswap version not supported',
+          ErrorCodes.uniswapVersionNotSupported
+        );
+    }
+  }
+
+  /**
+   * Generate trade data eth > erc20
+   * @param tokenAmountInMax The amount in max
+   * @param ethAmountOut The amount to receive
+   * @param routeQuote The route quote
+   * @param deadline The deadline it expiries unix time
+   */
+  private generateTradeDataEthToErc20Output(
+    ethAmountInMax: BigNumber,
+    tokenAmountOut: BigNumber,
+    routeQuote: RouteQuote,
+    deadline: string
+  ): string {
+    const amountOut = tokenAmountOut
+      .shiftedBy(this.toToken.decimals)
+      .decimalPlaces(0);
+
+    switch (routeQuote.uniswapVersion) {
+      case UniswapVersion.v2:
+        return this._uniswapRouterContractFactoryV2.swapETHForExactTokens(
+          hexlify(amountOut),
+          routeQuote.routePathArray,
+          this._uniswapPairFactoryContext.ethereumAddress,
+          deadline
+        );
+      case UniswapVersion.v3:
+        return this.generateTradeDataForV3Output(
+          amountOut,
+          parseEther(ethAmountInMax),
+          routeQuote,
           deadline
         );
       default:

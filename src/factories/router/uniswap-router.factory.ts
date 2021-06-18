@@ -249,7 +249,6 @@ export class UniswapRouterFactory {
     direction: TradeDirection
   ): Promise<RouteQuote[]> {
     const tradeAmount = this.formatAmountToTrade(amountToTrade, direction);
-    console.log(tradeAmount);
 
     const routes = await this.getAllPossibleRoutes();
 
@@ -312,17 +311,7 @@ export class UniswapRouterFactory {
       }
     }
 
-    console.log(JSON.stringify(contractCallContext[0].calls, null, 4));
-
     const contractCallResults = await this._multicall.call(contractCallContext);
-
-    console.log(
-      JSON.stringify(
-        contractCallResults.results[UniswapVersion.v2].callsReturnContext,
-        null,
-        4
-      )
-    );
 
     return this.buildRouteQuotesFromResults(contractCallResults, direction);
   }
