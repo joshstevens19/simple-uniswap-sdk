@@ -564,6 +564,8 @@ export class UniswapRouterFactory {
           const callReturnContext =
             contractCallReturnContext.callsReturnContext[i];
 
+          // console.log(JSON.stringify(callReturnContext, null, 4));
+
           if (!callReturnContext.success) {
             continue;
           }
@@ -687,15 +689,21 @@ export class UniswapRouterFactory {
   ): RouteQuote {
     const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
       callReturnContext,
+      direction,
       uniswapVersion
     );
 
     switch (uniswapVersion) {
       case UniswapVersion.v2:
         return {
-          expectedConvertQuote: convertQuoteUnformatted
-            .shiftedBy(this._toToken.decimals * -1)
-            .toFixed(this._toToken.decimals),
+          expectedConvertQuote:
+            direction === TradeDirection.input
+              ? convertQuoteUnformatted
+                  .shiftedBy(this._toToken.decimals * -1)
+                  .toFixed(this._toToken.decimals)
+              : convertQuoteUnformatted
+                  .shiftedBy(this._fromToken.decimals * -1)
+                  .toFixed(this._fromToken.decimals),
           routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
             (c: string) => {
               return this.allTokens.find((t) => t.contractAddress === c);
@@ -715,9 +723,14 @@ export class UniswapRouterFactory {
         };
       case UniswapVersion.v3:
         return {
-          expectedConvertQuote: convertQuoteUnformatted
-            .shiftedBy(this._toToken.decimals * -1)
-            .toFixed(this._toToken.decimals),
+          expectedConvertQuote:
+            direction === TradeDirection.input
+              ? convertQuoteUnformatted
+                  .shiftedBy(this._toToken.decimals * -1)
+                  .toFixed(this._toToken.decimals)
+              : convertQuoteUnformatted
+                  .shiftedBy(this._fromToken.decimals * -1)
+                  .toFixed(this._fromToken.decimals),
           routePathArrayTokenMap: [this._fromToken, this._toToken],
           routeText: `${this._fromToken.symbol} > ${this._toToken.symbol}`,
           routePathArray: [
@@ -748,6 +761,7 @@ export class UniswapRouterFactory {
   ): RouteQuote {
     const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
       callReturnContext,
+      direction,
       uniswapVersion
     );
 
@@ -802,20 +816,27 @@ export class UniswapRouterFactory {
   /**
    * Get the convert quote unformatted from the call return context
    * @param callReturnContext The call return context
+   * @param direction The direction you want to get the quote from
    * @param uniswapVersion The uniswap version
    */
   private getConvertQuoteUnformatted(
     callReturnContext: CallReturnContext,
+    direction: TradeDirection,
     uniswapVersion: UniswapVersion
   ): BigNumber {
     switch (uniswapVersion) {
-      case UniswapVersion.v3:
       case UniswapVersion.v2:
-        return new BigNumber(
-          callReturnContext.returnValues[
-            callReturnContext.returnValues.length - 1
-          ].hex
-        );
+        if (direction === TradeDirection.input) {
+          return new BigNumber(
+            callReturnContext.returnValues[
+              callReturnContext.returnValues.length - 1
+            ].hex
+          );
+        } else {
+          return new BigNumber(callReturnContext.returnValues[0].hex);
+        }
+      case UniswapVersion.v3:
+        return new BigNumber(callReturnContext.returnValues[0].hex);
       default:
         throw new UniswapError('Invalid uniswap version', uniswapVersion);
     }
