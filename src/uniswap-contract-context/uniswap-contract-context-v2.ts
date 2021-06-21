@@ -12,11 +12,6 @@ export class UniswapContractContextV2 {
   public static factoryAddress = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f';
 
   /**
-   * The uniswap pair address
-   */
-  public static pairAddress = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f';
-
-  /**
    * Uniswap v2 router
    */
   public static routerAbi: JsonFragment[] = require('../ABI/uniswap-router-v2.json');

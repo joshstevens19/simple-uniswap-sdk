@@ -18,7 +18,7 @@ export {
 export { UniswapPairSettings } from './factories/pair/models/uniswap-pair-settings';
 export { UniswapPair } from './factories/pair/uniswap-pair';
 export { UniswapPairFactory } from './factories/pair/uniswap-pair.factory';
-export { UniswapPairContractFactoryPublicV2 } from './factories/pair/v2/uniswap-pair-contract.factory.public.v2';
+// export { UniswapPairContractFactoryPublicV2 } from './factories/pair/v2/uniswap-pair-contract.factory.public.v2';
 export { RouteQuote } from './factories/router/models/route-quote';
 export { UniswapRouterContractFactoryV2Public } from './factories/router/v2/uniswap-router-contract.factory.public.v2';
 export { UniswapRouterContractFactoryV3Public } from './factories/router/v3/uniswap-router-contract.factory.public.v3';

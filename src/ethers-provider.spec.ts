@@ -1,5 +1,5 @@
 import { ChainId, ErrorCodes, UniswapError } from '.';
-import { ContractContext as PairContractContext } from './ABI/types/uniswap-pair-v2';
+import { ContractContext as FactoryContractContext } from './ABI/types/uniswap-factory-v2';
 import { EthersProvider } from './ethers-provider';
 import { MockEthereumAddress } from './mocks/ethereum-address.mock';
 import { MOCK_PROVIDER_URL } from './mocks/provider-url.mock';
@@ -10,9 +10,9 @@ describe('EthersProvider', () => {
     const ethersProvider = new EthersProvider(ChainId.MAINNET);
 
     it('getContract', () => {
-      const result = ethersProvider.getContract<PairContractContext>(
-        JSON.stringify(UniswapContractContextV2.pairAbi),
-        UniswapContractContextV2.pairAddress
+      const result = ethersProvider.getContract<FactoryContractContext>(
+        JSON.stringify(UniswapContractContextV2.factoryAbi),
+        UniswapContractContextV2.factoryAddress
       );
 
       expect(result).not.toBeUndefined();
@@ -55,9 +55,9 @@ describe('EthersProvider', () => {
     });
 
     it('getContract', () => {
-      const result = ethersProvider.getContract<PairContractContext>(
-        JSON.stringify(UniswapContractContextV2.pairAbi),
-        UniswapContractContextV2.pairAddress
+      const result = ethersProvider.getContract<FactoryContractContext>(
+        JSON.stringify(UniswapContractContextV2.factoryAbi),
+        UniswapContractContextV2.factoryAddress
       );
 
       expect(result).not.toBeUndefined();

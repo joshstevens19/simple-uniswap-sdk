@@ -82,8 +82,8 @@ export class UniswapRouterFactory {
     if (this._uniswapVersions.includes(UniswapVersion.v2)) {
       contractCallContext.push({
         reference: UniswapVersion.v2,
-        contractAddress: UniswapContractContextV2.pairAddress,
-        abi: UniswapContractContextV2.pairAbi,
+        contractAddress: UniswapContractContextV2.factoryAddress,
+        abi: UniswapContractContextV2.factoryAbi,
         calls: [],
       });
 
@@ -158,6 +158,24 @@ export class UniswapRouterFactory {
           c.returnValues[0] !== '0x0000000000000000000000000000000000000000'
       );
 
+      const reserves: ContractCallContext[] = [];
+      for (let c = 0; c < availablePairs.length; c++) {
+        reserves.push({
+          reference: `${availablePairs[c].methodParameters[0]}-${availablePairs[c].methodParameters[1]}`,
+          contractAddress: availablePairs[c].returnValues[0],
+          abi: UniswapContractContextV2.pairAbi,
+          calls: [
+            {
+              reference: 'getReserves',
+              methodName: 'getReserves',
+              methodParameters: [],
+            },
+          ],
+        });
+      }
+
+      const reservesResult = await this._multicall.call(reserves);
+
       const fromTokenRoutes: TokenRoutes = {
         token: this._fromToken,
         pairs: {
@@ -168,6 +186,8 @@ export class UniswapRouterFactory {
           ),
         },
       };
+
+      console.log(JSON.stringify(fromTokenRoutes, null, 4));
 
       const toTokenRoutes: TokenRoutes = {
         token: this._toToken,
@@ -236,6 +256,8 @@ export class UniswapRouterFactory {
         }
       }
     }
+
+    console.log(JSON.stringify(allPossibleRoutes, null, 4));
 
     return allPossibleRoutes;
   }
@@ -483,7 +505,7 @@ export class UniswapRouterFactory {
     token: Token,
     allAvailablePairs: CallReturnContext[],
     direction: RouterDirection
-  ) {
+  ): Token[] {
     switch (direction) {
       case RouterDirection.from:
         return this.getFromRouterDirectionAvailablePairs(
