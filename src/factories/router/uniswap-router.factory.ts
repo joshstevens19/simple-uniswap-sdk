@@ -809,9 +809,8 @@ export class UniswapRouterFactory {
     uniswapVersion: UniswapVersion
   ): BigNumber {
     switch (uniswapVersion) {
-      case UniswapVersion.v2:
-        return new BigNumber(callReturnContext.returnValues[0].hex);
       case UniswapVersion.v3:
+      case UniswapVersion.v2:
         return new BigNumber(
           callReturnContext.returnValues[
             callReturnContext.returnValues.length - 1
