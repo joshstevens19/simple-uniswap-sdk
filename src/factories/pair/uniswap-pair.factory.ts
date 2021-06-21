@@ -163,6 +163,9 @@ export class UniswapPairFactory {
     direction: TradeDirection = TradeDirection.input
   ): Promise<TradeContext> {
     this.destroy();
+    if (this._quoteChangeInternal) {
+      clearInterval(this._quoteChangeInternal);
+    }
 
     this._currentTradeContext = await this.executeTradePath(
       new BigNumber(amount),
@@ -1104,40 +1107,37 @@ export class UniswapPairFactory {
    * Watch trade price move automatically emitting the stream if it changes
    */
   private watchTradePrice(): void {
-    if (!this._quoteChangeInternal) {
-      this._quoteChangeInternal = setInterval(async () => {
+    this._quoteChangeInternal = setInterval(async () => {
+      if (
+        this._quoteChanged$.observers.length > 0 &&
+        this._currentTradeContext
+      ) {
+        const trade = await this.executeTradePath(
+          new BigNumber(this._currentTradeContext.baseConvertRequest),
+          this._currentTradeContext.quoteDirection
+        );
         if (
-          this._quoteChanged$.observers.length > 0 &&
-          this._currentTradeContext
+          trade.expectedConvertQuote !==
+            this._currentTradeContext.expectedConvertQuote ||
+          trade.routeText !== this._currentTradeContext.routeText
         ) {
-          const trade = await this.executeTradePath(
-            new BigNumber(this._currentTradeContext.baseConvertRequest),
-            // TODO FIX!
-            TradeDirection.input
-          );
-          if (
-            trade.expectedConvertQuote !==
-              this._currentTradeContext.expectedConvertQuote ||
-            trade.routeText !== this._currentTradeContext.routeText
-          ) {
-            this._currentTradeContext = trade;
-            this._quoteChanged$.next(trade);
-            return;
-          }
-
-          // it has expired send another one to them
-          if (
-            this._currentTradeContext.tradeExpires >
-            this.generateTradeDeadlineUnixTime()
-          ) {
-            this._currentTradeContext = trade;
-            this._quoteChanged$.next(trade);
-            return;
-          }
+          this._currentTradeContext = trade;
+          this._quoteChanged$.next(trade);
+          return;
         }
-        // maybe make config???
-        // query new prices every 25 seconds
-      }, 25000);
-    }
+
+        // it has expired send another one to them
+        if (
+          this._currentTradeContext.tradeExpires >
+          this.generateTradeDeadlineUnixTime()
+        ) {
+          this._currentTradeContext = trade;
+          this._quoteChanged$.next(trade);
+          return;
+        }
+      }
+      // maybe make config???
+      // query new prices every 25 seconds
+    }, 25000);
   }
 }
