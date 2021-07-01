@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 import { Contract, ContractInterface, providers } from 'ethers';
 import { ErrorCodes } from './common/errors/error-codes';
 import { UniswapError } from './common/errors/uniswap-error';
@@ -13,7 +14,11 @@ export interface EthereumProvider {
 }
 
 export class EthersProvider {
-  private _ethersProvider: providers.BaseProvider;
+  private _ethersProvider:
+    | providers.StaticJsonRpcProvider
+    | providers.JsonRpcProvider
+    | providers.InfuraProvider
+    | providers.Web3Provider;
   constructor(private _providerContext: ChainIdAndProvider | EthereumProvider) {
     const chainId = (<ChainIdAndProvider>this._providerContext).chainId;
     if (chainId) {
@@ -51,7 +56,11 @@ export class EthersProvider {
         );
       }
 
-      this._ethersProvider = new providers.Web3Provider(ethereumProvider);
+      if (ethereumProvider._isProvider) {
+        this._ethersProvider = ethereumProvider;
+      } else {
+        this._ethersProvider = new providers.Web3Provider(ethereumProvider);
+      }
     }
   }
 
@@ -73,7 +82,30 @@ export class EthersProvider {
    * Get the network
    */
   public network(): providers.Network {
-    return this._ethersProvider.network;
+    if (this._ethersProvider.network) {
+      return this._ethersProvider.network;
+    }
+
+    // @ts-ignore
+    if (this._ethersProvider.provider) {
+      // @ts-ignore
+      const chainId = this._ethersProvider.provider.chainId;
+      if (chainId) {
+        const chainIdNumber = new BigNumber(chainId).toNumber();
+        const chainName = ChainNames.get(chainIdNumber);
+        if (chainName) {
+          return {
+            chainId: chainIdNumber,
+            name: chainName,
+          };
+        }
+      }
+    }
+
+    throw new UniswapError(
+      'chainId can not be found on the provider',
+      ErrorCodes.chainIdCanNotBeFound
+    );
   }
 
   /**

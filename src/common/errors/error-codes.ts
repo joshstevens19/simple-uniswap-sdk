@@ -17,4 +17,5 @@ export enum ErrorCodes {
   canNotFindProviderUrl = 16,
   wrongEthersProviderContext = 17,
   chainIdNotSupported = 18,
+  chainIdCanNotBeFound = 19,
 }
