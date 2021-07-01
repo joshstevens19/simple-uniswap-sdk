@@ -4,6 +4,6 @@ import { UniswapContractFactoryV2 } from './uniswap-contract.factory.v2';
 
 export class UniswapContractFactoryV2Public extends UniswapContractFactoryV2 {
   constructor(chainId: ChainId, providerUrl?: string | undefined) {
-    super(new EthersProvider(chainId, providerUrl));
+    super(new EthersProvider({ chainId, providerUrl }));
   }
 }

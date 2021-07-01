@@ -1,3 +1,4 @@
+import { providers } from 'ethers';
 import { ChainId, ErrorCodes, UniswapError } from '../..';
 import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
 import { MOCKFUN } from '../../mocks/fun-token.mock';
@@ -5,6 +6,7 @@ import { MOCK_PROVIDER_URL } from '../../mocks/provider-url.mock';
 import { MOCKREP } from '../../mocks/rep-token.mock';
 import {
   UniswapPairContextForChainId,
+  UniswapPairContextForEthereumProvider,
   UniswapPairContextForProviderUrl,
 } from './models/uniswap-pair-contexts';
 import { UniswapPair } from './uniswap-pair';
@@ -90,7 +92,7 @@ describe('UniswapPair', () => {
     );
   });
 
-  it('should throw if no chainId is passed in', () => {
+  it('should throw if no chainId or ethereum provider passed in', () => {
     // @ts-ignore
     const context: UniswapPairContextForChainId = {
       fromTokenContractAddress: MOCKFUN().contractAddress,
@@ -99,8 +101,8 @@ describe('UniswapPair', () => {
     };
     expect(() => new UniswapPair(context)).toThrowError(
       new UniswapError(
-        'You must have a chainId on the context.',
-        ErrorCodes.youMustSupplyAChainId
+        'Your must supply a chainId or a ethereum provider please look at types `UniswapPairContextForEthereumProvider`, `UniswapPairContextForChainId` and `UniswapPairContextForProviderUrl` to make sure your object is correct in what your passing in',
+        ErrorCodes.invalidPairContext
       )
     );
   });
@@ -126,6 +128,20 @@ describe('UniswapPair', () => {
       ethereumAddress: MockEthereumAddress(),
       chainId: ChainId.MAINNET,
       providerUrl: MOCK_PROVIDER_URL(),
+    };
+
+    const uniswapPair = new UniswapPair(context);
+
+    //@ts-ignore
+    expect(typeof uniswapPair._ethersProvider).not.toBeUndefined();
+  });
+
+  it('should create ethers provider', () => {
+    const context: UniswapPairContextForEthereumProvider = {
+      fromTokenContractAddress: MOCKFUN().contractAddress,
+      toTokenContractAddress: MOCKREP().contractAddress,
+      ethereumAddress: MockEthereumAddress(),
+      ethereumProvider: new providers.JsonRpcProvider(MOCK_PROVIDER_URL()),
     };
 
     const uniswapPair = new UniswapPair(context);

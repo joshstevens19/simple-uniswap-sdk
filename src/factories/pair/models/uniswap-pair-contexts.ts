@@ -8,6 +8,11 @@ interface UniswapPairContextBase {
   settings?: UniswapPairSettings | undefined;
 }
 
+export interface UniswapPairContextForEthereumProvider
+  extends UniswapPairContextBase {
+  ethereumProvider: any;
+}
+
 export interface UniswapPairContextForChainId extends UniswapPairContextBase {
   chainId: ChainId | number;
 }

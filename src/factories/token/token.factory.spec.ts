@@ -8,7 +8,7 @@ import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap
 import { TokenFactory } from './token.factory';
 
 describe('TokenFactory', () => {
-  const ethersProvider = new EthersProvider(ChainId.MAINNET);
+  const ethersProvider = new EthersProvider({ chainId: ChainId.MAINNET });
   const token = MOCKFUN();
 
   const tokenFactory = new TokenFactory(token.contractAddress, ethersProvider);

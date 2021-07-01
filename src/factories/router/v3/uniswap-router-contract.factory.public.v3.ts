@@ -4,6 +4,6 @@ import { UniswapRouterContractFactoryV3 } from './uniswap-router-contract.factor
 
 export class UniswapRouterContractFactoryV3Public extends UniswapRouterContractFactoryV3 {
   constructor(chainId: ChainId, providerUrl?: string | undefined) {
-    super(new EthersProvider(chainId, providerUrl));
+    super(new EthersProvider({ chainId, providerUrl }));
   }
 }

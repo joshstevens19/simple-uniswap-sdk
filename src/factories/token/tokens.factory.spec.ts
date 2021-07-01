@@ -5,7 +5,7 @@ import { MOCKREP } from '../../mocks/rep-token.mock';
 import { TokensFactory } from './tokens.factory';
 
 describe('TokensFactory', () => {
-  const ethersProvider = new EthersProvider(ChainId.MAINNET);
+  const ethersProvider = new EthersProvider({ chainId: ChainId.MAINNET });
 
   const tokensFactory = new TokensFactory(ethersProvider);
 

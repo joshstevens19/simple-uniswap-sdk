@@ -16,10 +16,10 @@ import { TradeDirection } from './models/trade-direction';
 import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
 
 describe('UniswapPairFactory', () => {
-  const ethersProvider = new EthersProvider(
-    ChainId.MAINNET,
-    MOCK_PROVIDER_URL()
-  );
+  const ethersProvider = new EthersProvider({
+    chainId: ChainId.MAINNET,
+    providerUrl: MOCK_PROVIDER_URL(),
+  });
   describe('erc20 > erc20', () => {
     const uniswapPairFactoryContext: UniswapPairFactoryContext = {
       fromToken: MOCKFUN(),

@@ -69,6 +69,7 @@ export class UniswapPair {
     private _uniswapPairContext:
       | UniswapPairContextForChainId
       | UniswapPairContextForProviderUrl
+      | UniswapPairContextForEthereumProvider
 )
 ```
 
@@ -86,6 +87,12 @@ interface UniswapPairContextBase {
   toTokenContractAddress: string;
   ethereumAddress: string;
   settings?: UniswapPairSettings | undefined;
+}
+
+export interface UniswapPairContextForEthereumProvider
+  extends UniswapPairContextBase {
+  // can take any ethers provider, web3 provider or custom ethereum provider
+  ethereumProvider: any;
 }
 
 export interface UniswapPairContextForChainId extends UniswapPairContextBase {
@@ -136,6 +143,47 @@ export class UniswapPairSettings {
 }
 ```
 
+### Ethereum provider
+
+This will use your ethereum provider you pass in. This will work with any web3 provider, ethers provider or custom provider. For example when using MetaMask you can pass in the window.ethereum and it work. You must supply the ethereum address and the wallet be approved to use for the dApp and unlocked before passing it in. The uniswap sdk makes those assumptions without them it will not work as MetaMask is not allowed access to your dApp. Any change of network or ethereum address change you will need to handle in your dApp and regenerate the uniswap pair context. Most the time the contract addresses for your tokens are different anyway.
+
+```ts
+import { UniswapPair, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
+
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
+  settings: new UniswapPairSettings({
+    // if not supplied it will use `0.005` which is 0.5%
+    // please pass it in as a full number decimal so 0.7%
+    // would be 0.007
+    slippage: 0.005,
+    // if not supplied it will use 20 a deadline minutes
+    deadlineMinutes: 20,
+    // if not supplied it will try to use multihops
+    // if this is true it will require swaps to direct
+    // pairs
+    disableMultihops: false,
+    // for example if you only wanted to turn on quotes for v3 and not v3
+    // you can only support the v3 enum same works if you only want v2 quotes
+    // if you do not supply anything it query both v2 and v3
+    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+  }),
+});
+
+// now to create the factory you just do
+const uniswapPairFactory = await uniswapPair.createFactory();
+```
+
+### With only the chainId
+
+This will use a infura endpoint without you having to pass in a node
+
 ```ts
 import { UniswapPair, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
 
@@ -147,8 +195,44 @@ const uniswapPair = new UniswapPair({
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   chainId: ChainId.MAINNET,
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
+  settings: new UniswapPairSettings({
+    // if not supplied it will use `0.005` which is 0.5%
+    // please pass it in as a full number decimal so 0.7%
+    // would be 0.007
+    slippage: 0.005,
+    // if not supplied it will use 20 a deadline minutes
+    deadlineMinutes: 20,
+    // if not supplied it will try to use multihops
+    // if this is true it will require swaps to direct
+    // pairs
+    disableMultihops: false,
+    // for example if you only wanted to turn on quotes for v3 and not v3
+    // you can only support the v3 enum same works if you only want v2 quotes
+    // if you do not supply anything it query both v2 and v3
+    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+  }),
+});
+
+// now to create the factory you just do
+const uniswapPairFactory = await uniswapPair.createFactory();
+```
+
+### With your own provider url
+
+This will use your node you pass in you must pass us the chainId as well, this stops the ethers instance calling pointless `JSONRPC` calls to get the chain id before every `JSONRPC` call.
+
+```ts
+import { UniswapPair, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
+
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  chainId: ChainId.MAINNET,
+  providerUrl: YOUR_PROVIDER_URL,
   settings: new UniswapPairSettings({
     // if not supplied it will use `0.005` which is 0.5%
     // please pass it in as a full number decimal so 0.7%
@@ -201,11 +285,12 @@ export enum ErrorCodes {
   toTokenContractAddressNotValid = 9,
   ethereumAddressRequired = 10,
   ethereumAddressNotValid = 11,
-  youMustSupplyAChainId = 12,
+  invalidPairContext = 12,
   invalidFromOrToContractToken = 13,
   uniswapVersionNotSupported = 14,
   uniswapVersionsMustNotBeAnEmptyArray = 15,
   canNotFindProviderUrl = 16,
+  wrongEthersProviderContext = 17,
 }
 ```
 
@@ -406,6 +491,8 @@ const etherTradeExample = async () => {
     ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
     // you can pass in the provider url as well if you want
     // providerUrl: YOUR_PROVIDER_URL,
+    // OR if you want to inject your own ethereum provider (no need for chainId if so)
+    // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
     chainId: ChainId.MAINNET,
   });
 
@@ -506,6 +593,8 @@ const web3TradeExample = async () => {
     ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
     // you can pass in the provider url as well if you want
     // providerUrl: YOUR_PROVIDER_URL,
+    // OR if you want to inject your own ethereum provider (no need for chainId if so)
+    // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
     chainId: ChainId.RINKEBY,
   });
 
@@ -645,6 +734,8 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
+  // OR if you want to inject your own ethereum provider (no need for chainId if so)
+  // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   chainId: ChainId.MAINNET,
 });
 
@@ -915,6 +1006,8 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
+  // OR if you want to inject your own ethereum provider (no need for chainId if so)
+  // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   chainId: ChainId.MAINNET,
 });
 
@@ -2357,6 +2450,8 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
+  // OR if you want to inject your own ethereum provider (no need for chainId if so)
+  // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   chainId: ChainId.MAINNET,
 });
 
@@ -3625,6 +3720,8 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
+  // OR if you want to inject your own ethereum provider (no need for chainId if so)
+  // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   chainId: ChainId.MAINNET,
 });
 
@@ -3675,6 +3772,8 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
+  // OR if you want to inject your own ethereum provider (no need for chainId if so)
+  // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   chainId: ChainId.MAINNET,
 });
 
@@ -3715,6 +3814,8 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
+  // OR if you want to inject your own ethereum provider (no need for chainId if so)
+  // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   chainId: ChainId.MAINNET,
 });
 
@@ -3847,12 +3948,11 @@ import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
-const tokenFactoryPublic = new TokenFactoryPublic(
-  toTokenContractAddress,
-  ChainId.MAINNET
+const tokenFactoryPublic = new TokenFactoryPublic(toTokenContractAddress, {
+  chainId: ChainId.MAINNET,
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
-);
+});
 
 const totalSupply = await tokenFactoryPublic.totalSupply();
 console.log(totalSupply);
@@ -3874,12 +3974,11 @@ import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
-const tokenFactoryPublic = new TokenFactoryPublic(
-  tokenContractAddress,
-  ChainId.MAINNET
+const tokenFactoryPublic = new TokenFactoryPublic(tokenContractAddress, {
+  chainId: ChainId.MAINNET,
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
-);
+});
 
 // the contract address for which you are allowing to move tokens on your behalf
 const spender = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
@@ -3920,9 +4019,11 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
 const tokenFactoryPublic = new TokenFactoryPublic(
   tokenContractAddress,
-  ChainId.MAINNET
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
+  {
+    chainId: ChainId.MAINNET,
+    // you can pass in the provider url as well if you want
+    // providerUrl: YOUR_PROVIDER_URL,
+  }
 );
 
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
@@ -3965,11 +4066,11 @@ export interface Token {
 ```ts
 import { TokensFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
-const tokensFactoryPublic = new TokensFactoryPublic(
-  ChainId.MAINNET
+const tokensFactoryPublic = new TokensFactoryPublic({
+  chainId: ChainId.MAINNET,
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
-);
+});
 
 const tokens = await tokensFactoryPublic.getTokens([
   '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',

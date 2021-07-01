@@ -8,6 +8,6 @@ export class TokenFactoryPublic extends TokenFactory {
     chainId: ChainId,
     providerUrl?: string | undefined
   ) {
-    super(tokenContractAddress, new EthersProvider(chainId, providerUrl));
+    super(tokenContractAddress, new EthersProvider({ chainId, providerUrl }));
   }
 }
