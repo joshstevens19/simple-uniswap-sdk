@@ -7,7 +7,7 @@ import { UniswapContractContextV2 } from './uniswap-contract-context/uniswap-con
 
 describe('EthersProvider', () => {
   describe('with chain id', () => {
-    const ethersProvider = new EthersProvider(ChainId.MAINNET);
+    const ethersProvider = new EthersProvider({ chainId: ChainId.MAINNET });
 
     it('getContract', () => {
       const result = ethersProvider.getContract<PairContractContext>(
@@ -38,14 +38,17 @@ describe('EthersProvider', () => {
   });
 
   describe('with chain id and providerUrl', () => {
-    const ethersProvider = new EthersProvider(
-      ChainId.MAINNET,
-      MOCK_PROVIDER_URL()
-    );
+    const ethersProvider = new EthersProvider({
+      chainId: ChainId.MAINNET,
+      providerUrl: MOCK_PROVIDER_URL(),
+    });
 
     it('should throw error if chainId not be found', () => {
       expect(() => {
-        new EthersProvider(10293, MOCK_PROVIDER_URL());
+        new EthersProvider({
+          chainId: 10293,
+          providerUrl: MOCK_PROVIDER_URL(),
+        });
       }).toThrowError(
         new UniswapError(
           'Can not find chain name for 10293',

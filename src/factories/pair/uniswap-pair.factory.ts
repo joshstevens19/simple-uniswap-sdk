@@ -79,7 +79,7 @@ export class UniswapPairFactory {
   /**
    * Get the provider url
    */
-  public get providerUrl(): string {
+  public get providerUrl(): string | undefined {
     return this._uniswapPairFactoryContext.ethersProvider.getProviderUrl();
   }
 

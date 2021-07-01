@@ -10,7 +10,7 @@ import { TradeDirection } from '../pair/models/trade-direction';
 import { UniswapRouterFactory } from './uniswap-router.factory';
 
 describe('UniswapRouterFactory', () => {
-  const ethersProvider = new EthersProvider(ChainId.MAINNET);
+  const ethersProvider = new EthersProvider({ chainId: ChainId.MAINNET });
 
   describe('erc20 > erc20', () => {
     const fromToken = MOCKAAVE();
@@ -255,7 +255,7 @@ describe('UniswapRouterFactory', () => {
           );
           if (result.bestRouteQuote.uniswapVersion === UniswapVersion.v2) {
             expect(result.bestRouteQuote.routeText).toEqual(
-              'AAVE > WETH > USDT > UNI'
+              'AAVE > WETH > UNI'
             );
           } else {
             expect(result.bestRouteQuote.routeText).toEqual('AAVE > UNI');

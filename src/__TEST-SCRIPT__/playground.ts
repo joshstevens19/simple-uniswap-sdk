@@ -47,7 +47,7 @@ const routeTest = async () => {
   //   console.log(error.message);
   // }
 
-  // const ethers = new EthersProvider(ChainId.MAINNET);
+  // const ethers = new EthersProvider({ chainId: ChainId.MAINNET });
   // ethers.provider.estimateGas(trade.transaction);
 
   process.stdin.resume();

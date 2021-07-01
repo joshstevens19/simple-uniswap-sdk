@@ -1,13 +1,15 @@
-import { ChainId } from '../../enums/chain-id';
-import { EthersProvider } from '../../ethers-provider';
+import {
+  ChainIdAndProvider,
+  EthereumProvider,
+  EthersProvider,
+} from '../../ethers-provider';
 import { TokenFactory } from './token.factory';
 
 export class TokenFactoryPublic extends TokenFactory {
   constructor(
     tokenContractAddress: string,
-    chainId: ChainId,
-    providerUrl?: string | undefined
+    providerContext: ChainIdAndProvider | EthereumProvider
   ) {
-    super(tokenContractAddress, new EthersProvider(chainId, providerUrl));
+    super(tokenContractAddress, new EthersProvider(providerContext));
   }
 }

@@ -6,6 +6,7 @@ import { EthersProvider } from '../../ethers-provider';
 import { TokensFactory } from '../token/tokens.factory';
 import {
   UniswapPairContextForChainId,
+  UniswapPairContextForEthereumProvider,
   UniswapPairContextForProviderUrl,
 } from './models/uniswap-pair-contexts';
 import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context';
@@ -19,6 +20,7 @@ export class UniswapPair {
     private _uniswapPairContext:
       | UniswapPairContextForChainId
       | UniswapPairContextForProviderUrl
+      | UniswapPairContextForEthereumProvider
   ) {
     if (!this._uniswapPairContext.fromTokenContractAddress) {
       throw new UniswapError(
@@ -82,18 +84,27 @@ export class UniswapPair {
     )).providerUrl;
 
     if (providerUrl && chainId) {
-      this._ethersProvider = new EthersProvider(chainId, providerUrl);
+      this._ethersProvider = new EthersProvider({ chainId, providerUrl });
       return;
     }
 
     if (chainId) {
-      this._ethersProvider = new EthersProvider(chainId);
+      this._ethersProvider = new EthersProvider({ chainId });
+      return;
+    }
+
+    const ethereumProvider = (<UniswapPairContextForEthereumProvider>(
+      this._uniswapPairContext
+    )).ethereumProvider;
+
+    if (ethereumProvider) {
+      this._ethersProvider = new EthersProvider({ ethereumProvider });
       return;
     }
 
     throw new UniswapError(
-      'You must have a chainId on the context.',
-      ErrorCodes.youMustSupplyAChainId
+      'Your must supply a chainId or a ethereum provider please look at types `UniswapPairContextForEthereumProvider`, `UniswapPairContextForChainId` and `UniswapPairContextForProviderUrl` to make sure your object is correct in what your passing in',
+      ErrorCodes.invalidPairContext
     );
   }
 

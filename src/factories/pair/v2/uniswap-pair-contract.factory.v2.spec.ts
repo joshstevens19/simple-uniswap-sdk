@@ -5,7 +5,7 @@ import { MOCKFUN } from '../../../mocks/fun-token.mock';
 import { UniswapPairContractFactoryV2 } from './uniswap-pair-contract.factory.v2';
 
 describe('UniswapPairContractFactoryV2', () => {
-  const ethersProvider = new EthersProvider(ChainId.MAINNET);
+  const ethersProvider = new EthersProvider({ chainId: ChainId.MAINNET });
 
   const uniswapPairContractFactory = new UniswapPairContractFactoryV2(
     ethersProvider

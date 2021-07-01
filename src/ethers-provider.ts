@@ -3,32 +3,56 @@ import { ErrorCodes } from './common/errors/error-codes';
 import { UniswapError } from './common/errors/uniswap-error';
 import { ChainId, ChainNames } from './enums/chain-id';
 
+export interface ChainIdAndProvider {
+  chainId: ChainId;
+  providerUrl?: string | undefined;
+}
+
+export interface EthereumProvider {
+  ethereumProvider: any;
+}
+
 export class EthersProvider {
   private _ethersProvider: providers.BaseProvider;
-  constructor(
-    private _chainId: ChainId,
-    private _providerUrl?: string | undefined
-  ) {
-    if (_providerUrl) {
-      const chainName = ChainNames.get(_chainId);
+  constructor(private _providerContext: ChainIdAndProvider | EthereumProvider) {
+    const chainId = (<ChainIdAndProvider>this._providerContext).chainId;
+    if (chainId) {
+      const chainName = ChainNames.get(chainId);
       if (!chainName) {
         throw new UniswapError(
-          `Can not find chain name for ${_chainId}`,
+          `Can not find chain name for ${chainId}`,
           ErrorCodes.canNotFindChainId
         );
       }
 
-      this._ethersProvider = new providers.StaticJsonRpcProvider(_providerUrl, {
-        name: chainName,
-        chainId: _chainId,
-      });
-      return;
-    }
+      const providerUrl = (<ChainIdAndProvider>this._providerContext)
+        .providerUrl;
+      if (providerUrl) {
+        this._ethersProvider = new providers.StaticJsonRpcProvider(
+          providerUrl,
+          {
+            name: chainName,
+            chainId: chainId,
+          }
+        );
+      } else {
+        this._ethersProvider = new providers.InfuraProvider(
+          chainId,
+          this._getApiKey
+        );
+      }
+    } else {
+      const ethereumProvider = (<EthereumProvider>this._providerContext)
+        .ethereumProvider;
+      if (!ethereumProvider) {
+        throw new UniswapError(
+          'Wrong ethers provider context',
+          ErrorCodes.wrongEthersProviderContext
+        );
+      }
 
-    this._ethersProvider = new providers.InfuraProvider(
-      _chainId,
-      this._getApiKey
-    );
+      this._ethersProvider = new providers.Web3Provider(ethereumProvider);
+    }
   }
 
   /**
@@ -72,12 +96,21 @@ export class EthersProvider {
   /**
    * Get provider url
    */
-  public getProviderUrl(): string {
-    if (this._providerUrl) {
-      return this._providerUrl;
+  public getProviderUrl(): string | undefined {
+    const ethereumProvider = (<EthereumProvider>this._providerContext)
+      .ethereumProvider;
+    if (ethereumProvider) {
+      return undefined;
     }
 
-    switch (this._chainId) {
+    const providerUrl = (<ChainIdAndProvider>this._providerContext).providerUrl;
+    if (providerUrl) {
+      return providerUrl;
+    }
+
+    const chainId = (<ChainIdAndProvider>this._providerContext).chainId;
+
+    switch (chainId) {
       case ChainId.MAINNET:
         return `https://mainnet.infura.io/v3/${this._getApiKey}`;
       case ChainId.ROPSTEN:
@@ -89,10 +122,7 @@ export class EthersProvider {
       case ChainId.KOVAN:
         return `https://kovan.infura.io/v3/${this._getApiKey}`;
       default:
-        throw new UniswapError(
-          'Can not find provider url',
-          ErrorCodes.canNotFindProviderUrl
-        );
+        return undefined;
     }
   }
 
