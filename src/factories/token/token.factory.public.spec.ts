@@ -8,10 +8,9 @@ import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap
 describe('TokenFactoryPublic', () => {
   const token = MOCKFUN();
 
-  const tokenFactoryPublic = new TokenFactoryPublic(
-    token.contractAddress,
-    ChainId.MAINNET
-  );
+  const tokenFactoryPublic = new TokenFactoryPublic(token.contractAddress, {
+    chainId: ChainId.MAINNET,
+  });
 
   it('getToken', async () => {
     const result = await tokenFactoryPublic.getToken();

@@ -3794,10 +3794,10 @@ console.log(fromToken);
 
 ### providerUrl
 
-This exposes the provider url it is using
+This exposes the provider url it is using will be undefined if you injected a ethereum provider
 
 ```ts
-get providerUrl(): string
+get providerUrl(): string | undefined
 ```
 
 #### Usage
@@ -3858,7 +3858,10 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
 const tokenFactoryPublic = new TokenFactoryPublic(
   toTokenContractAddress,
-  ChainId.MAINNET
+  // this can take the same interface as pair context aka
+  // `ChainIdAndProvider` | `EthereumProvider`
+  // so you can pass in a providerUrl or a ethereumProvider
+  { chainId: ChainId.MAINNET }
 );
 
 const token = await tokenFactoryPublic.getToken();
@@ -3893,7 +3896,10 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
 const tokenFactoryPublic = new TokenFactoryPublic(
   toTokenContractAddress,
-  ChainId.MAINNET
+  // this can take the same interface as pair context aka
+  // `ChainIdAndProvider` | `EthereumProvider`
+  // so you can pass in a providerUrl or a ethereumProvider
+  { chainId: ChainId.MAINNET }
 );
 
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
@@ -3923,7 +3929,10 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
 const tokenFactoryPublic = new TokenFactoryPublic(
   toTokenContractAddress,
-  ChainId.MAINNET
+  // this can take the same interface as pair context aka
+  // `ChainIdAndProvider` | `EthereumProvider`
+  // so you can pass in a providerUrl or a ethereumProvider
+  { chainId: ChainId.MAINNET }
 );
 
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
@@ -3974,11 +3983,13 @@ import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
-const tokenFactoryPublic = new TokenFactoryPublic(tokenContractAddress, {
-  chainId: ChainId.MAINNET,
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-});
+const tokenFactoryPublic = new TokenFactoryPublic(
+  tokenContractAddress,
+  // this can take the same interface as pair context aka
+  // `ChainIdAndProvider` | `EthereumProvider`
+  // so you can pass in a providerUrl or a ethereumProvider
+  { chainId: ChainId.MAINNET }
+);
 
 // the contract address for which you are allowing to move tokens on your behalf
 const spender = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
@@ -4019,11 +4030,10 @@ const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
 const tokenFactoryPublic = new TokenFactoryPublic(
   tokenContractAddress,
-  {
-    chainId: ChainId.MAINNET,
-    // you can pass in the provider url as well if you want
-    // providerUrl: YOUR_PROVIDER_URL,
-  }
+  // this can take the same interface as pair context aka
+  // `ChainIdAndProvider` | `EthereumProvider`
+  // so you can pass in a providerUrl or a ethereumProvider
+  { chainId: ChainId.MAINNET }
 );
 
 const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
@@ -4066,11 +4076,12 @@ export interface Token {
 ```ts
 import { TokensFactoryPublic, ChainId } from 'simple-uniswap-sdk';
 
-const tokensFactoryPublic = new TokensFactoryPublic({
-  chainId: ChainId.MAINNET,
-  // you can pass in the provider url as well if you want
-  // providerUrl: YOUR_PROVIDER_URL,
-});
+const tokensFactoryPublic = new TokensFactoryPublic(
+  // this can take the same interface as pair context aka
+  // `ChainIdAndProvider` | `EthereumProvider`
+  // so you can pass in a providerUrl or a ethereumProvider
+  { chainId: ChainId.MAINNET }
+);
 
 const tokens = await tokensFactoryPublic.getTokens([
   '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',

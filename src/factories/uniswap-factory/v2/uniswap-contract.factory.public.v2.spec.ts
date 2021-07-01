@@ -4,9 +4,9 @@ import { MOCKFUN } from '../../../mocks/fun-token.mock';
 import { UniswapContractFactoryV2Public } from './uniswap-contract.factory.v2.public';
 
 describe('UniswapContractFactoryV2Public', () => {
-  const uniswapContractFactoryPublic = new UniswapContractFactoryV2Public(
-    ChainId.MAINNET
-  );
+  const uniswapContractFactoryPublic = new UniswapContractFactoryV2Public({
+    chainId: ChainId.MAINNET,
+  });
 
   it('allPairs', async () => {
     const result = await uniswapContractFactoryPublic.allPairs('0x01');

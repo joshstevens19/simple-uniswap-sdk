@@ -3,7 +3,9 @@ import { MOCKFUN } from '../../mocks/fun-token.mock';
 import { MOCKREP } from '../../mocks/rep-token.mock';
 
 describe('TokensFactoryPublic', () => {
-  const tokensFactoryPublic = new TokensFactoryPublic(ChainId.MAINNET);
+  const tokensFactoryPublic = new TokensFactoryPublic({
+    chainId: ChainId.MAINNET,
+  });
 
   describe('getTokens', () => {
     it('should return both token info', async () => {
