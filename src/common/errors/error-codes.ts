@@ -16,4 +16,5 @@ export enum ErrorCodes {
   uniswapVersionsMustNotBeAnEmptyArray = 15,
   canNotFindProviderUrl = 16,
   wrongEthersProviderContext = 17,
+  chainIdNotSupported = 18,
 }

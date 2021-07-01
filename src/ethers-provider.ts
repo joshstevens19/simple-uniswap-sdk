@@ -20,7 +20,7 @@ export class EthersProvider {
       const chainName = ChainNames.get(chainId);
       if (!chainName) {
         throw new UniswapError(
-          `Can not find chain name for ${chainId}`,
+          `Can not find chain name for ${chainId}. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4), görli(5) and ropsten(3)`,
           ErrorCodes.canNotFindChainId
         );
       }
