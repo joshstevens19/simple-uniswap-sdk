@@ -4125,11 +4125,13 @@ console.log(tokens);
 
 The whole repo is covered in tests output below:
 
-Test Suites: 21 passed, 21 total
-Tests: 4 skipped, 160 passed, 164 total
-Snapshots: 0 total
-Time: 22.435s, estimated 23s
+```
+Test Suites: 22 passed, 22 total
+Tests:       4 skipped, 199 passed, 203 total
+Snapshots:   0 total
+Time:        33.238s, estimated 40s
 Ran all test suites.
+```
 
 ## Issues
 
