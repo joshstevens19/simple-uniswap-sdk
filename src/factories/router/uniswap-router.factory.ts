@@ -49,6 +49,7 @@ export class UniswapRouterFactory {
     private _fromToken: Token,
     private _toToken: Token,
     private _disableMultihops: boolean,
+    private _useWETHAsERC20Route: boolean,
     private _uniswapVersions: UniswapVersion[],
     private _ethersProvider: EthersProvider
   ) {}
@@ -885,7 +886,12 @@ export class UniswapRouterFactory {
    */
   private tradePath(): TradePath {
     const network = this._ethersProvider.network();
-    return getTradePath(network.chainId, this._fromToken, this._toToken);
+    return getTradePath(
+      network.chainId,
+      this._fromToken,
+      this._toToken,
+      this._useWETHAsERC20Route
+    );
   }
 
   private get allTokens(): Token[] {

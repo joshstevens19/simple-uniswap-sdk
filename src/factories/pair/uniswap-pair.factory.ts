@@ -52,6 +52,7 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.fromToken,
     this._uniswapPairFactoryContext.toToken,
     this._uniswapPairFactoryContext.settings.disableMultihops,
+    this._uniswapPairFactoryContext.settings.useWETHAsERC20Route,
     this._uniswapPairFactoryContext.settings.uniswapVersions,
     this._uniswapPairFactoryContext.ethersProvider
   );
@@ -1088,7 +1089,12 @@ export class UniswapPairFactory {
    */
   private tradePath(): TradePath {
     const network = this._uniswapPairFactoryContext.ethersProvider.network();
-    return getTradePath(network.chainId, this.fromToken, this.toToken);
+    return getTradePath(
+      network.chainId,
+      this.fromToken,
+      this.toToken,
+      this._uniswapPairFactoryContext.settings.useWETHAsERC20Route
+    );
   }
 
   /**

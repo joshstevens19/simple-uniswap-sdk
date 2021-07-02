@@ -13,7 +13,7 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 
 const routeTest = async () => {
   const fromTokenContractAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
-  const toTokenContractAddress = '0xdAC17F958D2ee523a2206206994597C13D831ec7'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
+  const toTokenContractAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({

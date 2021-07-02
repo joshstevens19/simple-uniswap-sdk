@@ -20,6 +20,7 @@ describe('UniswapRouterFactory', () => {
       fromToken,
       toToken,
       false,
+      false,
       [UniswapVersion.v2, UniswapVersion.v3],
       ethersProvider
     );
@@ -39,6 +40,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -61,6 +63,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -89,6 +92,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -118,6 +122,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -141,6 +146,7 @@ describe('UniswapRouterFactory', () => {
               MOCKFUN(),
               MOCKREP(),
               false,
+              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -158,6 +164,7 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               MOCKFUN(),
               MOCKREP(),
+              false,
               false,
               [UniswapVersion.v2],
               ethersProvider
@@ -179,6 +186,7 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               toToken,
               false,
+              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -196,6 +204,7 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               fromToken,
               toToken,
+              false,
               false,
               [UniswapVersion.v3],
               ethersProvider
@@ -230,6 +239,7 @@ describe('UniswapRouterFactory', () => {
             MOCKFUN(),
             MOCKREP(),
             true,
+            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -267,6 +277,7 @@ describe('UniswapRouterFactory', () => {
             MOCKFUN(),
             MOCKREP(),
             true,
+            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -294,6 +305,7 @@ describe('UniswapRouterFactory', () => {
       fromToken,
       toToken,
       false,
+      false,
       [UniswapVersion.v2, UniswapVersion.v3],
       ethersProvider
     );
@@ -313,6 +325,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -338,6 +351,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v3],
             ethersProvider
           );
@@ -368,6 +382,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -397,6 +412,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -420,6 +436,7 @@ describe('UniswapRouterFactory', () => {
               MOCKFUN(),
               toToken,
               false,
+              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -437,6 +454,7 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               MOCKFUN(),
               toToken,
+              false,
               false,
               [UniswapVersion.v2],
               ethersProvider
@@ -458,6 +476,7 @@ describe('UniswapRouterFactory', () => {
               MOCKAAVE(),
               toToken,
               false,
+              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -475,6 +494,7 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               MOCKAAVE(),
               toToken,
+              false,
               false,
               [UniswapVersion.v3],
               ethersProvider
@@ -503,6 +523,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -534,6 +555,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -561,6 +583,7 @@ describe('UniswapRouterFactory', () => {
       fromToken,
       toToken,
       false,
+      false,
       [UniswapVersion.v2, UniswapVersion.v3],
       ethersProvider
     );
@@ -580,6 +603,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -605,6 +629,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v3],
             ethersProvider
           );
@@ -635,6 +660,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -663,6 +689,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -686,6 +713,7 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               MOCKFUN(),
               false,
+              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -703,6 +731,7 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               fromToken,
               MOCKFUN(),
+              false,
               false,
               [UniswapVersion.v2],
               ethersProvider
@@ -724,6 +753,7 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               toToken,
               false,
+              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -741,6 +771,7 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               fromToken,
               toToken,
+              false,
               false,
               [UniswapVersion.v3],
               ethersProvider
@@ -769,6 +800,7 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             false,
+            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -795,6 +827,7 @@ describe('UniswapRouterFactory', () => {
           const factory = new UniswapRouterFactory(
             fromToken,
             toToken,
+            false,
             false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
