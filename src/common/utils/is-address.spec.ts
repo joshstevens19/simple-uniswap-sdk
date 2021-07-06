@@ -1,3 +1,4 @@
+import { ETH } from '../tokens';
 import { isAddress } from './is-address';
 
 describe('isAddress', () => {
@@ -5,6 +6,10 @@ describe('isAddress', () => {
     expect(isAddress('0x45Cd08334aeedd8a06265B2Ae302E3597d8fAA28')).toEqual(
       true
     );
+  });
+
+  it('should return true if its a valid ethereum token', () => {
+    expect(isAddress(ETH.MAINNET().contractAddress)).toEqual(true);
   });
 
   it('should return true if its a valid contract address type', () => {
