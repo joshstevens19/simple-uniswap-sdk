@@ -110,20 +110,17 @@ export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
-  useWETHAsERC20Route: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
 
   constructor(settings?: {
     slippage?: number | undefined;
     deadlineMinutes?: number | undefined;
     disableMultihops?: boolean | undefined;
-    useWETHAsERC20Route?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
-    this.useWETHAsERC20Route = settings?.useWETHAsERC20Route || false;
 
     if (
       Array.isArray(settings?.uniswapVersions) &&
@@ -151,11 +148,11 @@ export class UniswapPairSettings {
 This will use your ethereum provider you pass in. This will work with any web3 provider, ethers provider or custom provider. For example when using MetaMask you can pass in the window.ethereum and it work. You must supply the ethereum address and the wallet be approved to use for the dApp and unlocked before passing it in. The uniswap sdk makes those assumptions without them it will not work as MetaMask is not allowed access to your dApp. Any change of network or ethereum address change you will need to handle in your dApp and regenerate the uniswap pair context. Most the time the contract addresses for your tokens are different anyway.
 
 ```ts
-import { UniswapPair, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  fromTokenContractAddress: ETH.MAINNET().contractAddress,
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
@@ -172,16 +169,6 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
-    // if not supplied it will be false by default
-    // when this is false it will class WETH as native eth
-    // and call methods like `swapETHForExactTokens` etc
-    // so if you swapped AAVE > WETH you would get native ETH and
-    // not the erc20 WETH
-    // when this is false it treat WETH as a erc20 token
-    // and call methods like `swapExactTokensForTokens`,
-    // so if you swapped AAVE > WETH you would get ERC20 WETH and
-    // not the native ETH
-    useWETHAsERC20Route: false,
     // for example if you only wanted to turn on quotes for v3 and not v3
     // you can only support the v3 enum same works if you only want v2 quotes
     // if you do not supply anything it query both v2 and v3
@@ -198,11 +185,11 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 This will use a infura endpoint without you having to pass in a node
 
 ```ts
-import { UniswapPair, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  fromTokenContractAddress: ETH.MAINNET().contractAddress,
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
@@ -235,11 +222,11 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 This will use your node you pass in you must pass us the chainId as well, this stops the ethers instance calling pointless `JSONRPC` calls to get the chain id before every `JSONRPC` call.
 
 ```ts
-import { UniswapPair, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  fromTokenContractAddress: ETH.MAINNET().contractAddress,
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   // the ethereum address of the user using this part of the dApp
@@ -315,7 +302,7 @@ export enum ErrorCodes {
 
 This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. we generate the transaction for you but you will still need to sign and send the transaction on your dApp once they confirm the swap.
 
-Please note `ROPSTEN`, `RINKEBY`, `GÖRLI` and `KOVAN` will only use `WETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
+Please note `ROPSTEN`, `RINKEBY`, `GÖRLI` and `KOVAN` will only use `ETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
 
 ```ts
  /**
@@ -512,13 +499,13 @@ const etherTradeExample = async () => {
   });
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
-  // or erc20 > eth example below by using `WETH.MAINNET().contractAddress`
+  // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
   // which can be imported within `simple-uniswap-sdk`
-  // aka > import { WETH } from 'simple-uniswap-sdk';
+  // aka > import { ETH } from 'simple-uniswap-sdk';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: WETH.MAINNET().contractAddress,
+  //   fromTokenContractAddress: ETH.MAINNET().contractAddress,
   //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   //   chainId: ChainId.RINKEBY,
@@ -527,7 +514,7 @@ const etherTradeExample = async () => {
   //   ERC20 > ETH
   // const uniswapPair = new UniswapPair({
   //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  //   toTokenContractAddress: WETH.MAINNET().contractAddress,,
+  //   toTokenContractAddress: ETH.MAINNET().contractAddress,,
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   //   chainId: ChainId.RINKEBY,
   // });
@@ -614,13 +601,13 @@ const web3TradeExample = async () => {
   });
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
-  // or erc20 > eth example below by using `WETH.MAINNET().contractAddress`
+  // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
   // which can be imported within `simple-uniswap-sdk`
-  // aka > import { WETH } from 'simple-uniswap-sdk';
+  // aka > import { ETH } from 'simple-uniswap-sdk';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: WETH.MAINNET().contractAddress,
+  //   fromTokenContractAddress: ETH.MAINNET().contractAddress,
   //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   //   chainId: ChainId.RINKEBY,
@@ -629,7 +616,7 @@ const web3TradeExample = async () => {
   //   ERC20 > ETH
   // const uniswapPair = new UniswapPair({
   //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  //   toTokenContractAddress: WETH.MAINNET().contractAddress,,
+  //   toTokenContractAddress: ETH.MAINNET().contractAddress,,
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   //   chainId: ChainId.RINKEBY,
   // });
@@ -742,6 +729,9 @@ import { UniswapPair, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
+  // if you want to ever swap native erc20 WETH then import WETH
+  // from the simple-uniswap-sdk then use the correct network yours on object
+  // so if i was on mainnet i would use WETH.MAINNET().contractAddress
   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
@@ -1008,13 +998,13 @@ trade.destroy();
 #### ETH > ERC20 Output example
 
 ```ts
-import { UniswapPair, WETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
+import { UniswapPair, ETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
-  // use the WETH import from the lib, bare in mind you should use the
+  // use the ETH import from the lib, bare in mind you should use the
   // network which yours on, so if your on rinkeby you should use
-  // WETH.RINKEBY
-  fromTokenContractAddress: WETH.MAINNET().contractAddress,
+  // ETH.RINKEBY
+  fromTokenContractAddress: ETH.MAINNET().contractAddress,
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the ethereum address of the user using this part of the dApp
@@ -1055,10 +1045,10 @@ console.log(trade);
   routePathTokenMap: [
     {
       chainId: 1,
-      contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      symbol: 'WETH',
+      contractAddress: 'NO_CONTRACT_ADDRESS',
+      symbol: 'ETH',
       decimals: 18,
-      name: 'Wrapped Ether',
+      name: 'Ethers'
     },
     {
       chainId: 1,
@@ -1068,7 +1058,7 @@ console.log(trade);
       name: 'FunFair',
     },
   ],
-  routeText: 'WETH > FUN',
+  routeText: 'ETH > FUN',
   routePath: [
     '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
     '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -1084,10 +1074,10 @@ console.log(trade);
   },
   fromToken: {
     chainId: 1,
-    contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    symbol: 'WETH',
+    contractAddress: 'NO_CONTRACT_ADDRESS',
+    symbol: 'ETH',
     decimals: 18,
-    name: 'Wrapped Ether',
+    name: 'Ethers'
   },
   fromBalance: {
     hasEnough: false,
@@ -1106,10 +1096,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1119,7 +1109,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > FUN',
+      routeText: 'ETH > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -1132,10 +1122,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1152,7 +1142,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > FUN',
+      routeText: 'ETH > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -1166,10 +1156,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1186,7 +1176,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > FUN',
+      routeText: 'ETH > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -1200,10 +1190,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1220,7 +1210,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > FUN',
+      routeText: 'ETH > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1234,10 +1224,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1254,7 +1244,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > FUN',
+      routeText: 'ETH > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1268,10 +1258,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1288,7 +1278,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > FUN',
+      routeText: 'ETH > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -1302,10 +1292,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1322,7 +1312,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > FUN',
+      routeText: 'ETH > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -1336,10 +1326,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1356,7 +1346,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > FUN',
+      routeText: 'ETH > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -1370,10 +1360,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1397,49 +1387,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > DAI > FUN',
-      routePathArray: [
-        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      ],
-      uniswapVersion: 'v3',
-      liquidityProviderFee: 0.0005
-    },
-    {
-      expectedConvertQuote: '346246.52439964',
-      routePathArrayTokenMap: [
-        {
-          chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
-          decimals: 18,
-          name: 'Wrapped Ether',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-          decimals: 18,
-          symbol: 'USDC',
-          name: 'USD Coin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-          decimals: 18,
-          symbol: 'DAI',
-          name: 'Dai Stablecoin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-          symbol: 'FUN',
-          decimals: 8,
-          name: 'FunFair',
-        },
-      ],
-      routeText: 'WETH > USDC > DAI > FUN',
+      routeText: 'ETH > USDC > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -1454,10 +1402,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1481,7 +1429,49 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > DAI > FUN',
+      routeText: 'ETH > USDC > DAI > FUN',
+      routePathArray: [
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+      ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
+    },
+    {
+      expectedConvertQuote: '346246.52439964',
+      routePathArrayTokenMap: [
+        {
+          chainId: 1,
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
+          decimals: 18,
+          name: 'Ethers'
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+          decimals: 18,
+          symbol: 'USDC',
+          name: 'USD Coin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+          decimals: 18,
+          symbol: 'DAI',
+          name: 'Dai Stablecoin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+          symbol: 'FUN',
+          decimals: 8,
+          name: 'FunFair',
+        },
+      ],
+      routeText: 'ETH > USDC > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -1496,10 +1486,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1523,7 +1513,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > DAI > FUN',
+      routeText: 'ETH > USDT > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1538,10 +1528,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1565,7 +1555,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > DAI > FUN',
+      routeText: 'ETH > USDT > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1580,10 +1570,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1607,7 +1597,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > DAI > FUN',
+      routeText: 'ETH > USDT > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1622,10 +1612,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1642,7 +1632,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > FUN',
+      routeText: 'ETH > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -1656,10 +1646,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1683,49 +1673,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > USDC > FUN',
-      routePathArray: [
-        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-      ],
-      uniswapVersion: 'v3',
-      liquidityProviderFee: 0.0005
-    },
-    {
-      expectedConvertQuote: '153171.51955671',
-      routePathArrayTokenMap: [
-        {
-          chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
-          decimals: 18,
-          name: 'Wrapped Ether',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-          decimals: 18,
-          symbol: 'DAI',
-          name: 'Dai Stablecoin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-          decimals: 18,
-          symbol: 'USDC',
-          name: 'USD Coin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-          symbol: 'FUN',
-          decimals: 8,
-          name: 'FunFair',
-        },
-      ],
-      routeText: 'WETH > DAI > USDC > FUN',
+      routeText: 'ETH > DAI > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -1740,10 +1688,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1767,7 +1715,49 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > USDC > FUN',
+      routeText: 'ETH > DAI > USDC > FUN',
+      routePathArray: [
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+      ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
+    },
+    {
+      expectedConvertQuote: '153171.51955671',
+      routePathArrayTokenMap: [
+        {
+          chainId: 1,
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
+          decimals: 18,
+          name: 'Ethers'
+        },
+        {
+          chainId: 1,
+          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+          decimals: 18,
+          symbol: 'DAI',
+          name: 'Dai Stablecoin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+          decimals: 18,
+          symbol: 'USDC',
+          name: 'USD Coin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+          symbol: 'FUN',
+          decimals: 8,
+          name: 'FunFair',
+        },
+      ],
+      routeText: 'ETH > DAI > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -1782,10 +1772,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1809,7 +1799,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > USDC > FUN',
+      routeText: 'ETH > USDT > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1824,10 +1814,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1851,7 +1841,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > USDC > FUN',
+      routeText: 'ETH > USDT > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1866,10 +1856,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1893,7 +1883,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > USDC > FUN',
+      routeText: 'ETH > USDT > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1908,10 +1898,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1935,7 +1925,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > COMP > DAI > FUN',
+      routeText: 'ETH > COMP > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
@@ -1950,10 +1940,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -1977,7 +1967,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > COMP > DAI > FUN',
+      routeText: 'ETH > COMP > DAI > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
@@ -1992,10 +1982,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2019,7 +2009,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > COMP > USDC > FUN',
+      routeText: 'ETH > COMP > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
@@ -2034,10 +2024,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2061,7 +2051,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > COMP > USDC > FUN',
+      routeText: 'ETH > COMP > USDC > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
@@ -2076,10 +2066,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2103,7 +2093,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > USDT > FUN',
+      routeText: 'ETH > USDC > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -2118,10 +2108,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2145,7 +2135,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > USDT > FUN',
+      routeText: 'ETH > DAI > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2160,10 +2150,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2187,7 +2177,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > USDT > FUN',
+      routeText: 'ETH > USDC > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -2202,10 +2192,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2222,7 +2212,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDT > FUN',
+      routeText: 'ETH > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -2236,10 +2226,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2263,7 +2253,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > COMP > USDT > FUN',
+      routeText: 'ETH > COMP > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
@@ -2278,10 +2268,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2305,7 +2295,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > USDT > FUN',
+      routeText: 'ETH > DAI > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2320,10 +2310,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2347,7 +2337,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > DAI > USDT > FUN',
+      routeText: 'ETH > DAI > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2362,10 +2352,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2389,7 +2379,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > COMP > USDT > FUN',
+      routeText: 'ETH > COMP > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xc00e94Cb662C3520282E6f5717214004A7f26888',
@@ -2404,10 +2394,10 @@ console.log(trade);
       routePathArrayTokenMap: [
         {
           chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          contractAddress: 'NO_CONTRACT_ADDRESS',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers'
         },
         {
           chainId: 1,
@@ -2431,7 +2421,7 @@ console.log(trade);
           name: 'FunFair',
         },
       ],
-      routeText: 'WETH > USDC > USDT > FUN',
+      routeText: 'ETH > USDC > USDT > FUN',
       routePathArray: [
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -2452,15 +2442,15 @@ trade.destroy();
 #### ERC20 > ETH Output example
 
 ```ts
-import { UniswapPair, WETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
+import { UniswapPair, ETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  // use the WETH import from the lib, bare in mind you should use the
+  // use the ETH import from the lib, bare in mind you should use the
   // network which yours on, so if your on rinkeby you should use
-  // WETH.RINKEBY
-  toTokenContractAddress: WETH.MAINNET().contractAddress,
+  // ETH.RINKEBY
+  toTokenContractAddress: ETH.MAINNET().contractAddress,
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
@@ -2519,13 +2509,13 @@ console.log(trade);
     },
     {
       chainId: 1,
-      contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      symbol: 'WETH',
+      contractAddress: 'NO_CONTRACT_ADDRESS',
+      symbol: 'ETH',
       decimals: 18,
-      name: 'Wrapped Ether',
+      name: 'Ethers'
     },
   ],
-  routeText: 'FUN > DAI > COMP > WETH',
+  routeText: 'FUN > DAI > COMP > ETH',
   routePath: [
     '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
     '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2560,12 +2550,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > COMP > WETH',
+      routeText: 'FUN > DAI > COMP > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2602,12 +2592,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > COMP > WETH',
+      routeText: 'FUN > DAI > COMP > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2630,12 +2620,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > WETH',
+      routeText: 'FUN > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
@@ -2663,12 +2653,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > WETH',
+      routeText: 'FUN > DAI > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2704,54 +2694,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > USDC > WETH',
-      routePathArray: [
-        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      ],
-      uniswapVersion: 'v3',
-      liquidityProviderFee: 0.0005
-    },
-    {
-      expectedConvertQuote: '0.000216165414503092',
-      routePathArrayTokenMap: [
-        {
-          chainId: 1,
-          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-          symbol: 'FUN',
-          decimals: 8,
-          name: 'FunFair',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-          decimals: 18,
-          symbol: 'DAI',
-          name: 'Dai Stablecoin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-          decimals: 18,
-          symbol: 'USDC',
-          name: 'USD Coin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
-          decimals: 18,
-          name: 'Wrapped Ether',
-        },
-      ],
-      routeText: 'FUN > DAI > USDC > WETH',
+      routeText: 'FUN > DAI > USDC > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2788,12 +2736,54 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > USDC > WETH',
+      routeText: 'FUN > DAI > USDC > ETH',
+      routePathArray: [
+        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+      ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
+    },
+    {
+      expectedConvertQuote: '0.000216165414503092',
+      routePathArrayTokenMap: [
+        {
+          chainId: 1,
+          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+          symbol: 'FUN',
+          decimals: 8,
+          name: 'FunFair',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+          decimals: 18,
+          symbol: 'DAI',
+          name: 'Dai Stablecoin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+          decimals: 18,
+          symbol: 'USDC',
+          name: 'USD Coin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          symbol: 'ETH',
+          decimals: 18,
+          name: 'Ethers',
+        },
+      ],
+      routeText: 'FUN > DAI > USDC > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2830,12 +2820,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > USDT > WETH',
+      routeText: 'FUN > DAI > USDT > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2872,12 +2862,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > USDT > WETH',
+      routeText: 'FUN > DAI > USDT > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2914,12 +2904,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > DAI > USDT > WETH',
+      routeText: 'FUN > DAI > USDT > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0x6B175474E89094C44Da98b954EedeAC495271d0F',
@@ -2949,12 +2939,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > WETH',
+      routeText: 'FUN > USDC > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -2990,54 +2980,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > USDT > WETH',
-      routePathArray: [
-        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      ],
-      uniswapVersion: 'v3',
-      liquidityProviderFee: 0.0005
-    },
-    {
-      expectedConvertQuote: '0.000206879660311982',
-      routePathArrayTokenMap: [
-        {
-          chainId: 1,
-          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-          symbol: 'FUN',
-          decimals: 8,
-          name: 'FunFair',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-          decimals: 18,
-          symbol: 'USDC',
-          name: 'USD Coin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-          decimals: 18,
-          symbol: 'USDT',
-          name: 'Tether USD',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
-          decimals: 18,
-          name: 'Wrapped Ether',
-        },
-      ],
-      routeText: 'FUN > USDC > USDT > WETH',
+      routeText: 'FUN > USDC > USDT > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -3074,12 +3022,54 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > USDT > WETH',
+      routeText: 'FUN > USDC > USDT > ETH',
+      routePathArray: [
+        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+        '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+        '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+      ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
+    },
+    {
+      expectedConvertQuote: '0.000206879660311982',
+      routePathArrayTokenMap: [
+        {
+          chainId: 1,
+          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+          symbol: 'FUN',
+          decimals: 8,
+          name: 'FunFair',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+          decimals: 18,
+          symbol: 'USDC',
+          name: 'USD Coin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+          decimals: 18,
+          symbol: 'USDT',
+          name: 'Tether USD',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          symbol: 'ETH',
+          decimals: 18,
+          name: 'Ethers',
+        },
+      ],
+      routeText: 'FUN > USDC > USDT > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -3116,12 +3106,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > DAI > WETH',
+      routeText: 'FUN > USDC > DAI > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -3158,12 +3148,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > DAI > WETH',
+      routeText: 'FUN > USDC > DAI > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -3200,12 +3190,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > DAI > WETH',
+      routeText: 'FUN > USDC > DAI > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -3242,12 +3232,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > COMP > WETH',
+      routeText: 'FUN > USDC > COMP > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -3284,12 +3274,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDC > COMP > WETH',
+      routeText: 'FUN > USDC > COMP > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
@@ -3326,12 +3316,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > COMP > WETH',
+      routeText: 'FUN > USDT > COMP > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3368,12 +3358,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > COMP > WETH',
+      routeText: 'FUN > USDT > COMP > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3403,12 +3393,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > WETH',
+      routeText: 'FUN > USDT > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3444,54 +3434,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > DAI > WETH',
-      routePathArray: [
-        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-        '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      ],
-      uniswapVersion: 'v3',
-      liquidityProviderFee: 0.0005
-    },
-    {
-      expectedConvertQuote: '0.000000004406314787',
-      routePathArrayTokenMap: [
-        {
-          chainId: 1,
-          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-          symbol: 'FUN',
-          decimals: 8,
-          name: 'FunFair',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-          decimals: 18,
-          symbol: 'USDT',
-          name: 'Tether USD',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-          decimals: 18,
-          symbol: 'DAI',
-          name: 'Dai Stablecoin',
-        },
-        {
-          chainId: 1,
-          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
-          decimals: 18,
-          name: 'Wrapped Ether',
-        },
-      ],
-      routeText: 'FUN > USDT > DAI > WETH',
+      routeText: 'FUN > USDT > DAI > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3528,12 +3476,54 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > DAI > WETH',
+      routeText: 'FUN > USDT > DAI > ETH',
+      routePathArray: [
+        '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+        '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+        '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+      ],
+      uniswapVersion: 'v3',
+      liquidityProviderFee: 0.0005
+    },
+    {
+      expectedConvertQuote: '0.000000004406314787',
+      routePathArrayTokenMap: [
+        {
+          chainId: 1,
+          contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+          symbol: 'FUN',
+          decimals: 8,
+          name: 'FunFair',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+          decimals: 18,
+          symbol: 'USDT',
+          name: 'Tether USD',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+          decimals: 18,
+          symbol: 'DAI',
+          name: 'Dai Stablecoin',
+        },
+        {
+          chainId: 1,
+          contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          symbol: 'ETH',
+          decimals: 18,
+          name: 'Ethers',
+        },
+      ],
+      routeText: 'FUN > USDT > DAI > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3570,12 +3560,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > USDC > WETH',
+      routeText: 'FUN > USDT > USDC > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3612,12 +3602,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > USDC > WETH',
+      routeText: 'FUN > USDT > USDC > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3654,12 +3644,12 @@ console.log(trade);
         {
           chainId: 1,
           contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-          symbol: 'WETH',
+          symbol: 'ETH',
           decimals: 18,
-          name: 'Wrapped Ether',
+          name: 'Ethers',
         },
       ],
-      routeText: 'FUN > USDT > USDC > WETH',
+      routeText: 'FUN > USDT > USDC > ETH',
       routePathArray: [
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
         '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -3675,9 +3665,9 @@ console.log(trade);
   toToken: {
     chainId: 1,
     contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    symbol: 'WETH',
+    symbol: 'ETH',
     decimals: 18,
-    name: 'Wrapped Ether',
+    name: 'Ethers',
   },
   fromToken: {
     chainId: 1,
