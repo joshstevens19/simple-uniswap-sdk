@@ -3,128 +3,79 @@ import { Token } from '../../factories/token/models/token';
 import { ErrorCodes } from '../errors/error-codes';
 import { UniswapError } from '../errors/uniswap-error';
 
-const ETH_PREFIX = '_ETH';
-export const ETH_SYMBOL = 'ETH';
-
-export const appendEthToContractAddress = (contractAddress: string): string => {
-  return `${contractAddress}${ETH_PREFIX}`;
-};
-
-export const removeEthFromContractAddress = (
-  contractAddress: string
-): string => {
-  return contractAddress.replace(ETH_PREFIX, '');
-};
-
-export const isNativeEthToContractAddress = (
-  contractAddress: string
-): boolean => {
-  return contractAddress.includes(ETH_PREFIX);
-};
-
-export const turnTokenIntoEth = (token: Token): Token => {
-  token.symbol = ETH_SYMBOL;
-  token.name = 'Native Ether';
-  token.contractAddress = 'NO_CONTRACT_ADDRESS';
-
-  return token;
-};
+export const WETH_SYMBOL = 'WETH';
+export const WETH_NAME = 'Wrapped Ether';
 
 /**
- * WETH/ETH token context
+ * WETH token context
  */
 export class WETH {
-  public static MAINNET(erc20 = false): Token {
+  public static MAINNET(): Token {
     return {
       chainId: ChainId.MAINNET,
-      contractAddress:
-        erc20 === true
-          ? '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
-          : appendEthToContractAddress(
-              '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
-            ),
+      contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       decimals: 18,
-      symbol: erc20 === true ? 'WETH' : ETH_SYMBOL,
-      name: erc20 === true ? 'Wrapped Ether' : 'Native Ether',
+      symbol: WETH_SYMBOL,
+      name: WETH_NAME,
     };
   }
 
-  public static ROPSTEN(erc20 = false) {
+  public static ROPSTEN() {
     return {
       chainId: ChainId.ROPSTEN,
-      contractAddress:
-        erc20 === true
-          ? '0xc778417E063141139Fce010982780140Aa0cD5Ab'
-          : appendEthToContractAddress(
-              '0xc778417E063141139Fce010982780140Aa0cD5Ab'
-            ),
+      contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
       decimals: 18,
-      symbol: erc20 === true ? 'WETH' : ETH_SYMBOL,
-      name: erc20 === true ? 'Wrapped Ether' : 'Native Ether',
+      symbol: WETH_SYMBOL,
+      name: WETH_NAME,
     };
   }
 
-  public static RINKEBY(erc20 = false) {
+  public static RINKEBY() {
     return {
       chainId: ChainId.RINKEBY,
-      contractAddress:
-        erc20 === true
-          ? '0xc778417E063141139Fce010982780140Aa0cD5Ab'
-          : appendEthToContractAddress(
-              '0xc778417E063141139Fce010982780140Aa0cD5Ab'
-            ),
+      contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
       decimals: 18,
-      symbol: erc20 === true ? 'WETH' : ETH_SYMBOL,
-      name: erc20 === true ? 'Wrapped Ether' : 'Native Ether',
+      symbol: WETH_SYMBOL,
+      name: WETH_NAME,
     };
   }
 
-  public static GORLI(erc20 = false) {
+  public static GORLI() {
     return {
       chainId: ChainId.GÖRLI,
-      contractAddress:
-        erc20 === true
-          ? '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
-          : appendEthToContractAddress(
-              '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
-            ),
+      contractAddress: '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6',
       decimals: 18,
-      symbol: erc20 === true ? 'WETH' : ETH_SYMBOL,
-      name: erc20 === true ? 'Wrapped Ether' : 'Native Ether',
+      symbol: WETH_SYMBOL,
+      name: WETH_NAME,
     };
   }
 
-  public static KOVAN(erc20 = false) {
+  public static KOVAN() {
     return {
       chainId: ChainId.KOVAN,
-      contractAddress:
-        erc20 === true
-          ? '0xd0A1E359811322d97991E03f863a0C30C2cF029C'
-          : appendEthToContractAddress(
-              '0xd0A1E359811322d97991E03f863a0C30C2cF029C'
-            ),
+      contractAddress: '0xd0A1E359811322d97991E03f863a0C30C2cF029C',
       decimals: 18,
-      symbol: erc20 === true ? 'WETH' : ETH_SYMBOL,
-      name: erc20 === true ? 'Wrapped Ether' : 'Native Ether',
+      symbol: WETH_SYMBOL,
+      name: WETH_NAME,
     };
   }
 
   /**
-   * Get WETH/ETH token info by chain id
+   * Get WETH token info by chain id
    * @param chainId The chain id
    */
-  public static token(chainId: ChainId | number, erc20 = false) {
+  public static token(chainId: ChainId | number) {
     switch (chainId) {
       case ChainId.MAINNET:
-        return this.MAINNET(erc20);
+        return this.MAINNET();
       case ChainId.ROPSTEN:
-        return this.ROPSTEN(erc20);
+        return this.ROPSTEN();
       case ChainId.RINKEBY:
-        return this.RINKEBY(erc20);
+        return this.RINKEBY();
       case ChainId.GÖRLI:
-        return this.GORLI(erc20);
+        return this.GORLI();
       case ChainId.KOVAN:
-        return this.KOVAN(erc20);
+        return this.KOVAN();
       default:
         throw new UniswapError(
           `${chainId} is not allowed`,

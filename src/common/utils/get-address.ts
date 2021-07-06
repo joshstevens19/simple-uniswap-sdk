@@ -3,7 +3,7 @@ import {
   appendEthToContractAddress,
   isNativeEthToContractAddress,
   removeEthFromContractAddress,
-} from '../tokens/weth';
+} from '../tokens/eth';
 
 export function getAddress(address: string, keepEthPrefix = false): string {
   const parsedAddress = ethers.utils.getAddress(

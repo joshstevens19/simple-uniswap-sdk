@@ -1,4 +1,4 @@
-import { TradeDirection, WETH } from '..';
+import { ETH, TradeDirection } from '..';
 import { ChainId } from '../enums/chain-id';
 import { UniswapVersion } from '../enums/uniswap-version';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
@@ -12,8 +12,8 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 // AAVE - 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9
 
 const routeTest = async () => {
-  const fromTokenContractAddress = WETH.MAINNET(false).contractAddress; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
-  const toTokenContractAddress = WETH.MAINNET(true).contractAddress; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
+  const fromTokenContractAddress = ETH.MAINNET().contractAddress; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
+  const toTokenContractAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
@@ -34,19 +34,18 @@ const routeTest = async () => {
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  // try {
-  const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
-  // console.log(JSON.stringify(trade, null, 4));
-  console.log(trade);
-  // console.log(
-  //   trade.allTriedRoutesQuotes.filter(
-  //     (c) => c.uniswapVersion === UniswapVersion.v3
-  //   )
-  // );
-
-  // } catch (error) {
-  //   console.log(error.message);
-  // }
+  try {
+    const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
+    // console.log(JSON.stringify(trade, null, 4));
+    console.log(trade);
+    // console.log(
+    //   trade.allTriedRoutesQuotes.filter(
+    //     (c) => c.uniswapVersion === UniswapVersion.v3
+    //   )
+    // );
+  } catch (error) {
+    console.log(error);
+  }
 
   // const ethers = new EthersProvider({ chainId: ChainId.MAINNET });
   // ethers.provider.estimateGas(trade.transaction);

@@ -4,7 +4,7 @@ import { BigNumber as EthersBigNumber } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
-import { isNativeEthToContractAddress, WETH } from '../../common/tokens/weth';
+import { ETH, isNativeEthToContractAddress } from '../../common/tokens/eth';
 import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
@@ -60,9 +60,7 @@ export class TokensFactory {
 
           contractCallContexts.push(contractCallContext);
         } else {
-          tokens.push(
-            WETH.token(this._ethersProvider.network().chainId, false)
-          );
+          tokens.push(ETH.info(this._ethersProvider.network().chainId));
         }
       }
 

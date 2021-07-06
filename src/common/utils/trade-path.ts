@@ -1,20 +1,18 @@
 import { ChainId } from '../../enums/chain-id';
 import { TradePath } from '../../enums/trade-path';
 import { Token } from '../../factories/token/models/token';
-import { WETH } from '../tokens/weth';
+import { ETH } from '../tokens/eth';
 
 export function getTradePath(
   chainId: ChainId,
   fromToken: Token,
   toToken: Token
 ): TradePath {
-  if (
-    fromToken.contractAddress === WETH.token(chainId, false).contractAddress
-  ) {
+  if (fromToken.contractAddress === ETH.info(chainId).contractAddress) {
     return TradePath.ethToErc20;
   }
 
-  if (toToken.contractAddress === WETH.token(chainId, false).contractAddress) {
+  if (toToken.contractAddress === ETH.info(chainId).contractAddress) {
     return TradePath.erc20ToEth;
   }
 

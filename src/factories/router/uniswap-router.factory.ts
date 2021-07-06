@@ -9,14 +9,14 @@ import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { COMP } from '../../common/tokens/comp';
 import { DAI } from '../../common/tokens/dai';
-import { USDC } from '../../common/tokens/usdc';
-import { USDT } from '../../common/tokens/usdt';
 import {
   ETH_SYMBOL,
   removeEthFromContractAddress,
-  turnTokenIntoEth,
-  WETH,
-} from '../../common/tokens/weth';
+  turnTokenIntoEthForResponse,
+} from '../../common/tokens/eth';
+import { USDC } from '../../common/tokens/usdc';
+import { USDT } from '../../common/tokens/usdt';
+import { WETH } from '../../common/tokens/weth';
 import { deepClone } from '../../common/utils/deep-clone';
 import { formatEther } from '../../common/utils/format-ether';
 import { hexlify } from '../../common/utils/hexlify';
@@ -768,7 +768,7 @@ export class UniswapRouterFactory {
                 this.allTokens.find((t) => t.contractAddress === c)!
               );
               if (index === 0) {
-                return turnTokenIntoEth(token);
+                return turnTokenIntoEthForResponse(token);
               }
 
               return token;
@@ -800,12 +800,12 @@ export class UniswapRouterFactory {
                   .shiftedBy(this._fromToken.decimals * -1)
                   .toFixed(this._fromToken.decimals),
           routePathArrayTokenMap: [
-            turnTokenIntoEth(this._fromToken),
+            turnTokenIntoEthForResponse(this._fromToken),
             this._toToken,
           ],
-          routeText: `${turnTokenIntoEth(this._fromToken).symbol} > ${
-            this._toToken.symbol
-          }`,
+          routeText: `${
+            turnTokenIntoEthForResponse(this._fromToken).symbol
+          } > ${this._toToken.symbol}`,
           routePathArray: [
             this._fromToken.contractAddress,
             this._toToken.contractAddress,
@@ -855,7 +855,7 @@ export class UniswapRouterFactory {
                 this.allTokens.find((t) => t.contractAddress === c)!
               );
               if (index === callReturnContext.methodParameters[1].length - 1) {
-                return turnTokenIntoEth(token);
+                return turnTokenIntoEthForResponse(token);
               }
 
               return token;
@@ -883,10 +883,10 @@ export class UniswapRouterFactory {
             .toFixed(this._toToken.decimals),
           routePathArrayTokenMap: [
             this._fromToken,
-            turnTokenIntoEth(this._toToken),
+            turnTokenIntoEthForResponse(this._toToken),
           ],
           routeText: `${this._fromToken.symbol} > ${
-            turnTokenIntoEth(this._toToken).symbol
+            turnTokenIntoEthForResponse(this._toToken).symbol
           }`,
           routePathArray: [
             this._fromToken.contractAddress,
@@ -1124,7 +1124,7 @@ export class UniswapRouterFactory {
   }
 
   private get WETHTokenForConnectedNetwork() {
-    return WETH.token(this._ethersProvider.provider.network.chainId, true);
+    return WETH.token(this._ethersProvider.provider.network.chainId);
   }
 
   // private get WBTCTokenForConnectedNetwork() {
