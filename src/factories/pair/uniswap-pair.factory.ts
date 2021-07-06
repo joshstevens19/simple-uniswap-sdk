@@ -7,7 +7,10 @@ import {
 import { Constants } from '../../common/constants';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
-import { removeEthFromContractAddress } from '../../common/tokens/eth';
+import {
+  removeEthFromContractAddress,
+  turnTokenIntoEthForResponse,
+} from '../../common/tokens/eth';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
@@ -494,7 +497,7 @@ export class UniswapPairFactory {
             bestRouteQuote.uniswapVersion
           )
         : undefined,
-      toToken: this.toToken,
+      toToken: turnTokenIntoEthForResponse(this.toToken),
       fromToken: this.fromToken,
       fromBalance:
         direction === TradeDirection.input
@@ -714,7 +717,7 @@ export class UniswapPairFactory {
       routePath: bestRouteQuote.routePathArray,
       hasEnoughAllowance: true,
       toToken: this.toToken,
-      fromToken: this.fromToken,
+      fromToken: turnTokenIntoEthForResponse(this.fromToken),
       fromBalance: await this.hasGotEnoughBalanceEth(
         direction === TradeDirection.input
           ? baseConvertRequest.toFixed()

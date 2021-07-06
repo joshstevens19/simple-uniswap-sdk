@@ -17,7 +17,7 @@ import {
 } from '../../common/tokens/eth';
 import { USDC } from '../../common/tokens/usdc';
 import { USDT } from '../../common/tokens/usdt';
-import { WETH } from '../../common/tokens/weth';
+import { WETHContract } from '../../common/tokens/weth';
 import { deepClone } from '../../common/utils/deep-clone';
 import { formatEther } from '../../common/utils/format-ether';
 import { hexlify } from '../../common/utils/hexlify';
@@ -1005,7 +1005,10 @@ export class UniswapRouterFactory {
         // [this._fromToken, this.WBTCTokenForConnectedNetwork],
       ];
 
-      if (!isNativeEth(this._fromToken.contractAddress)) {
+      if (
+        !isNativeEth(this._fromToken.contractAddress) &&
+        !isNativeEth(this._toToken.contractAddress)
+      ) {
         pairs.push([this._fromToken, this.WETHTokenForConnectedNetwork]);
       }
 
@@ -1026,7 +1029,10 @@ export class UniswapRouterFactory {
         // [this.WBTCTokenForConnectedNetwork, this._toToken],
       ];
 
-      if (!isNativeEth(this._toToken.contractAddress)) {
+      if (
+        !isNativeEth(this._toToken.contractAddress) &&
+        !isNativeEth(this._toToken.contractAddress)
+      ) {
         pairs.push([this.WETHTokenForConnectedNetwork, this._toToken]);
       }
 
@@ -1048,7 +1054,10 @@ export class UniswapRouterFactory {
         [this.USDTTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
       ];
 
-      if (!isNativeEth(this._fromToken.contractAddress)) {
+      if (
+        !isNativeEth(this._fromToken.contractAddress) &&
+        !isNativeEth(this._toToken.contractAddress)
+      ) {
         pairs.push([
           this.USDTTokenForConnectedNetwork,
           this.WETHTokenForConnectedNetwork,
@@ -1067,7 +1076,10 @@ export class UniswapRouterFactory {
         [this.COMPTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
       ];
 
-      if (!isNativeEth(this._fromToken.contractAddress)) {
+      if (
+        !isNativeEth(this._fromToken.contractAddress) &&
+        !isNativeEth(this._toToken.contractAddress)
+      ) {
         pairs.push([
           this.COMPTokenForConnectedNetwork,
           this.WETHTokenForConnectedNetwork,
@@ -1084,7 +1096,10 @@ export class UniswapRouterFactory {
         [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
       ];
 
-      if (!isNativeEth(this._fromToken.contractAddress)) {
+      if (
+        !isNativeEth(this._fromToken.contractAddress) &&
+        !isNativeEth(this._toToken.contractAddress)
+      ) {
         pairs.push([
           this.DAITokenForConnectedNetwork,
           this.WETHTokenForConnectedNetwork,
@@ -1103,7 +1118,10 @@ export class UniswapRouterFactory {
         [this.USDCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
       ];
 
-      if (!isNativeEth(this._fromToken.contractAddress)) {
+      if (
+        !isNativeEth(this._fromToken.contractAddress) &&
+        !isNativeEth(this._toToken.contractAddress)
+      ) {
         pairs.push([
           this.USDCTokenForConnectedNetwork,
           this.WETHTokenForConnectedNetwork,
@@ -1155,7 +1173,7 @@ export class UniswapRouterFactory {
   }
 
   private get WETHTokenForConnectedNetwork() {
-    return WETH.token(this._ethersProvider.provider.network.chainId);
+    return WETHContract.token(this._ethersProvider.provider.network.chainId);
   }
 
   // private get WBTCTokenForConnectedNetwork() {

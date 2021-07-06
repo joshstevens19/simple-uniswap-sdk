@@ -7,9 +7,9 @@ export const WETH_SYMBOL = 'WETH';
 export const WETH_NAME = 'Wrapped Ether';
 
 /**
- * WETH token context
+ * WETH token context (called `WETHContract` so people get a breaking changes if they use the old name of `WETH`)
  */
-export class WETH {
+export class WETHContract {
   public static MAINNET(): Token {
     return {
       chainId: ChainId.MAINNET,

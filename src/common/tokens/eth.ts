@@ -26,6 +26,8 @@ export const turnTokenIntoEthForResponse = (token: Token): Token => {
   const clone = deepClone(token);
   // clear down contract address
   clone.contractAddress = 'NO_CONTRACT_ADDRESS';
+  clone.symbol = ETH_SYMBOL;
+  clone.name = ETH_NAME;
 
   return clone;
 };
