@@ -4116,10 +4116,10 @@ console.log(tokens);
 The whole repo is covered in tests output below:
 
 ```
-Test Suites: 22 passed, 22 total
-Tests:       4 skipped, 199 passed, 203 total
+Test Suites: 25 passed, 25 total
+Tests:       5 skipped, 234 passed, 239 total
 Snapshots:   0 total
-Time:        33.238s, estimated 40s
+Time:        33.238s
 Ran all test suites.
 ```
 

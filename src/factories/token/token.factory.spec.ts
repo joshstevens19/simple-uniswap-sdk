@@ -138,14 +138,15 @@ describe('TokenFactory', () => {
   describe('balanceOf', () => {
     describe('erc20', () => {
       it('balanceOf', async () => {
-        const spy = spyOn(
-          // @ts-ignore
-          tokenFactory._erc20TokenContract,
-          'balanceOf'
-        ).and.callThrough();
+        // const spy = spyOn(
+        //   // @ts-ignore
+        //   tokenFactory._erc20TokenContract,
+        //   'balanceOf'
+        // ).and.callThrough();
+        const spy = spyOn(ethersProvider, 'balanceOf').and.callThrough();
         const result = await tokenFactory.balanceOf(MockEthereumAddress());
         expect(result).not.toBeUndefined();
-        expect(spy).toHaveBeenCalledTimes(1);
+        expect(spy).not.toHaveBeenCalled();
       });
     });
 
