@@ -103,6 +103,8 @@ export class TokensFactory {
     tokenContractAddresses: string[],
     format = false
   ): Promise<TokenWithAllowanceInfo[]> {
+    const results: TokenWithAllowanceInfo[] = [];
+
     const ALLOWANCE = 0;
     const BALANCEOF = 1;
     const DECIMALS = 2;
@@ -111,52 +113,80 @@ export class TokensFactory {
 
     const contractCallContexts: ContractCallContext[] = [];
     for (let i = 0; i < tokenContractAddresses.length; i++) {
-      const contractCallContext: ContractCallContext = {
-        reference: `allowance-and-balance-of-${i}`,
-        contractAddress: getAddress(tokenContractAddresses[i]),
-        abi: ContractContext.erc20Abi,
-        calls: [
-          {
-            reference: 'allowance',
-            methodName: 'allowance',
-            methodParameters: [
-              ethereumAddress,
-              uniswapVersion === UniswapVersion.v2
-                ? UniswapContractContextV2.routerAddress
-                : UniswapContractContextV3.routerAddress,
-            ],
-          },
-          {
-            reference: 'balanceOf',
-            methodName: 'balanceOf',
-            methodParameters: [ethereumAddress],
-          },
-          {
-            reference: 'decimals',
-            methodName: 'decimals',
-            methodParameters: [],
-          },
-          {
-            reference: 'symbol',
-            methodName: 'symbol',
-            methodParameters: [],
-          },
-          {
-            reference: 'name',
-            methodName: 'name',
-            methodParameters: [],
-          },
-        ],
-      };
+      if (!isNativeEth(tokenContractAddresses[i])) {
+        const contractCallContext: ContractCallContext = {
+          reference: `allowance-and-balance-of-${i}`,
+          contractAddress: getAddress(tokenContractAddresses[i]),
+          abi: ContractContext.erc20Abi,
+          calls: [
+            {
+              reference: 'allowance',
+              methodName: 'allowance',
+              methodParameters: [
+                ethereumAddress,
+                uniswapVersion === UniswapVersion.v2
+                  ? UniswapContractContextV2.routerAddress
+                  : UniswapContractContextV3.routerAddress,
+              ],
+            },
+            {
+              reference: 'balanceOf',
+              methodName: 'balanceOf',
+              methodParameters: [ethereumAddress],
+            },
+            {
+              reference: 'decimals',
+              methodName: 'decimals',
+              methodParameters: [],
+            },
+            {
+              reference: 'symbol',
+              methodName: 'symbol',
+              methodParameters: [],
+            },
+            {
+              reference: 'name',
+              methodName: 'name',
+              methodParameters: [],
+            },
+          ],
+        };
 
-      contractCallContexts.push(contractCallContext);
+        contractCallContexts.push(contractCallContext);
+      } else {
+        const token = ETH.info(this._ethersProvider.network().chainId);
+        if (format) {
+          results.push({
+            allowanceAndBalanceOf: {
+              allowance: new BigNumber(
+                '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+              )
+                .shiftedBy(18 * -1)
+                .toFixed(),
+              balanceOf: new BigNumber(
+                await this._ethersProvider.balanceOf(ethereumAddress)
+              )
+                .shiftedBy(18 * -1)
+                .toFixed(),
+            },
+            token,
+          });
+        } else {
+          results.push({
+            allowanceAndBalanceOf: {
+              allowance:
+                '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+              balanceOf: await this._ethersProvider.balanceOf(ethereumAddress),
+            },
+            token: ETH.info(this._ethersProvider.network().chainId),
+          });
+        }
+      }
     }
 
     const contractCallResults = await this._multicall.call(
       contractCallContexts
     );
-
-    const results: TokenWithAllowanceInfo[] = [];
 
     for (const result in contractCallResults.results) {
       const resultInfo = contractCallResults.results[result];

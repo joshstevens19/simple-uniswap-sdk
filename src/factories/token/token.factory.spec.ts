@@ -1,4 +1,4 @@
-import { ChainId } from '../..';
+import { ChainId, ETH } from '../..';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
@@ -13,9 +13,20 @@ describe('TokenFactory', () => {
 
   const tokenFactory = new TokenFactory(token.contractAddress, ethersProvider);
 
-  it('getToken', async () => {
-    const result = await tokenFactory.getToken();
-    expect(result).toEqual(token);
+  describe('getToken', () => {
+    it('getToken erc20', async () => {
+      const result = await tokenFactory.getToken();
+      expect(result).toEqual(token);
+    });
+
+    it('getToken eth', async () => {
+      const tokenFactoryEth = new TokenFactory(
+        ETH.MAINNET().contractAddress,
+        ethersProvider
+      );
+      const result = await tokenFactoryEth.getToken();
+      expect(result).toEqual(ETH.MAINNET());
+    });
   });
 
   describe('allowance', () => {

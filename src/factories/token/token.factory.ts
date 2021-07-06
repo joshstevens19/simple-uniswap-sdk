@@ -2,6 +2,7 @@ import { ContractCallContext, Multicall } from 'ethereum-multicall';
 import { BigNumber } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
+import { ETH, isNativeEth } from '../../common/tokens/eth';
 import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
@@ -19,7 +20,7 @@ export class TokenFactory {
   private _erc20TokenContract =
     this._ethersProvider.getContract<ERC20ContractContext>(
       JSON.stringify(ContractContext.erc20Abi),
-      this._tokenContractAddress
+      getAddress(this._tokenContractAddress)
     );
 
   constructor(
@@ -31,43 +32,50 @@ export class TokenFactory {
    * Get the token details
    */
   public async getToken(): Promise<Token> {
-    const SYMBOL = 0;
-    const DECIMALS = 1;
-    const NAME = 2;
+    if (isNativeEth(this._tokenContractAddress)) {
+      return ETH.info(this._ethersProvider.network().chainId);
+    } else {
+      const SYMBOL = 0;
+      const DECIMALS = 1;
+      const NAME = 2;
 
-    const contractCallContext: ContractCallContext = {
-      reference: 'token',
-      contractAddress: getAddress(this._tokenContractAddress),
-      abi: ContractContext.erc20Abi,
-      calls: [
-        {
-          reference: `symbol`,
-          methodName: 'symbol',
-          methodParameters: [],
-        },
-        {
-          reference: `decimals`,
-          methodName: 'decimals',
-          methodParameters: [],
-        },
-        {
-          reference: `name`,
-          methodName: 'name',
-          methodParameters: [],
-        },
-      ],
-    };
+      const contractCallContext: ContractCallContext = {
+        reference: 'token',
+        contractAddress: getAddress(this._tokenContractAddress),
+        abi: ContractContext.erc20Abi,
+        calls: [
+          {
+            reference: `symbol`,
+            methodName: 'symbol',
+            methodParameters: [],
+          },
+          {
+            reference: `decimals`,
+            methodName: 'decimals',
+            methodParameters: [],
+          },
+          {
+            reference: `name`,
+            methodName: 'name',
+            methodParameters: [],
+          },
+        ],
+      };
 
-    const contractCallResults = await this._multicall.call(contractCallContext);
-    const results = contractCallResults.results[contractCallContext.reference];
+      const contractCallResults = await this._multicall.call(
+        contractCallContext
+      );
+      const results =
+        contractCallResults.results[contractCallContext.reference];
 
-    return {
-      chainId: this._ethersProvider.network().chainId,
-      contractAddress: results.originalContractCallContext.contractAddress,
-      symbol: results.callsReturnContext[SYMBOL].returnValues[0],
-      decimals: results.callsReturnContext[DECIMALS].returnValues[0],
-      name: results.callsReturnContext[NAME].returnValues[0],
-    };
+      return {
+        chainId: this._ethersProvider.network().chainId,
+        contractAddress: results.originalContractCallContext.contractAddress,
+        symbol: results.callsReturnContext[SYMBOL].returnValues[0],
+        decimals: results.callsReturnContext[DECIMALS].returnValues[0],
+        name: results.callsReturnContext[NAME].returnValues[0],
+      };
+    }
   }
 
   /**
@@ -80,14 +88,18 @@ export class TokenFactory {
     uniswapVersion: UniswapVersion,
     ethereumAddress: string
   ): Promise<string> {
-    const allowance = await this._erc20TokenContract.allowance(
-      ethereumAddress,
-      uniswapVersion === UniswapVersion.v2
-        ? UniswapContractContextV2.routerAddress
-        : UniswapContractContextV3.routerAddress
-    );
+    if (isNativeEth(this._tokenContractAddress)) {
+      return '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+    } else {
+      const allowance = await this._erc20TokenContract.allowance(
+        ethereumAddress,
+        uniswapVersion === UniswapVersion.v2
+          ? UniswapContractContextV2.routerAddress
+          : UniswapContractContextV3.routerAddress
+      );
 
-    return allowance.toHexString();
+      return allowance.toHexString();
+    }
   }
 
   /**
@@ -97,6 +109,9 @@ export class TokenFactory {
    * @value The amount you want to allow them to do
    */
   public generateApproveAllowanceData(spender: string, value: string): string {
+    if (isNativeEth(this._tokenContractAddress)) {
+      throw new Error('ETH does not need any allowance data');
+    }
     return this._erc20TokenContract.interface.encodeFunctionData('approve', [
       spender,
       value,
@@ -108,9 +123,13 @@ export class TokenFactory {
    * @ethereumAddress The users ethereum address
    */
   public async balanceOf(ethereumAddress: string): Promise<string> {
-    const balance = await this._erc20TokenContract.balanceOf(ethereumAddress);
+    if (isNativeEth(this._tokenContractAddress)) {
+      return await this._ethersProvider.balanceOf(ethereumAddress);
+    } else {
+      const balance = await this._erc20TokenContract.balanceOf(ethereumAddress);
 
-    return balance.toHexString();
+      return balance.toHexString();
+    }
   }
 
   /**
@@ -131,42 +150,52 @@ export class TokenFactory {
     uniswapVersion: UniswapVersion,
     ethereumAddress: string
   ): Promise<AllowanceAndBalanceOf> {
-    const ALLOWANCE = 0;
-    const BALANCEOF = 1;
+    if (isNativeEth(this._tokenContractAddress)) {
+      return {
+        allowance: await this.allowance(uniswapVersion, ethereumAddress),
+        balanceOf: await this.balanceOf(ethereumAddress),
+      };
+    } else {
+      const ALLOWANCE = 0;
+      const BALANCEOF = 1;
 
-    const contractCallContext: ContractCallContext = {
-      reference: 'allowance-and-balance-of',
-      contractAddress: getAddress(this._tokenContractAddress),
-      abi: ContractContext.erc20Abi,
-      calls: [
-        {
-          reference: 'allowance',
-          methodName: 'allowance',
-          methodParameters: [
-            ethereumAddress,
-            uniswapVersion === UniswapVersion.v2
-              ? UniswapContractContextV2.routerAddress
-              : UniswapContractContextV3.routerAddress,
-          ],
-        },
-        {
-          reference: 'balanceOf',
-          methodName: 'balanceOf',
-          methodParameters: [ethereumAddress],
-        },
-      ],
-    };
+      const contractCallContext: ContractCallContext = {
+        reference: 'allowance-and-balance-of',
+        contractAddress: getAddress(this._tokenContractAddress),
+        abi: ContractContext.erc20Abi,
+        calls: [
+          {
+            reference: 'allowance',
+            methodName: 'allowance',
+            methodParameters: [
+              ethereumAddress,
+              uniswapVersion === UniswapVersion.v2
+                ? UniswapContractContextV2.routerAddress
+                : UniswapContractContextV3.routerAddress,
+            ],
+          },
+          {
+            reference: 'balanceOf',
+            methodName: 'balanceOf',
+            methodParameters: [ethereumAddress],
+          },
+        ],
+      };
 
-    const contractCallResults = await this._multicall.call(contractCallContext);
-    const results = contractCallResults.results[contractCallContext.reference];
+      const contractCallResults = await this._multicall.call(
+        contractCallContext
+      );
+      const results =
+        contractCallResults.results[contractCallContext.reference];
 
-    return {
-      allowance: BigNumber.from(
-        results.callsReturnContext[ALLOWANCE].returnValues[0]
-      ).toHexString(),
-      balanceOf: BigNumber.from(
-        results.callsReturnContext[BALANCEOF].returnValues[0]
-      ).toHexString(),
-    };
+      return {
+        allowance: BigNumber.from(
+          results.callsReturnContext[ALLOWANCE].returnValues[0]
+        ).toHexString(),
+        balanceOf: BigNumber.from(
+          results.callsReturnContext[BALANCEOF].returnValues[0]
+        ).toHexString(),
+      };
+    }
   }
 }
