@@ -5,6 +5,8 @@ export {
 export { ErrorCodes } from './common/errors/error-codes';
 export { UniswapError } from './common/errors/uniswap-error';
 export * from './common/tokens';
+export { deepClone } from './common/utils/deep-clone';
+export { getAddress } from './common/utils/get-address';
 export { ChainId } from './enums/chain-id';
 export { UniswapVersion } from './enums/uniswap-version';
 export { EthersProvider } from './ethers-provider';
