@@ -48,22 +48,6 @@ describe('UniswapPairSettings', () => {
     });
   });
 
-  describe('useWETHAsERC20Route', () => {
-    it('should set the correct default if not passed in', () => {
-      const uniswapPairSettings = new UniswapPairSettings();
-
-      expect(uniswapPairSettings.useWETHAsERC20Route).toEqual(false);
-    });
-
-    it('should set the value', () => {
-      const uniswapPairSettings = new UniswapPairSettings({
-        useWETHAsERC20Route: true,
-      });
-
-      expect(uniswapPairSettings.useWETHAsERC20Route).toEqual(true);
-    });
-  });
-
   describe('uniswapVersions', () => {
     it('should set the correct default if not passed in', () => {
       const uniswapPairSettings = new UniswapPairSettings();

@@ -6,18 +6,15 @@ import { WETH } from '../tokens/weth';
 export function getTradePath(
   chainId: ChainId,
   fromToken: Token,
-  toToken: Token,
-  useWETHAsERC20Route: boolean
+  toToken: Token
 ): TradePath {
-  if (useWETHAsERC20Route) {
-    return TradePath.erc20ToErc20;
-  }
-
-  if (fromToken.contractAddress === WETH.token(chainId).contractAddress) {
+  if (
+    fromToken.contractAddress === WETH.token(chainId, false).contractAddress
+  ) {
     return TradePath.ethToErc20;
   }
 
-  if (toToken.contractAddress === WETH.token(chainId).contractAddress) {
+  if (toToken.contractAddress === WETH.token(chainId, false).contractAddress) {
     return TradePath.erc20ToEth;
   }
 

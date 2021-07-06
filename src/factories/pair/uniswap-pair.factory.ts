@@ -7,6 +7,7 @@ import {
 import { Constants } from '../../common/constants';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
+import { removeEthFromContractAddress } from '../../common/tokens/weth';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
@@ -52,7 +53,6 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.fromToken,
     this._uniswapPairFactoryContext.toToken,
     this._uniswapPairFactoryContext.settings.disableMultihops,
-    this._uniswapPairFactoryContext.settings.useWETHAsERC20Route,
     this._uniswapPairFactoryContext.settings.uniswapVersions,
     this._uniswapPairFactoryContext.ethersProvider
   );
@@ -1004,8 +1004,12 @@ export class UniswapPairFactory {
     deadline: string
   ): string {
     const params: ExactInputSingleRequest = {
-      tokenIn: this._uniswapPairFactoryContext.fromToken.contractAddress,
-      tokenOut: this._uniswapPairFactoryContext.toToken.contractAddress,
+      tokenIn: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.fromToken.contractAddress
+      ),
+      tokenOut: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.toToken.contractAddress
+      ),
       fee: percentToFeeAmount(liquidityProviderFee),
       recipient: this._uniswapPairFactoryContext.ethereumAddress,
       deadline,
@@ -1089,12 +1093,7 @@ export class UniswapPairFactory {
    */
   private tradePath(): TradePath {
     const network = this._uniswapPairFactoryContext.ethersProvider.network();
-    return getTradePath(
-      network.chainId,
-      this.fromToken,
-      this.toToken,
-      this._uniswapPairFactoryContext.settings.useWETHAsERC20Route
-    );
+    return getTradePath(network.chainId, this.fromToken, this.toToken);
   }
 
   /**

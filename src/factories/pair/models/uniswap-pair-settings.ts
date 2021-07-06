@@ -6,20 +6,17 @@ export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
-  useWETHAsERC20Route: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
 
   constructor(settings?: {
     slippage?: number | undefined;
     deadlineMinutes?: number | undefined;
     disableMultihops?: boolean | undefined;
-    useWETHAsERC20Route?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
-    this.useWETHAsERC20Route = settings?.useWETHAsERC20Route || false;
 
     if (
       Array.isArray(settings?.uniswapVersions) &&

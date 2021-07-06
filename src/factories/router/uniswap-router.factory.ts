@@ -11,7 +11,13 @@ import { COMP } from '../../common/tokens/comp';
 import { DAI } from '../../common/tokens/dai';
 import { USDC } from '../../common/tokens/usdc';
 import { USDT } from '../../common/tokens/usdt';
-import { WETH } from '../../common/tokens/weth';
+import {
+  ETH_SYMBOL,
+  removeEthFromContractAddress,
+  turnTokenIntoEth,
+  WETH,
+} from '../../common/tokens/weth';
+import { deepClone } from '../../common/utils/deep-clone';
 import { formatEther } from '../../common/utils/format-ether';
 import { hexlify } from '../../common/utils/hexlify';
 import { onlyUnique } from '../../common/utils/only-unique';
@@ -49,7 +55,6 @@ export class UniswapRouterFactory {
     private _fromToken: Token,
     private _toToken: Token,
     private _disableMultihops: boolean,
-    private _useWETHAsERC20Route: boolean,
     private _uniswapVersions: UniswapVersion[],
     private _ethersProvider: EthersProvider
   ) {}
@@ -101,8 +106,8 @@ export class UniswapRouterFactory {
             reference: `${fromToken.contractAddress}-${toToken.contractAddress}-${fromToken.symbol}/${toToken.symbol}`,
             methodName: 'getPair',
             methodParameters: [
-              fromToken.contractAddress,
-              toToken.contractAddress,
+              removeEthFromContractAddress(fromToken.contractAddress),
+              removeEthFromContractAddress(toToken.contractAddress),
             ],
           });
         }
@@ -120,8 +125,8 @@ export class UniswapRouterFactory {
             reference: `${this._fromToken.contractAddress}-${this._toToken.contractAddress}-${this._fromToken.symbol}/${this._toToken.symbol}`,
             methodName: 'getPool',
             methodParameters: [
-              this._fromToken.contractAddress,
-              this._toToken.contractAddress,
+              removeEthFromContractAddress(this._fromToken.contractAddress),
+              removeEthFromContractAddress(this._toToken.contractAddress),
               FeeAmount.LOW,
             ],
           },
@@ -129,8 +134,8 @@ export class UniswapRouterFactory {
             reference: `${this._fromToken.contractAddress}-${this._toToken.contractAddress}-${this._fromToken.symbol}/${this._toToken.symbol}`,
             methodName: 'getPool',
             methodParameters: [
-              this._fromToken.contractAddress,
-              this._toToken.contractAddress,
+              removeEthFromContractAddress(this._fromToken.contractAddress),
+              removeEthFromContractAddress(this._toToken.contractAddress),
               FeeAmount.MEDIUM,
             ],
           },
@@ -138,8 +143,8 @@ export class UniswapRouterFactory {
             reference: `${this._fromToken.contractAddress}-${this._toToken.contractAddress}-${this._fromToken.symbol}/${this._toToken.symbol}`,
             methodName: 'getPool',
             methodParameters: [
-              this._fromToken.contractAddress,
-              this._toToken.contractAddress,
+              removeEthFromContractAddress(this._fromToken.contractAddress),
+              removeEthFromContractAddress(this._toToken.contractAddress),
               FeeAmount.HIGH,
             ],
           },
@@ -266,7 +271,7 @@ export class UniswapRouterFactory {
 
       for (let i = 0; i < routes.v2.length; i++) {
         const routeCombo = routes.v2[i].route.map((c) => {
-          return c.contractAddress;
+          return removeEthFromContractAddress(c.contractAddress);
         });
 
         contractCallContext[0].calls.push({
@@ -291,7 +296,7 @@ export class UniswapRouterFactory {
 
       for (let i = 0; i < routes.v3.length; i++) {
         const routeCombo = routes.v3[i].route.map((c) => {
-          return c.contractAddress;
+          return removeEthFromContractAddress(c.contractAddress);
         });
 
         contractCallContext[
@@ -331,6 +336,7 @@ export class UniswapRouterFactory {
       amountToTrade,
       direction
     );
+
     if (allRoutes.length === 0) {
       throw new UniswapError(
         `No routes found for ${this._fromToken.contractAddress} > ${this._toToken.contractAddress}`,
@@ -655,34 +661,13 @@ export class UniswapRouterFactory {
   }
 
   /**
-   * Build up the route quote for erc20 > eth
+   * Build up the route quote for erc20 > eth (not shared with other method for safety reasons)
    * @param callReturnContext The call return context
    * @param routeContext The route context
    * @param direction The direction you want to get the quote from
    * @param uniswapVersion The uniswap version
    */
   private buildRouteQuoteForErc20ToErc20(
-    callReturnContext: CallReturnContext,
-    routeContext: RouteContext,
-    direction: TradeDirection,
-    uniswapVersion: UniswapVersion
-  ): RouteQuote {
-    return this.buildRouteQuoteForEthToErc20(
-      callReturnContext,
-      routeContext,
-      direction,
-      uniswapVersion
-    );
-  }
-
-  /**
-   * Build up the route quote for erc20 > eth
-   * @param callReturnContext The call return context
-   * @param routeContext The route context
-   * @param direction The direction you want to get the quote from
-   * @param uniswapVersion The uniswap version
-   */
-  private buildRouteQuoteForEthToErc20(
     callReturnContext: CallReturnContext,
     routeContext: RouteContext,
     direction: TradeDirection,
@@ -748,7 +733,94 @@ export class UniswapRouterFactory {
   }
 
   /**
-   * Build up the route quote for erc20 > eth
+   * Build up the route quote for eth > erc20 (not shared with other method for safety reasons)
+   * @param callReturnContext The call return context
+   * @param routeContext The route context
+   * @param direction The direction you want to get the quote from
+   * @param uniswapVersion The uniswap version
+   */
+  private buildRouteQuoteForEthToErc20(
+    callReturnContext: CallReturnContext,
+    routeContext: RouteContext,
+    direction: TradeDirection,
+    uniswapVersion: UniswapVersion
+  ): RouteQuote {
+    const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
+      callReturnContext,
+      direction,
+      uniswapVersion
+    );
+
+    switch (uniswapVersion) {
+      case UniswapVersion.v2:
+        return {
+          expectedConvertQuote:
+            direction === TradeDirection.input
+              ? convertQuoteUnformatted
+                  .shiftedBy(this._toToken.decimals * -1)
+                  .toFixed(this._toToken.decimals)
+              : convertQuoteUnformatted
+                  .shiftedBy(this._fromToken.decimals * -1)
+                  .toFixed(this._fromToken.decimals),
+          routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
+            (c: string, index: number) => {
+              const token = deepClone(
+                this.allTokens.find((t) => t.contractAddress === c)!
+              );
+              if (index === 0) {
+                return turnTokenIntoEth(token);
+              }
+
+              return token;
+            }
+          ),
+          routeText: callReturnContext.methodParameters[1]
+            .map((c: string, index: number) => {
+              if (index === 0) {
+                return ETH_SYMBOL;
+              }
+              return this.allTokens.find((t) => t.contractAddress === c)!
+                .symbol;
+            })
+            .join(' > '),
+          // route array is always in the 1 index of the method parameters
+          routePathArray: callReturnContext.methodParameters[1],
+          uniswapVersion,
+          liquidityProviderFee: routeContext.liquidityProviderFee,
+          quoteDirection: direction,
+        };
+      case UniswapVersion.v3:
+        return {
+          expectedConvertQuote:
+            direction === TradeDirection.input
+              ? convertQuoteUnformatted
+                  .shiftedBy(this._toToken.decimals * -1)
+                  .toFixed(this._toToken.decimals)
+              : convertQuoteUnformatted
+                  .shiftedBy(this._fromToken.decimals * -1)
+                  .toFixed(this._fromToken.decimals),
+          routePathArrayTokenMap: [
+            turnTokenIntoEth(this._fromToken),
+            this._toToken,
+          ],
+          routeText: `${turnTokenIntoEth(this._fromToken).symbol} > ${
+            this._toToken.symbol
+          }`,
+          routePathArray: [
+            this._fromToken.contractAddress,
+            this._toToken.contractAddress,
+          ],
+          uniswapVersion,
+          liquidityProviderFee: routeContext.liquidityProviderFee,
+          quoteDirection: direction,
+        };
+      default:
+        throw new UniswapError('Invalid uniswap version', uniswapVersion);
+    }
+  }
+
+  /**
+   * Build up the route quote for erc20 > eth (not shared with other method for safety reasons)
    * @param callReturnContext The call return context
    * @param routeContext The route context
    * @param direction The direction you want to get the quote from
@@ -778,12 +850,22 @@ export class UniswapRouterFactory {
                   .shiftedBy(this._fromToken.decimals * -1)
                   .toFixed(this._fromToken.decimals),
           routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
-            (c: string) => {
-              return this.allTokens.find((t) => t.contractAddress === c);
+            (c: string, index: number) => {
+              const token = deepClone(
+                this.allTokens.find((t) => t.contractAddress === c)!
+              );
+              if (index === callReturnContext.methodParameters[1].length - 1) {
+                return turnTokenIntoEth(token);
+              }
+
+              return token;
             }
           ),
           routeText: callReturnContext.methodParameters[1]
-            .map((c: string) => {
+            .map((c: string, index: number) => {
+              if (index === callReturnContext.methodParameters[1].length - 1) {
+                return ETH_SYMBOL;
+              }
               return this.allTokens.find((t) => t.contractAddress === c)!
                 .symbol;
             })
@@ -799,8 +881,13 @@ export class UniswapRouterFactory {
           expectedConvertQuote: convertQuoteUnformatted
             .shiftedBy(this._toToken.decimals * -1)
             .toFixed(this._toToken.decimals),
-          routePathArrayTokenMap: [this._fromToken, this._toToken],
-          routeText: `${this._fromToken.symbol} > ${this._toToken.symbol}`,
+          routePathArrayTokenMap: [
+            this._fromToken,
+            turnTokenIntoEth(this._toToken),
+          ],
+          routeText: `${this._fromToken.symbol} > ${
+            turnTokenIntoEth(this._toToken).symbol
+          }`,
           routePathArray: [
             this._fromToken.contractAddress,
             this._toToken.contractAddress,
@@ -886,12 +973,7 @@ export class UniswapRouterFactory {
    */
   private tradePath(): TradePath {
     const network = this._ethersProvider.network();
-    return getTradePath(
-      network.chainId,
-      this._fromToken,
-      this._toToken,
-      this._useWETHAsERC20Route
-    );
+    return getTradePath(network.chainId, this._fromToken, this._toToken);
   }
 
   private get allTokens(): Token[] {
@@ -1042,7 +1124,7 @@ export class UniswapRouterFactory {
   }
 
   private get WETHTokenForConnectedNetwork() {
-    return WETH.token(this._ethersProvider.provider.network.chainId);
+    return WETH.token(this._ethersProvider.provider.network.chainId, true);
   }
 
   // private get WBTCTokenForConnectedNetwork() {

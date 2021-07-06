@@ -1,6 +1,6 @@
-import { ethers } from 'ethers';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
+import { getAddress } from '../../common/utils/get-address';
 import { isAddress } from '../../common/utils/is-address';
 import { ChainId } from '../../enums/chain-id';
 import { EthersProvider } from '../../ethers-provider';
@@ -37,8 +37,9 @@ export class UniswapPair {
       );
     }
 
-    this._uniswapPairContext.fromTokenContractAddress = ethers.utils.getAddress(
-      this._uniswapPairContext.fromTokenContractAddress
+    this._uniswapPairContext.fromTokenContractAddress = getAddress(
+      this._uniswapPairContext.fromTokenContractAddress,
+      true
     );
 
     if (!this._uniswapPairContext.toTokenContractAddress) {
@@ -55,8 +56,9 @@ export class UniswapPair {
       );
     }
 
-    this._uniswapPairContext.toTokenContractAddress = ethers.utils.getAddress(
-      this._uniswapPairContext.toTokenContractAddress
+    this._uniswapPairContext.toTokenContractAddress = getAddress(
+      this._uniswapPairContext.toTokenContractAddress,
+      true
     );
 
     if (!this._uniswapPairContext.ethereumAddress) {
@@ -73,7 +75,7 @@ export class UniswapPair {
       );
     }
 
-    this._uniswapPairContext.ethereumAddress = ethers.utils.getAddress(
+    this._uniswapPairContext.ethereumAddress = getAddress(
       this._uniswapPairContext.ethereumAddress
     );
 
