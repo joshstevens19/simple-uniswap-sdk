@@ -340,7 +340,7 @@ export class UniswapRouterFactory {
 
     if (allRoutes.length === 0) {
       throw new UniswapError(
-        `No routes found for ${this._fromToken.contractAddress} > ${this._toToken.contractAddress}`,
+        `No routes found for ${this._fromToken.symbol} > ${this._toToken.symbol}`,
         ErrorCodes.noRoutesFound
       );
     }
