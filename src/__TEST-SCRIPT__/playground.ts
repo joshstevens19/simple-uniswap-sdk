@@ -1,4 +1,4 @@
-import { ETH, TradeDirection, WETHContract } from '..';
+import { ETH, TradeDirection } from '..';
 import { ChainId } from '../enums/chain-id';
 import { UniswapVersion } from '../enums/uniswap-version';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
@@ -13,7 +13,7 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 
 const routeTest = async () => {
   const fromTokenContractAddress = ETH.MAINNET().contractAddress; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
-  const toTokenContractAddress = WETHContract.MAINNET().contractAddress; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
+  const toTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
@@ -27,7 +27,7 @@ const routeTest = async () => {
       slippage: 0.005,
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
-      disableMultihops: false,
+      disableMultihops: true,
       uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
     }),
   });
