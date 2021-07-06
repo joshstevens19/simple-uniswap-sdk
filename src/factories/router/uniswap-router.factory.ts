@@ -11,6 +11,7 @@ import { COMP } from '../../common/tokens/comp';
 import { DAI } from '../../common/tokens/dai';
 import {
   ETH_SYMBOL,
+  isNativeEth,
   removeEthFromContractAddress,
   turnTokenIntoEthForResponse,
 } from '../../common/tokens/eth';
@@ -1001,9 +1002,12 @@ export class UniswapRouterFactory {
         [this._fromToken, this.COMPTokenForConnectedNetwork],
         [this._fromToken, this.USDCTokenForConnectedNetwork],
         [this._fromToken, this.DAITokenForConnectedNetwork],
-        [this._fromToken, this.WETHTokenForConnectedNetwork],
         // [this._fromToken, this.WBTCTokenForConnectedNetwork],
       ];
+
+      if (!isNativeEth(this._fromToken.contractAddress)) {
+        pairs.push([this._fromToken, this.WETHTokenForConnectedNetwork]);
+      }
 
       return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
     }
@@ -1019,9 +1023,12 @@ export class UniswapRouterFactory {
         [this.COMPTokenForConnectedNetwork, this._toToken],
         [this.USDCTokenForConnectedNetwork, this._toToken],
         [this.DAITokenForConnectedNetwork, this._toToken],
-        [this.WETHTokenForConnectedNetwork, this._toToken],
         // [this.WBTCTokenForConnectedNetwork, this._toToken],
       ];
+
+      if (!isNativeEth(this._toToken.contractAddress)) {
+        pairs.push([this.WETHTokenForConnectedNetwork, this._toToken]);
+      }
 
       return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
     }
@@ -1035,12 +1042,18 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForUSDT(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      return [
+      const pairs: Token[][] = [
         [this.USDTTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.USDTTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.USDTTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
-        [this.USDTTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
       ];
+
+      if (!isNativeEth(this._fromToken.contractAddress)) {
+        pairs.push([
+          this.USDTTokenForConnectedNetwork,
+          this.WETHTokenForConnectedNetwork,
+        ]);
+      }
     }
 
     return [];
@@ -1048,12 +1061,18 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForCOMP(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      return [
+      const pairs: Token[][] = [
         [this.COMPTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.COMPTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.COMPTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
-        [this.COMPTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
       ];
+
+      if (!isNativeEth(this._fromToken.contractAddress)) {
+        pairs.push([
+          this.COMPTokenForConnectedNetwork,
+          this.WETHTokenForConnectedNetwork,
+        ]);
+      }
     }
 
     return [];
@@ -1061,10 +1080,16 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForDAI(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      return [
+      const pairs: Token[][] = [
         [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
-        [this.DAITokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
       ];
+
+      if (!isNativeEth(this._fromToken.contractAddress)) {
+        pairs.push([
+          this.DAITokenForConnectedNetwork,
+          this.WETHTokenForConnectedNetwork,
+        ]);
+      }
     }
 
     return [];
@@ -1072,12 +1097,18 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForUSDC(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      return [
+      const pairs: Token[][] = [
         [this.USDCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.USDCTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.USDCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
-        [this.USDCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
       ];
+
+      if (!isNativeEth(this._fromToken.contractAddress)) {
+        pairs.push([
+          this.USDCTokenForConnectedNetwork,
+          this.WETHTokenForConnectedNetwork,
+        ]);
+      }
     }
 
     return [];

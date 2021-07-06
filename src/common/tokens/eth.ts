@@ -18,9 +18,7 @@ export const removeEthFromContractAddress = (
   return contractAddress.replace(ETH_PREFIX, '');
 };
 
-export const isNativeEthToContractAddress = (
-  contractAddress: string
-): boolean => {
+export const isNativeEth = (contractAddress: string): boolean => {
   return contractAddress.includes(ETH_PREFIX);
 };
 

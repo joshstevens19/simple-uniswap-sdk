@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import {
   appendEthToContractAddress,
-  isNativeEthToContractAddress,
+  isNativeEth,
   removeEthFromContractAddress,
 } from '../tokens/eth';
 
@@ -13,7 +13,7 @@ export function getAddress(address: string, keepEthPrefix = false): string {
     return parsedAddress;
   }
 
-  if (!isNativeEthToContractAddress(address)) {
+  if (!isNativeEth(address)) {
     return parsedAddress;
   }
 

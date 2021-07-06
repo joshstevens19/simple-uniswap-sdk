@@ -4,7 +4,7 @@ import { BigNumber as EthersBigNumber } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
-import { ETH, isNativeEthToContractAddress } from '../../common/tokens/eth';
+import { ETH, isNativeEth } from '../../common/tokens/eth';
 import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
@@ -34,7 +34,7 @@ export class TokensFactory {
 
       const contractCallContexts: ContractCallContext[] = [];
       for (let i = 0; i < tokenContractAddresses.length; i++) {
-        if (!isNativeEthToContractAddress(tokenContractAddresses[i])) {
+        if (!isNativeEth(tokenContractAddresses[i])) {
           const contractCallContext: ContractCallContext = {
             reference: `token${i}`,
             contractAddress: getAddress(tokenContractAddresses[i]),
