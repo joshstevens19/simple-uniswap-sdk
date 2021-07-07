@@ -1,5 +1,5 @@
 import { isHexString } from 'ethers/lib/utils';
-import { ChainId, WETH } from '../../..';
+import { ChainId, WETHContract } from '../../..';
 import { EthersProvider } from '../../../ethers-provider';
 import { MOCKFUN } from '../../../mocks/fun-token.mock';
 import { UniswapContractFactoryV2 } from './uniswap-contract.factory.v2';
@@ -22,7 +22,7 @@ describe('UniswapContractFactoryV2', () => {
   it('createPair', () => {
     const result = uniswapContractFactory.createPair(
       MOCKFUN().contractAddress,
-      WETH.MAINNET().contractAddress
+      WETHContract.MAINNET().contractAddress
     );
     expect(result).toEqual(
       '0xc9c65396000000000000000000000000419d0d8bdd9af5e606ae2232ed285aff190e711b000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
@@ -41,7 +41,7 @@ describe('UniswapContractFactoryV2', () => {
 
   it('getPair', async () => {
     const result = await uniswapContractFactory.getPair(
-      WETH.MAINNET().contractAddress,
+      WETHContract.MAINNET().contractAddress,
       MOCKFUN().contractAddress
     );
     expect(result).toEqual('0x05B0c1D8839eF3a989B33B6b63D3aA96cB7Ec142');

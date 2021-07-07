@@ -1,10 +1,10 @@
 import {
   ChainId,
   ErrorCodes,
+  ETH,
   UniswapError,
   UniswapPairFactory,
   UniswapPairSettings,
-  WETH,
 } from '../..';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
@@ -253,7 +253,7 @@ describe('UniswapPairFactory', () => {
   describe('erc20 > eth', () => {
     const uniswapPairFactoryContext: UniswapPairFactoryContext = {
       fromToken: MOCKFUN(),
-      toToken: WETH.MAINNET(),
+      toToken: ETH.MAINNET(),
       ethereumAddress: MockEthereumAddress(),
       settings: new UniswapPairSettings(),
       ethersProvider,
@@ -348,7 +348,7 @@ describe('UniswapPairFactory', () => {
         it('should return false if i do not have enough allowance', async () => {
           const factory = new UniswapPairFactory({
             fromToken: MOCKREP(),
-            toToken: WETH.MAINNET(),
+            toToken: ETH.MAINNET(),
             ethereumAddress: MockEthereumAddress(),
             settings: new UniswapPairSettings(),
             ethersProvider,
@@ -374,7 +374,7 @@ describe('UniswapPairFactory', () => {
         it('should return false if i do not have enough allowance', async () => {
           const factory = new UniswapPairFactory({
             fromToken: MOCKREP(),
-            toToken: WETH.MAINNET(),
+            toToken: ETH.MAINNET(),
             ethereumAddress: MockEthereumAddress(),
             settings: new UniswapPairSettings(),
             ethersProvider,
@@ -394,7 +394,7 @@ describe('UniswapPairFactory', () => {
         it('should return more then 0', async () => {
           const factory = new UniswapPairFactory({
             fromToken: MOCKFUN(),
-            toToken: WETH.MAINNET(),
+            toToken: ETH.MAINNET(),
             ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
             settings: new UniswapPairSettings(),
             ethersProvider,
@@ -407,7 +407,7 @@ describe('UniswapPairFactory', () => {
         it('should return 0 allowance', async () => {
           const factory = new UniswapPairFactory({
             fromToken: MOCKREP(),
-            toToken: WETH.MAINNET(),
+            toToken: ETH.MAINNET(),
             ethereumAddress: MockEthereumAddress(),
             settings: new UniswapPairSettings(),
             ethersProvider,
@@ -422,7 +422,7 @@ describe('UniswapPairFactory', () => {
         xit('should return more then 0', async () => {
           const factory = new UniswapPairFactory({
             fromToken: MOCKFUN(),
-            toToken: WETH.MAINNET(),
+            toToken: ETH.MAINNET(),
             ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
             settings: new UniswapPairSettings(),
             ethersProvider,
@@ -435,7 +435,7 @@ describe('UniswapPairFactory', () => {
         it('should return 0 allowance', async () => {
           const factory = new UniswapPairFactory({
             fromToken: MOCKREP(),
-            toToken: WETH.MAINNET(),
+            toToken: ETH.MAINNET(),
             ethereumAddress: MockEthereumAddress(),
             settings: new UniswapPairSettings(),
             ethersProvider,
@@ -482,7 +482,7 @@ describe('UniswapPairFactory', () => {
 
   describe('eth > erc20', () => {
     const uniswapPairFactoryContext: UniswapPairFactoryContext = {
-      fromToken: WETH.MAINNET(),
+      fromToken: ETH.MAINNET(),
       toToken: MOCKFUN(),
       ethereumAddress: MockEthereumAddress(),
       settings: new UniswapPairSettings(),

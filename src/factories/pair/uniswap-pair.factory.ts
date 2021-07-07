@@ -7,6 +7,10 @@ import {
 import { Constants } from '../../common/constants';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
+import {
+  removeEthFromContractAddress,
+  turnTokenIntoEthForResponse,
+} from '../../common/tokens/eth';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
@@ -25,6 +29,7 @@ import { UniswapRouterContractFactoryV3 } from '../router/v3/uniswap-router-cont
 import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
+import { TokensFactory } from '../token/tokens.factory';
 import { TradeContext } from './models/trade-context';
 import { TradeDirection } from './models/trade-direction';
 import { Transaction } from './models/transaction';
@@ -41,6 +46,10 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.ethersProvider
   );
 
+  private _tokensFactory = new TokensFactory(
+    this._uniswapPairFactoryContext.ethersProvider
+  );
+
   private _uniswapRouterContractFactoryV2 = new UniswapRouterContractFactoryV2(
     this._uniswapPairFactoryContext.ethersProvider
   );
@@ -52,7 +61,6 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.fromToken,
     this._uniswapPairFactoryContext.toToken,
     this._uniswapPairFactoryContext.settings.disableMultihops,
-    this._uniswapPairFactoryContext.settings.useWETHAsERC20Route,
     this._uniswapPairFactoryContext.settings.uniswapVersions,
     this._uniswapPairFactoryContext.ethersProvider
   );
@@ -324,6 +332,34 @@ export class UniswapPairFactory {
   }
 
   /**
+   * Get the allowance and balance for the from and to token (will get balance for eth as well)
+   * @param uniswapVersion The uniswap version
+   */
+  public async getAllowanceAndBalanceForTokens(
+    uniswapVersion: UniswapVersion
+  ): Promise<{
+    fromToken: AllowanceAndBalanceOf;
+    toToken: AllowanceAndBalanceOf;
+  }> {
+    const allowanceAndBalanceOfForTokens =
+      await this._tokensFactory.getAllowanceAndBalanceOfForContracts(
+        uniswapVersion,
+        this._uniswapPairFactoryContext.ethereumAddress,
+        [this.fromToken.contractAddress, this.toToken.contractAddress],
+        false
+      );
+
+    return {
+      fromToken: allowanceAndBalanceOfForTokens.find(
+        (c) => c.token.contractAddress === this.fromToken.contractAddress
+      )!.allowanceAndBalanceOf,
+      toToken: allowanceAndBalanceOfForTokens.find(
+        (c) => c.token.contractAddress === this.toToken.contractAddress
+      )!.allowanceAndBalanceOf,
+    };
+  }
+
+  /**
    * Get the allowance and balance for the from token (erc20 > blah) only
    * @param uniswapVersion The uniswap version
    */
@@ -446,20 +482,18 @@ export class UniswapPairFactory {
             tradeExpires.toString()
           );
 
-    const allowanceAndBalanceOf =
-      await this.getAllowanceAndBalanceOfForFromToken(
-        bestRouteQuote.uniswapVersion
-      );
+    const allowanceAndBalancesForTokens =
+      await this.getAllowanceAndBalanceForTokens(bestRouteQuote.uniswapVersion);
 
     const hasEnoughAllowance =
       direction === TradeDirection.input
         ? this._hasGotEnoughAllowance(
             baseConvertRequest.toFixed(),
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           )
         : this._hasGotEnoughAllowance(
             bestRouteQuote.expectedConvertQuote,
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           );
 
     const tradeContext: TradeContext = {
@@ -487,24 +521,29 @@ export class UniswapPairFactory {
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
-      routePath: bestRouteQuote.routePathArray,
+      routePath: bestRouteQuote.routePathArray.map((r) =>
+        removeEthFromContractAddress(r)
+      ),
       hasEnoughAllowance,
       approvalTransaction: !hasEnoughAllowance
         ? await this.generateApproveMaxAllowanceData(
             bestRouteQuote.uniswapVersion
           )
         : undefined,
-      toToken: this.toToken,
+      toToken: turnTokenIntoEthForResponse(this.toToken),
+      toBalance: new BigNumber(allowanceAndBalancesForTokens.toToken.balanceOf)
+        .shiftedBy(this.toToken.decimals * -1)
+        .toFixed(),
       fromToken: this.fromToken,
       fromBalance:
         direction === TradeDirection.input
           ? this.hasGotEnoughBalanceErc20(
               baseConvertRequest.toFixed(),
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             )
           : this.hasGotEnoughBalanceErc20(
               bestRouteQuote.expectedConvertQuote,
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             ),
       transaction: this.buildUpTransactionErc20(
         bestRouteQuote.uniswapVersion,
@@ -566,20 +605,18 @@ export class UniswapPairFactory {
             tradeExpires.toString()
           );
 
-    const allowanceAndBalanceOf =
-      await this.getAllowanceAndBalanceOfForFromToken(
-        bestRouteQuote.uniswapVersion
-      );
+    const allowanceAndBalancesForTokens =
+      await this.getAllowanceAndBalanceForTokens(bestRouteQuote.uniswapVersion);
 
     const hasEnoughAllowance =
       direction === TradeDirection.input
         ? this._hasGotEnoughAllowance(
             baseConvertRequest.toFixed(),
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           )
         : this._hasGotEnoughAllowance(
             bestRouteQuote.expectedConvertQuote,
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           );
 
     const tradeContext: TradeContext = {
@@ -615,16 +652,19 @@ export class UniswapPairFactory {
           )
         : undefined,
       toToken: this.toToken,
+      toBalance: new BigNumber(allowanceAndBalancesForTokens.toToken.balanceOf)
+        .shiftedBy(this.toToken.decimals * -1)
+        .toFixed(),
       fromToken: this.fromToken,
       fromBalance:
         direction === TradeDirection.input
           ? this.hasGotEnoughBalanceErc20(
               baseConvertRequest.toFixed(),
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             )
           : this.hasGotEnoughBalanceErc20(
               bestRouteQuote.expectedConvertQuote,
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             ),
       transaction: this.buildUpTransactionErc20(
         bestRouteQuote.uniswapVersion,
@@ -686,6 +726,9 @@ export class UniswapPairFactory {
             tradeExpires.toString()
           );
 
+    const allowanceAndBalancesForTokens =
+      await this.getAllowanceAndBalanceForTokens(bestRouteQuote.uniswapVersion);
+
     const tradeContext: TradeContext = {
       uniswapVersion: bestRouteQuote.uniswapVersion,
       quoteDirection: direction,
@@ -711,10 +754,15 @@ export class UniswapPairFactory {
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
-      routePath: bestRouteQuote.routePathArray,
+      routePath: bestRouteQuote.routePathArray.map((r) =>
+        removeEthFromContractAddress(r)
+      ),
       hasEnoughAllowance: true,
       toToken: this.toToken,
-      fromToken: this.fromToken,
+      toBalance: new BigNumber(allowanceAndBalancesForTokens.toToken.balanceOf)
+        .shiftedBy(this.toToken.decimals * -1)
+        .toFixed(),
+      fromToken: turnTokenIntoEthForResponse(this.fromToken),
       fromBalance: await this.hasGotEnoughBalanceEth(
         direction === TradeDirection.input
           ? baseConvertRequest.toFixed()
@@ -756,7 +804,7 @@ export class UniswapPairFactory {
       case UniswapVersion.v2:
         return this._uniswapRouterContractFactoryV2.swapExactETHForTokens(
           hexlify(convertedMinTokens),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -796,7 +844,7 @@ export class UniswapPairFactory {
       case UniswapVersion.v2:
         return this._uniswapRouterContractFactoryV2.swapETHForExactTokens(
           hexlify(amountOut),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -838,7 +886,7 @@ export class UniswapPairFactory {
         return this._uniswapRouterContractFactoryV2.swapExactTokensForETH(
           hexlify(amountIn),
           hexlify(parseEther(ethAmountOutMin)),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -880,7 +928,7 @@ export class UniswapPairFactory {
         return this._uniswapRouterContractFactoryV2.swapTokensForExactETH(
           hexlify(parseEther(ethAmountOut)),
           hexlify(amountInMax),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -1004,8 +1052,12 @@ export class UniswapPairFactory {
     deadline: string
   ): string {
     const params: ExactInputSingleRequest = {
-      tokenIn: this._uniswapPairFactoryContext.fromToken.contractAddress,
-      tokenOut: this._uniswapPairFactoryContext.toToken.contractAddress,
+      tokenIn: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.fromToken.contractAddress
+      ),
+      tokenOut: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.toToken.contractAddress
+      ),
       fee: percentToFeeAmount(liquidityProviderFee),
       recipient: this._uniswapPairFactoryContext.ethereumAddress,
       deadline,
@@ -1031,8 +1083,12 @@ export class UniswapPairFactory {
     deadline: string
   ): string {
     const params: ExactOutputSingleRequest = {
-      tokenIn: this._uniswapPairFactoryContext.fromToken.contractAddress,
-      tokenOut: this._uniswapPairFactoryContext.toToken.contractAddress,
+      tokenIn: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.fromToken.contractAddress
+      ),
+      tokenOut: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.toToken.contractAddress
+      ),
       fee: percentToFeeAmount(routeQuote.liquidityProviderFee),
       recipient: this._uniswapPairFactoryContext.ethereumAddress,
       deadline,
@@ -1089,12 +1145,7 @@ export class UniswapPairFactory {
    */
   private tradePath(): TradePath {
     const network = this._uniswapPairFactoryContext.ethersProvider.network();
-    return getTradePath(
-      network.chainId,
-      this.fromToken,
-      this.toToken,
-      this._uniswapPairFactoryContext.settings.useWETHAsERC20Route
-    );
+    return getTradePath(network.chainId, this.fromToken, this.toToken);
   }
 
   /**

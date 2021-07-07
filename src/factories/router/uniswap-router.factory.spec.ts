@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import { ChainId, ErrorCodes, UniswapError, WETH } from '../..';
+import { ChainId, ErrorCodes, ETH, UniswapError } from '../..';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { MOCKAAVE } from '../../mocks/aave-token.mock';
@@ -20,7 +20,6 @@ describe('UniswapRouterFactory', () => {
       fromToken,
       toToken,
       false,
-      false,
       [UniswapVersion.v2, UniswapVersion.v3],
       ethersProvider
     );
@@ -40,7 +39,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -63,7 +61,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -92,7 +89,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -122,7 +118,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -146,7 +141,6 @@ describe('UniswapRouterFactory', () => {
               MOCKFUN(),
               MOCKREP(),
               false,
-              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -164,7 +158,6 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               MOCKFUN(),
               MOCKREP(),
-              false,
               false,
               [UniswapVersion.v2],
               ethersProvider
@@ -186,7 +179,6 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               toToken,
               false,
-              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -204,7 +196,6 @@ describe('UniswapRouterFactory', () => {
             const factory = new UniswapRouterFactory(
               fromToken,
               toToken,
-              false,
               false,
               [UniswapVersion.v3],
               ethersProvider
@@ -239,7 +230,6 @@ describe('UniswapRouterFactory', () => {
             MOCKFUN(),
             MOCKREP(),
             true,
-            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -248,9 +238,7 @@ describe('UniswapRouterFactory', () => {
             factory.findBestRoute(new BigNumber(100), TradeDirection.input)
           ).rejects.toThrowError(
             new UniswapError(
-              `No routes found for ${MOCKFUN().contractAddress} > ${
-                MOCKREP().contractAddress
-              }`,
+              `No routes found for ${MOCKFUN().symbol} > ${MOCKREP().symbol}`,
               ErrorCodes.noRoutesFound
             )
           );
@@ -277,7 +265,6 @@ describe('UniswapRouterFactory', () => {
             MOCKFUN(),
             MOCKREP(),
             true,
-            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -286,9 +273,7 @@ describe('UniswapRouterFactory', () => {
             factory.findBestRoute(new BigNumber(100), TradeDirection.output)
           ).rejects.toThrowError(
             new UniswapError(
-              `No routes found for ${MOCKFUN().contractAddress} > ${
-                MOCKREP().contractAddress
-              }`,
+              `No routes found for ${MOCKFUN().symbol} > ${MOCKREP().symbol}`,
               ErrorCodes.noRoutesFound
             )
           );
@@ -299,12 +284,11 @@ describe('UniswapRouterFactory', () => {
 
   describe('erc20 > eth', () => {
     const fromToken = MOCKAAVE();
-    const toToken = WETH.MAINNET();
+    const toToken = ETH.MAINNET();
 
     const uniswapRouterFactory = new UniswapRouterFactory(
       fromToken,
       toToken,
-      false,
       false,
       [UniswapVersion.v2, UniswapVersion.v3],
       ethersProvider
@@ -325,7 +309,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -351,7 +334,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v3],
             ethersProvider
           );
@@ -382,7 +364,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -412,7 +393,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -436,7 +416,6 @@ describe('UniswapRouterFactory', () => {
               MOCKFUN(),
               toToken,
               false,
-              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -455,7 +434,6 @@ describe('UniswapRouterFactory', () => {
               MOCKFUN(),
               toToken,
               false,
-              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -464,7 +442,7 @@ describe('UniswapRouterFactory', () => {
               new BigNumber(1),
               TradeDirection.output
             );
-            expect(result.bestRouteQuote.routeText).toEqual('FUN > WETH');
+            expect(result.bestRouteQuote.routeText).toEqual('FUN > ETH');
           });
         });
       });
@@ -476,7 +454,6 @@ describe('UniswapRouterFactory', () => {
               MOCKAAVE(),
               toToken,
               false,
-              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -485,7 +462,7 @@ describe('UniswapRouterFactory', () => {
               new BigNumber(10000),
               TradeDirection.input
             );
-            expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > ETH');
           });
         });
 
@@ -495,7 +472,6 @@ describe('UniswapRouterFactory', () => {
               MOCKAAVE(),
               toToken,
               false,
-              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -504,7 +480,7 @@ describe('UniswapRouterFactory', () => {
               new BigNumber(1),
               TradeDirection.output
             );
-            expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+            expect(result.bestRouteQuote.routeText).toEqual('AAVE > ETH');
           });
         });
       });
@@ -523,7 +499,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -533,7 +508,7 @@ describe('UniswapRouterFactory', () => {
             TradeDirection.input
           );
 
-          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > ETH');
           expect(
             result.triedRoutesQuote.filter((c) => c.routePathArray.length > 2)
               .length > 0
@@ -547,7 +522,7 @@ describe('UniswapRouterFactory', () => {
             new BigNumber(100),
             TradeDirection.output
           );
-          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > ETH');
         });
 
         it('should return best route', async () => {
@@ -555,7 +530,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -565,7 +539,7 @@ describe('UniswapRouterFactory', () => {
             TradeDirection.output
           );
 
-          expect(result.bestRouteQuote.routeText).toEqual('AAVE > WETH');
+          expect(result.bestRouteQuote.routeText).toEqual('AAVE > ETH');
           expect(
             result.triedRoutesQuote.filter((c) => c.routePathArray.length > 2)
               .length > 0
@@ -576,13 +550,12 @@ describe('UniswapRouterFactory', () => {
   });
 
   describe('eth > erc20', () => {
-    const fromToken = WETH.MAINNET();
+    const fromToken = ETH.MAINNET();
     const toToken = MOCKAAVE();
 
     const uniswapRouterFactory = new UniswapRouterFactory(
       fromToken,
       toToken,
-      false,
       false,
       [UniswapVersion.v2, UniswapVersion.v3],
       ethersProvider
@@ -603,7 +576,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2],
             ethersProvider
           );
@@ -629,7 +601,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v3],
             ethersProvider
           );
@@ -660,7 +631,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -689,7 +659,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             true,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -713,7 +682,6 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               MOCKFUN(),
               false,
-              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -732,7 +700,6 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               MOCKFUN(),
               false,
-              false,
               [UniswapVersion.v2],
               ethersProvider
             );
@@ -741,7 +708,7 @@ describe('UniswapRouterFactory', () => {
               new BigNumber(10000),
               TradeDirection.output
             );
-            expect(result.bestRouteQuote.routeText).toEqual('WETH > FUN');
+            expect(result.bestRouteQuote.routeText).toEqual('ETH > FUN');
           });
         });
       });
@@ -753,7 +720,6 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               toToken,
               false,
-              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -762,7 +728,7 @@ describe('UniswapRouterFactory', () => {
               new BigNumber(100),
               TradeDirection.input
             );
-            expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+            expect(result.bestRouteQuote.routeText).toEqual('ETH > AAVE');
           });
         });
 
@@ -772,7 +738,6 @@ describe('UniswapRouterFactory', () => {
               fromToken,
               toToken,
               false,
-              false,
               [UniswapVersion.v3],
               ethersProvider
             );
@@ -781,7 +746,7 @@ describe('UniswapRouterFactory', () => {
               new BigNumber(100),
               TradeDirection.output
             );
-            expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+            expect(result.bestRouteQuote.routeText).toEqual('ETH > AAVE');
           });
         });
       });
@@ -800,7 +765,6 @@ describe('UniswapRouterFactory', () => {
             fromToken,
             toToken,
             false,
-            false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
           );
@@ -810,7 +774,7 @@ describe('UniswapRouterFactory', () => {
             TradeDirection.input
           );
 
-          expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+          expect(result.bestRouteQuote.routeText).toEqual('ETH > AAVE');
         });
       });
 
@@ -820,14 +784,13 @@ describe('UniswapRouterFactory', () => {
             new BigNumber(100),
             TradeDirection.output
           );
-          expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+          expect(result.bestRouteQuote.routeText).toEqual('ETH > AAVE');
         });
 
         it('should return best route', async () => {
           const factory = new UniswapRouterFactory(
             fromToken,
             toToken,
-            false,
             false,
             [UniswapVersion.v2, UniswapVersion.v3],
             ethersProvider
@@ -838,7 +801,7 @@ describe('UniswapRouterFactory', () => {
             TradeDirection.output
           );
 
-          expect(result.bestRouteQuote.routeText).toEqual('WETH > AAVE');
+          expect(result.bestRouteQuote.routeText).toEqual('ETH > AAVE');
         });
       });
     });

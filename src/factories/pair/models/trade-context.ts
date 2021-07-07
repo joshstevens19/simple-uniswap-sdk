@@ -22,11 +22,12 @@ export interface TradeContext {
   hasEnoughAllowance: boolean;
   approvalTransaction?: Transaction | undefined;
   fromToken: Token;
-  toToken: Token;
   fromBalance: {
     hasEnough: boolean;
     balance: string;
   };
+  toToken: Token;
+  toBalance: string;
   transaction: Transaction;
   quoteChanged$: UniswapStream<TradeContext>;
   destroy: () => void;

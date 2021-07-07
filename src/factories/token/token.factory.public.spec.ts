@@ -1,4 +1,4 @@
-import { ChainId, TokenFactoryPublic } from '../..';
+import { ChainId, ETH, TokenFactoryPublic } from '../..';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
 import { MOCKFUN } from '../../mocks/fun-token.mock';
@@ -8,93 +8,234 @@ import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap
 describe('TokenFactoryPublic', () => {
   const token = MOCKFUN();
 
-  const tokenFactoryPublic = new TokenFactoryPublic(token.contractAddress, {
+  const tokenFactory = new TokenFactoryPublic(token.contractAddress, {
     chainId: ChainId.MAINNET,
   });
+  const tokenFactoryEth = new TokenFactoryPublic(
+    ETH.MAINNET().contractAddress,
+    {
+      chainId: ChainId.MAINNET,
+    }
+  );
 
-  it('getToken', async () => {
-    const result = await tokenFactoryPublic.getToken();
-    expect(result).toEqual(token);
-  });
-
-  describe('allowance', () => {
-    describe('v2', () => {
-      it('allowance', async () => {
-        const result = await tokenFactoryPublic.allowance(
-          UniswapVersion.v2,
-          MockEthereumAddress()
-        );
-        expect(result).not.toBeUndefined();
+  describe('getToken', () => {
+    describe('erc20', () => {
+      it('getToken', async () => {
+        const result = await tokenFactory.getToken();
+        expect(result).toEqual(token);
       });
     });
 
-    describe('v3', () => {
-      it('allowance', async () => {
-        const result = await tokenFactoryPublic.allowance(
-          UniswapVersion.v3,
-          MockEthereumAddress()
-        );
-        expect(result).not.toBeUndefined();
+    describe('eth', () => {
+      it('getToken', async () => {
+        const result = await tokenFactoryEth.getToken();
+        expect(result).toEqual(ETH.MAINNET());
+      });
+    });
+  });
+
+  describe('allowance', () => {
+    describe('erc20', () => {
+      describe('v2', () => {
+        it('allowance', async () => {
+          const result = await tokenFactory.allowance(
+            UniswapVersion.v2,
+            MockEthereumAddress()
+          );
+          expect(result).not.toBeUndefined();
+        });
+      });
+
+      describe('v3', () => {
+        it('allowance', async () => {
+          const result = await tokenFactory.allowance(
+            UniswapVersion.v3,
+            MockEthereumAddress()
+          );
+          expect(result).not.toBeUndefined();
+        });
+      });
+    });
+
+    describe('eth', () => {
+      describe('v2', () => {
+        it('allowance', async () => {
+          const result = await tokenFactoryEth.allowance(
+            UniswapVersion.v2,
+            MockEthereumAddress()
+          );
+          expect(result).toEqual(
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+          );
+        });
+      });
+
+      describe('v3', () => {
+        it('allowance', async () => {
+          const result = await tokenFactoryEth.allowance(
+            UniswapVersion.v3,
+            MockEthereumAddress()
+          );
+          expect(result).toEqual(
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+          );
+        });
       });
     });
   });
 
   describe('generateApproveAllowanceData', () => {
-    describe('v2', () => {
-      it('generateApproveAllowanceData', () => {
-        const result = tokenFactoryPublic.generateApproveAllowanceData(
-          UniswapContractContextV2.routerAddress,
-          '0x05'
-        );
-        expect(result).toEqual(
-          '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488d0000000000000000000000000000000000000000000000000000000000000005'
-        );
+    describe('erc20', () => {
+      describe('v2', () => {
+        it('generateApproveAllowanceData', () => {
+          const result = tokenFactory.generateApproveAllowanceData(
+            UniswapContractContextV2.routerAddress,
+            '0x05'
+          );
+          expect(result).toEqual(
+            '0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488d0000000000000000000000000000000000000000000000000000000000000005'
+          );
+        });
+      });
+
+      describe('v3', () => {
+        it('generateApproveAllowanceData', () => {
+          const result = tokenFactory.generateApproveAllowanceData(
+            UniswapContractContextV3.routerAddress,
+            '0x05'
+          );
+          expect(result).toEqual(
+            '0x095ea7b3000000000000000000000000e592427a0aece92de3edee1f18e0157c058615640000000000000000000000000000000000000000000000000000000000000005'
+          );
+        });
       });
     });
 
-    describe('v3', () => {
-      it('generateApproveAllowanceData', () => {
-        const result = tokenFactoryPublic.generateApproveAllowanceData(
-          UniswapContractContextV3.routerAddress,
-          '0x05'
-        );
-        expect(result).toEqual(
-          '0x095ea7b3000000000000000000000000e592427a0aece92de3edee1f18e0157c058615640000000000000000000000000000000000000000000000000000000000000005'
-        );
+    describe('eth', () => {
+      describe('v2', () => {
+        it('generateApproveAllowanceData', () => {
+          expect(() => {
+            tokenFactoryEth.generateApproveAllowanceData(
+              UniswapContractContextV2.routerAddress,
+              '0x05'
+            );
+          }).toThrowError('ETH does not need any allowance data');
+        });
+      });
+
+      describe('v3', () => {
+        it('generateApproveAllowanceData', () => {
+          expect(() => {
+            tokenFactoryEth.generateApproveAllowanceData(
+              UniswapContractContextV3.routerAddress,
+              '0x05'
+            );
+          }).toThrowError('ETH does not need any allowance data');
+        });
       });
     });
   });
 
-  it('balanceOf', async () => {
-    const result = await tokenFactoryPublic.balanceOf(MockEthereumAddress());
-    expect(result).not.toBeUndefined();
-  });
-
-  it('totalSupply', async () => {
-    const result = await tokenFactoryPublic.totalSupply();
-    expect(result).toEqual('0x0f43f0ad89c30bb6');
-  });
-
-  describe('v2', () => {
-    it('getAllowanceAndBalanceOf', async () => {
-      const result = await tokenFactoryPublic.getAllowanceAndBalanceOf(
-        UniswapVersion.v2,
-        MockEthereumAddress()
-      );
-      expect(result).toEqual({
-        allowance: '0x2386c18764e720',
-        balanceOf: '0x1e72af98f7',
+  describe('balanceOf', () => {
+    xdescribe('erc20', () => {
+      it('balanceOf', async () => {
+        const spy = spyOn(
+          // @ts-ignore
+          tokenFactory._erc20TokenContract,
+          'balanceOf'
+        ).and.callThrough();
+        const result = await tokenFactory.balanceOf(MockEthereumAddress());
+        expect(result).not.toBeUndefined();
+        expect(spy).toHaveBeenCalledTimes(1);
       });
     });
 
-    it('getAllowanceAndBalanceOf', async () => {
-      const result = await tokenFactoryPublic.getAllowanceAndBalanceOf(
-        UniswapVersion.v3,
-        MockEthereumAddress()
-      );
-      expect(result).toEqual({
-        allowance: '0x00',
-        balanceOf: '0x1e72af98f7',
+    describe('eth', () => {
+      it('balanceOf', async () => {
+        const spy = spyOn(
+          // @ts-ignore
+          tokenFactoryEth._ethersProvider,
+          'balanceOf'
+        ).and.callThrough();
+        const result = await tokenFactoryEth.balanceOf(MockEthereumAddress());
+        expect(result).not.toBeUndefined();
+        expect(spy).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
+
+  describe('totalSupply', () => {
+    describe('erc20', () => {
+      it('totalSupply', async () => {
+        const result = await tokenFactory.totalSupply();
+        expect(result).toEqual('0x0f43f0ad89c30bb6');
+      });
+    });
+
+    describe('eth', () => {
+      it('totalSupply', async () => {
+        const result = await tokenFactoryEth.totalSupply();
+        expect(result).not.toBeUndefined();
+      });
+    });
+  });
+
+  describe('getAllowanceAndBalanceOf', () => {
+    describe('erc20', () => {
+      describe('v2', () => {
+        it('getAllowanceAndBalanceOf', async () => {
+          const result = await tokenFactory.getAllowanceAndBalanceOf(
+            UniswapVersion.v2,
+            MockEthereumAddress()
+          );
+          expect(result).toEqual({
+            allowance: '0x2386c18764e720',
+            balanceOf: '0x1e72af98f7',
+          });
+        });
+      });
+
+      describe('v3', () => {
+        it('getAllowanceAndBalanceOf', async () => {
+          const result = await tokenFactory.getAllowanceAndBalanceOf(
+            UniswapVersion.v3,
+            MockEthereumAddress()
+          );
+          expect(result).toEqual({
+            allowance: '0x00',
+            balanceOf: '0x1e72af98f7',
+          });
+        });
+      });
+    });
+
+    describe('eth', () => {
+      describe('v2', () => {
+        it('getAllowanceAndBalanceOf', async () => {
+          const result = await tokenFactoryEth.getAllowanceAndBalanceOf(
+            UniswapVersion.v2,
+            MockEthereumAddress()
+          );
+          expect(result).toEqual({
+            allowance:
+              '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+            balanceOf: '0x03034545d3b362a1',
+          });
+        });
+      });
+
+      describe('v3', () => {
+        it('getAllowanceAndBalanceOf', async () => {
+          const result = await tokenFactoryEth.getAllowanceAndBalanceOf(
+            UniswapVersion.v3,
+            MockEthereumAddress()
+          );
+          expect(result).toEqual({
+            allowance:
+              '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+            balanceOf: '0x03034545d3b362a1',
+          });
+        });
       });
     });
   });

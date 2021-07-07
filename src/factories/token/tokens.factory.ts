@@ -1,9 +1,11 @@
 import BigNumber from 'bignumber.js';
 import { ContractCallContext, Multicall } from 'ethereum-multicall';
-import { BigNumber as EthersBigNumber, ethers } from 'ethers';
+import { BigNumber as EthersBigNumber } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
+import { ETH, isNativeEth } from '../../common/tokens/eth';
+import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
@@ -24,43 +26,47 @@ export class TokensFactory {
    */
   public async getTokens(tokenContractAddresses: string[]): Promise<Token[]> {
     try {
+      const tokens: Token[] = [];
+
       const SYMBOL = 0;
       const DECIMALS = 1;
       const NAME = 2;
 
       const contractCallContexts: ContractCallContext[] = [];
       for (let i = 0; i < tokenContractAddresses.length; i++) {
-        const contractCallContext: ContractCallContext = {
-          reference: `token${i}`,
-          contractAddress: ethers.utils.getAddress(tokenContractAddresses[i]),
-          abi: ContractContext.erc20Abi,
-          calls: [
-            {
-              reference: 'symbol',
-              methodName: 'symbol',
-              methodParameters: [],
-            },
-            {
-              reference: 'decimals',
-              methodName: 'decimals',
-              methodParameters: [],
-            },
-            {
-              reference: 'name',
-              methodName: 'name',
-              methodParameters: [],
-            },
-          ],
-        };
+        if (!isNativeEth(tokenContractAddresses[i])) {
+          const contractCallContext: ContractCallContext = {
+            reference: `token${i}`,
+            contractAddress: getAddress(tokenContractAddresses[i]),
+            abi: ContractContext.erc20Abi,
+            calls: [
+              {
+                reference: 'symbol',
+                methodName: 'symbol',
+                methodParameters: [],
+              },
+              {
+                reference: 'decimals',
+                methodName: 'decimals',
+                methodParameters: [],
+              },
+              {
+                reference: 'name',
+                methodName: 'name',
+                methodParameters: [],
+              },
+            ],
+          };
 
-        contractCallContexts.push(contractCallContext);
+          contractCallContexts.push(contractCallContext);
+        } else {
+          tokens.push(ETH.info(this._ethersProvider.network().chainId));
+        }
       }
 
       const contractCallResults = await this._multicall.call(
         contractCallContexts
       );
-
-      const tokens: Token[] = [];
 
       for (const result in contractCallResults.results) {
         const tokenInfo = contractCallResults.results[result];
@@ -97,6 +103,8 @@ export class TokensFactory {
     tokenContractAddresses: string[],
     format = false
   ): Promise<TokenWithAllowanceInfo[]> {
+    const results: TokenWithAllowanceInfo[] = [];
+
     const ALLOWANCE = 0;
     const BALANCEOF = 1;
     const DECIMALS = 2;
@@ -105,52 +113,80 @@ export class TokensFactory {
 
     const contractCallContexts: ContractCallContext[] = [];
     for (let i = 0; i < tokenContractAddresses.length; i++) {
-      const contractCallContext: ContractCallContext = {
-        reference: `allowance-and-balance-of-${i}`,
-        contractAddress: ethers.utils.getAddress(tokenContractAddresses[i]),
-        abi: ContractContext.erc20Abi,
-        calls: [
-          {
-            reference: 'allowance',
-            methodName: 'allowance',
-            methodParameters: [
-              ethereumAddress,
-              uniswapVersion === UniswapVersion.v2
-                ? UniswapContractContextV2.routerAddress
-                : UniswapContractContextV3.routerAddress,
-            ],
-          },
-          {
-            reference: 'balanceOf',
-            methodName: 'balanceOf',
-            methodParameters: [ethereumAddress],
-          },
-          {
-            reference: 'decimals',
-            methodName: 'decimals',
-            methodParameters: [],
-          },
-          {
-            reference: 'symbol',
-            methodName: 'symbol',
-            methodParameters: [],
-          },
-          {
-            reference: 'name',
-            methodName: 'name',
-            methodParameters: [],
-          },
-        ],
-      };
+      if (!isNativeEth(tokenContractAddresses[i])) {
+        const contractCallContext: ContractCallContext = {
+          reference: `allowance-and-balance-of-${i}`,
+          contractAddress: getAddress(tokenContractAddresses[i]),
+          abi: ContractContext.erc20Abi,
+          calls: [
+            {
+              reference: 'allowance',
+              methodName: 'allowance',
+              methodParameters: [
+                ethereumAddress,
+                uniswapVersion === UniswapVersion.v2
+                  ? UniswapContractContextV2.routerAddress
+                  : UniswapContractContextV3.routerAddress,
+              ],
+            },
+            {
+              reference: 'balanceOf',
+              methodName: 'balanceOf',
+              methodParameters: [ethereumAddress],
+            },
+            {
+              reference: 'decimals',
+              methodName: 'decimals',
+              methodParameters: [],
+            },
+            {
+              reference: 'symbol',
+              methodName: 'symbol',
+              methodParameters: [],
+            },
+            {
+              reference: 'name',
+              methodName: 'name',
+              methodParameters: [],
+            },
+          ],
+        };
 
-      contractCallContexts.push(contractCallContext);
+        contractCallContexts.push(contractCallContext);
+      } else {
+        const token = ETH.info(this._ethersProvider.network().chainId);
+        if (format) {
+          results.push({
+            allowanceAndBalanceOf: {
+              allowance: new BigNumber(
+                '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+              )
+                .shiftedBy(18 * -1)
+                .toFixed(),
+              balanceOf: new BigNumber(
+                await this._ethersProvider.balanceOf(ethereumAddress)
+              )
+                .shiftedBy(18 * -1)
+                .toFixed(),
+            },
+            token,
+          });
+        } else {
+          results.push({
+            allowanceAndBalanceOf: {
+              allowance:
+                '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+              balanceOf: await this._ethersProvider.balanceOf(ethereumAddress),
+            },
+            token: ETH.info(this._ethersProvider.network().chainId),
+          });
+        }
+      }
     }
 
     const contractCallResults = await this._multicall.call(
       contractCallContexts
     );
-
-    const results: TokenWithAllowanceInfo[] = [];
 
     for (const result in contractCallResults.results) {
       const resultInfo = contractCallResults.results[result];

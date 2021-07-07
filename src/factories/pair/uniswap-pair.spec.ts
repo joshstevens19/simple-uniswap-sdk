@@ -1,5 +1,6 @@
 import { providers } from 'ethers';
 import { ChainId, ErrorCodes, UniswapError } from '../..';
+import { ETH } from '../../common/tokens';
 import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
 import { MOCKFUN } from '../../mocks/fun-token.mock';
 import { MOCK_PROVIDER_URL } from '../../mocks/provider-url.mock';
@@ -151,7 +152,7 @@ describe('UniswapPair', () => {
   });
 
   describe('createFactory', () => {
-    it('should create a uniswap pair factory', async () => {
+    it('erc20 > erc20 > should create a uniswap pair factory', async () => {
       const context: UniswapPairContextForChainId = {
         fromTokenContractAddress: MOCKFUN().contractAddress,
         toTokenContractAddress: MOCKREP().contractAddress,
@@ -162,6 +163,34 @@ describe('UniswapPair', () => {
       const uniswapPair = new UniswapPair(context);
       const factory = await uniswapPair.createFactory();
       expect(factory.toToken).toEqual(MOCKREP());
+      expect(factory.fromToken).toEqual(MOCKFUN());
+    });
+
+    it('eth > erc20 > should create a uniswap pair factory', async () => {
+      const context: UniswapPairContextForChainId = {
+        fromTokenContractAddress: ETH.MAINNET().contractAddress,
+        toTokenContractAddress: MOCKREP().contractAddress,
+        ethereumAddress: MockEthereumAddress(),
+        chainId: ChainId.MAINNET,
+      };
+
+      const uniswapPair = new UniswapPair(context);
+      const factory = await uniswapPair.createFactory();
+      expect(factory.toToken).toEqual(MOCKREP());
+      expect(factory.fromToken).toEqual(ETH.MAINNET());
+    });
+
+    it('erc20 > eth > should create a uniswap pair factory', async () => {
+      const context: UniswapPairContextForChainId = {
+        fromTokenContractAddress: MOCKFUN().contractAddress,
+        toTokenContractAddress: ETH.MAINNET().contractAddress,
+        ethereumAddress: MockEthereumAddress(),
+        chainId: ChainId.MAINNET,
+      };
+
+      const uniswapPair = new UniswapPair(context);
+      const factory = await uniswapPair.createFactory();
+      expect(factory.toToken).toEqual(ETH.MAINNET());
       expect(factory.fromToken).toEqual(MOCKFUN());
     });
   });
