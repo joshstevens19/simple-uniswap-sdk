@@ -84,6 +84,8 @@ export class UniswapRouterFactory {
       findPairs = [[[this._fromToken, this._toToken]]];
     }
 
+    // console.log(JSON.stringify(findPairs, null, 4));
+
     const contractCallContext: ContractCallContext[] = [];
 
     if (this._uniswapVersions.includes(UniswapVersion.v2)) {
@@ -165,6 +167,8 @@ export class UniswapRouterFactory {
           c.returnValues[0] !== '0x0000000000000000000000000000000000000000'
       );
 
+      // console.log(JSON.stringify(results.callsReturnContext, null, 4));
+
       const fromTokenRoutes: TokenRoutes = {
         token: this._fromToken,
         pairs: {
@@ -187,6 +191,11 @@ export class UniswapRouterFactory {
         },
       };
 
+      // console.log(JSON.stringify(fromTokenRoutes, null, 4));
+      // console.log('break');
+      // console.log(JSON.stringify(toTokenRoutes, null, 4));
+      // console.log('break');
+
       const allMainRoutes: TokenRoutes[] = [];
 
       for (let i = 0; i < this.allMainTokens.length; i++) {
@@ -207,6 +216,8 @@ export class UniswapRouterFactory {
           pairs: { fromTokenPairs, toTokenPairs },
         });
       }
+
+      // console.log(JSON.stringify(allMainRoutes, null, 4));
 
       allPossibleRoutes.v2 = this.workOutAllPossibleRoutes(
         fromTokenRoutes,
@@ -243,6 +254,8 @@ export class UniswapRouterFactory {
         }
       }
     }
+
+    // console.log(JSON.stringify(allPossibleRoutes, null, 4));
 
     return allPossibleRoutes;
   }
@@ -401,14 +414,17 @@ export class UniswapRouterFactory {
     const jointCompatibleRoutes = toTokenRoutes.pairs.toTokenPairs!.filter(
       (t) =>
         fromTokenRoutes.pairs.fromTokenPairs!.find(
-          (f) => f.contractAddress === t.contractAddress
+          (f) =>
+            f.contractAddress.toLowerCase() === t.contractAddress.toLowerCase()
         )
     );
 
     const routes: RouteContext[] = [];
     if (
       fromTokenRoutes.pairs.fromTokenPairs!.find(
-        (t) => t.contractAddress === toTokenRoutes.token.contractAddress
+        (t) =>
+          t.contractAddress.toLowerCase() ===
+          toTokenRoutes.token.contractAddress.toLowerCase()
       )
     ) {
       routes.push({
@@ -421,7 +437,9 @@ export class UniswapRouterFactory {
       const tokenRoute = allMainRoutes[i];
       if (
         jointCompatibleRoutes.find(
-          (c) => c.contractAddress === tokenRoute.token.contractAddress
+          (c) =>
+            c.contractAddress.toLowerCase() ===
+            tokenRoute.token.contractAddress.toLowerCase()
         )
       ) {
         routes.push({
@@ -434,7 +452,8 @@ export class UniswapRouterFactory {
           if (
             tokenRoute.pairs.toTokenPairs!.find(
               (pair) =>
-                pair.contractAddress === fromSupportedToken.contractAddress
+                pair.contractAddress.toLowerCase() ===
+                fromSupportedToken.contractAddress.toLowerCase()
             )
           ) {
             const workedOutFromRoute = [
@@ -460,7 +479,8 @@ export class UniswapRouterFactory {
           if (
             tokenRoute.pairs.fromTokenPairs!.find(
               (pair) =>
-                pair.contractAddress === toSupportedToken.contractAddress
+                pair.contractAddress.toLowerCase() ===
+                toSupportedToken.contractAddress.toLowerCase()
             )
           ) {
             const workedOutToRoute = [
@@ -1063,6 +1083,8 @@ export class UniswapRouterFactory {
           this.WETHTokenForConnectedNetwork,
         ]);
       }
+
+      return pairs;
     }
 
     return [];
@@ -1085,6 +1107,8 @@ export class UniswapRouterFactory {
           this.WETHTokenForConnectedNetwork,
         ]);
       }
+
+      return pairs;
     }
 
     return [];
@@ -1105,6 +1129,8 @@ export class UniswapRouterFactory {
           this.WETHTokenForConnectedNetwork,
         ]);
       }
+
+      return pairs;
     }
 
     return [];
@@ -1127,6 +1153,8 @@ export class UniswapRouterFactory {
           this.WETHTokenForConnectedNetwork,
         ]);
       }
+
+      return pairs;
     }
 
     return [];

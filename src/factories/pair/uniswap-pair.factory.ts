@@ -490,7 +490,9 @@ export class UniswapPairFactory {
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
-      routePath: bestRouteQuote.routePathArray,
+      routePath: bestRouteQuote.routePathArray.map((r) =>
+        removeEthFromContractAddress(r)
+      ),
       hasEnoughAllowance,
       approvalTransaction: !hasEnoughAllowance
         ? await this.generateApproveMaxAllowanceData(
@@ -714,7 +716,9 @@ export class UniswapPairFactory {
       tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
-      routePath: bestRouteQuote.routePathArray,
+      routePath: bestRouteQuote.routePathArray.map((r) =>
+        removeEthFromContractAddress(r)
+      ),
       hasEnoughAllowance: true,
       toToken: this.toToken,
       fromToken: turnTokenIntoEthForResponse(this.fromToken),
@@ -759,7 +763,7 @@ export class UniswapPairFactory {
       case UniswapVersion.v2:
         return this._uniswapRouterContractFactoryV2.swapExactETHForTokens(
           hexlify(convertedMinTokens),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -799,7 +803,7 @@ export class UniswapPairFactory {
       case UniswapVersion.v2:
         return this._uniswapRouterContractFactoryV2.swapETHForExactTokens(
           hexlify(amountOut),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -841,7 +845,7 @@ export class UniswapPairFactory {
         return this._uniswapRouterContractFactoryV2.swapExactTokensForETH(
           hexlify(amountIn),
           hexlify(parseEther(ethAmountOutMin)),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
@@ -883,7 +887,7 @@ export class UniswapPairFactory {
         return this._uniswapRouterContractFactoryV2.swapTokensForExactETH(
           hexlify(parseEther(ethAmountOut)),
           hexlify(amountInMax),
-          routeQuote.routePathArray,
+          routeQuote.routePathArray.map((r) => removeEthFromContractAddress(r)),
           this._uniswapPairFactoryContext.ethereumAddress,
           deadline
         );
