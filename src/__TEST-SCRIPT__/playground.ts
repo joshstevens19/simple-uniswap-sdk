@@ -29,7 +29,7 @@ const routeTest = async () => {
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
       disableMultihops: false,
-      uniswapVersions: [UniswapVersion.v2],
+      uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
     }),
   });
 
