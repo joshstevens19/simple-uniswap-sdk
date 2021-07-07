@@ -1,4 +1,4 @@
-import { ETH, TradeDirection } from '..';
+import { ETH, EthersProvider, TradeDirection } from '..';
 import { ChainId } from '../enums/chain-id';
 import { UniswapVersion } from '../enums/uniswap-version';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
@@ -13,8 +13,8 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 // GTC - 0xde30da39c46104798bb5aa3fe8b9e0e1f348163f
 
 const routeTest = async () => {
-  const fromTokenContractAddress = ETH.MAINNET().contractAddress; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
-  const toTokenContractAddress = '0xde30da39c46104798bb5aa3fe8b9e0e1f348163f'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
+  const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
+  const toTokenContractAddress = ETH.MAINNET().contractAddress; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
@@ -28,28 +28,24 @@ const routeTest = async () => {
       slippage: 0.005,
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
-      disableMultihops: true,
-      uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+      disableMultihops: false,
+      uniswapVersions: [UniswapVersion.v2],
     }),
   });
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  try {
-    const trade = await uniswapPairFactory.trade('1', TradeDirection.output);
-    // console.log(JSON.stringify(trade, null, 4));
-    console.log(trade);
-    // console.log(
-    //   trade.allTriedRoutesQuotes.filter(
-    //     (c) => c.uniswapVersion === UniswapVersion.v3
-    //   )
-    // );
-  } catch (error) {
-    console.log(error);
-  }
+  const trade = await uniswapPairFactory.trade('10000', TradeDirection.input);
+  // console.log(JSON.stringify(trade, null, 4));
+  console.log(trade);
+  // console.log(
+  //   trade.allTriedRoutesQuotes.filter(
+  //     (c) => c.uniswapVersion === UniswapVersion.v3
+  //   )
+  // );
 
-  // const ethers = new EthersProvider({ chainId: ChainId.MAINNET });
-  // ethers.provider.estimateGas(trade.transaction);
+  const ethers = new EthersProvider({ chainId: ChainId.MAINNET });
+  console.log('gas', await ethers.provider.estimateGas(trade.transaction));
 
   process.stdin.resume();
 

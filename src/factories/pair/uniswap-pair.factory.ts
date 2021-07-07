@@ -29,6 +29,7 @@ import { UniswapRouterContractFactoryV3 } from '../router/v3/uniswap-router-cont
 import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
+import { TokensFactory } from '../token/tokens.factory';
 import { TradeContext } from './models/trade-context';
 import { TradeDirection } from './models/trade-direction';
 import { Transaction } from './models/transaction';
@@ -42,6 +43,10 @@ export class UniswapPairFactory {
 
   private _toTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.toToken.contractAddress,
+    this._uniswapPairFactoryContext.ethersProvider
+  );
+
+  private _tokensFactory = new TokensFactory(
     this._uniswapPairFactoryContext.ethersProvider
   );
 
@@ -327,6 +332,34 @@ export class UniswapPairFactory {
   }
 
   /**
+   * Get the allowance and balance for the from and to token (will get balance for eth as well)
+   * @param uniswapVersion The uniswap version
+   */
+  public async getAllowanceAndBalanceForTokens(
+    uniswapVersion: UniswapVersion
+  ): Promise<{
+    fromToken: AllowanceAndBalanceOf;
+    toToken: AllowanceAndBalanceOf;
+  }> {
+    const allowanceAndBalanceOfForTokens =
+      await this._tokensFactory.getAllowanceAndBalanceOfForContracts(
+        uniswapVersion,
+        this._uniswapPairFactoryContext.ethereumAddress,
+        [this.fromToken.contractAddress, this.toToken.contractAddress],
+        false
+      );
+
+    return {
+      fromToken: allowanceAndBalanceOfForTokens.find(
+        (c) => c.token.contractAddress === this.fromToken.contractAddress
+      )!.allowanceAndBalanceOf,
+      toToken: allowanceAndBalanceOfForTokens.find(
+        (c) => c.token.contractAddress === this.toToken.contractAddress
+      )!.allowanceAndBalanceOf,
+    };
+  }
+
+  /**
    * Get the allowance and balance for the from token (erc20 > blah) only
    * @param uniswapVersion The uniswap version
    */
@@ -449,20 +482,18 @@ export class UniswapPairFactory {
             tradeExpires.toString()
           );
 
-    const allowanceAndBalanceOf =
-      await this.getAllowanceAndBalanceOfForFromToken(
-        bestRouteQuote.uniswapVersion
-      );
+    const allowanceAndBalancesForTokens =
+      await this.getAllowanceAndBalanceForTokens(bestRouteQuote.uniswapVersion);
 
     const hasEnoughAllowance =
       direction === TradeDirection.input
         ? this._hasGotEnoughAllowance(
             baseConvertRequest.toFixed(),
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           )
         : this._hasGotEnoughAllowance(
             bestRouteQuote.expectedConvertQuote,
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           );
 
     const tradeContext: TradeContext = {
@@ -500,16 +531,19 @@ export class UniswapPairFactory {
           )
         : undefined,
       toToken: turnTokenIntoEthForResponse(this.toToken),
+      toBalance: new BigNumber(allowanceAndBalancesForTokens.toToken.balanceOf)
+        .shiftedBy(this.toToken.decimals * -1)
+        .toFixed(),
       fromToken: this.fromToken,
       fromBalance:
         direction === TradeDirection.input
           ? this.hasGotEnoughBalanceErc20(
               baseConvertRequest.toFixed(),
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             )
           : this.hasGotEnoughBalanceErc20(
               bestRouteQuote.expectedConvertQuote,
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             ),
       transaction: this.buildUpTransactionErc20(
         bestRouteQuote.uniswapVersion,
@@ -571,20 +605,18 @@ export class UniswapPairFactory {
             tradeExpires.toString()
           );
 
-    const allowanceAndBalanceOf =
-      await this.getAllowanceAndBalanceOfForFromToken(
-        bestRouteQuote.uniswapVersion
-      );
+    const allowanceAndBalancesForTokens =
+      await this.getAllowanceAndBalanceForTokens(bestRouteQuote.uniswapVersion);
 
     const hasEnoughAllowance =
       direction === TradeDirection.input
         ? this._hasGotEnoughAllowance(
             baseConvertRequest.toFixed(),
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           )
         : this._hasGotEnoughAllowance(
             bestRouteQuote.expectedConvertQuote,
-            allowanceAndBalanceOf.allowance
+            allowanceAndBalancesForTokens.fromToken.allowance
           );
 
     const tradeContext: TradeContext = {
@@ -620,16 +652,19 @@ export class UniswapPairFactory {
           )
         : undefined,
       toToken: this.toToken,
+      toBalance: new BigNumber(allowanceAndBalancesForTokens.toToken.balanceOf)
+        .shiftedBy(this.toToken.decimals * -1)
+        .toFixed(),
       fromToken: this.fromToken,
       fromBalance:
         direction === TradeDirection.input
           ? this.hasGotEnoughBalanceErc20(
               baseConvertRequest.toFixed(),
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             )
           : this.hasGotEnoughBalanceErc20(
               bestRouteQuote.expectedConvertQuote,
-              allowanceAndBalanceOf.balanceOf
+              allowanceAndBalancesForTokens.fromToken.balanceOf
             ),
       transaction: this.buildUpTransactionErc20(
         bestRouteQuote.uniswapVersion,
@@ -691,6 +726,9 @@ export class UniswapPairFactory {
             tradeExpires.toString()
           );
 
+    const allowanceAndBalancesForTokens =
+      await this.getAllowanceAndBalanceForTokens(bestRouteQuote.uniswapVersion);
+
     const tradeContext: TradeContext = {
       uniswapVersion: bestRouteQuote.uniswapVersion,
       quoteDirection: direction,
@@ -721,6 +759,9 @@ export class UniswapPairFactory {
       ),
       hasEnoughAllowance: true,
       toToken: this.toToken,
+      toBalance: new BigNumber(allowanceAndBalancesForTokens.toToken.balanceOf)
+        .shiftedBy(this.toToken.decimals * -1)
+        .toFixed(),
       fromToken: turnTokenIntoEthForResponse(this.fromToken),
       fromBalance: await this.hasGotEnoughBalanceEth(
         direction === TradeDirection.input

@@ -415,8 +415,6 @@ export interface TradeContext {
     | undefined;
   // the from token info
   fromToken: Token;
-  // the to token info
-  toToken: Token;
   // holds the from balance context
   // this is not reactive so if they top
   // up their account after this is generated
@@ -429,6 +427,10 @@ export interface TradeContext {
     // the total balance that user has on the from formatted for you already
     balance: string;
   };
+  // the to token info
+  toToken: Token;
+  // the total balance that user has on the to formatted for you already
+  toBalance: string;
   // this is the transaction you need to send to execute the trade
   transaction: {
     to: string;
@@ -972,6 +974,7 @@ console.log(trade);
     symbol: 'REP',
     name: 'Reputation'
   },
+  toBalance: '1500.2632',
   fromToken: {
     chainId: 1,
     contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -1072,6 +1075,7 @@ console.log(trade);
     decimals: 8,
     name: 'FunFair',
   },
+  toBalance: '1500.2634',
   fromToken: {
     chainId: 1,
     contractAddress: 'NO_CONTRACT_ADDRESS',
@@ -3669,6 +3673,7 @@ console.log(trade);
     decimals: 18,
     name: 'Ethers',
   },
+  toBalance: '1.564',
   fromToken: {
     chainId: 1,
     contractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
