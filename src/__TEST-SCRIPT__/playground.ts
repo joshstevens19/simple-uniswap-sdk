@@ -10,10 +10,11 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 // WETH - 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 // UNI - 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984
 // AAVE - 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9
+// GTC - 0xde30da39c46104798bb5aa3fe8b9e0e1f348163f
 
 const routeTest = async () => {
   const fromTokenContractAddress = ETH.MAINNET().contractAddress; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
-  const toTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
+  const toTokenContractAddress = '0xde30da39c46104798bb5aa3fe8b9e0e1f348163f'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
@@ -35,7 +36,7 @@ const routeTest = async () => {
   const uniswapPairFactory = await uniswapPair.createFactory();
 
   try {
-    const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
+    const trade = await uniswapPairFactory.trade('1', TradeDirection.output);
     // console.log(JSON.stringify(trade, null, 4));
     console.log(trade);
     // console.log(

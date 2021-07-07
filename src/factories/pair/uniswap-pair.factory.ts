@@ -1038,8 +1038,12 @@ export class UniswapPairFactory {
     deadline: string
   ): string {
     const params: ExactOutputSingleRequest = {
-      tokenIn: this._uniswapPairFactoryContext.fromToken.contractAddress,
-      tokenOut: this._uniswapPairFactoryContext.toToken.contractAddress,
+      tokenIn: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.fromToken.contractAddress
+      ),
+      tokenOut: removeEthFromContractAddress(
+        this._uniswapPairFactoryContext.toToken.contractAddress
+      ),
       fee: percentToFeeAmount(routeQuote.liquidityProviderFee),
       recipient: this._uniswapPairFactoryContext.ethereumAddress,
       deadline,
