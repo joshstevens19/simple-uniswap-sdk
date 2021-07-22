@@ -17,6 +17,7 @@ import {
 } from '../../common/tokens/eth';
 import { USDC } from '../../common/tokens/usdc';
 import { USDT } from '../../common/tokens/usdt';
+import { WBTC } from '../../common/tokens/wbtc';
 import { WETHContract } from '../../common/tokens/weth';
 import { deepClone } from '../../common/utils/deep-clone';
 import { formatEther } from '../../common/utils/format-ether';
@@ -76,7 +77,7 @@ export class UniswapRouterFactory {
         this.mainCurrenciesPairsForDAI,
         this.mainCurrenciesPairsForUSDC,
         this.mainCurrenciesPairsForWETH,
-        // this.mainCurrenciesPairsForWBTC,
+        this.mainCurrenciesPairsForWBTC,
         [[this._fromToken, this._toToken]],
       ];
     } else {
@@ -1009,6 +1010,7 @@ export class UniswapRouterFactory {
         this.USDCTokenForConnectedNetwork,
         this.DAITokenForConnectedNetwork,
         this.WETHTokenForConnectedNetwork,
+        this.WBTCTokenForConnectedNetwork,
       ];
     }
 
@@ -1022,7 +1024,7 @@ export class UniswapRouterFactory {
         [this._fromToken, this.COMPTokenForConnectedNetwork],
         [this._fromToken, this.USDCTokenForConnectedNetwork],
         [this._fromToken, this.DAITokenForConnectedNetwork],
-        // [this._fromToken, this.WBTCTokenForConnectedNetwork],
+        [this._fromToken, this.WBTCTokenForConnectedNetwork],
       ];
 
       if (
@@ -1046,7 +1048,7 @@ export class UniswapRouterFactory {
         [this.COMPTokenForConnectedNetwork, this._toToken],
         [this.USDCTokenForConnectedNetwork, this._toToken],
         [this.DAITokenForConnectedNetwork, this._toToken],
-        // [this.WBTCTokenForConnectedNetwork, this._toToken],
+        [this.WBTCTokenForConnectedNetwork, this._toToken],
       ];
 
       if (
@@ -1072,6 +1074,7 @@ export class UniswapRouterFactory {
         [this.USDTTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.USDTTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.USDTTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+        [this.USDTTokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
       ];
 
       if (
@@ -1118,6 +1121,9 @@ export class UniswapRouterFactory {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
       const pairs: Token[][] = [
         [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
+        [this.DAITokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
+        [this.DAITokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
+        [this.DAITokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
       ];
 
       if (
@@ -1142,6 +1148,7 @@ export class UniswapRouterFactory {
         [this.USDCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.USDCTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.USDCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
+        [this.USDCTokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
       ];
 
       if (
@@ -1160,15 +1167,18 @@ export class UniswapRouterFactory {
     return [];
   }
 
-  // private get mainCurrenciesPairsForWBTC(): Token[][] {
-  //   if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-  //     return [
-  //       [this.WBTCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
-  //     ];
-  //   }
+  private get mainCurrenciesPairsForWBTC(): Token[][] {
+    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+      return [
+        [this.WBTCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
+        [this.WBTCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
+        [this.WBTCTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
+        [this.WBTCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
+      ];
+    }
 
-  //   return [];
-  // }
+    return [];
+  }
 
   private get mainCurrenciesPairsForWETH(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
@@ -1177,7 +1187,7 @@ export class UniswapRouterFactory {
         [this.WETHTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
-        // [this.WETHTokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
+        [this.WETHTokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
       ];
     }
 
@@ -1204,7 +1214,7 @@ export class UniswapRouterFactory {
     return WETHContract.token(this._ethersProvider.provider.network.chainId);
   }
 
-  // private get WBTCTokenForConnectedNetwork() {
-  //   return WBTC.token(this._ethersProvider.provider.network.chainId);
-  // }
+  private get WBTCTokenForConnectedNetwork() {
+    return WBTC.token(this._ethersProvider.provider.network.chainId);
+  }
 }

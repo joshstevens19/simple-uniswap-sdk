@@ -3,7 +3,7 @@ import { ErrorCodes } from '../errors/error-codes';
 import { UniswapError } from '../errors/uniswap-error';
 
 /**
- * WBTC token context CHANGE CONTRACT ADDRESS INFO ETC
+ * WBTC token context
  */
 export class WBTC {
   public static MAINNET() {

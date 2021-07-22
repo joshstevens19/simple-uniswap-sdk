@@ -13,8 +13,8 @@ import { UniswapPair } from '../factories/pair/uniswap-pair';
 // GTC - 0xde30da39c46104798bb5aa3fe8b9e0e1f348163f
 
 const routeTest = async () => {
-  const fromTokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b'; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
-  const toTokenContractAddress = ETH.MAINNET().contractAddress; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
+  const fromTokenContractAddress = ETH.MAINNET().contractAddress; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
+  const toTokenContractAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
   const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
 
   const uniswapPair = new UniswapPair({
@@ -29,13 +29,16 @@ const routeTest = async () => {
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
       disableMultihops: false,
-      uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+      uniswapVersions: [UniswapVersion.v2],
     }),
   });
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  const trade = await uniswapPairFactory.trade('10000', TradeDirection.input);
+  const trade = await uniswapPairFactory.trade(
+    '0.00000000001',
+    TradeDirection.input
+  );
   // console.log(JSON.stringify(trade, null, 4));
   console.log(trade);
   // console.log(
