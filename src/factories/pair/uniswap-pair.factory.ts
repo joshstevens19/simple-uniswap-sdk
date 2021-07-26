@@ -11,6 +11,7 @@ import {
   removeEthFromContractAddress,
   turnTokenIntoEthForResponse,
 } from '../../common/tokens/eth';
+import { deepClone } from '../../common/utils/deep-clone';
 import { hexlify } from '../../common/utils/hexlify';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
@@ -30,6 +31,7 @@ import { AllowanceAndBalanceOf } from '../token/models/allowance-balance-of';
 import { Token } from '../token/models/token';
 import { TokenFactory } from '../token/token.factory';
 import { TokensFactory } from '../token/tokens.factory';
+import { CurrentTradeContext } from './models/current-trade-context';
 import { TradeContext } from './models/trade-context';
 import { TradeDirection } from './models/trade-direction';
 import { Transaction } from './models/transaction';
@@ -65,8 +67,8 @@ export class UniswapPairFactory {
     this._uniswapPairFactoryContext.ethersProvider
   );
 
-  private _currentTradeContext: TradeContext | undefined;
-  private _quoteChangeInternal: NodeJS.Timeout | undefined;
+  private _watchingBlocks = false;
+  private _currentTradeContext: CurrentTradeContext | undefined;
   private _quoteChanged$: Subject<TradeContext> = new Subject<TradeContext>();
 
   constructor(private _uniswapPairFactoryContext: UniswapPairFactoryContext) {}
@@ -159,6 +161,7 @@ export class UniswapPairFactory {
     for (let i = 0; i < this._quoteChanged$.observers.length; i++) {
       this._quoteChanged$.observers[i].complete();
     }
+    this.unwatchTradePrice();
   }
 
   /**
@@ -172,25 +175,13 @@ export class UniswapPairFactory {
     direction: TradeDirection = TradeDirection.input
   ): Promise<TradeContext> {
     this.destroy();
-    if (this._quoteChangeInternal) {
-      clearInterval(this._quoteChangeInternal);
-    }
 
-    this._currentTradeContext = await this.executeTradePath(
-      new BigNumber(amount),
-      direction
-    );
+    const trade = await this.executeTradePath(new BigNumber(amount), direction);
+    this._currentTradeContext = this.buildCurrentTradeContext(trade);
 
     this.watchTradePrice();
 
-    return this._currentTradeContext;
-  }
-
-  /**
-   * Route getter
-   */
-  private get _routes(): UniswapRouterFactory {
-    return this._uniswapRouterFactory;
+    return trade;
   }
 
   /**
@@ -431,6 +422,31 @@ export class UniswapPairFactory {
       data,
       value: Constants.EMPTY_HEX_STRING,
     };
+  }
+
+  /**
+   * Route getter
+   */
+  private get _routes(): UniswapRouterFactory {
+    return this._uniswapRouterFactory;
+  }
+
+  /**
+   * Build the current trade context
+   * @param trade The trade context
+   */
+  private buildCurrentTradeContext(trade: TradeContext): CurrentTradeContext {
+    return deepClone({
+      baseConvertRequest: trade.baseConvertRequest,
+      expectedConvertQuote: trade.expectedConvertQuote,
+      quoteDirection: trade.quoteDirection,
+      fromToken: trade.fromToken,
+      toToken: trade.toToken,
+      liquidityProviderFee: trade.liquidityProviderFee,
+      transaction: trade.transaction,
+      routeText: trade.routeText,
+      tradeExpires: trade.tradeExpires,
+    });
   }
 
   /**
@@ -1164,37 +1180,59 @@ export class UniswapPairFactory {
    * Watch trade price move automatically emitting the stream if it changes
    */
   private watchTradePrice(): void {
-    this._quoteChangeInternal = setInterval(async () => {
+    if (!this._watchingBlocks) {
+      this._uniswapPairFactoryContext.ethersProvider.provider.on(
+        'block',
+        async (block: number) => {
+          console.log('block', block);
+          await this.handleNewBlock(block);
+        }
+      );
+      this._watchingBlocks = true;
+    }
+  }
+
+  /**
+   * unwatch any block streams
+   */
+  private unwatchTradePrice(): void {
+    this._uniswapPairFactoryContext.ethersProvider.provider.removeAllListeners(
+      'block'
+    );
+    this._watchingBlocks = false;
+  }
+
+  /**
+   * Handle new block for the trade price moving automatically emitting the stream if it changes
+   */
+  private async handleNewBlock(block: number): Promise<void> {
+    if (this._quoteChanged$.observers.length > 0 && this._currentTradeContext) {
+      const trade = await this.executeTradePath(
+        new BigNumber(this._currentTradeContext.baseConvertRequest),
+        this._currentTradeContext.quoteDirection
+      );
+
       if (
-        this._quoteChanged$.observers.length > 0 &&
-        this._currentTradeContext
+        trade.fromToken.contractAddress ===
+          this._currentTradeContext.fromToken.contractAddress &&
+        trade.toToken.contractAddress ===
+          this._currentTradeContext.toToken.contractAddress &&
+        trade.transaction.from ===
+          this._uniswapPairFactoryContext.ethereumAddress
       ) {
-        const trade = await this.executeTradePath(
-          new BigNumber(this._currentTradeContext.baseConvertRequest),
-          this._currentTradeContext.quoteDirection
-        );
         if (
           trade.expectedConvertQuote !==
             this._currentTradeContext.expectedConvertQuote ||
-          trade.routeText !== this._currentTradeContext.routeText
-        ) {
-          this._currentTradeContext = trade;
-          this._quoteChanged$.next(trade);
-          return;
-        }
-
-        // it has expired send another one to them
-        if (
+          trade.routeText !== this._currentTradeContext.routeText ||
+          trade.liquidityProviderFee !==
+            this._currentTradeContext.liquidityProviderFee ||
           this._currentTradeContext.tradeExpires >
-          this.generateTradeDeadlineUnixTime()
+            this.generateTradeDeadlineUnixTime()
         ) {
-          this._currentTradeContext = trade;
+          this._currentTradeContext = this.buildCurrentTradeContext(trade);
           this._quoteChanged$.next(trade);
-          return;
         }
       }
-      // maybe make config???
-      // query new prices every 25 seconds
-    }, 25000);
+    }
   }
 }
