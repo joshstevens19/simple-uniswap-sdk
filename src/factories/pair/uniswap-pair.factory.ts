@@ -1183,8 +1183,7 @@ export class UniswapPairFactory {
     if (!this._watchingBlocks) {
       this._uniswapPairFactoryContext.ethersProvider.provider.on(
         'block',
-        async (block: number) => {
-          console.log('block', block);
+        async () => {
           await this.handleNewBlock();
         }
       );
