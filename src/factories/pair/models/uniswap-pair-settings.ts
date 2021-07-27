@@ -1,4 +1,4 @@
-import { ErrorCodes } from '../../..';
+import { ErrorCodes } from '../../../common/errors/error-codes';
 import { UniswapError } from '../../../common/errors/uniswap-error';
 import { UniswapVersion } from '../../../enums/uniswap-version';
 
