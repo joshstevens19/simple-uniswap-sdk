@@ -1,8 +1,8 @@
-import { ETH, EthersProvider, TradeDirection } from '..';
 import { ChainId } from '../enums/chain-id';
 import { UniswapVersion } from '../enums/uniswap-version';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
 import { UniswapPair } from '../factories/pair/uniswap-pair';
+import { ETH, EthersProvider, TradeDirection } from '../index';
 
 // WBTC - 0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
 // FUN - 0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b

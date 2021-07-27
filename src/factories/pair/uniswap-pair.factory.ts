@@ -1185,7 +1185,7 @@ export class UniswapPairFactory {
         'block',
         async (block: number) => {
           console.log('block', block);
-          await this.handleNewBlock(block);
+          await this.handleNewBlock();
         }
       );
       this._watchingBlocks = true;
@@ -1205,7 +1205,7 @@ export class UniswapPairFactory {
   /**
    * Handle new block for the trade price moving automatically emitting the stream if it changes
    */
-  private async handleNewBlock(block: number): Promise<void> {
+  private async handleNewBlock(): Promise<void> {
     if (this._quoteChanged$.observers.length > 0 && this._currentTradeContext) {
       const trade = await this.executeTradePath(
         new BigNumber(this._currentTradeContext.baseConvertRequest),
