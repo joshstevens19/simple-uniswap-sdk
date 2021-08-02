@@ -143,59 +143,83 @@ export class TokenFactory {
 
   /**
    * Get allowance and balance
-   * @param uniswapVersion The uniswap version
    * @param ethereumAddress The ethereum address
    */
   public async getAllowanceAndBalanceOf(
-    uniswapVersion: UniswapVersion,
     ethereumAddress: string
   ): Promise<AllowanceAndBalanceOf> {
     if (isNativeEth(this._tokenContractAddress)) {
       return {
-        allowance: await this.allowance(uniswapVersion, ethereumAddress),
+        allowanceV2:
+          '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+        allowanceV3:
+          '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
         balanceOf: await this.balanceOf(ethereumAddress),
       };
     } else {
       const ALLOWANCE = 0;
       const BALANCEOF = 1;
 
-      const contractCallContext: ContractCallContext = {
-        reference: 'allowance-and-balance-of',
-        contractAddress: getAddress(this._tokenContractAddress),
-        abi: ContractContext.erc20Abi,
-        calls: [
-          {
-            reference: 'allowance',
-            methodName: 'allowance',
-            methodParameters: [
-              ethereumAddress,
-              uniswapVersion === UniswapVersion.v2
-                ? UniswapContractContextV2.routerAddress
-                : UniswapContractContextV3.routerAddress,
-            ],
-          },
-          {
-            reference: 'balanceOf',
-            methodName: 'balanceOf',
-            methodParameters: [ethereumAddress],
-          },
-        ],
-      };
+      const contractCallContext: ContractCallContext[] = [];
+
+      contractCallContext.push(
+        this.buildAllowanceAndBalanceContractCallContext(
+          ethereumAddress,
+          UniswapVersion.v2
+        )
+      );
+      contractCallContext.push(
+        this.buildAllowanceAndBalanceContractCallContext(
+          ethereumAddress,
+          UniswapVersion.v3
+        )
+      );
 
       const contractCallResults = await this._multicall.call(
         contractCallContext
       );
-      const results =
-        contractCallResults.results[contractCallContext.reference];
+      const resultsV2 = contractCallResults.results[UniswapVersion.v2];
+      const resultsV3 = contractCallResults.results[UniswapVersion.v3];
 
       return {
-        allowance: BigNumber.from(
-          results.callsReturnContext[ALLOWANCE].returnValues[0]
+        allowanceV2: BigNumber.from(
+          resultsV2.callsReturnContext[ALLOWANCE].returnValues[0]
+        ).toHexString(),
+        allowanceV3: BigNumber.from(
+          resultsV3.callsReturnContext[ALLOWANCE].returnValues[0]
         ).toHexString(),
         balanceOf: BigNumber.from(
-          results.callsReturnContext[BALANCEOF].returnValues[0]
+          resultsV2.callsReturnContext[BALANCEOF].returnValues[0]
         ).toHexString(),
       };
     }
+  }
+
+  private buildAllowanceAndBalanceContractCallContext(
+    ethereumAddress: string,
+    uniswapVersion: UniswapVersion
+  ): ContractCallContext {
+    return {
+      reference: uniswapVersion,
+      contractAddress: getAddress(this._tokenContractAddress),
+      abi: ContractContext.erc20Abi,
+      calls: [
+        {
+          reference: 'allowance',
+          methodName: 'allowance',
+          methodParameters: [
+            ethereumAddress,
+            uniswapVersion === UniswapVersion.v2
+              ? UniswapContractContextV2.routerAddress
+              : UniswapContractContextV3.routerAddress,
+          ],
+        },
+        {
+          reference: 'balanceOf',
+          methodName: 'balanceOf',
+          methodParameters: [ethereumAddress],
+        },
+      ],
+    };
   }
 }

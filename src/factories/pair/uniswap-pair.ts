@@ -1,3 +1,4 @@
+import { CoinGecko } from '../../coin-gecko';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { getAddress } from '../../common/utils/get-address';
@@ -150,6 +151,6 @@ export class UniswapPair {
       ethersProvider: this._ethersProvider,
     };
 
-    return new UniswapPairFactory(uniswapFactoryContext);
+    return new UniswapPairFactory(new CoinGecko(), uniswapFactoryContext);
   }
 }
