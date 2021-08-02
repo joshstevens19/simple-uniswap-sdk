@@ -15,7 +15,7 @@ import { ETH, EthersProvider, TradeDirection } from '../index';
 const routeTest = async () => {
   const fromTokenContractAddress = ETH.MAINNET().contractAddress; //'0xEf0e839Cf88E47be676E72D5a9cB6CED99FaD1CF';
   const toTokenContractAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'; // 0x1985365e9f78359a9B6AD760e32412f4a445E862
-  const ethereumAddress = '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9';
+  const ethereumAddress = '0x37c81284caA97131339415687d192BF7D18F0f2a';
 
   const uniswapPair = new UniswapPair({
     fromTokenContractAddress,
@@ -30,17 +30,22 @@ const routeTest = async () => {
       deadlineMinutes: 20,
       disableMultihops: false,
       uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+      // gasSettings: {
+      //   getGasPrice: async () => 100000000000,
+      // },
     }),
   });
 
+  const startTime = new Date().getTime();
+
   const uniswapPairFactory = await uniswapPair.createFactory();
 
-  const trade = await uniswapPairFactory.trade(
-    '0.00000000001',
-    TradeDirection.input
-  );
+  const trade = await uniswapPairFactory.trade('0.0001', TradeDirection.input);
+
+  console.log(new Date().getTime() - startTime);
+
   // console.log(JSON.stringify(trade, null, 4));
-  console.log(trade);
+  // console.log(trade);
   // console.log(
   //   trade.allTriedRoutesQuotes.filter(
   //     (c) => c.uniswapVersion === UniswapVersion.v3
@@ -48,7 +53,11 @@ const routeTest = async () => {
   // );
 
   const ethers = new EthersProvider({ chainId: ChainId.MAINNET });
-  console.log('gas', await ethers.provider.estimateGas(trade.transaction));
+  await ethers.provider.estimateGas(trade.transaction);
+  // console.log(
+  //   'gas',
+  //   (await ethers.provider.estimateGas(trade.transaction)).toHexString()
+  // );
 
   process.stdin.resume();
 
