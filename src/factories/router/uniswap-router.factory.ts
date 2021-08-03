@@ -396,9 +396,14 @@ export class UniswapRouterFactory {
 
     if (
       this._ethersProvider.provider.network.chainId === ChainId.MAINNET &&
-      this._settings.gasSettings
+      this._settings.gasSettings &&
+      allowanceAndBalances.enoughBalance
     ) {
-      allRoutes = await this.filterWithTransactionFees(allRoutes);
+      allRoutes = await this.filterWithTransactionFees(
+        allRoutes,
+        allowanceAndBalances.enoughV2Allowance,
+        allowanceAndBalances.enoughV3Allowance
+      );
     }
 
     return {
@@ -983,9 +988,13 @@ export class UniswapRouterFactory {
   /**
    * Work out trade fiat cost
    * @param allRoutes All the routes
+   * @param enoughAllowanceV2 Has got enough allowance for v2
+   * @param enoughAllowanceV3 Has got enough allowance for v3
    */
   private async filterWithTransactionFees(
-    allRoutes: RouteQuote[]
+    allRoutes: RouteQuote[],
+    enoughAllowanceV2: boolean,
+    enoughAllowanceV3: boolean
   ): Promise<RouteQuote[]> {
     if (this._settings.gasSettings) {
       const ethContract = WETHContract.MAINNET().contractAddress;
@@ -999,7 +1008,11 @@ export class UniswapRouterFactory {
       const ethUsdValue = fiatPrices[WETHContract.MAINNET().contractAddress];
 
       if (toUsdValue && ethUsdValue) {
-        const bestRouteQuoteHops = this.getBestRouteQuotesHops(allRoutes);
+        const bestRouteQuoteHops = this.getBestRouteQuotesHops(
+          allRoutes,
+          enoughAllowanceV2,
+          enoughAllowanceV3
+        );
 
         const gasPrice = await this._settings.gasSettings.getGasPrice();
 
@@ -1067,8 +1080,14 @@ export class UniswapRouterFactory {
   /**
    * Work out the best route quote hops aka the best direct, the best 3 hop and the best 4 hop
    * @param allRoutes All the routes
+   * @param enoughAllowanceV2 Has got enough allowance for v2
+   * @param enoughAllowanceV3 Has got enough allowance for v3
    */
-  private getBestRouteQuotesHops(allRoutes: RouteQuote[]): RouteQuote[] {
+  private getBestRouteQuotesHops(
+    allRoutes: RouteQuote[],
+    enoughAllowanceV2: boolean,
+    enoughAllowanceV3: boolean
+  ): RouteQuote[] {
     const routes: RouteQuote[] = [];
     for (let i = 0; i < allRoutes.length; i++) {
       if (
@@ -1081,27 +1100,33 @@ export class UniswapRouterFactory {
 
       const route = allRoutes[i];
       if (
-        route.routePathArray.length === 2 &&
-        !routes.find((r) => r.routePathArray.length === 2)
+        route.uniswapVersion === UniswapVersion.v2
+          ? enoughAllowanceV2
+          : enoughAllowanceV3
       ) {
-        routes.push(route);
-        continue;
-      }
+        if (
+          route.routePathArray.length === 2 &&
+          !routes.find((r) => r.routePathArray.length === 2)
+        ) {
+          routes.push(route);
+          continue;
+        }
 
-      if (
-        route.routePathArray.length === 3 &&
-        !routes.find((r) => r.routePathArray.length === 3)
-      ) {
-        routes.push(route);
-        continue;
-      }
+        if (
+          route.routePathArray.length === 3 &&
+          !routes.find((r) => r.routePathArray.length === 3)
+        ) {
+          routes.push(route);
+          continue;
+        }
 
-      if (
-        route.routePathArray.length === 4 &&
-        !routes.find((r) => r.routePathArray.length === 4)
-      ) {
-        routes.push(route);
-        continue;
+        if (
+          route.routePathArray.length === 4 &&
+          !routes.find((r) => r.routePathArray.length === 4)
+        ) {
+          routes.push(route);
+          continue;
+        }
       }
     }
 
