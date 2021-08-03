@@ -1,4 +1,4 @@
-import { ChainId, ErrorCodes, UniswapError, UniswapVersion } from '../..';
+import { ChainId, ErrorCodes, UniswapError } from '../..';
 import { ETH } from '../../common/tokens';
 import { EthersProvider } from '../../ethers-provider';
 import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
@@ -39,147 +39,79 @@ describe('TokensFactory', () => {
   });
 
   describe('getAllowanceAndBalanceOfForContracts', () => {
-    describe('v2', () => {
-      it('should return correct info - formatted', async () => {
-        const result = await tokensFactory.getAllowanceAndBalanceOfForContracts(
-          UniswapVersion.v2,
-          MockEthereumAddress(),
-          [
-            ETH.MAINNET().contractAddress,
-            MOCKFUN().contractAddress,
-            MOCKREP().contractAddress,
-          ],
-          true
-        );
-        expect(result[0]).toEqual({
-          token: ETH.MAINNET(),
-          allowanceAndBalanceOf: {
-            allowance:
-              '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
-            balanceOf: '0.217093373250724513',
-          },
-        });
-        expect(result[1]).toEqual({
-          token: MOCKFUN(),
-          allowanceAndBalanceOf: {
-            allowance: '99997899.4322',
-            balanceOf: '1307.73129463',
-          },
-        });
-        expect(result[2]).toEqual({
-          token: MOCKREP(),
-          allowanceAndBalanceOf: {
-            allowance: '0',
-            balanceOf: '0',
-          },
-        });
+    it('should return correct info - formatted', async () => {
+      const result = await tokensFactory.getAllowanceAndBalanceOfForContracts(
+        MockEthereumAddress(),
+        [
+          ETH.MAINNET().contractAddress,
+          MOCKFUN().contractAddress,
+          MOCKREP().contractAddress,
+        ],
+        true
+      );
+      expect(result[0]).toEqual({
+        token: ETH.MAINNET(),
+        allowanceAndBalanceOf: {
+          allowanceV2:
+            '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
+          allowanceV3:
+            '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
+          balanceOf: '0',
+        },
       });
-
-      it('should return correct info - unformatted', async () => {
-        const result = await tokensFactory.getAllowanceAndBalanceOfForContracts(
-          UniswapVersion.v2,
-          MockEthereumAddress(),
-          [
-            ETH.MAINNET().contractAddress,
-            MOCKFUN().contractAddress,
-            MOCKREP().contractAddress,
-          ],
-          false
-        );
-        expect(result[0]).toEqual({
-          token: ETH.MAINNET(),
-          allowanceAndBalanceOf: {
-            allowance:
-              '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-            balanceOf: '0x03034545d3b362a1',
-          },
-        });
-        expect(result[1]).toEqual({
-          token: MOCKFUN(),
-          allowanceAndBalanceOf: {
-            allowance: '0x2386c18764e720',
-            balanceOf: '0x1e72af98f7',
-          },
-        });
-        expect(result[2]).toEqual({
-          token: MOCKREP(),
-          allowanceAndBalanceOf: {
-            allowance: '0x00',
-            balanceOf: '0x00',
-          },
-        });
+      expect(result[1]).toEqual({
+        token: MOCKFUN(),
+        allowanceAndBalanceOf: {
+          allowanceV2: '99997899.4322',
+          allowanceV3: '0',
+          balanceOf: '0',
+        },
+      });
+      expect(result[2]).toEqual({
+        token: MOCKREP(),
+        allowanceAndBalanceOf: {
+          allowanceV2: '0',
+          allowanceV3: '0',
+          balanceOf: '0',
+        },
       });
     });
 
-    describe('v3', () => {
-      it('should return correct info - formatted', async () => {
-        const result = await tokensFactory.getAllowanceAndBalanceOfForContracts(
-          UniswapVersion.v3,
-          MockEthereumAddress(),
-          [
-            ETH.MAINNET().contractAddress,
-            MOCKFUN().contractAddress,
-            MOCKREP().contractAddress,
-          ],
-          true
-        );
-        expect(result[0]).toEqual({
-          token: ETH.MAINNET(),
-          allowanceAndBalanceOf: {
-            allowance:
-              '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
-            balanceOf: '0.217093373250724513',
-          },
-        });
-        expect(result[1]).toEqual({
-          token: MOCKFUN(),
-          allowanceAndBalanceOf: {
-            allowance: '0',
-            balanceOf: '1307.73129463',
-          },
-        });
-        expect(result[2]).toEqual({
-          token: MOCKREP(),
-          allowanceAndBalanceOf: {
-            allowance: '0',
-            balanceOf: '0',
-          },
-        });
+    it('should return correct info - unformatted', async () => {
+      const result = await tokensFactory.getAllowanceAndBalanceOfForContracts(
+        MockEthereumAddress(),
+        [
+          ETH.MAINNET().contractAddress,
+          MOCKFUN().contractAddress,
+          MOCKREP().contractAddress,
+        ],
+        false
+      );
+      expect(result[0]).toEqual({
+        token: ETH.MAINNET(),
+        allowanceAndBalanceOf: {
+          allowanceV2:
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+          allowanceV3:
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+          balanceOf: '0x00',
+        },
       });
-
-      it('should return correct info - unformatted', async () => {
-        const result = await tokensFactory.getAllowanceAndBalanceOfForContracts(
-          UniswapVersion.v3,
-          MockEthereumAddress(),
-          [
-            ETH.MAINNET().contractAddress,
-            MOCKFUN().contractAddress,
-            MOCKREP().contractAddress,
-          ],
-          false
-        );
-        expect(result[0]).toEqual({
-          token: ETH.MAINNET(),
-          allowanceAndBalanceOf: {
-            allowance:
-              '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-            balanceOf: '0x03034545d3b362a1',
-          },
-        });
-        expect(result[1]).toEqual({
-          token: MOCKFUN(),
-          allowanceAndBalanceOf: {
-            allowance: '0x00',
-            balanceOf: '0x1e72af98f7',
-          },
-        });
-        expect(result[2]).toEqual({
-          token: MOCKREP(),
-          allowanceAndBalanceOf: {
-            allowance: '0x00',
-            balanceOf: '0x00',
-          },
-        });
+      expect(result[1]).toEqual({
+        token: MOCKFUN(),
+        allowanceAndBalanceOf: {
+          allowanceV2: '0x2386c18764e720',
+          allowanceV3: '0x00',
+          balanceOf: '0x00',
+        },
+      });
+      expect(result[2]).toEqual({
+        token: MOCKREP(),
+        allowanceAndBalanceOf: {
+          allowanceV2: '0x00',
+          allowanceV3: '0x00',
+          balanceOf: '0x00',
+        },
       });
     });
   });

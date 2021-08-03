@@ -434,13 +434,33 @@ export class UniswapRouterFactory {
   }
 
   /**
+   * Generates the trade datetime unix time
+   */
+  public generateTradeDeadlineUnixTime(): number {
+    const now = new Date();
+    const expiryDate = new Date(
+      now.getTime() + this._settings.deadlineMinutes * 60000
+    );
+    return (expiryDate.getTime() / 1e3) | 0;
+  }
+
+  /**
+   * Get eth balance
+   */
+  public async getEthBalance(): Promise<BigNumber> {
+    const balance = await this._ethersProvider.balanceOf(this._ethereumAddress);
+
+    return new BigNumber(balance).shiftedBy(Constants.ETH_MAX_DECIMALS * -1);
+  }
+
+  /**
    * Generate trade data eth > erc20
    * @param ethAmountIn The eth amount in
    * @param tokenAmount The token amount
    * @param routeQuoteTradeContext The route quote trade context
    * @param deadline The deadline it expiries unix time
    */
-  public generateTradeDataEthToErc20Input(
+  private generateTradeDataEthToErc20Input(
     ethAmountIn: BigNumber,
     tokenAmount: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
@@ -483,7 +503,7 @@ export class UniswapRouterFactory {
    * @param routeQuote The route quote
    * @param deadline The deadline it expiries unix time
    */
-  public generateTradeDataEthToErc20Output(
+  private generateTradeDataEthToErc20Output(
     ethAmountInMax: BigNumber,
     tokenAmountOut: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
@@ -525,7 +545,7 @@ export class UniswapRouterFactory {
    * @param routeQuoteTradeContext The route quote trade context
    * @param deadline The deadline it expiries unix time
    */
-  public generateTradeDataErc20ToEthInput(
+  private generateTradeDataErc20ToEthInput(
     tokenAmount: BigNumber,
     ethAmountOutMin: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
@@ -569,7 +589,7 @@ export class UniswapRouterFactory {
    * @param routeQuoteTradeContext The route quote trade context
    * @param deadline The deadline it expiries unix time
    */
-  public generateTradeDataErc20ToEthOutput(
+  private generateTradeDataErc20ToEthOutput(
     tokenAmountInMax: BigNumber,
     ethAmountOut: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
@@ -613,7 +633,7 @@ export class UniswapRouterFactory {
    * @param routeQuoteTradeContext The route quote trade context
    * @param deadline The deadline it expiries unix time
    */
-  public generateTradeDataErc20ToErc20Input(
+  private generateTradeDataErc20ToErc20Input(
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
@@ -658,7 +678,7 @@ export class UniswapRouterFactory {
    * @param routeQuoteTradeContext The route quote trade context
    * @param deadline The deadline it expiries unix time
    */
-  public generateTradeDataErc20ToErc20Output(
+  private generateTradeDataErc20ToErc20Output(
     tokenAmountInMax: BigNumber,
     tokenAmountOut: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
@@ -704,7 +724,7 @@ export class UniswapRouterFactory {
    * @param liquidityProviderFee The liquidity provider fee
    * @param deadline The deadline it expiries unix time
    */
-  public generateTradeDataForV3Input(
+  private generateTradeDataForV3Input(
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
     liquidityProviderFee: number,
@@ -728,7 +748,7 @@ export class UniswapRouterFactory {
    * Build up a transaction for erc20 from
    * @param data The data
    */
-  public buildUpTransactionErc20(
+  private buildUpTransactionErc20(
     uniswapVersion: UniswapVersion,
     data: string
   ): Transaction {
@@ -748,7 +768,7 @@ export class UniswapRouterFactory {
    * @param ethValue The eth value
    * @param data The data
    */
-  public buildUpTransactionEth(
+  private buildUpTransactionEth(
     uniswapVersion: UniswapVersion,
     ethValue: BigNumber,
     data: string
@@ -765,20 +785,9 @@ export class UniswapRouterFactory {
   }
 
   /**
-   * Generates the trade datetime unix time
-   */
-  public generateTradeDeadlineUnixTime(): number {
-    const now = new Date();
-    const expiryDate = new Date(
-      now.getTime() + this._settings.deadlineMinutes * 60000
-    );
-    return (expiryDate.getTime() / 1e3) | 0;
-  }
-
-  /**
    * Get the allowance and balance for the from and to token (will get balance for eth as well)
    */
-  public async getAllowanceAndBalanceForTokens(): Promise<{
+  private async getAllowanceAndBalanceForTokens(): Promise<{
     fromToken: AllowanceAndBalanceOf;
     toToken: AllowanceAndBalanceOf;
   }> {
@@ -791,10 +800,14 @@ export class UniswapRouterFactory {
 
     return {
       fromToken: allowanceAndBalanceOfForTokens.find(
-        (c) => c.token.contractAddress === this._fromToken.contractAddress
+        (c) =>
+          c.token.contractAddress.toLowerCase() ===
+          this._fromToken.contractAddress.toLowerCase()
       )!.allowanceAndBalanceOf,
       toToken: allowanceAndBalanceOfForTokens.find(
-        (c) => c.token.contractAddress === this._toToken.contractAddress
+        (c) =>
+          c.token.contractAddress.toLowerCase() ===
+          this._toToken.contractAddress.toLowerCase()
       )!.allowanceAndBalanceOf,
     };
   }
@@ -803,7 +816,7 @@ export class UniswapRouterFactory {
    * Has got enough allowance to do the trade
    * @param amount The amount you want to swap
    */
-  public hasGotEnoughAllowance(amount: string, allowance: string): boolean {
+  private hasGotEnoughAllowance(amount: string, allowance: string): boolean {
     if (this.tradePath() === TradePath.ethToErc20) {
       return true;
     }
@@ -817,15 +830,6 @@ export class UniswapRouterFactory {
     }
 
     return true;
-  }
-
-  /**
-   * Get eth balance
-   */
-  public async getEthBalance(): Promise<BigNumber> {
-    const balance = await this._ethersProvider.balanceOf(this._ethereumAddress);
-
-    return new BigNumber(balance).shiftedBy(Constants.ETH_MAX_DECIMALS * -1);
   }
 
   private async hasEnoughAllowanceAndBalance(
@@ -996,7 +1000,7 @@ export class UniswapRouterFactory {
     enoughAllowanceV2: boolean,
     enoughAllowanceV3: boolean
   ): Promise<RouteQuote[]> {
-    if (this._settings.gasSettings) {
+    if (this._settings.gasSettings && !this._settings.disableMultihops) {
       const ethContract = WETHContract.MAINNET().contractAddress;
 
       const fiatPrices = await this._coinGecko.getCoinGeckoFiatPrices([

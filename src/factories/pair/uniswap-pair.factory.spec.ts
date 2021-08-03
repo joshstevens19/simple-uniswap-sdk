@@ -6,6 +6,7 @@ import {
   UniswapPairFactory,
   UniswapPairSettings,
 } from '../..';
+import { CoinGecko } from '../../coin-gecko';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
@@ -30,6 +31,7 @@ describe('UniswapPairFactory', () => {
     };
 
     const uniswapPairFactory = new UniswapPairFactory(
+      new CoinGecko(),
       uniswapPairFactoryContext
     );
 
@@ -105,64 +107,10 @@ describe('UniswapPairFactory', () => {
       });
     });
 
-    describe('hasGotEnoughAllowance', () => {
-      describe('v2', () => {
-        it('should return true if i have enough allowance', async () => {
-          const result = await uniswapPairFactory.hasGotEnoughAllowance(
-            UniswapVersion.v2,
-            '1'
-          );
-          expect(result).toEqual(true);
-        });
-
-        it('should return false if i do not have enough allowance', async () => {
-          const factory = new UniswapPairFactory({
-            fromToken: MOCKREP(),
-            toToken: MOCKFUN(),
-            ethereumAddress: MockEthereumAddress(),
-            settings: new UniswapPairSettings(),
-            ethersProvider,
-          });
-
-          const result = await factory.hasGotEnoughAllowance(
-            UniswapVersion.v2,
-            '1'
-          );
-          expect(result).toEqual(false);
-        });
-      });
-
-      describe('v3', () => {
-        xit('should return true if i have enough allowance', async () => {
-          const result = await uniswapPairFactory.hasGotEnoughAllowance(
-            UniswapVersion.v3,
-            '1'
-          );
-          expect(result).toEqual(true);
-        });
-
-        it('should return false if i do not have enough allowance', async () => {
-          const factory = new UniswapPairFactory({
-            fromToken: MOCKREP(),
-            toToken: MOCKFUN(),
-            ethereumAddress: MockEthereumAddress(),
-            settings: new UniswapPairSettings(),
-            ethersProvider,
-          });
-
-          const result = await factory.hasGotEnoughAllowance(
-            UniswapVersion.v3,
-            '1'
-          );
-          expect(result).toEqual(false);
-        });
-      });
-    });
-
     describe('allowance', () => {
       describe('v2', () => {
         it('should return more then 0', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKFUN(),
             toToken: MOCKREP(),
             ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
@@ -175,7 +123,7 @@ describe('UniswapPairFactory', () => {
         });
 
         it('should return 0 allowance', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKREP(),
             toToken: MOCKFUN(),
             ethereumAddress: MockEthereumAddress(),
@@ -190,7 +138,7 @@ describe('UniswapPairFactory', () => {
 
       describe('v3', () => {
         xit('should return more then 0', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKFUN(),
             toToken: MOCKREP(),
             ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
@@ -203,7 +151,7 @@ describe('UniswapPairFactory', () => {
         });
 
         it('should return 0 allowance', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKREP(),
             toToken: MOCKFUN(),
             ethereumAddress: MockEthereumAddress(),
@@ -260,6 +208,7 @@ describe('UniswapPairFactory', () => {
     };
 
     const uniswapPairFactory = new UniswapPairFactory(
+      new CoinGecko(),
       uniswapPairFactoryContext
     );
 
@@ -335,64 +284,10 @@ describe('UniswapPairFactory', () => {
       });
     });
 
-    describe('hasGotEnoughAllowance', () => {
-      describe('v2', () => {
-        it('should return true if i have enough allowance', async () => {
-          const result = await uniswapPairFactory.hasGotEnoughAllowance(
-            UniswapVersion.v2,
-            '1'
-          );
-          expect(result).toEqual(true);
-        });
-
-        it('should return false if i do not have enough allowance', async () => {
-          const factory = new UniswapPairFactory({
-            fromToken: MOCKREP(),
-            toToken: ETH.MAINNET(),
-            ethereumAddress: MockEthereumAddress(),
-            settings: new UniswapPairSettings(),
-            ethersProvider,
-          });
-
-          const result = await factory.hasGotEnoughAllowance(
-            UniswapVersion.v2,
-            '1'
-          );
-          expect(result).toEqual(false);
-        });
-      });
-
-      describe('v3', () => {
-        xit('should return true if i have enough allowance', async () => {
-          const result = await uniswapPairFactory.hasGotEnoughAllowance(
-            UniswapVersion.v3,
-            '1'
-          );
-          expect(result).toEqual(true);
-        });
-
-        it('should return false if i do not have enough allowance', async () => {
-          const factory = new UniswapPairFactory({
-            fromToken: MOCKREP(),
-            toToken: ETH.MAINNET(),
-            ethereumAddress: MockEthereumAddress(),
-            settings: new UniswapPairSettings(),
-            ethersProvider,
-          });
-
-          const result = await factory.hasGotEnoughAllowance(
-            UniswapVersion.v3,
-            '1'
-          );
-          expect(result).toEqual(false);
-        });
-      });
-    });
-
     describe('allowance', () => {
       describe('v2', () => {
         it('should return more then 0', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKFUN(),
             toToken: ETH.MAINNET(),
             ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
@@ -405,7 +300,7 @@ describe('UniswapPairFactory', () => {
         });
 
         it('should return 0 allowance', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKREP(),
             toToken: ETH.MAINNET(),
             ethereumAddress: MockEthereumAddress(),
@@ -420,7 +315,7 @@ describe('UniswapPairFactory', () => {
 
       describe('v3', () => {
         xit('should return more then 0', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKFUN(),
             toToken: ETH.MAINNET(),
             ethereumAddress: '0x5ab9d116a53ef41063e3eae26a7ebe736720e9ba',
@@ -433,7 +328,7 @@ describe('UniswapPairFactory', () => {
         });
 
         it('should return 0 allowance', async () => {
-          const factory = new UniswapPairFactory({
+          const factory = new UniswapPairFactory(new CoinGecko(), {
             fromToken: MOCKREP(),
             toToken: ETH.MAINNET(),
             ethereumAddress: MockEthereumAddress(),
@@ -490,6 +385,7 @@ describe('UniswapPairFactory', () => {
     };
 
     const uniswapPairFactory = new UniswapPairFactory(
+      new CoinGecko(),
       uniswapPairFactoryContext
     );
 
@@ -562,28 +458,6 @@ describe('UniswapPairFactory', () => {
       it('should return all possible routes', async () => {
         const result = await uniswapPairFactory.findAllPossibleRoutes();
         expect(result).not.toBeUndefined();
-      });
-    });
-
-    describe('hasGotEnoughAllowance', () => {
-      describe('v2', () => {
-        it('should always return true as not allowance needed', async () => {
-          const result = await uniswapPairFactory.hasGotEnoughAllowance(
-            UniswapVersion.v2,
-            '1'
-          );
-          expect(result).toEqual(true);
-        });
-      });
-
-      describe('v3', () => {
-        it('should always return true as not allowance needed', async () => {
-          const result = await uniswapPairFactory.hasGotEnoughAllowance(
-            UniswapVersion.v3,
-            '1'
-          );
-          expect(result).toEqual(true);
-        });
       });
     });
 
