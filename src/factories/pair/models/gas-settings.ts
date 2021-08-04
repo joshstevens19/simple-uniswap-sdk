@@ -1,3 +1,6 @@
 export interface GasSettings {
-  getGasPrice: () => Promise<number>;
+  /**
+   * Must return GWEI!
+   */
+  getGasPrice: () => Promise<string>;
 }

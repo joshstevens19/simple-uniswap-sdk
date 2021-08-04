@@ -1018,7 +1018,9 @@ export class UniswapRouterFactory {
           enoughAllowanceV3
         );
 
-        const gasPrice = await this._settings.gasSettings.getGasPrice();
+        const gasPrice = new BigNumber(
+          await this._settings.gasSettings.getGasPrice()
+        ).times(1e9);
 
         let bestRoute:
           | {

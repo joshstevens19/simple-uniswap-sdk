@@ -106,21 +106,28 @@ export interface UniswapPairContextForProviderUrl
 ```
 
 ```ts
+export interface GasSettings {
+  getGasPrice: () => Promise<number>;
+}
+
 export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
+  gasSettings?: GasSettings = undefined;
 
   constructor(settings?: {
     slippage?: number | undefined;
     deadlineMinutes?: number | undefined;
     disableMultihops?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
+    gasSettings?: GasSettings | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
+    this.gasSettings = settings?.gasSettings;
 
     if (
       Array.isArray(settings?.uniswapVersions) &&
@@ -390,11 +397,15 @@ export interface TradeContext {
   // this will be ordered from the best expected convert quote to worse [0] = best
   allTriedRoutesQuotes: {
     expectedConvertQuote: string;
+    expectedConvertQuoteOrTokenAmountInMaxWithSlippage: string;
+    transaction: Transaction;
+    tradeExpires: number;
     routePathArrayTokenMap: Token[];
     routeText: string;
     routePathArray: string[];
     uniswapVersion: UniswapVersion;
     liquidityProviderFee: number;
+    quoteDirection: TradeDirection;
   }[];
   // if the allowance approved for moving tokens is below the amount sending to the
   // uniswap router this will be false if not true
@@ -723,6 +734,55 @@ const executeTrade = async (web3: Web3, trade: TradeContext) => {
 
 web3TradeExample();
 ```
+
+#### Including gas fees in the trade response
+
+The library has the ability to work out the best trade including gas fees. As expected this does add around about 700MS onto the response time due to the need to have to query `eth_estimateGas` an the top 3 quotes to work out the best result. How it works is:
+
+- It gets the best expected trade quotes as it normally does
+- IF you do not have enough balance or enough allowance it will not estimate gas because it be a always failing transaction and the node will throw an error.
+- ALSO IF the token your swapping does not have a fiat price in coin gecko then again it ignores the below as it can not do the math without a base currency.
+- IF you have enough balance and allowance then finds the best 3 of the different hop options:
+  - best direct trade aka `ETH/TOKEN > TOKEN_YOU_WANT`
+  - best trade which jumps 2 hops aka `ETH/TOKEN > TOKEN > TOKEN_YOU_WANT`
+  - beat trade which jumps 3 hops aka `ETH/TOKEN > TOKEN > OTHER_TOKEN > TOKEN_YOU_WANT`
+- It then `eth_estimateGas` those 3 transactions and takes off the tx fee from the expected quote
+- It then returns the trade which is the highest left amount, meaning it has taken into consideration gas within the quote
+
+Do not worry if you want to use this feature but worried that first time customers before they approve ability for uniswap to move the tokens will not be able to benefit from this, as soon as you have approved uniswap to be able to move tokens on their behalf a new trade will be emitted within the `quoteChanged$` stream so you can still get all the benefit on first time swaps.
+
+The beauty of this is its very easy to setup just pass in a `gasSettings` object including a `getGasPrice` async function (IT MUST BE A PROMISE) which returns the gas price in `Gwei` which you want to use for the working out. This must be a string number aka `30` = `30 Gwei` it does not handle passing in hex strings. This can be dynamic aka we call this everytime we go and work out the trades, so if you want this to hit an API or etherscan or return a fixed gas price, its completely up to you.
+
+```ts
+import {
+  ChainId,
+  TradeContext,
+  UniswapPair,
+  UniswapPairSettings,
+} from 'simple-uniswap-sdk';
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  // you can pass in the provider url as well if you want
+  // providerUrl: YOUR_PROVIDER_URL,
+  // OR if you want to inject your own ethereum provider (no need for chainId if so)
+  // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
+  chainId: ChainId.RINKEBY,
+  settings: new UniswapPairSettings({
+    gasSettings: {
+      getGasPrice: async () => {
+        return 'GWEI_GAS_PRICE';
+      },
+    },
+  }),
+});
+```
+
+That's it now you get trades which bring you back the best trades minus the tx cost.
 
 #### ERC20 > ERC20 Output example
 
