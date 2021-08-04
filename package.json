@@ -9,6 +9,8 @@
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "playground": "node ./dist/cjs/__TEST-SCRIPT__/playground.js",
+    "watch": "tsc --module commonjs --outDir dist/cjs --watch",
     "test": "jest",
     "gen-erc20-abi": "abi-types-generator ./src/ABI/erc-20-abi.json --output=./src/ABI/types --name=erc20-contract --provider=ethers_v5",
     "gen-uniswap-router-v2-abi": "abi-types-generator ./src/ABI/uniswap-router-v2.json --output=./src/ABI/types --name=uniswap-router-v2 --provider=ethers_v5",
@@ -40,10 +42,12 @@
     "ethereum-abi-types-generator": "^1.1.6",
     "ethereum-multicall": "^2.7.0",
     "ethers": "^5.0.26",
+    "node-fetch": "^2.6.1",
     "rxjs": "^6.6.3"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
+    "@types/node-fetch": "^2.5.12",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
     "typescript": "^4.1.3"

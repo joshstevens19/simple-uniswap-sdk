@@ -178,59 +178,29 @@ describe('TokenFactory', () => {
 
   describe('getAllowanceAndBalanceOf', () => {
     describe('erc20', () => {
-      describe('v2', () => {
-        it('getAllowanceAndBalanceOf', async () => {
-          const result = await tokenFactory.getAllowanceAndBalanceOf(
-            UniswapVersion.v2,
-            MockEthereumAddress()
-          );
-          expect(result).toEqual({
-            allowance: '0x2386c18764e720',
-            balanceOf: '0x1e72af98f7',
-          });
-        });
-      });
-
-      describe('v3', () => {
-        it('getAllowanceAndBalanceOf', async () => {
-          const result = await tokenFactory.getAllowanceAndBalanceOf(
-            UniswapVersion.v3,
-            MockEthereumAddress()
-          );
-          expect(result).toEqual({
-            allowance: '0x00',
-            balanceOf: '0x1e72af98f7',
-          });
+      it('getAllowanceAndBalanceOf', async () => {
+        const result = await tokenFactory.getAllowanceAndBalanceOf(
+          MockEthereumAddress()
+        );
+        expect(result).toEqual({
+          allowanceV2: '0x2386c18764e720',
+          allowanceV3: '0x00',
+          balanceOf: '0x00',
         });
       });
     });
 
     describe('eth', () => {
-      describe('v2', () => {
-        it('getAllowanceAndBalanceOf', async () => {
-          const result = await tokenFactoryEth.getAllowanceAndBalanceOf(
-            UniswapVersion.v2,
-            MockEthereumAddress()
-          );
-          expect(result).toEqual({
-            allowance:
-              '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-            balanceOf: '0x03034545d3b362a1',
-          });
-        });
-      });
-
-      describe('v3', () => {
-        it('getAllowanceAndBalanceOf', async () => {
-          const result = await tokenFactoryEth.getAllowanceAndBalanceOf(
-            UniswapVersion.v3,
-            MockEthereumAddress()
-          );
-          expect(result).toEqual({
-            allowance:
-              '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-            balanceOf: '0x03034545d3b362a1',
-          });
+      it('getAllowanceAndBalanceOf', async () => {
+        const result = await tokenFactoryEth.getAllowanceAndBalanceOf(
+          MockEthereumAddress()
+        );
+        expect(result).toEqual({
+          allowanceV2:
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+          allowanceV3:
+            '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+          balanceOf: '0x00',
         });
       });
     });

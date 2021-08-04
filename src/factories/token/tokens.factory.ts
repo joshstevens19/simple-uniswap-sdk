@@ -92,13 +92,11 @@ export class TokensFactory {
 
   /**
    * Get allowance and balance for many contracts
-   * @param uniswapVersion The uniswap version
    * @param ethereumAddress The ethereum address
    * @param tokenContractAddresses The token contract addresses
    * @param format If you want it to format it for you to the correct decimal place
    */
   public async getAllowanceAndBalanceOfForContracts(
-    uniswapVersion: UniswapVersion,
     ethereumAddress: string,
     tokenContractAddresses: string[],
     format = false
@@ -114,51 +112,32 @@ export class TokensFactory {
     const contractCallContexts: ContractCallContext[] = [];
     for (let i = 0; i < tokenContractAddresses.length; i++) {
       if (!isNativeEth(tokenContractAddresses[i])) {
-        const contractCallContext: ContractCallContext = {
-          reference: `allowance-and-balance-of-${i}`,
-          contractAddress: getAddress(tokenContractAddresses[i]),
-          abi: ContractContext.erc20Abi,
-          calls: [
-            {
-              reference: 'allowance',
-              methodName: 'allowance',
-              methodParameters: [
-                ethereumAddress,
-                uniswapVersion === UniswapVersion.v2
-                  ? UniswapContractContextV2.routerAddress
-                  : UniswapContractContextV3.routerAddress,
-              ],
-            },
-            {
-              reference: 'balanceOf',
-              methodName: 'balanceOf',
-              methodParameters: [ethereumAddress],
-            },
-            {
-              reference: 'decimals',
-              methodName: 'decimals',
-              methodParameters: [],
-            },
-            {
-              reference: 'symbol',
-              methodName: 'symbol',
-              methodParameters: [],
-            },
-            {
-              reference: 'name',
-              methodName: 'name',
-              methodParameters: [],
-            },
-          ],
-        };
+        contractCallContexts.push(
+          this.buildAllowanceAndBalanceContractCallContext(
+            ethereumAddress,
+            tokenContractAddresses[i],
+            UniswapVersion.v2
+          )
+        );
 
-        contractCallContexts.push(contractCallContext);
+        contractCallContexts.push(
+          this.buildAllowanceAndBalanceContractCallContext(
+            ethereumAddress,
+            tokenContractAddresses[i],
+            UniswapVersion.v3
+          )
+        );
       } else {
         const token = ETH.info(this._ethersProvider.network().chainId);
         if (format) {
           results.push({
             allowanceAndBalanceOf: {
-              allowance: new BigNumber(
+              allowanceV2: new BigNumber(
+                '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+              )
+                .shiftedBy(18 * -1)
+                .toFixed(),
+              allowanceV3: new BigNumber(
                 '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
               )
                 .shiftedBy(18 * -1)
@@ -174,7 +153,9 @@ export class TokensFactory {
         } else {
           results.push({
             allowanceAndBalanceOf: {
-              allowance:
+              allowanceV2:
+                '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+              allowanceV3:
                 '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
               balanceOf: await this._ethersProvider.balanceOf(ethereumAddress),
             },
@@ -189,61 +170,125 @@ export class TokensFactory {
     );
 
     for (const result in contractCallResults.results) {
-      const resultInfo = contractCallResults.results[result];
+      if (result.includes(`_${UniswapVersion.v2}`)) {
+        const resultInfoV2 = contractCallResults.results[result];
+        const resultInfoV3 =
+          contractCallResults.results[
+            result.replace(`_${UniswapVersion.v2}`, `_${UniswapVersion.v3}`)
+          ];
 
-      if (!format) {
-        results.push({
-          allowanceAndBalanceOf: {
-            allowance: EthersBigNumber.from(
-              resultInfo.callsReturnContext[ALLOWANCE].returnValues[0]
-            ).toHexString(),
-            balanceOf: EthersBigNumber.from(
-              resultInfo.callsReturnContext[BALANCEOF].returnValues[0]
-            ).toHexString(),
-          },
-          token: {
-            chainId: this._ethersProvider.network().chainId,
-            contractAddress:
-              resultInfo.originalContractCallContext.contractAddress,
-            symbol: resultInfo.callsReturnContext[SYMBOL].returnValues[0],
-            decimals: resultInfo.callsReturnContext[DECIMALS].returnValues[0],
-            name: resultInfo.callsReturnContext[NAME].returnValues[0],
-          },
-        });
-      } else {
-        results.push({
-          allowanceAndBalanceOf: {
-            allowance: new BigNumber(
-              EthersBigNumber.from(
-                resultInfo.callsReturnContext[ALLOWANCE].returnValues[0]
-              ).toHexString()
-            )
-              .shiftedBy(
-                resultInfo.callsReturnContext[DECIMALS].returnValues[0] * -1
+        if (!format) {
+          results.push({
+            allowanceAndBalanceOf: {
+              allowanceV2: EthersBigNumber.from(
+                resultInfoV2.callsReturnContext[ALLOWANCE].returnValues[0]
+              ).toHexString(),
+              allowanceV3: EthersBigNumber.from(
+                resultInfoV3.callsReturnContext[ALLOWANCE].returnValues[0]
+              ).toHexString(),
+              balanceOf: EthersBigNumber.from(
+                resultInfoV3.callsReturnContext[BALANCEOF].returnValues[0]
+              ).toHexString(),
+            },
+            token: {
+              chainId: this._ethersProvider.network().chainId,
+              contractAddress:
+                resultInfoV3.originalContractCallContext.contractAddress,
+              symbol: resultInfoV3.callsReturnContext[SYMBOL].returnValues[0],
+              decimals:
+                resultInfoV3.callsReturnContext[DECIMALS].returnValues[0],
+              name: resultInfoV3.callsReturnContext[NAME].returnValues[0],
+            },
+          });
+        } else {
+          results.push({
+            allowanceAndBalanceOf: {
+              allowanceV2: new BigNumber(
+                EthersBigNumber.from(
+                  resultInfoV2.callsReturnContext[ALLOWANCE].returnValues[0]
+                ).toHexString()
               )
-              .toFixed(),
-            balanceOf: new BigNumber(
-              EthersBigNumber.from(
-                resultInfo.callsReturnContext[BALANCEOF].returnValues[0]
-              ).toHexString()
-            )
-              .shiftedBy(
-                resultInfo.callsReturnContext[DECIMALS].returnValues[0] * -1
+                .shiftedBy(
+                  resultInfoV2.callsReturnContext[DECIMALS].returnValues[0] * -1
+                )
+                .toFixed(),
+              allowanceV3: new BigNumber(
+                EthersBigNumber.from(
+                  resultInfoV3.callsReturnContext[ALLOWANCE].returnValues[0]
+                ).toHexString()
               )
-              .toFixed(),
-          },
-          token: {
-            chainId: this._ethersProvider.network().chainId,
-            contractAddress:
-              resultInfo.originalContractCallContext.contractAddress,
-            symbol: resultInfo.callsReturnContext[SYMBOL].returnValues[0],
-            decimals: resultInfo.callsReturnContext[DECIMALS].returnValues[0],
-            name: resultInfo.callsReturnContext[NAME].returnValues[0],
-          },
-        });
+                .shiftedBy(
+                  resultInfoV3.callsReturnContext[DECIMALS].returnValues[0] * -1
+                )
+                .toFixed(),
+              balanceOf: new BigNumber(
+                EthersBigNumber.from(
+                  resultInfoV3.callsReturnContext[BALANCEOF].returnValues[0]
+                ).toHexString()
+              )
+                .shiftedBy(
+                  resultInfoV3.callsReturnContext[DECIMALS].returnValues[0] * -1
+                )
+                .toFixed(),
+            },
+            token: {
+              chainId: this._ethersProvider.network().chainId,
+              contractAddress:
+                resultInfoV3.originalContractCallContext.contractAddress,
+              symbol: resultInfoV3.callsReturnContext[SYMBOL].returnValues[0],
+              decimals:
+                resultInfoV3.callsReturnContext[DECIMALS].returnValues[0],
+              name: resultInfoV3.callsReturnContext[NAME].returnValues[0],
+            },
+          });
+        }
       }
     }
 
     return results;
+  }
+
+  private buildAllowanceAndBalanceContractCallContext(
+    ethereumAddress: string,
+    tokenContractAddress: string,
+    uniswapVersion: UniswapVersion
+  ): ContractCallContext {
+    return {
+      reference: `${tokenContractAddress}_${uniswapVersion}`,
+      contractAddress: getAddress(tokenContractAddress),
+      abi: ContractContext.erc20Abi,
+      calls: [
+        {
+          reference: 'allowance',
+          methodName: 'allowance',
+          methodParameters: [
+            ethereumAddress,
+            uniswapVersion === UniswapVersion.v2
+              ? UniswapContractContextV2.routerAddress
+              : UniswapContractContextV3.routerAddress,
+          ],
+        },
+        {
+          reference: 'balanceOf',
+          methodName: 'balanceOf',
+          methodParameters: [ethereumAddress],
+        },
+        {
+          reference: 'decimals',
+          methodName: 'decimals',
+          methodParameters: [],
+        },
+        {
+          reference: 'symbol',
+          methodName: 'symbol',
+          methodParameters: [],
+        },
+        {
+          reference: 'name',
+          methodName: 'name',
+          methodParameters: [],
+        },
+      ],
+    };
   }
 }

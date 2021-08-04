@@ -1,8 +1,16 @@
 import BigNumber from 'bignumber.js';
-import { ChainId, ErrorCodes, ETH, UniswapError } from '../..';
+import {
+  ChainId,
+  ErrorCodes,
+  ETH,
+  UniswapError,
+  UniswapPairSettings,
+} from '../..';
+import { CoinGecko } from '../../coin-gecko';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { MOCKAAVE } from '../../mocks/aave-token.mock';
+import { MockEthereumAddress } from '../../mocks/ethereum-address.mock';
 import { MOCKFUN } from '../../mocks/fun-token.mock';
 import { MOCKREP } from '../../mocks/rep-token.mock';
 import { MOCKUNI } from '../../mocks/uni-token.mock';
@@ -17,10 +25,11 @@ describe('UniswapRouterFactory', () => {
     const toToken = MOCKUNI();
 
     const uniswapRouterFactory = new UniswapRouterFactory(
+      new CoinGecko(),
+      MockEthereumAddress(),
       fromToken,
       toToken,
-      false,
-      [UniswapVersion.v2, UniswapVersion.v3],
+      new UniswapPairSettings(),
       ethersProvider
     );
 
@@ -36,10 +45,11 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes (in this case return nothing as there is no direct route)', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({ disableMultihops: true }),
             ethersProvider
           );
 
@@ -58,10 +68,11 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes (in this case return nothing as there is no direct route)', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({ disableMultihops: true }),
             ethersProvider
           );
 
@@ -86,10 +97,11 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes (in this case return nothing as there is no direct route)', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({ disableMultihops: true }),
             ethersProvider
           );
 
@@ -115,10 +127,11 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes (in this case return nothing as there is no direct route)', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({ disableMultihops: true }),
             ethersProvider
           );
 
@@ -138,10 +151,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.input, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               MOCKFUN(),
               MOCKREP(),
-              false,
-              [UniswapVersion.v2],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v2] }),
               ethersProvider
             );
 
@@ -156,10 +170,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.output, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               MOCKFUN(),
               MOCKREP(),
-              false,
-              [UniswapVersion.v2],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v2] }),
               ethersProvider
             );
 
@@ -176,10 +191,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.input, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               fromToken,
               toToken,
-              false,
-              [UniswapVersion.v3],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v3] }),
               ethersProvider
             );
 
@@ -194,10 +210,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.output, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               fromToken,
               toToken,
-              false,
-              [UniswapVersion.v3],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v3] }),
               ethersProvider
             );
 
@@ -227,10 +244,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should throw an error as there is no best route with disableMultihops turned on', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             MOCKFUN(),
             MOCKREP(),
-            true,
-            [UniswapVersion.v2],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -262,10 +283,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should throw an error as there is no best route with disableMultihops turned on', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             MOCKFUN(),
             MOCKREP(),
-            true,
-            [UniswapVersion.v2],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -287,10 +312,11 @@ describe('UniswapRouterFactory', () => {
     const toToken = ETH.MAINNET();
 
     const uniswapRouterFactory = new UniswapRouterFactory(
+      new CoinGecko(),
+      MockEthereumAddress(),
       fromToken,
       toToken,
-      false,
-      [UniswapVersion.v2, UniswapVersion.v3],
+      new UniswapPairSettings(),
       ethersProvider
     );
 
@@ -306,10 +332,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -331,10 +361,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v3],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -361,10 +395,11 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({ disableMultihops: true }),
             ethersProvider
           );
 
@@ -390,10 +425,11 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({ disableMultihops: true }),
             ethersProvider
           );
 
@@ -413,10 +449,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.input, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               MOCKFUN(),
               toToken,
-              false,
-              [UniswapVersion.v2],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v2] }),
               ethersProvider
             );
 
@@ -431,10 +468,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.output, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               MOCKFUN(),
               toToken,
-              false,
-              [UniswapVersion.v2],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v2] }),
               ethersProvider
             );
 
@@ -451,10 +489,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.input, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               MOCKAAVE(),
               toToken,
-              false,
-              [UniswapVersion.v3],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v3] }),
               ethersProvider
             );
 
@@ -469,10 +508,11 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.output, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               MOCKAAVE(),
               toToken,
-              false,
-              [UniswapVersion.v3],
+              new UniswapPairSettings({ uniswapVersions: [UniswapVersion.v3] }),
               ethersProvider
             );
 
@@ -496,10 +536,13 @@ describe('UniswapRouterFactory', () => {
 
         it('should return best route', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+            }),
             ethersProvider
           );
 
@@ -512,7 +555,7 @@ describe('UniswapRouterFactory', () => {
           expect(
             result.triedRoutesQuote.filter((c) => c.routePathArray.length > 2)
               .length > 0
-          ).toEqual(false);
+          ).toEqual(true);
         });
       });
 
@@ -527,10 +570,13 @@ describe('UniswapRouterFactory', () => {
 
         it('should return best route', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+            }),
             ethersProvider
           );
 
@@ -554,10 +600,13 @@ describe('UniswapRouterFactory', () => {
     const toToken = MOCKAAVE();
 
     const uniswapRouterFactory = new UniswapRouterFactory(
+      new CoinGecko(),
+      MockEthereumAddress(),
       fromToken,
       toToken,
-      false,
-      [UniswapVersion.v2, UniswapVersion.v3],
+      new UniswapPairSettings({
+        uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+      }),
       ethersProvider
     );
 
@@ -573,10 +622,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -598,10 +651,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v3],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -628,10 +685,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -656,10 +717,14 @@ describe('UniswapRouterFactory', () => {
 
         it('should only return direct routes', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            true,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+              disableMultihops: true,
+            }),
             ethersProvider
           );
 
@@ -679,10 +744,13 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.input, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               fromToken,
               MOCKFUN(),
-              false,
-              [UniswapVersion.v2],
+              new UniswapPairSettings({
+                uniswapVersions: [UniswapVersion.v2],
+              }),
               ethersProvider
             );
 
@@ -697,10 +765,13 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.output, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               fromToken,
               MOCKFUN(),
-              false,
-              [UniswapVersion.v2],
+              new UniswapPairSettings({
+                uniswapVersions: [UniswapVersion.v2],
+              }),
               ethersProvider
             );
 
@@ -717,10 +788,13 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.input, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               fromToken,
               toToken,
-              false,
-              [UniswapVersion.v3],
+              new UniswapPairSettings({
+                uniswapVersions: [UniswapVersion.v3],
+              }),
               ethersProvider
             );
 
@@ -735,10 +809,13 @@ describe('UniswapRouterFactory', () => {
         describe(TradeDirection.output, () => {
           it('should find best route', async () => {
             const factory = new UniswapRouterFactory(
+              new CoinGecko(),
+              MockEthereumAddress(),
               fromToken,
               toToken,
-              false,
-              [UniswapVersion.v3],
+              new UniswapPairSettings({
+                uniswapVersions: [UniswapVersion.v3],
+              }),
               ethersProvider
             );
 
@@ -762,10 +839,13 @@ describe('UniswapRouterFactory', () => {
 
         it('should return best route', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            false,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+            }),
             ethersProvider
           );
 
@@ -789,10 +869,13 @@ describe('UniswapRouterFactory', () => {
 
         it('should return best route', async () => {
           const factory = new UniswapRouterFactory(
+            new CoinGecko(),
+            MockEthereumAddress(),
             fromToken,
             toToken,
-            false,
-            [UniswapVersion.v2, UniswapVersion.v3],
+            new UniswapPairSettings({
+              uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+            }),
             ethersProvider
           );
 
