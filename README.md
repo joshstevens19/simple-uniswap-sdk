@@ -15,6 +15,8 @@ Please note this is not owned or maintained by uniswap and is a open source pack
 <br/>
 🚀 Exposes all the route paths it tried so you can see every detail in how it worked out the best price
 <br/>
+🚀 Factor in the cost of the transaction into the quotes with 1 config change
+<br/>
 🚀 Easy subscriptions to get alerted when the price moves or the trade expires
 <br/>
 🚀 The transaction is generated for you, just fill it with the gas details and send it on its way
@@ -399,6 +401,10 @@ export interface TradeContext {
     expectedConvertQuote: string;
     expectedConvertQuoteOrTokenAmountInMaxWithSlippage: string;
     transaction: Transaction;
+    // if you have enabled to factor in the transaction cost in the quotes
+    // then this is the gas price in gwei we used to estimate the transactions
+    // it only be defined by the ones it decided to pick depending on the hops abouts
+    gasPriceEstimatedBy: string | undefined;
     tradeExpires: number;
     routePathArrayTokenMap: Token[];
     routeText: string;
@@ -449,6 +455,9 @@ export interface TradeContext {
     data: string;
     value: string;
   };
+  // if you have enabled to factor in the transaction cost in the quotes
+  // then this is the gas price in gwei we used to estimate the transactions
+  gasPriceEstimatedBy: string | undefined;
   // this is a stream which emits if the quote has changed, this will emit
   // not matter what you should listen to this for the source of truth
   // for a reactive dApp. If you dont listen to this the user could end up

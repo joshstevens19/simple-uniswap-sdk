@@ -29,6 +29,7 @@ export interface TradeContext {
   toToken: Token;
   toBalance: string;
   transaction: Transaction;
+  gasPriceEstimatedBy: string | undefined;
   quoteChanged$: UniswapStream<TradeContext>;
   destroy: () => void;
 }

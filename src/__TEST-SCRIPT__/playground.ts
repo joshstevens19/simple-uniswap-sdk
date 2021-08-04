@@ -30,9 +30,9 @@ const routeTest = async () => {
       deadlineMinutes: 20,
       disableMultihops: false,
       uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
-      // gasSettings: {
-      //   getGasPrice: async () => 100000000000,
-      // },
+      gasSettings: {
+        getGasPrice: async () => '90',
+      },
     }),
   });
 
@@ -43,6 +43,7 @@ const routeTest = async () => {
   const trade = await uniswapPairFactory.trade('0.0001', TradeDirection.input);
 
   console.log(new Date().getTime() - startTime);
+  console.log(trade);
 
   // console.log(JSON.stringify(trade, null, 4));
   // console.log(trade);
@@ -59,7 +60,7 @@ const routeTest = async () => {
   //   (await ethers.provider.estimateGas(trade.transaction)).toHexString()
   // );
 
-  process.stdin.resume();
+  // process.stdin.resume();
 
   // console.log(JSON.stringify(trade));
 

@@ -421,6 +421,7 @@ export class UniswapRouterFactory {
           uniswapVersion: route.uniswapVersion,
           liquidityProviderFee: route.liquidityProviderFee,
           quoteDirection: route.quoteDirection,
+          gasPriceEstimatedBy: route.gasPriceEstimatedBy,
         };
       }),
       hasEnoughBalance: allowanceAndBalances.enoughBalance,
@@ -1018,9 +1019,8 @@ export class UniswapRouterFactory {
           enoughAllowanceV3
         );
 
-        const gasPrice = new BigNumber(
-          await this._settings.gasSettings.getGasPrice()
-        ).times(1e9);
+        const gasPriceGwei = await this._settings.gasSettings.getGasPrice();
+        const gasPrice = new BigNumber(gasPriceGwei).times(1e9);
 
         let bestRoute:
           | {
@@ -1043,6 +1043,8 @@ export class UniswapRouterFactory {
               ).toHexString()
             ).times(gasPrice)
           ).times(ethUsdValue);
+
+          route.gasPriceEstimatedBy = gasPriceGwei;
 
           const expectedConvertQuoteMinusTxFees =
             expectedConvertQuoteFiatPrice.minus(txFee);
