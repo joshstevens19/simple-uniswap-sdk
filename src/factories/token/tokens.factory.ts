@@ -5,6 +5,7 @@ import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
 import { ETH, isNativeEth } from '../../common/tokens/eth';
+import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
@@ -35,6 +36,12 @@ export class TokensFactory {
       const contractCallContexts: ContractCallContext[] = [];
       for (let i = 0; i < tokenContractAddresses.length; i++) {
         if (!isNativeEth(tokenContractAddresses[i])) {
+          const overridenToken = isTokenOverrideInfo(tokenContractAddresses[i]);
+          if (overridenToken) {
+            tokens.push(overridenToken);
+            continue;
+          }
+
           const contractCallContext: ContractCallContext = {
             reference: `token${i}`,
             contractAddress: getAddress(tokenContractAddresses[i]),
@@ -171,6 +178,10 @@ export class TokensFactory {
 
     for (const result in contractCallResults.results) {
       if (result.includes(`_${UniswapVersion.v2}`)) {
+        const overridenTokenInfo =
+          contractCallResults.results[result].originalContractCallContext
+            .context?.overridenToken;
+
         const resultInfoV2 = contractCallResults.results[result];
         const resultInfoV3 =
           contractCallResults.results[
@@ -190,17 +201,26 @@ export class TokensFactory {
                 resultInfoV3.callsReturnContext[BALANCEOF].returnValues[0]
               ).toHexString(),
             },
-            token: {
-              chainId: this._ethersProvider.network().chainId,
-              contractAddress:
-                resultInfoV3.originalContractCallContext.contractAddress,
-              symbol: resultInfoV3.callsReturnContext[SYMBOL].returnValues[0],
-              decimals:
-                resultInfoV3.callsReturnContext[DECIMALS].returnValues[0],
-              name: resultInfoV3.callsReturnContext[NAME].returnValues[0],
-            },
+            token:
+              overridenTokenInfo !== undefined
+                ? overridenTokenInfo
+                : {
+                    chainId: this._ethersProvider.network().chainId,
+                    contractAddress:
+                      resultInfoV3.originalContractCallContext.contractAddress,
+                    symbol:
+                      resultInfoV3.callsReturnContext[SYMBOL].returnValues[0],
+                    decimals:
+                      resultInfoV3.callsReturnContext[DECIMALS].returnValues[0],
+                    name: resultInfoV3.callsReturnContext[NAME].returnValues[0],
+                  },
           });
         } else {
+          const decimals =
+            overridenTokenInfo !== undefined
+              ? overridenTokenInfo.decimals
+              : resultInfoV2.callsReturnContext[DECIMALS].returnValues[0];
+
           results.push({
             allowanceAndBalanceOf: {
               allowanceV2: new BigNumber(
@@ -208,38 +228,36 @@ export class TokensFactory {
                   resultInfoV2.callsReturnContext[ALLOWANCE].returnValues[0]
                 ).toHexString()
               )
-                .shiftedBy(
-                  resultInfoV2.callsReturnContext[DECIMALS].returnValues[0] * -1
-                )
+                .shiftedBy(decimals * -1)
                 .toFixed(),
               allowanceV3: new BigNumber(
                 EthersBigNumber.from(
                   resultInfoV3.callsReturnContext[ALLOWANCE].returnValues[0]
                 ).toHexString()
               )
-                .shiftedBy(
-                  resultInfoV3.callsReturnContext[DECIMALS].returnValues[0] * -1
-                )
+                .shiftedBy(decimals * -1)
                 .toFixed(),
               balanceOf: new BigNumber(
                 EthersBigNumber.from(
                   resultInfoV3.callsReturnContext[BALANCEOF].returnValues[0]
                 ).toHexString()
               )
-                .shiftedBy(
-                  resultInfoV3.callsReturnContext[DECIMALS].returnValues[0] * -1
-                )
+                .shiftedBy(decimals * -1)
                 .toFixed(),
             },
-            token: {
-              chainId: this._ethersProvider.network().chainId,
-              contractAddress:
-                resultInfoV3.originalContractCallContext.contractAddress,
-              symbol: resultInfoV3.callsReturnContext[SYMBOL].returnValues[0],
-              decimals:
-                resultInfoV3.callsReturnContext[DECIMALS].returnValues[0],
-              name: resultInfoV3.callsReturnContext[NAME].returnValues[0],
-            },
+            token:
+              overridenTokenInfo !== undefined
+                ? overridenTokenInfo
+                : {
+                    chainId: this._ethersProvider.network().chainId,
+                    contractAddress:
+                      resultInfoV3.originalContractCallContext.contractAddress,
+                    symbol:
+                      resultInfoV3.callsReturnContext[SYMBOL].returnValues[0],
+                    decimals:
+                      resultInfoV3.callsReturnContext[DECIMALS].returnValues[0],
+                    name: resultInfoV3.callsReturnContext[NAME].returnValues[0],
+                  },
           });
         }
       }
@@ -253,7 +271,7 @@ export class TokensFactory {
     tokenContractAddress: string,
     uniswapVersion: UniswapVersion
   ): ContractCallContext {
-    return {
+    const defaultCallContext: ContractCallContext = {
       reference: `${tokenContractAddress}_${uniswapVersion}`,
       contractAddress: getAddress(tokenContractAddress),
       abi: ContractContext.erc20Abi,
@@ -273,6 +291,14 @@ export class TokensFactory {
           methodName: 'balanceOf',
           methodParameters: [ethereumAddress],
         },
+      ],
+    };
+
+    const overridenToken = isTokenOverrideInfo(tokenContractAddress);
+    if (overridenToken) {
+      defaultCallContext.context = { overridenToken };
+    } else {
+      defaultCallContext.calls.push(
         {
           reference: 'decimals',
           methodName: 'decimals',
@@ -287,8 +313,10 @@ export class TokensFactory {
           reference: 'name',
           methodName: 'name',
           methodParameters: [],
-        },
-      ],
-    };
+        }
+      );
+    }
+
+    return defaultCallContext;
   }
 }

@@ -3,6 +3,7 @@ import { BigNumber } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { ETH, isNativeEth } from '../../common/tokens/eth';
+import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
@@ -35,6 +36,11 @@ export class TokenFactory {
     if (isNativeEth(this._tokenContractAddress)) {
       return ETH.info(this._ethersProvider.network().chainId);
     } else {
+      const overridenToken = isTokenOverrideInfo(this._tokenContractAddress);
+      if (overridenToken) {
+        return overridenToken;
+      }
+
       const SYMBOL = 0;
       const DECIMALS = 1;
       const NAME = 2;

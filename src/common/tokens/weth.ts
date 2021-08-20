@@ -20,7 +20,7 @@ export class WETHContract {
     };
   }
 
-  public static ROPSTEN() {
+  public static ROPSTEN(): Token {
     return {
       chainId: ChainId.ROPSTEN,
       contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
@@ -30,7 +30,7 @@ export class WETHContract {
     };
   }
 
-  public static RINKEBY() {
+  public static RINKEBY(): Token {
     return {
       chainId: ChainId.RINKEBY,
       contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
@@ -40,7 +40,7 @@ export class WETHContract {
     };
   }
 
-  public static GORLI() {
+  public static GORLI(): Token {
     return {
       chainId: ChainId.GÖRLI,
       contractAddress: '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6',
@@ -50,7 +50,7 @@ export class WETHContract {
     };
   }
 
-  public static KOVAN() {
+  public static KOVAN(): Token {
     return {
       chainId: ChainId.KOVAN,
       contractAddress: '0xd0A1E359811322d97991E03f863a0C30C2cF029C',
@@ -64,7 +64,7 @@ export class WETHContract {
    * Get WETH token info by chain id
    * @param chainId The chain id
    */
-  public static token(chainId: ChainId | number) {
+  public static token(chainId: ChainId | number): Token {
     switch (chainId) {
       case ChainId.MAINNET:
         return this.MAINNET();

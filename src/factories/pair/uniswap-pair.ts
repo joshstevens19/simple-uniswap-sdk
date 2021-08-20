@@ -139,12 +139,13 @@ export class UniswapPair {
     const uniswapFactoryContext: UniswapPairFactoryContext = {
       fromToken: tokens.find(
         (t) =>
-          t.contractAddress ===
-          this._uniswapPairContext.fromTokenContractAddress
+          t.contractAddress.toLowerCase() ===
+          this._uniswapPairContext.fromTokenContractAddress.toLowerCase()
       )!,
       toToken: tokens.find(
         (t) =>
-          t.contractAddress === this._uniswapPairContext.toTokenContractAddress
+          t.contractAddress.toLowerCase() ===
+          this._uniswapPairContext.toTokenContractAddress.toLowerCase()
       )!,
       ethereumAddress: this._uniswapPairContext.ethereumAddress,
       settings: this._uniswapPairContext.settings || new UniswapPairSettings(),

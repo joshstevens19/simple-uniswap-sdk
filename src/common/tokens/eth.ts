@@ -50,7 +50,7 @@ export class ETH {
     };
   }
 
-  public static ROPSTEN() {
+  public static ROPSTEN(): Token {
     return {
       chainId: ChainId.ROPSTEN,
       contractAddress: appendEthToContractAddress(
@@ -62,7 +62,7 @@ export class ETH {
     };
   }
 
-  public static RINKEBY() {
+  public static RINKEBY(): Token {
     return {
       chainId: ChainId.RINKEBY,
       contractAddress: appendEthToContractAddress(
@@ -74,7 +74,7 @@ export class ETH {
     };
   }
 
-  public static GORLI() {
+  public static GORLI(): Token {
     return {
       chainId: ChainId.GÖRLI,
       contractAddress: appendEthToContractAddress(
@@ -86,7 +86,7 @@ export class ETH {
     };
   }
 
-  public static KOVAN() {
+  public static KOVAN(): Token {
     return {
       chainId: ChainId.KOVAN,
       contractAddress: appendEthToContractAddress(
@@ -102,7 +102,7 @@ export class ETH {
    * Get ETH token info by chain id
    * @param chainId The chain id
    */
-  public static info(chainId: ChainId | number) {
+  public static info(chainId: ChainId | number): Token {
     switch (chainId) {
       case ChainId.MAINNET:
         return this.MAINNET();
