@@ -731,18 +731,86 @@ export class UniswapRouterFactory {
     liquidityProviderFee: number,
     deadline: string
   ): string {
+    const isNativeReceivingNativeEth = isNativeEth(
+      this._toToken.contractAddress
+    );
     const params: ExactInputSingleRequest = {
       tokenIn: removeEthFromContractAddress(this._fromToken.contractAddress),
       tokenOut: removeEthFromContractAddress(this._toToken.contractAddress),
       fee: percentToFeeAmount(liquidityProviderFee),
-      recipient: this._ethereumAddress,
+      recipient:
+        isNativeReceivingNativeEth === true
+          ? '0x0000000000000000000000000000000000000000'
+          : this._ethereumAddress,
       deadline,
       amountIn: hexlify(tokenAmount),
       amountOutMinimum: hexlify(tokenAmountMin),
       sqrtPriceLimitX96: 0,
     };
 
-    return this._uniswapRouterContractFactoryV3.exactInputSingle(params);
+    const multicallData: string[] = [];
+
+    multicallData.push(
+      this._uniswapRouterContractFactoryV3.exactInputSingle(params)
+    );
+    if (isNativeEth(this._toToken.contractAddress)) {
+      multicallData.push(
+        this._uniswapRouterContractFactoryV3.unwrapWETH9(
+          hexlify(tokenAmountMin),
+          this._ethereumAddress
+        )
+      );
+    }
+
+    return this._uniswapRouterContractFactoryV3.multicall(multicallData);
+  }
+
+  /**
+   * Generate trade data for v3
+   * @param tokenAmountInMax The amount in max
+   * @param ethAmountOut The amount to receive
+   * @param liquidityProviderFee The liquidity provider fee
+   * @param deadline The deadline it expiries unix time
+   */
+  private generateTradeDataForV3Output(
+    amountOut: BigNumber,
+    amountInMaximum: BigNumber,
+    liquidityProviderFee: number,
+    deadline: string
+  ): string {
+    const isNativeReceivingNativeEth = isNativeEth(
+      this._toToken.contractAddress
+    );
+
+    const params: ExactOutputSingleRequest = {
+      tokenIn: removeEthFromContractAddress(this._fromToken.contractAddress),
+      tokenOut: removeEthFromContractAddress(this._toToken.contractAddress),
+      fee: percentToFeeAmount(liquidityProviderFee),
+      recipient:
+        isNativeReceivingNativeEth === true
+          ? '0x0000000000000000000000000000000000000000'
+          : this._ethereumAddress,
+      deadline,
+      amountOut: hexlify(amountOut),
+      amountInMaximum: hexlify(amountInMaximum),
+      sqrtPriceLimitX96: 0,
+    };
+
+    const multicallData: string[] = [];
+
+    multicallData.push(
+      this._uniswapRouterContractFactoryV3.exactOutputSingle(params)
+    );
+    if (isNativeEth(this._toToken.contractAddress)) {
+      multicallData.push(
+        this._uniswapRouterContractFactoryV3.unwrapWETH9(
+          hexlify(amountOut),
+          this._ethereumAddress
+        )
+      );
+    }
+
+    return this._uniswapRouterContractFactoryV3.multicall(multicallData);
   }
 
   /**
@@ -961,33 +1029,6 @@ export class UniswapRouterFactory {
       hasEnough: true,
       balance: bigNumberBalance.toFixed(),
     };
-  }
-
-  /**
-   * Generate trade data for v3
-   * @param tokenAmountInMax The amount in max
-   * @param ethAmountOut The amount to receive
-   * @param liquidityProviderFee The liquidity provider fee
-   * @param deadline The deadline it expiries unix time
-   */
-  private generateTradeDataForV3Output(
-    amountOut: BigNumber,
-    amountInMaximum: BigNumber,
-    liquidityProviderFee: number,
-    deadline: string
-  ): string {
-    const params: ExactOutputSingleRequest = {
-      tokenIn: removeEthFromContractAddress(this._fromToken.contractAddress),
-      tokenOut: removeEthFromContractAddress(this._toToken.contractAddress),
-      fee: percentToFeeAmount(liquidityProviderFee),
-      recipient: this._ethereumAddress,
-      deadline,
-      amountOut: hexlify(amountOut),
-      amountInMaximum: hexlify(amountInMaximum),
-      sqrtPriceLimitX96: 0,
-    };
-
-    return this._uniswapRouterContractFactoryV3.exactOutputSingle(params);
   }
 
   /**
@@ -1484,7 +1525,8 @@ export class UniswapRouterFactory {
     const expectedConvertQuoteOrTokenAmountInMaxWithSlippage =
       this.getExpectedConvertQuoteOrTokenAmountInMaxWithSlippage(
         expectedConvertQuote,
-        direction
+        direction,
+        uniswapVersion
       );
 
     const tradeExpires = this.generateTradeDeadlineUnixTime();
@@ -1588,7 +1630,8 @@ export class UniswapRouterFactory {
     const expectedConvertQuoteOrTokenAmountInMaxWithSlippage =
       this.getExpectedConvertQuoteOrTokenAmountInMaxWithSlippage(
         expectedConvertQuote,
-        direction
+        direction,
+        uniswapVersion
       );
 
     const tradeExpires = this.generateTradeDeadlineUnixTime();
@@ -1712,7 +1755,8 @@ export class UniswapRouterFactory {
     const expectedConvertQuoteOrTokenAmountInMaxWithSlippage =
       this.getExpectedConvertQuoteOrTokenAmountInMaxWithSlippage(
         expectedConvertQuote,
-        direction
+        direction,
+        uniswapVersion
       );
 
     const tradeExpires = this.generateTradeDeadlineUnixTime();
@@ -1833,12 +1877,26 @@ export class UniswapRouterFactory {
    */
   private getExpectedConvertQuoteOrTokenAmountInMaxWithSlippage(
     expectedConvertQuote: string,
-    tradeDirection: TradeDirection
+    tradeDirection: TradeDirection,
+    uniswapVersion: UniswapVersion
   ): string {
     const decimals =
       tradeDirection === TradeDirection.input
         ? this._toToken.decimals
         : this._fromToken.decimals;
+
+    if (
+      tradeDirection === TradeDirection.output &&
+      uniswapVersion === UniswapVersion.v3
+    ) {
+      return new BigNumber(expectedConvertQuote)
+        .plus(
+          new BigNumber(expectedConvertQuote)
+            .times(this._settings.slippage)
+            .toFixed(decimals)
+        )
+        .toFixed(decimals);
+    }
 
     return new BigNumber(expectedConvertQuote)
       .minus(

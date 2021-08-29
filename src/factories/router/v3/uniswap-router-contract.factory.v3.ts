@@ -1,3 +1,4 @@
+import { BigNumberish, BytesLike } from 'ethers';
 import {
   ContractContext as RouterContractContext,
   ExactInputSingleRequest,
@@ -34,6 +35,29 @@ export class UniswapRouterContractFactoryV3 {
     return this._uniswapRouterContract.interface.encodeFunctionData(
       'exactOutputSingle',
       [params]
+    );
+  }
+
+  /**
+   * Unwrap eth
+   * @param amountMinimum The amount min
+   * @param recipient The recipient
+   */
+  public unwrapWETH9(amountMinimum: BigNumberish, recipient: string): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'unwrapWETH9',
+      [amountMinimum, recipient]
+    );
+  }
+
+  /**
+   * Multicall used for uniswap v3
+   * @param data The data array (many calls)
+   */
+  public multicall(data: BytesLike[]): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'multicall',
+      [data]
     );
   }
 }
