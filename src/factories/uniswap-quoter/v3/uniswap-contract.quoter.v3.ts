@@ -7,10 +7,13 @@ export class UniswapContractQuoterV3 {
   private _uniswapQuoterContract =
     this._ethersProvider.getContract<QuoterContractContext>(
       JSON.stringify(UniswapContractContextV3.quoterAbi),
-      UniswapContractContextV3.quoterAddress
+      this._quoterAddress
     );
 
-  constructor(private _ethersProvider: EthersProvider) {}
+  constructor(
+    private _ethersProvider: EthersProvider,
+    private _quoterAddress: string = UniswapContractContextV3.quoterAddress
+  ) {}
 
   public async WETH9(): Promise<string> {
     return await this._uniswapQuoterContract.WETH9();

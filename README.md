@@ -112,12 +112,31 @@ export interface GasSettings {
   getGasPrice: () => Promise<number>;
 }
 
+export interface CloneUniswapContractDetailsV2 {
+  routerAddress: string;
+  factoryAddress: string;
+  pairAddress: string;
+}
+
+export interface CloneUniswapContractDetailsV3 {
+  routerAddress: string;
+  factoryAddress: string;
+  quoterAddress: string;
+}
+
+export interface CloneUniswapContractDetails {
+  v2Override?: CloneUniswapContractDetailsV2 | undefined;
+  v3Override?: CloneUniswapContractDetailsV3 | undefined;
+}
+
 export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
   gasSettings?: GasSettings = undefined;
+  // can be used to pass in a fork of uniswap contract details
+  cloneUniswapContractDetails?: CloneUniswapContractDetails = undefined;
 
   constructor(settings?: {
     slippage?: number | undefined;
@@ -125,11 +144,13 @@ export class UniswapPairSettings {
     disableMultihops?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
     gasSettings?: GasSettings | undefined;
+    cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
     this.gasSettings = settings?.gasSettings;
+    this.cloneUniswapContractDetails = settings?.cloneUniswapContractDetails;
 
     if (
       Array.isArray(settings?.uniswapVersions) &&

@@ -11,10 +11,13 @@ export class UniswapRouterContractFactoryV3 {
   private _uniswapRouterContract =
     this._ethersProvider.getContract<RouterContractContext>(
       JSON.stringify(UniswapContractContextV3.routerAbi),
-      UniswapContractContextV3.routerAddress
+      this._routerAddress
     );
 
-  constructor(private _ethersProvider: EthersProvider) {}
+  constructor(
+    private _ethersProvider: EthersProvider,
+    private _routerAddress: string = UniswapContractContextV3.routerAddress
+  ) {}
 
   /**
    * Exact input single
