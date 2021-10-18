@@ -1,6 +1,7 @@
 import { ErrorCodes } from '../../../common/errors/error-codes';
 import { UniswapError } from '../../../common/errors/uniswap-error';
 import { UniswapVersion } from '../../../enums/uniswap-version';
+import { CloneUniswapContractDetails } from './clone-uniswap-contract-details';
 import { GasSettings } from './gas-settings';
 
 export class UniswapPairSettings {
@@ -9,6 +10,7 @@ export class UniswapPairSettings {
   disableMultihops: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
   gasSettings?: GasSettings = undefined;
+  cloneUniswapContractDetails?: CloneUniswapContractDetails = undefined;
 
   constructor(settings?: {
     slippage?: number | undefined;
@@ -16,11 +18,13 @@ export class UniswapPairSettings {
     disableMultihops?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
     gasSettings?: GasSettings | undefined;
+    cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
     this.gasSettings = settings?.gasSettings;
+    this.cloneUniswapContractDetails = settings?.cloneUniswapContractDetails;
 
     if (
       Array.isArray(settings?.uniswapVersions) &&

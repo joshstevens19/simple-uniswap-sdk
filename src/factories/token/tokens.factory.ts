@@ -9,8 +9,8 @@ import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
-import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
-import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
+import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
+import { CloneUniswapContractDetails } from '../pair/models/clone-uniswap-contract-details';
 import { Token } from './models/token';
 import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 
@@ -20,7 +20,12 @@ export class TokensFactory {
     tryAggregate: true,
   });
 
-  constructor(private _ethersProvider: EthersProvider) {}
+  constructor(
+    private _ethersProvider: EthersProvider,
+    private _cloneUniswapContractDetails?:
+      | CloneUniswapContractDetails
+      | undefined
+  ) {}
 
   /**
    * Get the tokens details
@@ -282,8 +287,12 @@ export class TokensFactory {
           methodParameters: [
             ethereumAddress,
             uniswapVersion === UniswapVersion.v2
-              ? UniswapContractContextV2.routerAddress
-              : UniswapContractContextV3.routerAddress,
+              ? uniswapContracts.v2.getRouterAddress(
+                  this._cloneUniswapContractDetails
+                )
+              : uniswapContracts.v3.getRouterAddress(
+                  this._cloneUniswapContractDetails
+                ),
           ],
         },
         {

@@ -7,8 +7,8 @@ import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
-import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
-import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
+import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
+import { CloneUniswapContractDetails } from '../pair/models/clone-uniswap-contract-details';
 import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
@@ -26,7 +26,10 @@ export class TokenFactory {
 
   constructor(
     private _tokenContractAddress: string,
-    private _ethersProvider: EthersProvider
+    private _ethersProvider: EthersProvider,
+    private _cloneUniswapContractDetails?:
+      | CloneUniswapContractDetails
+      | undefined
   ) {}
 
   /**
@@ -100,8 +103,12 @@ export class TokenFactory {
       const allowance = await this._erc20TokenContract.allowance(
         ethereumAddress,
         uniswapVersion === UniswapVersion.v2
-          ? UniswapContractContextV2.routerAddress
-          : UniswapContractContextV3.routerAddress
+          ? uniswapContracts.v2.getRouterAddress(
+              this._cloneUniswapContractDetails
+            )
+          : uniswapContracts.v3.getRouterAddress(
+              this._cloneUniswapContractDetails
+            )
       );
 
       return allowance.toHexString();
@@ -216,8 +223,12 @@ export class TokenFactory {
           methodParameters: [
             ethereumAddress,
             uniswapVersion === UniswapVersion.v2
-              ? UniswapContractContextV2.routerAddress
-              : UniswapContractContextV3.routerAddress,
+              ? uniswapContracts.v2.getRouterAddress(
+                  this._cloneUniswapContractDetails
+                )
+              : uniswapContracts.v3.getRouterAddress(
+                  this._cloneUniswapContractDetails
+                ),
           ],
         },
         {

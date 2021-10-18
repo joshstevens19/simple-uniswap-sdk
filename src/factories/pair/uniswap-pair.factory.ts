@@ -12,8 +12,7 @@ import { deepClone } from '../../common/utils/deep-clone';
 import { getTradePath } from '../../common/utils/trade-path';
 import { TradePath } from '../../enums/trade-path';
 import { UniswapVersion } from '../../enums/uniswap-version';
-import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
-import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
+import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
 import { AllPossibleRoutes } from '../router/models/all-possible-routes';
 import { BestRouteQuotes } from '../router/models/best-route-quotes';
 import { RouteQuote } from '../router/models/route-quote';
@@ -30,7 +29,8 @@ import { UniswapPairFactoryContext } from './models/uniswap-pair-factory-context
 export class UniswapPairFactory {
   private _fromTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.fromToken.contractAddress,
-    this._uniswapPairFactoryContext.ethersProvider
+    this._uniswapPairFactoryContext.ethersProvider,
+    this._uniswapPairFactoryContext.settings.cloneUniswapContractDetails
   );
 
   private _toTokenFactory = new TokenFactory(
@@ -260,8 +260,12 @@ export class UniswapPairFactory {
 
     const data = this._fromTokenFactory.generateApproveAllowanceData(
       uniswapVersion === UniswapVersion.v2
-        ? UniswapContractContextV2.routerAddress
-        : UniswapContractContextV3.routerAddress,
+        ? uniswapContracts.v2.getRouterAddress(
+            this._uniswapPairFactoryContext.settings.cloneUniswapContractDetails
+          )
+        : uniswapContracts.v3.getRouterAddress(
+            this._uniswapPairFactoryContext.settings.cloneUniswapContractDetails
+          ),
       '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
     );
 

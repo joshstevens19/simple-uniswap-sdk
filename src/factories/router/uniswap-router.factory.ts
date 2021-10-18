@@ -36,6 +36,7 @@ import { ChainId } from '../../enums/chain-id';
 import { TradePath } from '../../enums/trade-path';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
+import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
 import { UniswapContractContextV2 } from '../../uniswap-contract-context/uniswap-contract-context-v2';
 import { UniswapContractContextV3 } from '../../uniswap-contract-context/uniswap-contract-context-v3';
 import { TradeDirection } from '../pair/models/trade-direction';
@@ -66,14 +67,23 @@ export class UniswapRouterFactory {
   });
 
   private _uniswapRouterContractFactoryV2 = new UniswapRouterContractFactoryV2(
-    this._ethersProvider
+    this._ethersProvider,
+    uniswapContracts.v2.getRouterAddress(
+      this._settings.cloneUniswapContractDetails
+    )
   );
 
   private _uniswapRouterContractFactoryV3 = new UniswapRouterContractFactoryV3(
-    this._ethersProvider
+    this._ethersProvider,
+    uniswapContracts.v3.getRouterAddress(
+      this._settings.cloneUniswapContractDetails
+    )
   );
 
-  private _tokensFactory = new TokensFactory(this._ethersProvider);
+  private _tokensFactory = new TokensFactory(
+    this._ethersProvider,
+    this._settings.cloneUniswapContractDetails
+  );
 
   private readonly LIQUIDITY_PROVIDER_FEE_V2 = 0.003;
 
@@ -117,7 +127,9 @@ export class UniswapRouterFactory {
     if (this._settings.uniswapVersions.includes(UniswapVersion.v2)) {
       contractCallContext.push({
         reference: UniswapVersion.v2,
-        contractAddress: UniswapContractContextV2.pairAddress,
+        contractAddress: uniswapContracts.v2.getPairAddress(
+          this._settings.cloneUniswapContractDetails
+        ),
         abi: UniswapContractContextV2.pairAbi,
         calls: [],
       });
@@ -147,7 +159,9 @@ export class UniswapRouterFactory {
     if (this._settings.uniswapVersions.includes(UniswapVersion.v3)) {
       contractCallContext.push({
         reference: UniswapVersion.v3,
-        contractAddress: UniswapContractContextV3.factoryAddress,
+        contractAddress: uniswapContracts.v3.getFactoryAddress(
+          this._settings.cloneUniswapContractDetails
+        ),
         abi: UniswapContractContextV3.factoryAbi,
         calls: [
           {
@@ -303,7 +317,9 @@ export class UniswapRouterFactory {
     if (this._settings.uniswapVersions.includes(UniswapVersion.v2)) {
       contractCallContext.push({
         reference: UniswapVersion.v2,
-        contractAddress: UniswapContractContextV2.routerAddress,
+        contractAddress: uniswapContracts.v2.getRouterAddress(
+          this._settings.cloneUniswapContractDetails
+        ),
         abi: UniswapContractContextV2.routerAbi,
         calls: [],
         context: routes.v2,
@@ -328,7 +344,9 @@ export class UniswapRouterFactory {
     if (this._settings.uniswapVersions.includes(UniswapVersion.v3)) {
       contractCallContext.push({
         reference: UniswapVersion.v3,
-        contractAddress: UniswapContractContextV3.quoterAddress,
+        contractAddress: uniswapContracts.v3.getQuoterAddress(
+          this._settings.cloneUniswapContractDetails
+        ),
         abi: UniswapContractContextV3.quoterAbi,
         calls: [],
         context: routes.v3,
@@ -824,8 +842,12 @@ export class UniswapRouterFactory {
     return {
       to:
         uniswapVersion === UniswapVersion.v2
-          ? UniswapContractContextV2.routerAddress
-          : UniswapContractContextV3.routerAddress,
+          ? uniswapContracts.v2.getRouterAddress(
+              this._settings.cloneUniswapContractDetails
+            )
+          : uniswapContracts.v3.getRouterAddress(
+              this._settings.cloneUniswapContractDetails
+            ),
       from: this._ethereumAddress,
       data,
       value: Constants.EMPTY_HEX_STRING,
@@ -845,8 +867,12 @@ export class UniswapRouterFactory {
     return {
       to:
         uniswapVersion === UniswapVersion.v2
-          ? UniswapContractContextV2.routerAddress
-          : UniswapContractContextV3.routerAddress,
+          ? uniswapContracts.v2.getRouterAddress(
+              this._settings.cloneUniswapContractDetails
+            )
+          : uniswapContracts.v3.getRouterAddress(
+              this._settings.cloneUniswapContractDetails
+            ),
       from: this._ethereumAddress,
       data,
       value: toEthersBigNumber(parseEther(ethValue)).toHexString(),

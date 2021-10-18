@@ -4,12 +4,16 @@ import { EthersProvider } from '../../../ethers-provider';
 import { UniswapContractContextV2 } from '../../../uniswap-contract-context/uniswap-contract-context-v2';
 
 export class UniswapRouterContractFactoryV2 {
-  private _uniswapRouterContract = this._ethersProvider.getContract<RouterContractContext>(
-    JSON.stringify(UniswapContractContextV2.routerAbi),
-    UniswapContractContextV2.routerAddress
-  );
+  private _uniswapRouterContract =
+    this._ethersProvider.getContract<RouterContractContext>(
+      JSON.stringify(UniswapContractContextV2.routerAbi),
+      this._routerAddress
+    );
 
-  constructor(private _ethersProvider: EthersProvider) {}
+  constructor(
+    private _ethersProvider: EthersProvider,
+    private _routerAddress: string = UniswapContractContextV2.routerAddress
+  ) {}
 
   public addLiquidity(
     tokenA: string,
