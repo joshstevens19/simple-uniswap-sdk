@@ -30,12 +30,14 @@ export class UniswapPairFactory {
   private _fromTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.fromToken.contractAddress,
     this._uniswapPairFactoryContext.ethersProvider,
+    this._uniswapPairFactoryContext.settings.customNetwork?.multicallContractAddress,
     this._uniswapPairFactoryContext.settings.cloneUniswapContractDetails
   );
 
   private _toTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.toToken.contractAddress,
-    this._uniswapPairFactoryContext.ethersProvider
+    this._uniswapPairFactoryContext.ethersProvider,
+    this._uniswapPairFactoryContext.settings.customNetwork?.multicallContractAddress
   );
 
   private _uniswapRouterFactory = new UniswapRouterFactory(

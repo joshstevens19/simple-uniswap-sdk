@@ -1,10 +1,11 @@
-import { ContractCallContext, Multicall } from 'ethereum-multicall';
+import { ContractCallContext } from 'ethereum-multicall';
 import { BigNumber } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
 import { ETH, isNativeEth } from '../../common/tokens/eth';
 import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
+import { CustomMulticall } from '../../custom-multicall';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
@@ -13,10 +14,10 @@ import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
 export class TokenFactory {
-  private _multicall = new Multicall({
-    ethersProvider: this._ethersProvider.provider,
-    tryAggregate: true,
-  });
+  private _multicall = new CustomMulticall(
+    this._ethersProvider.provider,
+    this._customNetworkMulticallContractAddress
+  );
 
   private _erc20TokenContract =
     this._ethersProvider.getContract<ERC20ContractContext>(
@@ -27,6 +28,7 @@ export class TokenFactory {
   constructor(
     private _tokenContractAddress: string,
     private _ethersProvider: EthersProvider,
+    private _customNetworkMulticallContractAddress?: string | undefined,
     private _cloneUniswapContractDetails?:
       | CloneUniswapContractDetails
       | undefined

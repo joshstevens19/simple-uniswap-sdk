@@ -3,7 +3,6 @@ import {
   CallReturnContext,
   ContractCallContext,
   ContractCallResults,
-  Multicall,
 } from 'ethereum-multicall';
 import {
   ExactInputSingleRequest,
@@ -32,6 +31,7 @@ import { onlyUnique } from '../../common/utils/only-unique';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
 import { getTradePath } from '../../common/utils/trade-path';
+import { CustomMulticall } from '../../custom-multicall';
 import { ChainId } from '../../enums/chain-id';
 import { TradePath } from '../../enums/trade-path';
 import { UniswapVersion } from '../../enums/uniswap-version';
@@ -61,10 +61,10 @@ import {
 import { UniswapRouterContractFactoryV3 } from './v3/uniswap-router-contract.factory.v3';
 
 export class UniswapRouterFactory {
-  private _multicall = new Multicall({
-    ethersProvider: this._ethersProvider.provider,
-    tryAggregate: true,
-  });
+  private _multicall = new CustomMulticall(
+    this._ethersProvider.provider,
+    this._settings?.customNetwork?.multicallContractAddress
+  );
 
   private _uniswapRouterContractFactoryV2 = new UniswapRouterContractFactoryV2(
     this._ethersProvider,
@@ -82,6 +82,7 @@ export class UniswapRouterFactory {
 
   private _tokensFactory = new TokensFactory(
     this._ethersProvider,
+    this._settings.customNetwork?.multicallContractAddress,
     this._settings.cloneUniswapContractDetails
   );
 

@@ -3,14 +3,17 @@ import { Contract, ContractInterface, providers } from 'ethers';
 import { ErrorCodes } from './common/errors/error-codes';
 import { UniswapError } from './common/errors/uniswap-error';
 import { ChainId, ChainNames } from './enums/chain-id';
+import { CustomNetwork } from './factories/pair/models/custom-network';
 
 export interface ChainIdAndProvider {
   chainId: ChainId;
   providerUrl?: string | undefined;
+  customNetwork?: CustomNetwork | undefined;
 }
 
 export interface EthereumProvider {
   ethereumProvider: any;
+  customNetwork?: CustomNetwork | undefined;
 }
 
 export class EthersProvider {
@@ -22,14 +25,7 @@ export class EthersProvider {
   constructor(private _providerContext: ChainIdAndProvider | EthereumProvider) {
     const chainId = (<ChainIdAndProvider>this._providerContext).chainId;
     if (chainId) {
-      const chainName = ChainNames.get(chainId);
-      if (!chainName) {
-        throw new UniswapError(
-          `Can not find chain name for ${chainId}. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4), görli(5) and ropsten(3)`,
-          ErrorCodes.canNotFindChainId
-        );
-      }
-
+      const chainName = this.getChainName(chainId);
       const providerUrl = (<ChainIdAndProvider>this._providerContext)
         .providerUrl;
       if (providerUrl) {
@@ -62,6 +58,27 @@ export class EthersProvider {
         this._ethersProvider = new providers.Web3Provider(ethereumProvider);
       }
     }
+  }
+
+  /**
+   * Get the chain name
+   * @param chainId The chain id
+   * @returns
+   */
+  private getChainName(chainId: number): string {
+    if (this._providerContext.customNetwork) {
+      return this._providerContext.customNetwork.nameNetwork;
+    }
+
+    const chainName = ChainNames.get(chainId);
+    if (!chainName) {
+      throw new UniswapError(
+        `Can not find chain name for ${chainId}. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4) and görli(5)`,
+        ErrorCodes.canNotFindChainId
+      );
+    }
+
+    return chainName;
   }
 
   /**

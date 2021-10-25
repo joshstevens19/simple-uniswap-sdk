@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import { ContractCallContext, Multicall } from 'ethereum-multicall';
+import { ContractCallContext } from 'ethereum-multicall';
 import { BigNumber as EthersBigNumber } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
@@ -7,6 +7,7 @@ import { UniswapError } from '../../common/errors/uniswap-error';
 import { ETH, isNativeEth } from '../../common/tokens/eth';
 import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
+import { CustomMulticall } from '../../custom-multicall';
 import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
@@ -15,13 +16,14 @@ import { Token } from './models/token';
 import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 
 export class TokensFactory {
-  private _multicall = new Multicall({
-    ethersProvider: this._ethersProvider.provider,
-    tryAggregate: true,
-  });
+  private _multicall = new CustomMulticall(
+    this._ethersProvider.provider,
+    this._customNetworkMulticallContractAddress
+  );
 
   constructor(
     private _ethersProvider: EthersProvider,
+    private _customNetworkMulticallContractAddress?: string | undefined,
     private _cloneUniswapContractDetails?:
       | CloneUniswapContractDetails
       | undefined

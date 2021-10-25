@@ -129,6 +129,11 @@ export interface CloneUniswapContractDetails {
   v3Override?: CloneUniswapContractDetailsV3 | undefined;
 }
 
+export interface CustomNetwork {
+  nameNetwork: string;
+  multicallContractAddress: string;
+}
+
 export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
@@ -137,6 +142,8 @@ export class UniswapPairSettings {
   gasSettings?: GasSettings = undefined;
   // can be used to pass in a fork of uniswap contract details
   cloneUniswapContractDetails?: CloneUniswapContractDetails = undefined;
+  // can be used to define unsupported networks
+  customNetwork?: CustomNetwork = undefined;
 
   constructor(settings?: {
     slippage?: number | undefined;
@@ -145,12 +152,14 @@ export class UniswapPairSettings {
     uniswapVersions?: UniswapVersion[] | undefined;
     gasSettings?: GasSettings | undefined;
     cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
+    customNetwork?: CustomNetwork | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
     this.gasSettings = settings?.gasSettings;
     this.cloneUniswapContractDetails = settings?.cloneUniswapContractDetails;
+    this.customNetwork = settings?.customNetwork;
 
     if (
       Array.isArray(settings?.uniswapVersions) &&
