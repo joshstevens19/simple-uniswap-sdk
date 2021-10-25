@@ -10,13 +10,14 @@ import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
 import { CloneUniswapContractDetails } from '../pair/models/clone-uniswap-contract-details';
+import { CustomNetwork } from '../pair/models/custom-network';
 import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
 export class TokenFactory {
   private _multicall = new CustomMulticall(
     this._ethersProvider.provider,
-    this._customNetworkMulticallContractAddress
+    this._customNetwork?.multicallContractAddress
   );
 
   private _erc20TokenContract =
@@ -28,7 +29,7 @@ export class TokenFactory {
   constructor(
     private _tokenContractAddress: string,
     private _ethersProvider: EthersProvider,
-    private _customNetworkMulticallContractAddress?: string | undefined,
+    private _customNetwork?: CustomNetwork | undefined,
     private _cloneUniswapContractDetails?:
       | CloneUniswapContractDetails
       | undefined
@@ -39,7 +40,10 @@ export class TokenFactory {
    */
   public async getToken(): Promise<Token> {
     if (isNativeEth(this._tokenContractAddress)) {
-      return ETH.info(this._ethersProvider.network().chainId);
+      return ETH.info(
+        this._ethersProvider.network().chainId,
+        this._customNetwork?.nativeWrappedTokenInfo
+      );
     } else {
       const overridenToken = isTokenOverrideInfo(this._tokenContractAddress);
       if (overridenToken) {

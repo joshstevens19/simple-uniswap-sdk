@@ -141,7 +141,7 @@ export class UniswapPair {
 
     const tokensFactory = new TokensFactory(
       this._ethersProvider,
-      this._uniswapPairContext.settings?.customNetwork?.multicallContractAddress
+      this._uniswapPairContext.settings?.customNetwork
     );
     const tokens = await tokensFactory.getTokens([
       this._uniswapPairContext.fromTokenContractAddress,

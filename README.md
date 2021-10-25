@@ -129,9 +129,32 @@ export interface CloneUniswapContractDetails {
   v3Override?: CloneUniswapContractDetailsV3 | undefined;
 }
 
+export interface Token {
+  chainId: ChainId;
+  contractAddress: string;
+  decimals: number;
+  symbol: string;
+  name: string;
+}
+
+export interface NativeCurrencyInfo {
+  name: string;
+  symbol: string;
+}
+
 export interface CustomNetwork {
   nameNetwork: string;
   multicallContractAddress: string;
+  nativeCurrency: NativeCurrencyInfo;
+  nativeWrappedTokenInfo: Token;
+  // defined your base tokens here!
+  baseTokens?: {
+    usdt?: Token | undefined;
+    dai?: Token | undefined;
+    comp?: Token | undefined;
+    usdc?: Token | undefined;
+    wbtc?: Token | undefined;
+  };
 }
 
 export class UniswapPairSettings {
@@ -180,43 +203,6 @@ export class UniswapPairSettings {
     }
   }
 }
-```
-
-### Ethereum provider
-
-This will use your ethereum provider you pass in. This will work with any web3 provider, ethers provider or custom provider. For example when using MetaMask you can pass in the window.ethereum and it work. You must supply the ethereum address and the wallet be approved to use for the dApp and unlocked before passing it in. The uniswap sdk makes those assumptions without them it will not work as MetaMask is not allowed access to your dApp. Any change of network or ethereum address change you will need to handle in your dApp and regenerate the uniswap pair context. Most the time the contract addresses for your tokens are different anyway.
-
-```ts
-import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
-
-const uniswapPair = new UniswapPair({
-  // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: ETH.MAINNET().contractAddress,
-  // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
-  // the ethereum address of the user using this part of the dApp
-  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
-  settings: new UniswapPairSettings({
-    // if not supplied it will use `0.005` which is 0.5%
-    // please pass it in as a full number decimal so 0.7%
-    // would be 0.007
-    slippage: 0.005,
-    // if not supplied it will use 20 a deadline minutes
-    deadlineMinutes: 20,
-    // if not supplied it will try to use multihops
-    // if this is true it will require swaps to direct
-    // pairs
-    disableMultihops: false,
-    // for example if you only wanted to turn on quotes for v3 and not v3
-    // you can only support the v3 enum same works if you only want v2 quotes
-    // if you do not supply anything it query both v2 and v3
-    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
-  }),
-});
-
-// now to create the factory you just do
-const uniswapPairFactory = await uniswapPair.createFactory();
 ```
 
 ### With only the chainId
@@ -272,6 +258,43 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   chainId: ChainId.MAINNET,
   providerUrl: YOUR_PROVIDER_URL,
+  settings: new UniswapPairSettings({
+    // if not supplied it will use `0.005` which is 0.5%
+    // please pass it in as a full number decimal so 0.7%
+    // would be 0.007
+    slippage: 0.005,
+    // if not supplied it will use 20 a deadline minutes
+    deadlineMinutes: 20,
+    // if not supplied it will try to use multihops
+    // if this is true it will require swaps to direct
+    // pairs
+    disableMultihops: false,
+    // for example if you only wanted to turn on quotes for v3 and not v3
+    // you can only support the v3 enum same works if you only want v2 quotes
+    // if you do not supply anything it query both v2 and v3
+    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+  }),
+});
+
+// now to create the factory you just do
+const uniswapPairFactory = await uniswapPair.createFactory();
+```
+
+### Custom Ethereum provider
+
+This will use your ethereum provider you pass in. This will work with any web3 provider, ethers provider or custom provider. For example when using MetaMask you can pass in the window.ethereum and it work. You must supply the ethereum address and the wallet be approved to use for the dApp and unlocked before passing it in. The uniswap sdk makes those assumptions without them it will not work as MetaMask is not allowed access to your dApp. Any change of network or ethereum address change you will need to handle in your dApp and regenerate the uniswap pair context. Most the time the contract addresses for your tokens are different anyway.
+
+```ts
+import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
+
+const uniswapPair = new UniswapPair({
+  // the contract address of the token you want to convert FROM
+  fromTokenContractAddress: ETH.MAINNET().contractAddress,
+  // the contract address of the token you want to convert TO
+  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  // the ethereum address of the user using this part of the dApp
+  ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
+  ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   settings: new UniswapPairSettings({
     // if not supplied it will use `0.005` which is 0.5%
     // please pass it in as a full number decimal so 0.7%

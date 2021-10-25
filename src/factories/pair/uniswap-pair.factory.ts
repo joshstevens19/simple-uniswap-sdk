@@ -30,14 +30,14 @@ export class UniswapPairFactory {
   private _fromTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.fromToken.contractAddress,
     this._uniswapPairFactoryContext.ethersProvider,
-    this._uniswapPairFactoryContext.settings.customNetwork?.multicallContractAddress,
+    this._uniswapPairFactoryContext.settings.customNetwork,
     this._uniswapPairFactoryContext.settings.cloneUniswapContractDetails
   );
 
   private _toTokenFactory = new TokenFactory(
     this._uniswapPairFactoryContext.toToken.contractAddress,
     this._uniswapPairFactoryContext.ethersProvider,
-    this._uniswapPairFactoryContext.settings.customNetwork?.multicallContractAddress
+    this._uniswapPairFactoryContext.settings.customNetwork
   );
 
   private _uniswapRouterFactory = new UniswapRouterFactory(
@@ -354,7 +354,10 @@ export class UniswapPairFactory {
             bestRouteQuote.uniswapVersion
           )
         : undefined,
-      toToken: turnTokenIntoEthForResponse(this.toToken),
+      toToken: turnTokenIntoEthForResponse(
+        this.toToken,
+        this._uniswapPairFactoryContext.settings?.customNetwork?.nativeCurrency
+      ),
       toBalance: new BigNumber(bestRouteQuotes.toBalance)
         .shiftedBy(this.toToken.decimals * -1)
         .toFixed(),
@@ -487,7 +490,10 @@ export class UniswapPairFactory {
       toBalance: new BigNumber(bestRouteQuotes.toBalance)
         .shiftedBy(this.toToken.decimals * -1)
         .toFixed(),
-      fromToken: turnTokenIntoEthForResponse(this.fromToken),
+      fromToken: turnTokenIntoEthForResponse(
+        this.fromToken,
+        this._uniswapPairFactoryContext.settings?.customNetwork?.nativeCurrency
+      ),
       fromBalance: {
         hasEnough: bestRouteQuotes.hasEnoughBalance,
         balance: bestRouteQuotes.fromBalance,
@@ -507,7 +513,13 @@ export class UniswapPairFactory {
    */
   private tradePath(): TradePath {
     const network = this._uniswapPairFactoryContext.ethersProvider.network();
-    return getTradePath(network.chainId, this.fromToken, this.toToken);
+    return getTradePath(
+      network.chainId,
+      this.fromToken,
+      this.toToken,
+      this._uniswapPairFactoryContext.settings.customNetwork
+        ?.nativeWrappedTokenInfo
+    );
   }
 
   /**

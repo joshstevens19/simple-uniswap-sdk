@@ -12,18 +12,19 @@ import { UniswapVersion } from '../../enums/uniswap-version';
 import { EthersProvider } from '../../ethers-provider';
 import { uniswapContracts } from '../../uniswap-contract-context/get-uniswap-contracts';
 import { CloneUniswapContractDetails } from '../pair/models/clone-uniswap-contract-details';
+import { CustomNetwork } from '../pair/models/custom-network';
 import { Token } from './models/token';
 import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 
 export class TokensFactory {
   private _multicall = new CustomMulticall(
     this._ethersProvider.provider,
-    this._customNetworkMulticallContractAddress
+    this._customNetwork?.multicallContractAddress
   );
 
   constructor(
     private _ethersProvider: EthersProvider,
-    private _customNetworkMulticallContractAddress?: string | undefined,
+    private _customNetwork?: CustomNetwork | undefined,
     private _cloneUniswapContractDetails?:
       | CloneUniswapContractDetails
       | undefined
@@ -74,7 +75,12 @@ export class TokensFactory {
 
           contractCallContexts.push(contractCallContext);
         } else {
-          tokens.push(ETH.info(this._ethersProvider.network().chainId));
+          tokens.push(
+            ETH.info(
+              this._ethersProvider.network().chainId,
+              this._customNetwork?.nativeWrappedTokenInfo
+            )
+          );
         }
       }
 
@@ -142,7 +148,11 @@ export class TokensFactory {
           )
         );
       } else {
-        const token = ETH.info(this._ethersProvider.network().chainId);
+        const token = ETH.info(
+          this._ethersProvider.network().chainId,
+          this._customNetwork?.nativeWrappedTokenInfo
+        );
+
         if (format) {
           results.push({
             allowanceAndBalanceOf: {
@@ -173,7 +183,10 @@ export class TokensFactory {
                 '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
               balanceOf: await this._ethersProvider.balanceOf(ethereumAddress),
             },
-            token: ETH.info(this._ethersProvider.network().chainId),
+            token: ETH.info(
+              this._ethersProvider.network().chainId,
+              this._customNetwork?.nativeWrappedTokenInfo
+            ),
           });
         }
       }
