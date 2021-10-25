@@ -3,7 +3,6 @@ import {
   CallReturnContext,
   ContractCallContext,
   ContractCallResults,
-  Multicall,
 } from 'ethereum-multicall';
 import {
   ExactInputSingleRequest,
@@ -32,6 +31,7 @@ import { onlyUnique } from '../../common/utils/only-unique';
 import { parseEther } from '../../common/utils/parse-ether';
 import { toEthersBigNumber } from '../../common/utils/to-ethers-big-number';
 import { getTradePath } from '../../common/utils/trade-path';
+import { CustomMulticall } from '../../custom-multicall';
 import { ChainId } from '../../enums/chain-id';
 import { TradePath } from '../../enums/trade-path';
 import { UniswapVersion } from '../../enums/uniswap-version';
@@ -61,10 +61,10 @@ import {
 import { UniswapRouterContractFactoryV3 } from './v3/uniswap-router-contract.factory.v3';
 
 export class UniswapRouterFactory {
-  private _multicall = new Multicall({
-    ethersProvider: this._ethersProvider.provider,
-    tryAggregate: true,
-  });
+  private _multicall = new CustomMulticall(
+    this._ethersProvider.provider,
+    this._settings?.customNetwork?.multicallContractAddress
+  );
 
   private _uniswapRouterContractFactoryV2 = new UniswapRouterContractFactoryV2(
     this._ethersProvider,
@@ -82,6 +82,7 @@ export class UniswapRouterFactory {
 
   private _tokensFactory = new TokensFactory(
     this._ethersProvider,
+    this._settings.customNetwork,
     this._settings.cloneUniswapContractDetails
   );
 
@@ -1702,7 +1703,10 @@ export class UniswapRouterFactory {
                 this.allTokens.find((t) => t.contractAddress === c)!
               );
               if (index === 0) {
-                return turnTokenIntoEthForResponse(token);
+                return turnTokenIntoEthForResponse(
+                  token,
+                  this._settings?.customNetwork?.nativeCurrency
+                );
               }
 
               return token;
@@ -1730,11 +1734,17 @@ export class UniswapRouterFactory {
           transaction,
           tradeExpires,
           routePathArrayTokenMap: [
-            turnTokenIntoEthForResponse(this._fromToken),
+            turnTokenIntoEthForResponse(
+              this._fromToken,
+              this._settings?.customNetwork?.nativeCurrency
+            ),
             this._toToken,
           ],
           routeText: `${
-            turnTokenIntoEthForResponse(this._fromToken).symbol
+            turnTokenIntoEthForResponse(
+              this._fromToken,
+              this._settings?.customNetwork?.nativeCurrency
+            ).symbol
           } > ${this._toToken.symbol}`,
           routePathArray: [
             this._fromToken.contractAddress,
@@ -1821,7 +1831,10 @@ export class UniswapRouterFactory {
                 this.allTokens.find((t) => t.contractAddress === c)!
               );
               if (index === callReturnContext.methodParameters[1].length - 1) {
-                return turnTokenIntoEthForResponse(token);
+                return turnTokenIntoEthForResponse(
+                  token,
+                  this._settings?.customNetwork?.nativeCurrency
+                );
               }
 
               return token;
@@ -1850,10 +1863,16 @@ export class UniswapRouterFactory {
           tradeExpires,
           routePathArrayTokenMap: [
             this._fromToken,
-            turnTokenIntoEthForResponse(this._toToken),
+            turnTokenIntoEthForResponse(
+              this._toToken,
+              this._settings?.customNetwork?.nativeCurrency
+            ),
           ],
           routeText: `${this._fromToken.symbol} > ${
-            turnTokenIntoEthForResponse(this._toToken).symbol
+            turnTokenIntoEthForResponse(
+              this._toToken,
+              this._settings?.customNetwork?.nativeCurrency
+            ).symbol
           }`,
           routePathArray: [
             this._fromToken.contractAddress,
@@ -1976,7 +1995,12 @@ export class UniswapRouterFactory {
    */
   private tradePath(): TradePath {
     const network = this._ethersProvider.network();
-    return getTradePath(network.chainId, this._fromToken, this._toToken);
+    return getTradePath(
+      network.chainId,
+      this._fromToken,
+      this._toToken,
+      this._settings.customNetwork?.nativeWrappedTokenInfo
+    );
   }
 
   private get allTokens(): Token[] {
@@ -1985,7 +2009,7 @@ export class UniswapRouterFactory {
 
   private get allMainTokens(): Token[] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      return [
+      const tokens: (Token | undefined)[] = [
         this.USDTTokenForConnectedNetwork,
         this.COMPTokenForConnectedNetwork,
         this.USDCTokenForConnectedNetwork,
@@ -1993,6 +2017,8 @@ export class UniswapRouterFactory {
         this.WETHTokenForConnectedNetwork,
         this.WBTCTokenForConnectedNetwork,
       ];
+
+      return tokens.filter((t) => t !== undefined) as Token[];
     }
 
     return [this.WETHTokenForConnectedNetwork];
@@ -2015,7 +2041,9 @@ export class UniswapRouterFactory {
         pairs.push([this._fromToken, this.WETHTokenForConnectedNetwork]);
       }
 
-      return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
+      return this.filterUndefinedTokens(pairs).filter(
+        (t) => t[0].contractAddress !== t[1].contractAddress
+      );
     }
 
     const pairs = [[this._fromToken, this.WETHTokenForConnectedNetwork]];
@@ -2024,7 +2052,7 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForToToken(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      const pairs: Token[][] = [
+      const pairs: (Token | undefined)[][] = [
         [this.USDTTokenForConnectedNetwork, this._toToken],
         [this.COMPTokenForConnectedNetwork, this._toToken],
         [this.USDCTokenForConnectedNetwork, this._toToken],
@@ -2039,7 +2067,9 @@ export class UniswapRouterFactory {
         pairs.push([this.WETHTokenForConnectedNetwork, this._toToken]);
       }
 
-      return pairs.filter((t) => t[0].contractAddress !== t[1].contractAddress);
+      return this.filterUndefinedTokens(pairs).filter(
+        (t) => t[0].contractAddress !== t[1].contractAddress
+      );
     }
 
     const pairs: Token[][] = [
@@ -2051,7 +2081,7 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForUSDT(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      const pairs: Token[][] = [
+      const pairs: (Token | undefined)[][] = [
         [this.USDTTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.USDTTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.USDTTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
@@ -2068,7 +2098,7 @@ export class UniswapRouterFactory {
         ]);
       }
 
-      return pairs;
+      return this.filterUndefinedTokens(pairs);
     }
 
     return [];
@@ -2076,7 +2106,7 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForCOMP(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      const pairs: Token[][] = [
+      const pairs: (Token | undefined)[][] = [
         [this.COMPTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.COMPTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.COMPTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
@@ -2092,7 +2122,7 @@ export class UniswapRouterFactory {
         ]);
       }
 
-      return pairs;
+      return this.filterUndefinedTokens(pairs);
     }
 
     return [];
@@ -2100,7 +2130,7 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForDAI(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      const pairs: Token[][] = [
+      const pairs: (Token | undefined)[][] = [
         [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.DAITokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
         [this.DAITokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
@@ -2117,7 +2147,7 @@ export class UniswapRouterFactory {
         ]);
       }
 
-      return pairs;
+      return this.filterUndefinedTokens(pairs);
     }
 
     return [];
@@ -2125,7 +2155,7 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForUSDC(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      const pairs: Token[][] = [
+      const pairs: (Token | undefined)[][] = [
         [this.USDCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.USDCTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.USDCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
@@ -2142,7 +2172,7 @@ export class UniswapRouterFactory {
         ]);
       }
 
-      return pairs;
+      return this.filterUndefinedTokens(pairs);
     }
 
     return [];
@@ -2150,12 +2180,14 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForWBTC(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      return [
+      const tokens: (Token | undefined)[][] = [
         [this.WBTCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.WBTCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.WBTCTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
         [this.WBTCTokenForConnectedNetwork, this.WETHTokenForConnectedNetwork],
       ];
+
+      return this.filterUndefinedTokens(tokens);
     }
 
     return [];
@@ -2163,39 +2195,71 @@ export class UniswapRouterFactory {
 
   private get mainCurrenciesPairsForWETH(): Token[][] {
     if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
-      return [
+      const tokens: (Token | undefined)[][] = [
         [this.WETHTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.USDCTokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
       ];
+
+      return this.filterUndefinedTokens(tokens);
     }
 
     return [];
   }
 
+  private filterUndefinedTokens(tokens: (Token | undefined)[][]): Token[][] {
+    return tokens.filter(
+      (t) => t[0] !== undefined && t[1] !== undefined
+    ) as Token[][];
+  }
+
   private get USDTTokenForConnectedNetwork() {
+    if (this._settings.customNetwork) {
+      return this._settings.customNetwork.baseTokens?.usdt;
+    }
+
     return USDT.token(this._ethersProvider.provider.network.chainId);
   }
 
   private get COMPTokenForConnectedNetwork() {
+    if (this._settings.customNetwork) {
+      return this._settings.customNetwork.baseTokens?.comp;
+    }
+
     return COMP.token(this._ethersProvider.provider.network.chainId);
   }
 
   private get DAITokenForConnectedNetwork() {
+    if (this._settings.customNetwork) {
+      return this._settings.customNetwork.baseTokens?.dai;
+    }
+
     return DAI.token(this._ethersProvider.provider.network.chainId);
   }
 
   private get USDCTokenForConnectedNetwork() {
+    if (this._settings.customNetwork) {
+      return this._settings.customNetwork.baseTokens?.usdc;
+    }
+
     return USDC.token(this._ethersProvider.provider.network.chainId);
   }
 
   private get WETHTokenForConnectedNetwork() {
+    if (this._settings.customNetwork) {
+      return this._settings.customNetwork.nativeWrappedTokenInfo;
+    }
+
     return WETHContract.token(this._ethersProvider.provider.network.chainId);
   }
 
   private get WBTCTokenForConnectedNetwork() {
+    if (this._settings.customNetwork) {
+      return this._settings.customNetwork.baseTokens?.wbtc;
+    }
+
     return WBTC.token(this._ethersProvider.provider.network.chainId);
   }
 }
