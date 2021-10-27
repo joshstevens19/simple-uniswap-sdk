@@ -76,6 +76,7 @@ export class UniswapPair {
 ```
 
 ```ts
+// can support any network using the `CustomNetwork` and `CloneUniswapContractDetails` properties
 export enum ChainId {
   MAINNET = 1,
   ROPSTEN = 3,
@@ -147,7 +148,7 @@ export interface CustomNetwork {
   multicallContractAddress: string;
   nativeCurrency: NativeCurrencyInfo;
   nativeWrappedTokenInfo: Token;
-  // defined your base tokens here!
+  // defined your base tokens here if any for your custom network!
   baseTokens?: {
     usdt?: Token | undefined;
     dai?: Token | undefined;
