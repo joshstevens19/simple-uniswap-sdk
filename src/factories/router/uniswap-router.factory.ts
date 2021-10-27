@@ -1715,7 +1715,7 @@ export class UniswapRouterFactory {
           routeText: callReturnContext.methodParameters[1]
             .map((c: string, index: number) => {
               if (index === 0) {
-                return ETH_SYMBOL;
+                return this.getNativeTokenSymbol();
               }
               return this.allTokens.find((t) => t.contractAddress === c)!
                 .symbol;
@@ -1843,7 +1843,7 @@ export class UniswapRouterFactory {
           routeText: callReturnContext.methodParameters[1]
             .map((c: string, index: number) => {
               if (index === callReturnContext.methodParameters[1].length - 1) {
-                return ETH_SYMBOL;
+                return this.getNativeTokenSymbol();
               }
               return this.allTokens.find((t) => t.contractAddress === c)!
                 .symbol;
@@ -2288,5 +2288,13 @@ export class UniswapRouterFactory {
     }
 
     return WBTC.token(this._ethersProvider.provider.network.chainId);
+  }
+
+  private getNativeTokenSymbol(): string {
+    if (this._settings.customNetwork) {
+      return this._settings.customNetwork.nativeCurrency.symbol;
+    }
+
+    return ETH_SYMBOL;
   }
 }
