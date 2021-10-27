@@ -2008,7 +2008,10 @@ export class UniswapRouterFactory {
   }
 
   private get allMainTokens(): Token[] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const tokens: (Token | undefined)[] = [
         this.USDTTokenForConnectedNetwork,
         this.COMPTokenForConnectedNetwork,
@@ -2025,7 +2028,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForFromToken(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const pairs = [
         [this._fromToken, this.USDTTokenForConnectedNetwork],
         [this._fromToken, this.COMPTokenForConnectedNetwork],
@@ -2051,7 +2057,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForToToken(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const pairs: (Token | undefined)[][] = [
         [this.USDTTokenForConnectedNetwork, this._toToken],
         [this.COMPTokenForConnectedNetwork, this._toToken],
@@ -2080,7 +2089,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForUSDT(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const pairs: (Token | undefined)[][] = [
         [this.USDTTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.USDTTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
@@ -2105,7 +2117,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForCOMP(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const pairs: (Token | undefined)[][] = [
         [this.COMPTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.COMPTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
@@ -2129,7 +2144,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForDAI(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const pairs: (Token | undefined)[][] = [
         [this.DAITokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
         [this.DAITokenForConnectedNetwork, this.WBTCTokenForConnectedNetwork],
@@ -2154,7 +2172,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForUSDC(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const pairs: (Token | undefined)[][] = [
         [this.USDCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.USDCTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
@@ -2179,7 +2200,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForWBTC(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const tokens: (Token | undefined)[][] = [
         [this.WBTCTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.WBTCTokenForConnectedNetwork, this.DAITokenForConnectedNetwork],
@@ -2194,7 +2218,10 @@ export class UniswapRouterFactory {
   }
 
   private get mainCurrenciesPairsForWETH(): Token[][] {
-    if (this._ethersProvider.provider.network.chainId === ChainId.MAINNET) {
+    if (
+      this._ethersProvider.provider.network.chainId === ChainId.MAINNET ||
+      this._settings.customNetwork
+    ) {
       const tokens: (Token | undefined)[][] = [
         [this.WETHTokenForConnectedNetwork, this.USDTTokenForConnectedNetwork],
         [this.WETHTokenForConnectedNetwork, this.COMPTokenForConnectedNetwork],
