@@ -1,4 +1,5 @@
 import { ChainId } from '../../enums/chain-id';
+import { NativeCurrencyInfo } from '../../factories/pair/models/custom-network';
 import { Token } from '../../factories/token/models/token';
 import { ErrorCodes } from '../errors/error-codes';
 import { UniswapError } from '../errors/uniswap-error';
@@ -24,12 +25,20 @@ export const isNativeEth = (contractAddress: string): boolean => {
   return contractAddress.includes(ETH_PREFIX);
 };
 
-export const turnTokenIntoEthForResponse = (token: Token): Token => {
+export const turnTokenIntoEthForResponse = (
+  token: Token,
+  nativeCurrencyInfo: NativeCurrencyInfo | undefined
+): Token => {
   const clone = deepClone(token);
   // clear down contract address
   clone.contractAddress = 'NO_CONTRACT_ADDRESS';
-  clone.symbol = ETH_SYMBOL;
-  clone.name = ETH_NAME;
+  if (nativeCurrencyInfo) {
+    clone.symbol = nativeCurrencyInfo.symbol;
+    clone.name = nativeCurrencyInfo.name;
+  } else {
+    clone.symbol = ETH_SYMBOL;
+    clone.name = ETH_NAME;
+  }
 
   return clone;
 };
@@ -102,7 +111,18 @@ export class ETH {
    * Get ETH token info by chain id
    * @param chainId The chain id
    */
-  public static info(chainId: ChainId | number): Token {
+  public static info(
+    chainId: ChainId | number,
+    customNetworkNativeWrappedTokenInfo: Token | undefined = undefined
+  ): Token {
+    if (customNetworkNativeWrappedTokenInfo) {
+      return {
+        ...customNetworkNativeWrappedTokenInfo,
+        contractAddress: appendEthToContractAddress(
+          customNetworkNativeWrappedTokenInfo.contractAddress
+        ),
+      };
+    }
     switch (chainId) {
       case ChainId.MAINNET:
         return this.MAINNET();
