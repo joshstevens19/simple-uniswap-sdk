@@ -88,7 +88,11 @@ export class UniswapPair {
     )).providerUrl;
 
     if (providerUrl && chainId) {
-      this._ethersProvider = new EthersProvider({ chainId, providerUrl });
+      this._ethersProvider = new EthersProvider({
+        chainId,
+        providerUrl,
+        customNetwork: this._uniswapPairContext.settings?.customNetwork,
+      });
       return;
     }
 
@@ -102,7 +106,10 @@ export class UniswapPair {
     )).ethereumProvider;
 
     if (ethereumProvider) {
-      this._ethersProvider = new EthersProvider({ ethereumProvider });
+      this._ethersProvider = new EthersProvider({
+        ethereumProvider,
+        customNetwork: this._uniswapPairContext.settings?.customNetwork,
+      });
       return;
     }
 
@@ -116,21 +123,26 @@ export class UniswapPair {
    * Create factory to be able to call methods on the 2 tokens
    */
   public async createFactory(): Promise<UniswapPairFactory> {
-    const chainId = this._ethersProvider.network().chainId;
-    if (
-      chainId !== ChainId.MAINNET &&
-      chainId !== ChainId.ROPSTEN &&
-      chainId !== ChainId.RINKEBY &&
-      chainId !== ChainId.GÖRLI &&
-      chainId !== ChainId.KOVAN
-    ) {
-      throw new UniswapError(
-        `ChainId - ${chainId} is not supported. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4), görli(5) and ropsten(3)`,
-        ErrorCodes.chainIdNotSupported
-      );
+    if (this._uniswapPairContext.settings?.customNetwork === undefined) {
+      const chainId = this._ethersProvider.network().chainId;
+      if (
+        chainId !== ChainId.MAINNET &&
+        chainId !== ChainId.ROPSTEN &&
+        chainId !== ChainId.RINKEBY &&
+        chainId !== ChainId.GÖRLI &&
+        chainId !== ChainId.KOVAN
+      ) {
+        throw new UniswapError(
+          `ChainId - ${chainId} is not supported. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4), and görli(5)`,
+          ErrorCodes.chainIdNotSupported
+        );
+      }
     }
 
-    const tokensFactory = new TokensFactory(this._ethersProvider);
+    const tokensFactory = new TokensFactory(
+      this._ethersProvider,
+      this._uniswapPairContext.settings?.customNetwork
+    );
     const tokens = await tokensFactory.getTokens([
       this._uniswapPairContext.fromTokenContractAddress,
       this._uniswapPairContext.toTokenContractAddress,

@@ -1,6 +1,6 @@
 {
   "name": "simple-uniswap-sdk",
-  "version": "3.5.0",
+  "version": "3.6.2",
   "description": "Simple easy to understand SDK for uniswap which looks over best v2 and v3 to find you the best swap quote",
   "main": "dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -43,7 +43,8 @@
     "ethereum-multicall": "^2.7.0",
     "ethers": "^5.0.26",
     "node-fetch": "^2.6.1",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.3",
+    "ethereum-abi-types-generator": "^1.1.6"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

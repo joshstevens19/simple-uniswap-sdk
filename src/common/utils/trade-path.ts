@@ -6,13 +6,20 @@ import { ETH } from '../tokens/eth';
 export function getTradePath(
   chainId: ChainId,
   fromToken: Token,
-  toToken: Token
+  toToken: Token,
+  customNetworkNativeWrappedTokenInfo: Token | undefined
 ): TradePath {
-  if (fromToken.contractAddress === ETH.info(chainId).contractAddress) {
+  if (
+    fromToken.contractAddress ===
+    ETH.info(chainId, customNetworkNativeWrappedTokenInfo).contractAddress
+  ) {
     return TradePath.ethToErc20;
   }
 
-  if (toToken.contractAddress === ETH.info(chainId).contractAddress) {
+  if (
+    toToken.contractAddress ===
+    ETH.info(chainId, customNetworkNativeWrappedTokenInfo).contractAddress
+  ) {
     return TradePath.erc20ToEth;
   }
 
