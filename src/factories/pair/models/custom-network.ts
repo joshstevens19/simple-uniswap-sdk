@@ -7,7 +7,7 @@ export interface NativeCurrencyInfo {
 
 export interface CustomNetwork {
   nameNetwork: string;
-  multicallContractAddress: string;
+  multicallContractAddress?: string;
   nativeCurrency: NativeCurrencyInfo;
   nativeWrappedTokenInfo: Token;
   // defined your base tokens here!
