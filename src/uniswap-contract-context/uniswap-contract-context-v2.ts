@@ -1,4 +1,8 @@
 import { JsonFragment } from '@ethersproject/abi';
+import {
+  DEFAULT_ROUTER_METHOD,
+  IRouterMethods,
+} from "../factories/router/models/route-methods";
 
 export class UniswapContractContextV2 {
   /**
@@ -30,4 +34,9 @@ export class UniswapContractContextV2 {
    * Uniswap v2 pair
    */
   public static pairAbi: JsonFragment[] = require('../ABI/uniswap-pair-v2.json');
+
+  /**
+   * Router Methods
+   */
+   public static routerMethods: IRouterMethods = DEFAULT_ROUTER_METHOD;
 }

@@ -56,6 +56,20 @@ export const uniswapContracts = {
 
       return UniswapContractContextV2.routerAbi;
     },
+
+    getRouterMethods: (
+      cloneUniswapContractDetails: CloneUniswapContractDetails | undefined
+    ) => {
+      if (
+        cloneUniswapContractDetails &&
+        cloneUniswapContractDetails.v2Override &&
+        cloneUniswapContractDetails.v2Override.routerMethods
+      ) {
+        return cloneUniswapContractDetails.v2Override.routerMethods;
+      }
+
+      return UniswapContractContextV2.routerMethods;
+    },
   },
   v3: {
     getRouterAddress: (
