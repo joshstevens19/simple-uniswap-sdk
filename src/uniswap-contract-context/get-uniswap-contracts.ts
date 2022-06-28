@@ -42,6 +42,20 @@ export const uniswapContracts = {
 
       return UniswapContractContextV2.pairAddress;
     },
+
+    getRouterAbi: (
+      cloneUniswapContractDetails: CloneUniswapContractDetails | undefined
+    ) => {
+      if (
+        cloneUniswapContractDetails &&
+        cloneUniswapContractDetails.v2Override &&
+        cloneUniswapContractDetails.v2Override.routerAbi
+      ) {
+        return cloneUniswapContractDetails.v2Override.routerAbi;
+      }
+
+      return UniswapContractContextV2.routerAbi;
+    },
   },
   v3: {
     getRouterAddress: (
@@ -81,6 +95,20 @@ export const uniswapContracts = {
       }
 
       return UniswapContractContextV3.quoterAddress;
+    },
+
+    getRouterAbi: (
+      cloneUniswapContractDetails: CloneUniswapContractDetails | undefined
+    ) => {
+      if (
+        cloneUniswapContractDetails &&
+        cloneUniswapContractDetails.v3Override &&
+        cloneUniswapContractDetails.v3Override.routerAbi
+      ) {
+        return cloneUniswapContractDetails.v3Override.routerAbi;
+      }
+
+      return UniswapContractContextV3.routerAbi;
     },
   },
 };

@@ -1,4 +1,5 @@
 import { BigNumberish, BytesLike } from 'ethers';
+import { JsonFragment } from '@ethersproject/abi';
 import { ContractContext as RouterContractContext } from '../../../ABI/types/uniswap-router-v2';
 import { EthersProvider } from '../../../ethers-provider';
 import { UniswapContractContextV2 } from '../../../uniswap-contract-context/uniswap-contract-context-v2';
@@ -6,13 +7,14 @@ import { UniswapContractContextV2 } from '../../../uniswap-contract-context/unis
 export class UniswapRouterContractFactoryV2 {
   private _uniswapRouterContract =
     this._ethersProvider.getContract<RouterContractContext>(
-      JSON.stringify(UniswapContractContextV2.routerAbi),
+      JSON.stringify(this._routerAbi),
       this._routerAddress
     );
 
   constructor(
     private _ethersProvider: EthersProvider,
-    private _routerAddress: string = UniswapContractContextV2.routerAddress
+    private _routerAddress: string = UniswapContractContextV2.routerAddress,
+    private _routerAbi: JsonFragment[] = UniswapContractContextV2.routerAbi
   ) {}
 
   public addLiquidity(

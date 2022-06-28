@@ -1,4 +1,5 @@
 import { BigNumberish, BytesLike } from 'ethers';
+import { JsonFragment } from '@ethersproject/abi';
 import {
   ContractContext as RouterContractContext,
   ExactInputSingleRequest,
@@ -10,13 +11,14 @@ import { UniswapContractContextV3 } from '../../../uniswap-contract-context/unis
 export class UniswapRouterContractFactoryV3 {
   private _uniswapRouterContract =
     this._ethersProvider.getContract<RouterContractContext>(
-      JSON.stringify(UniswapContractContextV3.routerAbi),
+      JSON.stringify(this._routerAbi),
       this._routerAddress
     );
 
   constructor(
     private _ethersProvider: EthersProvider,
-    private _routerAddress: string = UniswapContractContextV3.routerAddress
+    private _routerAddress: string = UniswapContractContextV3.routerAddress,
+    private _routerAbi: JsonFragment[] = UniswapContractContextV3.routerAbi
   ) {}
 
   /**
