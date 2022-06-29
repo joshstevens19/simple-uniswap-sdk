@@ -8,7 +8,7 @@ export interface CurrentTradeContext {
   quoteDirection: TradeDirection;
   fromToken: Token;
   toToken: Token;
-  liquidityProviderFee: string;
+  liquidityProviderFee: string[];
   transaction: Transaction;
   routeText: string;
   tradeExpires: number;
