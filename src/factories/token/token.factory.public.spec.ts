@@ -168,7 +168,7 @@ describe('TokenFactoryPublic', () => {
     describe('erc20', () => {
       it('totalSupply', async () => {
         const result = await tokenFactory.totalSupply();
-        expect(result).toEqual('0x0f4229ebe353e7b6');
+        expect(result).toEqual('0x0f3be988963624b6');
       });
     });
 
