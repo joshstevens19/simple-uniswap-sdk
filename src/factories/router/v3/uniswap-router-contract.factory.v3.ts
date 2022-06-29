@@ -2,7 +2,9 @@ import { BigNumberish, BytesLike } from 'ethers';
 import { JsonFragment } from '@ethersproject/abi';
 import {
   ContractContext as RouterContractContext,
+  ExactInputRequest,
   ExactInputSingleRequest,
+  ExactOutputRequest,
   ExactOutputSingleRequest,
 } from '../../../ABI/types/uniswap-router-v3';
 import { EthersProvider } from '../../../ethers-provider';
@@ -39,6 +41,28 @@ export class UniswapRouterContractFactoryV3 {
   public exactOutputSingle(params: ExactOutputSingleRequest): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
       'exactOutputSingle',
+      [params]
+    );
+  }
+
+  /**
+   * Exact input
+   * @param params The parameters
+   */
+   public exactInput(params: ExactInputRequest): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'exactInput',
+      [params]
+    );
+  }
+
+  /**
+   * The exact output
+   * @param params The parameters
+   */
+  public exactOutput(params: ExactOutputRequest): string {
+    return this._uniswapRouterContract.interface.encodeFunctionData(
+      'exactOutput',
       [params]
     );
   }

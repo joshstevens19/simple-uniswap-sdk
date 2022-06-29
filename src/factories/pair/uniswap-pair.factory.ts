@@ -333,14 +333,13 @@ export class UniswapPairFactory {
           ? null
           : bestRouteQuote.expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee:
+      liquidityProviderFee: bestRouteQuote.liquidityProviderFee.map((f) =>
         direction === TradeDirection.input
-          ? baseConvertRequest
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals)
+          ? baseConvertRequest.times(f).toFixed(this.fromToken.decimals)
           : new BigNumber(bestRouteQuote.expectedConvertQuote)
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals),
+              .times(f)
+              .toFixed(this.fromToken.decimals)
+      ),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires: bestRouteQuote.tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
@@ -404,14 +403,13 @@ export class UniswapPairFactory {
           ? null
           : bestRouteQuote.expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee:
+      liquidityProviderFee: bestRouteQuote.liquidityProviderFee.map((f) =>
         direction === TradeDirection.input
-          ? baseConvertRequest
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals)
+          ? baseConvertRequest.times(f).toFixed(this.fromToken.decimals)
           : new BigNumber(bestRouteQuote.expectedConvertQuote)
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals),
+              .times(f)
+              .toFixed(this.fromToken.decimals)
+      ),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires: bestRouteQuote.tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
@@ -470,14 +468,13 @@ export class UniswapPairFactory {
           ? null
           : bestRouteQuote.expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee:
+      liquidityProviderFee: bestRouteQuote.liquidityProviderFee.map((f) =>
         direction === TradeDirection.input
-          ? baseConvertRequest
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals)
+          ? baseConvertRequest.times(f).toFixed(this.fromToken.decimals)
           : new BigNumber(bestRouteQuote.expectedConvertQuote)
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals),
+              .times(f)
+              .toFixed(this.fromToken.decimals)
+      ),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
       tradeExpires: bestRouteQuote.tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
