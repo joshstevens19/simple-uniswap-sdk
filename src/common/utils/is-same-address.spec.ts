@@ -1,8 +1,7 @@
-import { ETH } from '../tokens';
 import { isSameAddress } from './is-same-address';
 
 describe('isSameAddress', () => {
-  it('should return true if its a valid ethereum address type', () => {
+  it('should return true if they are all valid ethereum addresses', () => {
     expect(isSameAddress('0x45Cd08334aeedd8a06265B2Ae302E3597d8fAA28', '0x45cd08334aeedd8a06265b2ae302e3597d8faa28')).toEqual(
       true
     );
