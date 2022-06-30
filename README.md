@@ -184,7 +184,7 @@ export class UniswapPairSettings {
     cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
     customNetwork?: CustomNetwork | undefined;
   }) {
-    this.slippage = settings?.slippage || 0.005;
+    this.slippage = settings?.slippage || 0.0005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
     this.gasSettings = settings?.gasSettings;
@@ -228,10 +228,10 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   chainId: ChainId.MAINNET,
   settings: new UniswapPairSettings({
-    // if not supplied it will use `0.005` which is 0.5%
+    // if not supplied it will use `0.0005` which is 0.5%
     // please pass it in as a full number decimal so 0.7%
     // would be 0.007
-    slippage: 0.005,
+    slippage: 0.0005,
     // if not supplied it will use 20 a deadline minutes
     deadlineMinutes: 20,
     // if not supplied it will try to use multihops
@@ -266,10 +266,10 @@ const uniswapPair = new UniswapPair({
   chainId: ChainId.MAINNET,
   providerUrl: YOUR_PROVIDER_URL,
   settings: new UniswapPairSettings({
-    // if not supplied it will use `0.005` which is 0.5%
+    // if not supplied it will use `0.0005` which is 0.5%
     // please pass it in as a full number decimal so 0.7%
     // would be 0.007
-    slippage: 0.005,
+    slippage: 0.0005,
     // if not supplied it will use 20 a deadline minutes
     deadlineMinutes: 20,
     // if not supplied it will try to use multihops
@@ -303,10 +303,10 @@ const uniswapPair = new UniswapPair({
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
   settings: new UniswapPairSettings({
-    // if not supplied it will use `0.005` which is 0.5%
+    // if not supplied it will use `0.0005` which is 0.5%
     // please pass it in as a full number decimal so 0.7%
     // would be 0.007
-    slippage: 0.005,
+    slippage: 0.0005,
     // if not supplied it will use 20 a deadline minutes
     deadlineMinutes: 20,
     // if not supplied it will try to use multihops
@@ -427,7 +427,7 @@ export interface TradeContext {
   // A portion of each trade goes to
   // liquidity providers as a protocol of incentive
   // length must be routePath.length - 1
-  // v2 always = (0.3%) ex [0.03, 0.03]
+  // v2 always = (0.3%) ex [0.003, 0.003]
   // v3 depends on the fee amount sent on that pool
   // - low = 0.05%
   // - medium = 0.3%
@@ -901,8 +901,8 @@ console.log(trade);
   minAmountConvertQuote: '0.014400465273974444',
   maximumSent: null,
   expectedConvertQuote: '0.014730394044348867',
-  liquidityProviderFee: ['0.030000000000000000','0.050000000000000000','0.030000000000000000'],
-  liquidityProviderFeePercent: [0.003, 0.005, 0.003],
+  liquidityProviderFee: ['0.030000000000000000','0.0000500000000000000','0.030000000000000000'],
+  liquidityProviderFeePercent: [0.003, 0.0005, 0.003],
   tradeExpires: 1612189240,
   routePathTokenMap: [
      {
@@ -1011,7 +1011,7 @@ console.log(trade);
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
         uniswapVersion: 'v3',
-        liquidityProviderFee: [0.003, 0.005, 0.003],
+        liquidityProviderFee: [0.003, 0.0005, 0.003],
       },
       {
         expectedConvertQuote: '0.013997397994408657',
@@ -1053,7 +1053,7 @@ console.log(trade);
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
         uniswapVersion: 'v3',
-        liquidityProviderFee: [0.005, 0.005, 0.003],
+        liquidityProviderFee: [0.0005, 0.0005, 0.003],
       },
       {
         expectedConvertQuote: '0.000000298264906505',
@@ -1095,7 +1095,7 @@ console.log(trade);
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
         uniswapVersion: 'v3',
-        liquidityProviderFee: [0.003, 0.005, 0.005],
+        liquidityProviderFee: [0.003, 0.0005, 0.0005],
       },
   ],
   hasEnoughAllowance: true,
@@ -2619,7 +2619,7 @@ console.log(trade);
   minAmountConvertQuote: '0.00022040807282109',
   maximumSent: null,
   expectedConvertQuote: '0.00022151807282109',
-  liquidityProviderFee: ['0.03000000', '0.00500000', '0.03000000'],
+  liquidityProviderFee: ['0.03000000', '0.000500000', '0.03000000'],
   liquidityProviderFeePercent: [0.003, 0.0005, 0.003],
   tradeExpires: 1612189240,
   routePathTokenMap: [
