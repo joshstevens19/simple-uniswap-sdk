@@ -851,7 +851,9 @@ export class UniswapRouterFactory {
     } else {
       const params: ExactInputRequest = {
         path: this.getEncodedPoolsPath(
-          routeQuoteTradeContext.routePathArray,
+          routeQuoteTradeContext.routePathArray.map((r) =>
+            removeEthFromContractAddress(r)
+          ),
           routeQuoteTradeContext.liquidityProviderFee,
           TradeDirection.input
         ),
