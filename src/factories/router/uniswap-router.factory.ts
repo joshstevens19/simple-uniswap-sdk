@@ -2020,12 +2020,13 @@ export class UniswapRouterFactory {
 
     switch (uniswapVersion) {
       case UniswapVersion.v2:
+      case UniswapVersion.v3:
         return {
           expectedConvertQuote,
           expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
           transaction,
           tradeExpires,
-          routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
+          routePathArrayTokenMap: routePathArray.map(
             (c: string, index: number) => {
               const token = deepClone(
                 this.allTokens.find((t) => t.contractAddress === c)!
@@ -2040,7 +2041,7 @@ export class UniswapRouterFactory {
               return token;
             }
           ),
-          routeText: callReturnContext.methodParameters[1]
+          routeText: routePathArray
             .map((c: string, index: number) => {
               if (index === 0) {
                 return this.getNativeTokenSymbol();
@@ -2050,34 +2051,7 @@ export class UniswapRouterFactory {
             })
             .join(' > '),
           // route array is always in the 1 index of the method parameters
-          routePathArray: callReturnContext.methodParameters[1],
-          uniswapVersion,
-          liquidityProviderFee: routeContext.liquidityProviderFee,
-          quoteDirection: direction,
-        };
-      case UniswapVersion.v3:
-        return {
-          expectedConvertQuote,
-          expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
-          transaction,
-          tradeExpires,
-          routePathArrayTokenMap: [
-            turnTokenIntoEthForResponse(
-              this._fromToken,
-              this._settings?.customNetwork?.nativeCurrency
-            ),
-            this._toToken,
-          ],
-          routeText: `${
-            turnTokenIntoEthForResponse(
-              this._fromToken,
-              this._settings?.customNetwork?.nativeCurrency
-            ).symbol
-          } > ${this._toToken.symbol}`,
-          routePathArray: [
-            this._fromToken.contractAddress,
-            this._toToken.contractAddress,
-          ],
+          routePathArray: routePathArray,
           uniswapVersion,
           liquidityProviderFee: routeContext.liquidityProviderFee,
           quoteDirection: direction,
@@ -2124,11 +2098,17 @@ export class UniswapRouterFactory {
       );
 
     const tradeExpires = this.generateTradeDeadlineUnixTime();
+    const routePathArray =
+      uniswapVersion === UniswapVersion.v2
+        ? callReturnContext.methodParameters[1]
+        : routeContext.route.map((r) => r.contractAddress);
+
     const routeQuoteTradeContext: RouteQuoteTradeContext = {
       uniswapVersion,
       liquidityProviderFee: routeContext.liquidityProviderFee,
-      routePathArray: callReturnContext.methodParameters[1],
+      routePathArray: routePathArray,
     };
+    
     const data =
       direction === TradeDirection.input
         ? this.generateTradeDataErc20ToEthInput(
@@ -2148,17 +2128,18 @@ export class UniswapRouterFactory {
 
     switch (uniswapVersion) {
       case UniswapVersion.v2:
+      case UniswapVersion.v3:
         return {
           expectedConvertQuote,
           expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
           transaction,
           tradeExpires,
-          routePathArrayTokenMap: callReturnContext.methodParameters[1].map(
+          routePathArrayTokenMap: routePathArray.map(
             (c: string, index: number) => {
               const token = deepClone(
                 this.allTokens.find((t) => t.contractAddress === c)!
               );
-              if (index === callReturnContext.methodParameters[1].length - 1) {
+              if (index === routePathArray.length - 1) {
                 return turnTokenIntoEthForResponse(
                   token,
                   this._settings?.customNetwork?.nativeCurrency
@@ -2168,9 +2149,9 @@ export class UniswapRouterFactory {
               return token;
             }
           ),
-          routeText: callReturnContext.methodParameters[1]
+          routeText: routePathArray
             .map((c: string, index: number) => {
-              if (index === callReturnContext.methodParameters[1].length - 1) {
+              if (index === routePathArray.length - 1) {
                 return this.getNativeTokenSymbol();
               }
               return this.allTokens.find((t) => t.contractAddress === c)!
@@ -2178,34 +2159,7 @@ export class UniswapRouterFactory {
             })
             .join(' > '),
           // route array is always in the 1 index of the method parameters
-          routePathArray: callReturnContext.methodParameters[1],
-          uniswapVersion,
-          liquidityProviderFee: routeContext.liquidityProviderFee,
-          quoteDirection: direction,
-        };
-      case UniswapVersion.v3:
-        return {
-          expectedConvertQuote,
-          expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
-          transaction,
-          tradeExpires,
-          routePathArrayTokenMap: [
-            this._fromToken,
-            turnTokenIntoEthForResponse(
-              this._toToken,
-              this._settings?.customNetwork?.nativeCurrency
-            ),
-          ],
-          routeText: `${this._fromToken.symbol} > ${
-            turnTokenIntoEthForResponse(
-              this._toToken,
-              this._settings?.customNetwork?.nativeCurrency
-            ).symbol
-          }`,
-          routePathArray: [
-            this._fromToken.contractAddress,
-            this._toToken.contractAddress,
-          ],
+          routePathArray: routePathArray,
           uniswapVersion,
           liquidityProviderFee: routeContext.liquidityProviderFee,
           quoteDirection: direction,
