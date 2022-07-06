@@ -74,7 +74,8 @@ export class UniswapRouterFactory {
     uniswapContracts.v2.getRouterAddress(
       this._settings.cloneUniswapContractDetails
     ),
-    uniswapContracts.v2.getRouterAbi(this._settings.cloneUniswapContractDetails)
+    uniswapContracts.v2.getRouterAbi(this._settings.cloneUniswapContractDetails),
+    uniswapContracts.v2.getRouterMethods(this._settings.cloneUniswapContractDetails)
   );
 
   private _uniswapRouterContractFactoryV3 = new UniswapRouterContractFactoryV3(
