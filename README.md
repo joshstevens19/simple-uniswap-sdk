@@ -424,6 +424,16 @@ export interface TradeContext {
   // this will be formatted in readable number
   // so you can render straight out the box
   expectedConvertQuote: string;
+   // A portion of each trade goes to
+  // liquidity providers as a protocol of incentive
+  // v2 always = (0.3%)
+  // v3 always = (0.0%) for v3, use `liquidityProviderFeesV3`
+  liquidityProviderFee: string;
+  // A portion of each trade goes to
+  // liquidity providers as a protocol of incentive
+  // v2 always = (0.3%)
+  // v3 always = (0.0%) for v3, use `liquidityProviderFeePercentsV3`
+  liquidityProviderFeePercent: number;
   // A portion of each trade goes to
   // liquidity providers as a protocol of incentive
   // length must be routePath.length - 1
@@ -435,7 +445,7 @@ export interface TradeContext {
   // For multihop swap
   // Sequence of Fees 
   // ex: USDC>USDT>WETH>WBTC => [(USDC-USDT fee), (USDT-WETH fee), (WETH-WBTC fee)]
-  liquidityProviderFee: string[];
+  liquidityProviderFeesV3: string[];
   // A portion of each trade goes to
   // liquidity providers as a protocol of incentive
   // v2 always = (0.3%)
@@ -447,7 +457,7 @@ export interface TradeContext {
   // aka 0.05% = 0.0005
   // 0.3% = 0.003
   // 1% = 0.01
-  liquidityProviderFeePercent: number[];
+  liquidityProviderFeePercentsV3: number[];
   // A unix datestamp in when this trade expires
   // if it does expiry while looking at it as long
   // as you are hooked onto `quoteChanged$` that will
@@ -474,7 +484,8 @@ export interface TradeContext {
     routeText: string;
     routePathArray: string[];
     uniswapVersion: UniswapVersion;
-    liquidityProviderFee: number[];
+    liquidityProviderFee: number;
+    liquidityProviderFeesV3: number[];
     quoteDirection: TradeDirection;
   }[];
   // if the allowance approved for moving tokens is below the amount sending to the
@@ -901,8 +912,10 @@ console.log(trade);
   minAmountConvertQuote: '0.014400465273974444',
   maximumSent: null,
   expectedConvertQuote: '0.014730394044348867',
-  liquidityProviderFee: ['0.030000000000000000','0.0000500000000000000','0.030000000000000000'],
-  liquidityProviderFeePercent: [0.003, 0.0005, 0.003],
+  liquidityProviderFee: 0,
+  liquidityProviderFeePercent: 0,
+  liquidityProviderFeesV3: ['0.030000000000000000','0.0000500000000000000','0.030000000000000000'],
+  liquidityProviderFeePercentsV3: [0.003, 0.0005, 0.003],
   tradeExpires: 1612189240,
   routePathTokenMap: [
      {
@@ -969,7 +982,8 @@ console.log(trade);
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
         uniswapVersion: 'v2',
-        liquidityProviderFee: [0.003, 0.003],
+        liquidityProviderFee: 0.003,
+        liquidityProviderFeesV3: [0.003, 0.003],
       },
       {
         expectedConvertQuote: '0.014606303273323544',
@@ -1011,7 +1025,8 @@ console.log(trade);
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
         uniswapVersion: 'v3',
-        liquidityProviderFee: [0.003, 0.0005, 0.003],
+        liquidityProviderFee: 0,
+        liquidityProviderFeesV3: [0.003, 0.0005, 0.003],
       },
       {
         expectedConvertQuote: '0.013997397994408657',
@@ -1053,7 +1068,8 @@ console.log(trade);
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
         uniswapVersion: 'v3',
-        liquidityProviderFee: [0.0005, 0.0005, 0.003],
+        liquidityProviderFee: 0,
+        liquidityProviderFeesV3: [0.0005, 0.0005, 0.003],
       },
       {
         expectedConvertQuote: '0.000000298264906505',
@@ -1095,7 +1111,8 @@ console.log(trade);
           '0x1985365e9f78359a9B6AD760e32412f4a445E862',
         ],
         uniswapVersion: 'v3',
-        liquidityProviderFee: [0.003, 0.0005, 0.0005],
+        liquidityProviderFee: 0,
+        liquidityProviderFeesV3: [0.003, 0.0005, 0.0005],
       },
   ],
   hasEnoughAllowance: true,
@@ -1175,8 +1192,10 @@ console.log(trade);
   minAmountConvertQuote: '446878.20758208',
   maximumSent: null,
   expectedConvertQuote: '449123.82671566',
-  liquidityProviderFee: ['0.030000000000000000'],
-  liquidityProviderFeePercent: [0.003],
+  liquidityProviderFee: 0,
+  liquidityProviderFeePercent: 0,
+  liquidityProviderFeesV3: ['0.030000000000000000'],
+  liquidityProviderFeePercentsV3: [0.003],
   tradeExpires: 1612189240,
   routePathTokenMap: [
     {
@@ -1252,7 +1271,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v2',
-      liquidityProviderFee: [0.003]
+      liquidityProviderFee: 0.003,
+      liquidityProviderFeesV3: [0.003]
     },
     {
       expectedConvertQuote: '446400.4834047',
@@ -1286,7 +1306,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.01]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.01]
     },
     {
       expectedConvertQuote: '446400.4834047',
@@ -1320,7 +1341,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.01]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.01]
     },
     {
       expectedConvertQuote: '446356.68778218',
@@ -1354,7 +1376,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '446356.68778218',
@@ -1388,7 +1411,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '446345.24608428',
@@ -1422,7 +1446,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003]
     },
     {
       expectedConvertQuote: '446345.24608428',
@@ -1456,7 +1481,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003]
     },
     {
       expectedConvertQuote: '347402.73288796',
@@ -1490,7 +1516,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003]
     },
     {
       expectedConvertQuote: '346246.52439964',
@@ -1532,7 +1559,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '346246.52439964',
@@ -1574,7 +1602,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '346246.52439964',
@@ -1616,7 +1645,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '345845.48248206',
@@ -1658,7 +1688,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '345845.48248206',
@@ -1700,7 +1731,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '345845.48248206',
@@ -1742,7 +1774,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '153353.27776886',
@@ -1776,7 +1809,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.01]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.01]
     },
     {
       expectedConvertQuote: '153171.51955671',
@@ -1818,7 +1852,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '153171.51955671',
@@ -1860,7 +1895,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '153171.51955671',
@@ -1902,7 +1938,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '153099.84287111',
@@ -1944,7 +1981,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '153099.84287111',
@@ -1986,7 +2024,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '153099.84287111',
@@ -2028,7 +2067,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '10090.42827381',
@@ -2070,7 +2110,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '10090.42827381',
@@ -2112,7 +2153,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '176.25846115',
@@ -2154,7 +2196,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '176.25846115',
@@ -2196,7 +2239,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2238,7 +2282,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2280,7 +2325,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.003]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2322,7 +2368,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2356,7 +2403,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2398,7 +2446,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2440,7 +2489,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.003]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2482,7 +2532,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.003]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2524,7 +2575,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.00167195',
@@ -2566,7 +2618,8 @@ console.log(trade);
         '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
   ],
 }
@@ -2619,8 +2672,10 @@ console.log(trade);
   minAmountConvertQuote: '0.00022040807282109',
   maximumSent: null,
   expectedConvertQuote: '0.00022151807282109',
-  liquidityProviderFee: ['0.03000000', '0.000500000', '0.03000000'],
-  liquidityProviderFeePercent: [0.003, 0.0005, 0.003],
+  liquidityProviderFee: 0,
+  liquidityProviderFeePercent: 0,
+  liquidityProviderFeesV3: ['0.03000000', '0.000500000', '0.03000000'],
+  liquidityProviderFeePercentsV3: [0.003, 0.0005, 0.003],
   tradeExpires: 1612189240,
   routePathTokenMap: [
     {
@@ -2700,7 +2755,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v2',
-      liquidityProviderFee: [0.003, 0.003, 0.003]
+      liquidityProviderFee: 0.003,
+      liquidityProviderFeesV3: [0.003, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.00022151807282109',
@@ -2742,7 +2798,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.003, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.003, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.000217400884509221',
@@ -2768,7 +2825,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005]
     },
     {
       expectedConvertQuote: '0.000216692105524981',
@@ -2802,7 +2860,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003]
     },
     {
       expectedConvertQuote: '0.000216165414503092',
@@ -2844,7 +2903,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '0.000216165414503092',
@@ -2886,7 +2946,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '0.000216165414503092',
@@ -2928,7 +2989,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '0.000216113740987982',
@@ -2970,7 +3032,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.000216113740987982',
@@ -3012,7 +3075,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.000216113740987982',
@@ -3054,7 +3118,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.000207416610491746',
@@ -3088,7 +3153,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.0005]
     },
     {
       expectedConvertQuote: '0.000206879660311982',
@@ -3130,7 +3196,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000206879660311982',
@@ -3172,7 +3239,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000206879660311982',
@@ -3214,7 +3282,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000206675889551395',
@@ -3256,7 +3325,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000206675889551395',
@@ -3298,7 +3368,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000206675889551395',
@@ -3340,7 +3411,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000201332888879835',
@@ -3382,7 +3454,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000201332888879835',
@@ -3424,7 +3497,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.00000000454541448',
@@ -3466,7 +3540,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.00000000454541448',
@@ -3508,7 +3583,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000000004421040886',
@@ -3542,7 +3618,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003]
     },
     {
       expectedConvertQuote: '0.000000004406314787',
@@ -3584,7 +3661,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.000000004406314787',
@@ -3626,7 +3704,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.000000004406314787',
@@ -3668,7 +3747,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.003]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.003]
     },
     {
       expectedConvertQuote: '0.000000003689610342',
@@ -3710,7 +3790,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000000003689610342',
@@ -3752,7 +3833,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
     {
       expectedConvertQuote: '0.000000003689610342',
@@ -3794,7 +3876,8 @@ console.log(trade);
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       ],
       uniswapVersion: 'v3',
-      liquidityProviderFee: [0.0005, 0.003, 0.0005]
+      liquidityProviderFee: 0,
+      liquidityProviderFeesV3: [0.0005, 0.003, 0.0005]
     },
   ],
   hasEnoughAllowance: true,
