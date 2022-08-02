@@ -421,7 +421,7 @@ export class UniswapRouterFactory {
             methodParameters: [
               routeCombo[0],
               routeCombo[1],
-              percentToFeeAmount(routes.v3[i].liquidityProviderFee[0]),
+              percentToFeeAmount(routes.v3[i].liquidityProviderFeesV3[0]),
               tradeAmount,
               0,
             ],
@@ -438,7 +438,7 @@ export class UniswapRouterFactory {
             methodParameters: [
               this.getEncodedPoolsPath(
                 routeCombo,
-                routes.v3[i].liquidityProviderFee,
+                routes.v3[i].liquidityProviderFeesV3,
                 direction
               ),
               tradeAmount,
@@ -514,6 +514,7 @@ export class UniswapRouterFactory {
           routePathArray: route.routePathArray,
           uniswapVersion: route.uniswapVersion,
           liquidityProviderFee: route.liquidityProviderFee,
+          liquidityProviderFeesV3: route.liquidityProviderFeesV3,
           quoteDirection: route.quoteDirection,
           gasPriceEstimatedBy: route.gasPriceEstimatedBy,
         };
@@ -835,7 +836,7 @@ export class UniswapRouterFactory {
       const params: ExactInputSingleRequest = {
         tokenIn: removeEthFromContractAddress(this._fromToken.contractAddress),
         tokenOut: removeEthFromContractAddress(this._toToken.contractAddress),
-        fee: percentToFeeAmount(routeQuoteTradeContext.liquidityProviderFee[0]),
+        fee: percentToFeeAmount(routeQuoteTradeContext.liquidityProviderFeesV3[0]),
         recipient:
           isNativeReceivingNativeEth === true
             ? '0x0000000000000000000000000000000000000000'
@@ -855,7 +856,7 @@ export class UniswapRouterFactory {
           routeQuoteTradeContext.routePathArray.map((r) =>
             removeEthFromContractAddress(r)
           ),
-          routeQuoteTradeContext.liquidityProviderFee,
+          routeQuoteTradeContext.liquidityProviderFeesV3,
           TradeDirection.input
         ),
         recipient:
@@ -925,7 +926,7 @@ export class UniswapRouterFactory {
       const params: ExactOutputRequest = {
         path: this.getEncodedPoolsPath(
           routeQuoteTradeContext.routePathArray,
-          routeQuoteTradeContext.liquidityProviderFee,
+          routeQuoteTradeContext.liquidityProviderFeesV3,
           TradeDirection.output
         ),
         recipient:
@@ -1387,7 +1388,8 @@ export class UniswapRouterFactory {
     ) {
       routes.push({
         route: [fromTokenRoutes.token, toTokenRoutes.token],
-        liquidityProviderFee: [this.LIQUIDITY_PROVIDER_FEE_V2],
+        liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
+        liquidityProviderFeesV3: [this.LIQUIDITY_PROVIDER_FEE_V2],
       });
     }
 
@@ -1402,7 +1404,8 @@ export class UniswapRouterFactory {
       ) {
         routes.push({
           route: [fromTokenRoutes.token, tokenRoute.token, toTokenRoutes.token],
-          liquidityProviderFee: new Array(2).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
+          liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
+          liquidityProviderFeesV3: new Array(2).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
         });
 
         for (let f = 0; f < fromTokenRoutes.pairs.fromTokenPairs!.length; f++) {
@@ -1427,7 +1430,8 @@ export class UniswapRouterFactory {
             ) {
               routes.push({
                 route: workedOutFromRoute,
-                liquidityProviderFee: new Array(3).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
+                liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
+                liquidityProviderFeesV3: new Array(3).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
               });
             }
           }
@@ -1455,7 +1459,8 @@ export class UniswapRouterFactory {
             ) {
               routes.push({
                 route: workedOutToRoute,
-                liquidityProviderFee: new Array(3).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
+                liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
+                liquidityProviderFeesV3: new Array(3).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
               });
             }
           }
@@ -1555,7 +1560,8 @@ export class UniswapRouterFactory {
     if (directRoute) {
       routes.push({
         route: [fromTokenRoutes.token, toTokenRoutes.token],
-        liquidityProviderFee: [feeToPercent(directRoute.fee!)],
+        liquidityProviderFee: 0,
+        liquidityProviderFeesV3: [feeToPercent(directRoute.fee!)],
       });
     }
 
@@ -1585,7 +1591,8 @@ export class UniswapRouterFactory {
 
         routes.push({
           route: [fromTokenRoutes.token, tokenRoute.token, toTokenRoutes.token],
-          liquidityProviderFee: [
+          liquidityProviderFee: 0,
+          liquidityProviderFeesV3: [
             feeToPercent(feeFrom2Main!),
             feeToPercent(feeMain2To!),
           ],
@@ -1624,7 +1631,8 @@ export class UniswapRouterFactory {
 
               routes.push({
                 route: workedOutFromRoute,
-                liquidityProviderFee: [
+                liquidityProviderFee: 0,
+                liquidityProviderFeesV3: [
                   feeToPercent(feeFrom2Support!),
                   feeToPercent(feeSupport2Main!),
                   feeToPercent(feeMain2To!),
@@ -1663,7 +1671,8 @@ export class UniswapRouterFactory {
 
               routes.push({
                 route: workedOutToRoute,
-                liquidityProviderFee: [
+                liquidityProviderFee: 0,
+                liquidityProviderFeesV3: [
                   feeToPercent(feeFrom2Main!),
                   feeToPercent(feeMain2Support!),
                   feeToPercent(feeSupport2To!),
@@ -1905,6 +1914,7 @@ export class UniswapRouterFactory {
     const routeQuoteTradeContext: RouteQuoteTradeContext = {
       uniswapVersion,
       liquidityProviderFee: routeContext.liquidityProviderFee,
+      liquidityProviderFeesV3: routeContext.liquidityProviderFeesV3,
       routePathArray: routePathArray,
     };
     const data =
@@ -1943,7 +1953,8 @@ export class UniswapRouterFactory {
             .join(' > '),
           routePathArray: routePathArray,
           uniswapVersion,
-          liquidityProviderFee: routeContext.liquidityProviderFee,
+          liquidityProviderFee: uniswapVersion === UniswapVersion.v2  ? routeContext.liquidityProviderFee : 0,
+          liquidityProviderFeesV3: routeContext.liquidityProviderFeesV3,
           quoteDirection: direction,
         };
       default:
@@ -1996,6 +2007,7 @@ export class UniswapRouterFactory {
     const routeQuoteTradeContext: RouteQuoteTradeContext = {
       uniswapVersion,
       liquidityProviderFee: routeContext.liquidityProviderFee,
+      liquidityProviderFeesV3: routeContext.liquidityProviderFeesV3,
       routePathArray: routePathArray,
     };
     const data =
@@ -2056,7 +2068,8 @@ export class UniswapRouterFactory {
           // route array is always in the 1 index of the method parameters
           routePathArray: routePathArray,
           uniswapVersion,
-          liquidityProviderFee: routeContext.liquidityProviderFee,
+          liquidityProviderFee: uniswapVersion === UniswapVersion.v2  ? routeContext.liquidityProviderFee : 0,
+          liquidityProviderFeesV3: routeContext.liquidityProviderFeesV3,
           quoteDirection: direction,
         };
       default:
@@ -2109,6 +2122,7 @@ export class UniswapRouterFactory {
     const routeQuoteTradeContext: RouteQuoteTradeContext = {
       uniswapVersion,
       liquidityProviderFee: routeContext.liquidityProviderFee,
+      liquidityProviderFeesV3: routeContext.liquidityProviderFeesV3,
       routePathArray: routePathArray,
     };
     
@@ -2164,7 +2178,8 @@ export class UniswapRouterFactory {
           // route array is always in the 1 index of the method parameters
           routePathArray: routePathArray,
           uniswapVersion,
-          liquidityProviderFee: routeContext.liquidityProviderFee,
+          liquidityProviderFee: uniswapVersion === UniswapVersion.v2  ? routeContext.liquidityProviderFee : 0,
+          liquidityProviderFeesV3: routeContext.liquidityProviderFeesV3,
           quoteDirection: direction,
         };
       default:
