@@ -12,7 +12,8 @@ export interface RouteQuote {
   routeText: string;
   routePathArray: string[];
   uniswapVersion: UniswapVersion;
-  liquidityProviderFee: number[];
+  liquidityProviderFee: number;
+  liquidityProviderFeesV3: number[];
   quoteDirection: TradeDirection;
   gasPriceEstimatedBy?: string | undefined;
 }

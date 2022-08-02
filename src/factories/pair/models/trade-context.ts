@@ -12,8 +12,10 @@ export interface TradeContext {
   minAmountConvertQuote: string | null;
   maximumSent: string | null;
   expectedConvertQuote: string;
-  liquidityProviderFee: string[];
-  liquidityProviderFeePercent: number[];
+  liquidityProviderFee: string;
+  liquidityProviderFeePercent: number;
+  liquidityProviderFeesV3: string[];
+  liquidityProviderFeePercentsV3: number[];
   tradeExpires: number;
   routePathTokenMap: Token[];
   routeText: string;
