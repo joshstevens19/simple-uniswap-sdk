@@ -1389,7 +1389,7 @@ export class UniswapRouterFactory {
       routes.push({
         route: [fromTokenRoutes.token, toTokenRoutes.token],
         liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
-        liquidityProviderFeesV3: [this.LIQUIDITY_PROVIDER_FEE_V2],
+        liquidityProviderFeesV3: [],
       });
     }
 
@@ -1405,7 +1405,7 @@ export class UniswapRouterFactory {
         routes.push({
           route: [fromTokenRoutes.token, tokenRoute.token, toTokenRoutes.token],
           liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
-          liquidityProviderFeesV3: new Array(2).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
+          liquidityProviderFeesV3: [],
         });
 
         for (let f = 0; f < fromTokenRoutes.pairs.fromTokenPairs!.length; f++) {
@@ -1431,7 +1431,7 @@ export class UniswapRouterFactory {
               routes.push({
                 route: workedOutFromRoute,
                 liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
-                liquidityProviderFeesV3: new Array(3).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
+                liquidityProviderFeesV3: [],
               });
             }
           }
@@ -1460,7 +1460,7 @@ export class UniswapRouterFactory {
               routes.push({
                 route: workedOutToRoute,
                 liquidityProviderFee: this.LIQUIDITY_PROVIDER_FEE_V2,
-                liquidityProviderFeesV3: new Array(3).fill(this.LIQUIDITY_PROVIDER_FEE_V2),
+                liquidityProviderFeesV3: [],
               });
             }
           }

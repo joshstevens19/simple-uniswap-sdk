@@ -437,7 +437,7 @@ export interface TradeContext {
   // A portion of each trade goes to
   // liquidity providers as a protocol of incentive
   // length must be routePath.length - 1
-  // v2 always = (0.3%) ex [0.003, 0.003]
+  // v2 always = []
   // v3 depends on the fee amount sent on that pool
   // - low = 0.05%
   // - medium = 0.3%
@@ -448,7 +448,7 @@ export interface TradeContext {
   liquidityProviderFeesV3: string[];
   // A portion of each trade goes to
   // liquidity providers as a protocol of incentive
-  // v2 always = (0.3%)
+  // v2 always = []
   // v3 depends on the fee amount sent on that pool
   // - low = 0.05%
   // - medium = 0.3%
@@ -983,7 +983,7 @@ console.log(trade);
         ],
         uniswapVersion: 'v2',
         liquidityProviderFee: 0.003,
-        liquidityProviderFeesV3: [0.003, 0.003],
+        liquidityProviderFeesV3: [],
       },
       {
         expectedConvertQuote: '0.014606303273323544',
@@ -1272,7 +1272,7 @@ console.log(trade);
       ],
       uniswapVersion: 'v2',
       liquidityProviderFee: 0.003,
-      liquidityProviderFeesV3: [0.003]
+      liquidityProviderFeesV3: []
     },
     {
       expectedConvertQuote: '446400.4834047',
@@ -2756,7 +2756,7 @@ console.log(trade);
       ],
       uniswapVersion: 'v2',
       liquidityProviderFee: 0.003,
-      liquidityProviderFeesV3: [0.003, 0.003, 0.003]
+      liquidityProviderFeesV3: []
     },
     {
       expectedConvertQuote: '0.00022151807282109',
