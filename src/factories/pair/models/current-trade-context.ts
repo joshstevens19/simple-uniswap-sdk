@@ -9,6 +9,7 @@ export interface CurrentTradeContext {
   fromToken: Token;
   toToken: Token;
   liquidityProviderFee: string;
+  liquidityProviderFeesV3: string[];
   transaction: Transaction;
   routeText: string;
   tradeExpires: number;

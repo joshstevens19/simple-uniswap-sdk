@@ -298,6 +298,7 @@ export class UniswapPairFactory {
       fromToken: trade.fromToken,
       toToken: trade.toToken,
       liquidityProviderFee: trade.liquidityProviderFee,
+      liquidityProviderFeesV3: trade.liquidityProviderFeesV3,
       transaction: trade.transaction,
       routeText: trade.routeText,
       tradeExpires: trade.tradeExpires,
@@ -319,7 +320,7 @@ export class UniswapPairFactory {
     );
 
     const bestRouteQuote = bestRouteQuotes.bestRouteQuote;
-
+    
     const tradeContext: TradeContext = {
       uniswapVersion: bestRouteQuote.uniswapVersion,
       quoteDirection: direction,
@@ -333,15 +334,20 @@ export class UniswapPairFactory {
           ? null
           : bestRouteQuote.expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee:
-        direction === TradeDirection.input
-          ? baseConvertRequest
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals)
-          : new BigNumber(bestRouteQuote.expectedConvertQuote)
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals),
+      liquidityProviderFee: direction === TradeDirection.input
+      ? baseConvertRequest.times(bestRouteQuote.uniswapVersion === UniswapVersion.v3 ? 0 : bestRouteQuote.liquidityProviderFee).toFixed(this.fromToken.decimals)
+      : new BigNumber(bestRouteQuote.expectedConvertQuote)
+          .times(bestRouteQuote.uniswapVersion === UniswapVersion.v3 ? 0 : bestRouteQuote.liquidityProviderFee)
+          .toFixed(this.fromToken.decimals),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
+      liquidityProviderFeesV3: bestRouteQuote.liquidityProviderFeesV3.map((f) =>
+        direction === TradeDirection.input
+          ? baseConvertRequest.times(f).toFixed(this.fromToken.decimals)
+          : new BigNumber(bestRouteQuote.expectedConvertQuote)
+              .times(f)
+              .toFixed(this.fromToken.decimals)
+      ),
+      liquidityProviderFeePercentsV3: bestRouteQuote.liquidityProviderFeesV3,
       tradeExpires: bestRouteQuote.tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
@@ -404,15 +410,20 @@ export class UniswapPairFactory {
           ? null
           : bestRouteQuote.expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee:
-        direction === TradeDirection.input
-          ? baseConvertRequest
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals)
-          : new BigNumber(bestRouteQuote.expectedConvertQuote)
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals),
+      liquidityProviderFee: direction === TradeDirection.input
+      ? baseConvertRequest.times(bestRouteQuote.uniswapVersion === UniswapVersion.v3 ? 0 : bestRouteQuote.liquidityProviderFee).toFixed(this.fromToken.decimals)
+      : new BigNumber(bestRouteQuote.expectedConvertQuote)
+          .times(bestRouteQuote.uniswapVersion === UniswapVersion.v3 ? 0 : bestRouteQuote.liquidityProviderFee)
+          .toFixed(this.fromToken.decimals),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
+      liquidityProviderFeesV3: bestRouteQuote.liquidityProviderFeesV3.map((f) =>
+        direction === TradeDirection.input
+          ? baseConvertRequest.times(f).toFixed(this.fromToken.decimals)
+          : new BigNumber(bestRouteQuote.expectedConvertQuote)
+              .times(f)
+              .toFixed(this.fromToken.decimals)
+      ),
+      liquidityProviderFeePercentsV3: bestRouteQuote.liquidityProviderFeesV3,
       tradeExpires: bestRouteQuote.tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,
@@ -470,15 +481,20 @@ export class UniswapPairFactory {
           ? null
           : bestRouteQuote.expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
       expectedConvertQuote: bestRouteQuote.expectedConvertQuote,
-      liquidityProviderFee:
-        direction === TradeDirection.input
-          ? baseConvertRequest
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals)
-          : new BigNumber(bestRouteQuote.expectedConvertQuote)
-              .times(bestRouteQuote.liquidityProviderFee)
-              .toFixed(this.fromToken.decimals),
+      liquidityProviderFee: direction === TradeDirection.input
+      ? baseConvertRequest.times(bestRouteQuote.uniswapVersion === UniswapVersion.v3 ? 0 : bestRouteQuote.liquidityProviderFee).toFixed(this.fromToken.decimals)
+      : new BigNumber(bestRouteQuote.expectedConvertQuote)
+          .times(bestRouteQuote.uniswapVersion === UniswapVersion.v3 ? 0 : bestRouteQuote.liquidityProviderFee)
+          .toFixed(this.fromToken.decimals),
       liquidityProviderFeePercent: bestRouteQuote.liquidityProviderFee,
+      liquidityProviderFeesV3: bestRouteQuote.liquidityProviderFeesV3.map((f) =>
+        direction === TradeDirection.input
+          ? baseConvertRequest.times(f).toFixed(this.fromToken.decimals)
+          : new BigNumber(bestRouteQuote.expectedConvertQuote)
+              .times(f)
+              .toFixed(this.fromToken.decimals)
+      ),
+      liquidityProviderFeePercentsV3: bestRouteQuote.liquidityProviderFeesV3,
       tradeExpires: bestRouteQuote.tradeExpires,
       routePathTokenMap: bestRouteQuote.routePathArrayTokenMap,
       routeText: bestRouteQuote.routeText,

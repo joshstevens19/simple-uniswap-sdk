@@ -14,6 +14,8 @@ export interface TradeContext {
   expectedConvertQuote: string;
   liquidityProviderFee: string;
   liquidityProviderFeePercent: number;
+  liquidityProviderFeesV3: string[];
+  liquidityProviderFeePercentsV3: number[];
   tradeExpires: number;
   routePathTokenMap: Token[];
   routeText: string;

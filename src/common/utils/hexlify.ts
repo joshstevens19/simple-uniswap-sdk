@@ -7,5 +7,5 @@ import { hexlify as EthersHexlify } from 'ethers/lib/utils';
  * @param value The value
  */
 export function hexlify(value: BigNumber): string {
-  return EthersHexlify(EthersBigNumber.from(value.toFixed()));
+  return EthersHexlify(EthersBigNumber.from(value.toFixed(0)));
 }

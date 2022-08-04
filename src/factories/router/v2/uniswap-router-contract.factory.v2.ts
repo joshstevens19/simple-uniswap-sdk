@@ -1,18 +1,25 @@
-import { BigNumberish, BytesLike } from 'ethers';
-import { ContractContext as RouterContractContext } from '../../../ABI/types/uniswap-router-v2';
+import { BigNumber, BigNumberish, BytesLike, Contract } from 'ethers';
+import { JsonFragment } from '@ethersproject/abi';
 import { EthersProvider } from '../../../ethers-provider';
 import { UniswapContractContextV2 } from '../../../uniswap-contract-context/uniswap-contract-context-v2';
+import { DEFAULT_ROUTER_METHOD, IRouterMethods } from '../models/route-methods';
 
 export class UniswapRouterContractFactoryV2 {
-  private _uniswapRouterContract =
-    this._ethersProvider.getContract<RouterContractContext>(
-      JSON.stringify(UniswapContractContextV2.routerAbi),
-      this._routerAddress
-    );
+  private _uniswapRouterContract = this._ethersProvider.getContract<Contract>(
+    JSON.stringify(this._routerAbi),
+    this._routerAddress
+  );
+
+  private _uniswapRouterNames: IRouterMethods = {
+    ...DEFAULT_ROUTER_METHOD,
+    ...this._routerMethods,
+  };
 
   constructor(
     private _ethersProvider: EthersProvider,
-    private _routerAddress: string = UniswapContractContextV2.routerAddress
+    private _routerAddress: string = UniswapContractContextV2.routerAddress,
+    private _routerAbi: JsonFragment[] = UniswapContractContextV2.routerAbi,
+    private _routerMethods: Partial<IRouterMethods> = DEFAULT_ROUTER_METHOD
   ) {}
 
   public addLiquidity(
@@ -26,7 +33,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'addLiquidity',
+      this._uniswapRouterNames['addLiquidity'],
       [
         tokenA,
         tokenB,
@@ -49,7 +56,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'addLiquidityETH',
+      this._uniswapRouterNames['addLiquidityETH'],
       [token, amountTokenDesired, amountTokenMin, amountETHMin, to, deadline]
     );
   }
@@ -66,7 +73,7 @@ export class UniswapRouterContractFactoryV2 {
       amountIn,
       path
     );
-    return amounts.map((c) => c.toHexString());
+    return amounts.map((c: BigNumber) => c.toHexString());
   }
 
   public async quote(
@@ -89,7 +96,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'removeLiquidity',
+      this._uniswapRouterNames['removeLiquidity'],
       [tokenA, tokenB, liquidity, amountAMin, amountBMin, to, deadline]
     );
   }
@@ -103,7 +110,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'removeLiquidity',
+      this._uniswapRouterNames['removeLiquidity'],
       [token, liquidity, amountTokenMin, amountETHMin, to, deadline]
     );
   }
@@ -117,7 +124,9 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'removeLiquidityETHSupportingFeeOnTransferTokens',
+      this._uniswapRouterNames[
+        'removeLiquidityETHSupportingFeeOnTransferTokens'
+      ],
       [token, liquidity, amountTokenMin, amountETHMin, to, deadline]
     );
   }
@@ -135,7 +144,7 @@ export class UniswapRouterContractFactoryV2 {
     s: BytesLike
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'removeLiquidityETHWithPermit',
+      this._uniswapRouterNames['removeLiquidityETHWithPermit'],
       [
         token,
         liquidity,
@@ -164,7 +173,9 @@ export class UniswapRouterContractFactoryV2 {
     s: BytesLike
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens',
+      this._uniswapRouterNames[
+        'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens'
+      ],
       [
         token,
         liquidity,
@@ -194,7 +205,7 @@ export class UniswapRouterContractFactoryV2 {
     s: BytesLike
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'removeLiquidityWithPermit',
+      this._uniswapRouterNames['removeLiquidityWithPermit'],
       [
         tokenA,
         tokenB,
@@ -218,7 +229,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapExactETHForTokens',
+      this._uniswapRouterNames['swapExactETHForTokens'],
       [amountOutMin, path, to, deadline]
     );
   }
@@ -230,7 +241,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapETHForExactTokens',
+      this._uniswapRouterNames['swapETHForExactTokens'],
       [amountOut, path, to, deadline]
     );
   }
@@ -243,7 +254,9 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapExactETHForTokensSupportingFeeOnTransferTokens',
+      this._uniswapRouterNames[
+        'swapExactETHForTokensSupportingFeeOnTransferTokens'
+      ],
       [amountIn, amountOutMin, path, to, deadline]
     );
   }
@@ -256,7 +269,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapExactTokensForETH',
+      this._uniswapRouterNames['swapExactTokensForETH'],
       [amountIn, amountOutMin, path, to, deadline]
     );
   }
@@ -269,7 +282,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapTokensForExactETH',
+      this._uniswapRouterNames['swapTokensForExactETH'],
       [amountOut, amountInMax, path, to, deadline]
     );
   }
@@ -282,7 +295,9 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapExactTokensForETHSupportingFeeOnTransferTokens',
+      this._uniswapRouterNames[
+        'swapExactTokensForETHSupportingFeeOnTransferTokens'
+      ],
       [amountIn, amountOutMin, path, to, deadline]
     );
   }
@@ -295,7 +310,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapExactTokensForTokens',
+      this._uniswapRouterNames['swapExactTokensForTokens'],
       [amountIn, amountOutMin, path, to, deadline]
     );
   }
@@ -308,7 +323,7 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapTokensForExactTokens',
+      this._uniswapRouterNames['swapTokensForExactTokens'],
       [amountOut, amountInMax, path, to, deadline]
     );
   }
@@ -321,7 +336,9 @@ export class UniswapRouterContractFactoryV2 {
     deadline: BigNumberish
   ): string {
     return this._uniswapRouterContract.interface.encodeFunctionData(
-      'swapExactTokensForTokensSupportingFeeOnTransferTokens',
+      this._uniswapRouterNames[
+        'swapExactTokensForTokensSupportingFeeOnTransferTokens'
+      ],
       [amountIn, amountOutMin, path, to, deadline]
     );
   }

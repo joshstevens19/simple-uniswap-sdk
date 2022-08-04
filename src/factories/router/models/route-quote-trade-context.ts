@@ -4,4 +4,5 @@ export interface RouteQuoteTradeContext {
   uniswapVersion: UniswapVersion;
   routePathArray: string[];
   liquidityProviderFee: number;
+  liquidityProviderFeesV3: number[];
 }
