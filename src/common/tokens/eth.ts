@@ -107,6 +107,30 @@ export class ETH {
     };
   }
 
+  public static FUJI(): Token {
+    return {
+      chainId: ChainId.FUJI,
+      contractAddress: appendEthToContractAddress(
+        '0xd00ae08403B9bbb9124bB305C09058E32C39A48c'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+
+  public static AVALANCHE(): Token {
+    return {
+      chainId: ChainId.AVALANCHE,
+      contractAddress: appendEthToContractAddress(
+        '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+
   /**
    * Get ETH token info by chain id
    * @param chainId The chain id
@@ -134,6 +158,10 @@ export class ETH {
         return this.GORLI();
       case ChainId.KOVAN:
         return this.KOVAN();
+      case ChainId.FUJI:
+        return this.FUJI();
+      case ChainId.AVALANCHE:
+        return this.AVALANCHE();
       default:
         throw new UniswapError(
           `${chainId} is not allowed`,

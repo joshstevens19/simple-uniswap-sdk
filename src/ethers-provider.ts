@@ -73,7 +73,7 @@ export class EthersProvider {
     const chainName = ChainNames.get(chainId);
     if (!chainName) {
       throw new UniswapError(
-        `Can not find chain name for ${chainId}. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4) and görli(5)`,
+        `Can not find chain name for ${chainId}. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4), görli(5), fuji(43113) and avalanche(43114)`,
         ErrorCodes.canNotFindChainId
       );
     }
@@ -170,6 +170,10 @@ export class EthersProvider {
         return `https://goerli.infura.io/v3/${this._getApiKey}`;
       case ChainId.KOVAN:
         return `https://kovan.infura.io/v3/${this._getApiKey}`;
+      case ChainId.FUJI:
+        return `https://testnet.snowtrace.io/${this._getApiKey}`;
+      case ChainId.AVALANCHE:
+        return `https://snowtrace.io/${this._getApiKey}`;
       default:
         return undefined;
     }
