@@ -167,6 +167,7 @@ export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
+  disableObserver: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
   gasSettings?: GasSettings = undefined;
   // can be used to pass in a fork of uniswap contract details
@@ -178,6 +179,7 @@ export class UniswapPairSettings {
     slippage?: number | undefined;
     deadlineMinutes?: number | undefined;
     disableMultihops?: boolean | undefined;
+    disableObserver?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
     gasSettings?: GasSettings | undefined;
     cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
@@ -186,6 +188,7 @@ export class UniswapPairSettings {
     this.slippage = settings?.slippage || 0.0005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
+    this.disableObserver = settings?.disableObserver || false;
     this.gasSettings = settings?.gasSettings;
     this.cloneUniswapContractDetails = settings?.cloneUniswapContractDetails;
     this.customNetwork = settings?.customNetwork;
@@ -237,6 +240,12 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
+    // if not supplied it will observe quote changes
+    // if your app listens to the block event else where
+    // the listener will be removed when the quote clears
+    // make this true if you want to manually listen to blocks
+    // and request a new quote
+    disableObserver: false,
     // for example if you only wanted to turn on quotes for v3 and not v3
     // you can only support the v3 enum same works if you only want v2 quotes
     // if you do not supply anything it query both v2 and v3
@@ -275,6 +284,12 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
+    // if not supplied it will observe quote changes
+    // if your app listens to the block event else where
+    // the listener will be removed when the quote clears
+    // make this true if you want to manually listen to blocks
+    // and request a new quote
+    disableObserver: false,
     // for example if you only wanted to turn on quotes for v3 and not v3
     // you can only support the v3 enum same works if you only want v2 quotes
     // if you do not supply anything it query both v2 and v3
@@ -312,6 +327,12 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
+    // if not supplied it will observe quote changes
+    // if your app listens to the block event else where
+    // the listener will be removed when the quote clears
+    // make this true if you want to manually listen to blocks
+    // and request a new quote
+    disableObserver: false,
     // for example if you only wanted to turn on quotes for v3 and not v3
     // you can only support the v3 enum same works if you only want v2 quotes
     // if you do not supply anything it query both v2 and v3

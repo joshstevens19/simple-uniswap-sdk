@@ -542,7 +542,7 @@ export class UniswapPairFactory {
    * Watch trade price move automatically emitting the stream if it changes
    */
   private watchTradePrice(): void {
-    if (!this._watchingBlocks && !this._uniswapPairFactoryContext.settings.disableWatcher) {
+    if (!this._watchingBlocks && !this._uniswapPairFactoryContext.settings.disableObserver) {
       this._uniswapPairFactoryContext.ethersProvider.provider.on(
         'block',
         async () => {
@@ -557,7 +557,7 @@ export class UniswapPairFactory {
    * unwatch any block streams
    */
   private unwatchTradePrice(): void {
-    if (!this._uniswapPairFactoryContext.settings.disableWatcher) { 
+    if (!this._uniswapPairFactoryContext.settings.disableObserver) { 
       this._uniswapPairFactoryContext.ethersProvider.provider.removeAllListeners(
         'block'
       );

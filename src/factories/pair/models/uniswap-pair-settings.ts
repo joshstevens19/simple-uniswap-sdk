@@ -9,7 +9,7 @@ export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
-  disableWatcher: boolean;
+  disableObserver: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
   gasSettings?: GasSettings = undefined;
   cloneUniswapContractDetails?: CloneUniswapContractDetails = undefined;
@@ -19,7 +19,7 @@ export class UniswapPairSettings {
     slippage?: number | undefined;
     deadlineMinutes?: number | undefined;
     disableMultihops?: boolean | undefined;
-    disableWatcher?: boolean | undefined;
+    disableObserver?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
     gasSettings?: GasSettings | undefined;
     cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
@@ -28,7 +28,7 @@ export class UniswapPairSettings {
     this.slippage = settings?.slippage || 0.005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
-    this.disableWatcher = settings?.disableWatcher || false;
+    this.disableObserver = settings?.disableObserver || false;
     this.gasSettings = settings?.gasSettings;
     this.cloneUniswapContractDetails = settings?.cloneUniswapContractDetails;
     this.customNetwork = settings?.customNetwork;
