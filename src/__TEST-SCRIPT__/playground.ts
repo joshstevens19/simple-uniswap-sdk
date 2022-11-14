@@ -1,3 +1,7 @@
+import { providers } from 'ethers'
+import { Networkish } from '@ethersproject/networks';
+import { TokensFactoryPublic } from './../factories/token/tokens.factory.public';
+import { TokenWithAllowanceInfo } from './../factories/token/models/token-with-allowance-info';
 import { ChainId } from '../enums/chain-id';
 import { UniswapVersion } from '../enums/uniswap-version';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
@@ -98,4 +102,49 @@ const routeTest = async () => {
   // console.log(data);
 };
 
+const customNetworkBalancesTest = async () => {
+  const ethereumAddress = '0x8f5718cC9B2B8d6E065E80eeF6927c22D7714F16';
+  const chainId: Networkish = 941
+  const provider = new providers.JsonRpcProvider('https://rpc.v2b.testnet.pulsechain.com',
+    chainId
+  )
+
+  const tokensFactoryPublic = new TokensFactoryPublic({
+    ethereumProvider: provider,
+    customNetwork: {
+      nameNetwork: 'PulseChain Testnet',
+      multicallContractAddress: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
+      nativeCurrency: {
+        name: 'Pulse',
+        symbol: 'tPLS',
+      },
+      nativeWrappedTokenInfo: {
+        chainId,
+        contractAddress: '0x8a810ea8B121d08342E9e7696f4a9915cBE494B7',
+        decimals: 18,
+        symbol: 'WPLS',
+        name: 'Wrapped Pulse (PLS)',
+      },
+    },
+  })
+
+  let balances: TokenWithAllowanceInfo[] = []
+  const formatBalances = true
+
+  try {
+    balances =
+      await tokensFactoryPublic.getAllowanceAndBalanceOfForContracts(
+        ethereumAddress,
+        ['0x8a810ea8B121d08342E9e7696f4a9915cBE494B7', '0x2b591e99afe9f32eaa6214f7b7629768c40eeb39', '0x1da01e84f3d4e6716f274c987ae4bee5dc3c8288', '0xdac17f958d2ee523a2206206994597c13d831ec7'],
+        formatBalances
+      )
+  } catch (err) {
+    console.log(err)
+    balances = []
+  }
+
+  console.log(balances);
+}
+
 routeTest();
+customNetworkBalancesTest();

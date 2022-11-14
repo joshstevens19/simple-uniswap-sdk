@@ -79,7 +79,6 @@ export class UniswapPair {
 // can support any network using the `CustomNetwork` and `CloneUniswapContractDetails` properties
 export enum ChainId {
   MAINNET = 1,
-  ROPSTEN = 3,
   RINKEBY = 4,
   GÖRLI = 5,
   KOVAN = 42,
@@ -371,7 +370,7 @@ export enum ErrorCodes {
 
 This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. we generate the transaction for you but you will still need to sign and send the transaction on your dApp once they confirm the swap.
 
-Please note `ROPSTEN`, `RINKEBY`, `GÖRLI` and `KOVAN` will only use `ETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
+Please note `RINKEBY`, `GÖRLI` and `KOVAN` will only use `ETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
 
 ```ts
  /**
@@ -560,7 +559,6 @@ export interface Token {
 
 export enum ChainId {
   MAINNET = 1,
-  ROPSTEN = 3,
   RINKEBY = 4,
   GÖRLI = 5,
   KOVAN = 42,

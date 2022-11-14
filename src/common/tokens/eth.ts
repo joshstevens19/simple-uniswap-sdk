@@ -59,18 +59,6 @@ export class ETH {
     };
   }
 
-  public static ROPSTEN(): Token {
-    return {
-      chainId: ChainId.ROPSTEN,
-      contractAddress: appendEthToContractAddress(
-        '0xc778417E063141139Fce010982780140Aa0cD5Ab'
-      ),
-      decimals: 18,
-      symbol: ETH_SYMBOL,
-      name: ETH_NAME,
-    };
-  }
-
   public static RINKEBY(): Token {
     return {
       chainId: ChainId.RINKEBY,
@@ -126,8 +114,6 @@ export class ETH {
     switch (chainId) {
       case ChainId.MAINNET:
         return this.MAINNET();
-      case ChainId.ROPSTEN:
-        return this.ROPSTEN();
       case ChainId.RINKEBY:
         return this.RINKEBY();
       case ChainId.GÖRLI:

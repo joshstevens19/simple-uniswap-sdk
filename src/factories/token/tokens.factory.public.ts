@@ -7,6 +7,6 @@ import { TokensFactory } from './tokens.factory';
 
 export class TokensFactoryPublic extends TokensFactory {
   constructor(providerContext: ChainIdAndProvider | EthereumProvider) {
-    super(new EthersProvider(providerContext));
+    super(new EthersProvider(providerContext), providerContext?.customNetwork);
   }
 }
