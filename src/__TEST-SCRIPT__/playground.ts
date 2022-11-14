@@ -103,7 +103,7 @@ const routeTest = async () => {
 };
 
 const customNetworkBalancesTest = async () => {
-  const ethereumAddress = '0x8f5718cC9B2B8d6E065E80eeF6927c22D7714F16';
+  const ethereumAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984';
   const chainId: Networkish = 941
   const provider = new providers.JsonRpcProvider('https://rpc.v2b.testnet.pulsechain.com',
     chainId
