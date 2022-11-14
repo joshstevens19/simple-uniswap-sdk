@@ -172,6 +172,13 @@ export class UniswapPairFactory {
   }
 
   /**
+   * Manually fetch the latest quotes
+   */
+  public async requote() {
+    await this.handleNewBlock();
+  }
+
+  /**
    * Find the best route rate out of all the route quotes
    * @param amountToTrade The amount to trade
    * @param direction The direction you want to get the quote from

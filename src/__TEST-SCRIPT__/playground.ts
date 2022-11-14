@@ -1,3 +1,4 @@
+import { TradeContext } from './../factories/pair/models/trade-context';
 import { providers } from 'ethers'
 import { Networkish } from '@ethersproject/networks';
 import { TokensFactoryPublic } from './../factories/token/tokens.factory.public';
@@ -33,6 +34,7 @@ const routeTest = async () => {
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
       disableMultihops: false,
+      disableObserver: false,
       uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
       gasSettings: {
         getGasPrice: async () => '90',
@@ -40,14 +42,14 @@ const routeTest = async () => {
     }),
   });
 
-  const startTime = new Date().getTime();
+  // const startTime = new Date().getTime();
 
   const uniswapPairFactory = await uniswapPair.createFactory();
 
   const trade = await uniswapPairFactory.trade('0.0001', TradeDirection.input);
 
-  console.log(new Date().getTime() - startTime);
-  console.log(trade);
+  // console.log(new Date().getTime() - startTime);
+  // console.log(trade);
 
   // console.log(JSON.stringify(trade, null, 4));
   // console.log(trade);
@@ -102,6 +104,56 @@ const routeTest = async () => {
   // console.log(data);
 };
 
+const manualObserverTest = async () => {
+  const { provider } = new EthersProvider({chainId: ChainId.MAINNET})
+
+  const fromTokenContractAddress = ETH.MAINNET().contractAddress;
+  const toTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; // AAVE
+  const ethereumAddress = '0x37c81284caA97131339415687d192BF7D18F0f2a';
+
+  const settings = new UniswapPairSettings({
+    // if not supplied it use `0.005` which is 0.5%;
+    // all figures
+    slippage: 0.005,
+    // if not supplied it will use 20 a deadline minutes
+    deadlineMinutes: 20,
+    disableMultihops: false,
+    // Prevent the built-in requoting
+    disableObserver: true,
+    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+    gasSettings: {
+      getGasPrice: async () => '90',
+    },
+  });
+
+  const uniswapPair = new UniswapPair({
+    ethereumProvider: provider,
+    fromTokenContractAddress,
+    toTokenContractAddress,
+    ethereumAddress,
+    settings
+  });
+
+  const uniswapPairFactory = await uniswapPair.createFactory();
+  const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
+
+  console.log(`Quote: ${trade.expectedConvertQuote} ${trade.toToken.symbol}`);
+
+  // Listen for changes in our quote
+  trade.quoteChanged$.subscribe((value: TradeContext) => {
+    console.log(`Quote changed: ${value.expectedConvertQuote} ${value.toToken.symbol}`);
+  });
+
+  // Manually requote for the newest prices
+  provider.on(
+    'block',
+    async () => {
+      console.log('Requoting...');
+      await uniswapPairFactory.requote();
+    }
+  );
+};
+
 const customNetworkBalancesTest = async () => {
   const ethereumAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984';
   const chainId: Networkish = 941
@@ -146,5 +198,6 @@ const customNetworkBalancesTest = async () => {
   console.log(balances);
 }
 
-routeTest();
-customNetworkBalancesTest();
+if (false) routeTest();
+if (true) manualObserverTest();
+if (false) customNetworkBalancesTest();
