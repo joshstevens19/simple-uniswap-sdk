@@ -45,9 +45,8 @@ const routeTest = async () => {
   // const startTime = new Date().getTime();
 
   const uniswapPairFactory = await uniswapPair.createFactory();
-
+  
   const trade = await uniswapPairFactory.trade('0.0001', TradeDirection.input);
-
   // console.log(new Date().getTime() - startTime);
   // console.log(trade);
 
@@ -104,6 +103,56 @@ const routeTest = async () => {
   // console.log(data);
 };
 
+const boundBlockListenerTest = async () => {
+  const getQuote = async (timeout: number) => {
+    const { provider } = new EthersProvider({chainId: ChainId.MAINNET})
+
+    const fromTokenContractAddress = ETH.MAINNET().contractAddress;
+    const toTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; // AAVE
+    const ethereumAddress = '0x37c81284caA97131339415687d192BF7D18F0f2a';
+
+    const settings = new UniswapPairSettings({
+      slippage: 0.005,
+      deadlineMinutes: 20,
+      disableMultihops: false,
+      uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+      gasSettings: {
+        getGasPrice: async () => '90',
+      },
+    });
+
+    const uniswapPair = new UniswapPair({
+      ethereumProvider: provider,
+      fromTokenContractAddress,
+      toTokenContractAddress,
+      ethereumAddress,
+      settings
+    });
+
+    const uniswapPairFactory = await uniswapPair.createFactory();
+    uniswapPairFactory
+    const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
+
+    console.log(`Quote: ${trade.expectedConvertQuote} ${trade.toToken.symbol}`);
+
+    // Listen for changes in our quote
+    trade.quoteChanged$.subscribe((value: TradeContext) => {
+      console.log(`Quote changed: ${value.expectedConvertQuote} ${value.toToken.symbol}`);
+    });
+
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, timeout)
+    })
+
+    trade.destroy()
+  }
+
+  getQuote(15_000)
+  getQuote(25_000)
+  getQuote(35_000)
+};
+
 const manualObserverTest = async () => {
   const { provider } = new EthersProvider({chainId: ChainId.MAINNET})
 
@@ -135,6 +184,7 @@ const manualObserverTest = async () => {
   });
 
   const uniswapPairFactory = await uniswapPair.createFactory();
+  uniswapPairFactory
   const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
 
   console.log(`Quote: ${trade.expectedConvertQuote} ${trade.toToken.symbol}`);
@@ -143,6 +193,7 @@ const manualObserverTest = async () => {
   trade.quoteChanged$.subscribe((value: TradeContext) => {
     console.log(`Quote changed: ${value.expectedConvertQuote} ${value.toToken.symbol}`);
   });
+
 
   // Manually requote for the newest prices
   provider.on(
@@ -199,5 +250,6 @@ const customNetworkBalancesTest = async () => {
 }
 
 if (false) routeTest();
-if (true) manualObserverTest();
+if (false) manualObserverTest();
+if (true) boundBlockListenerTest();
 if (false) customNetworkBalancesTest();
