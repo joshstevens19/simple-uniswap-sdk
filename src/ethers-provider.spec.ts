@@ -51,7 +51,7 @@ describe('EthersProvider', () => {
         });
       }).toThrowError(
         new UniswapError(
-          'Can not find chain name for 10293. This lib only supports mainnet(1), kovan(42), rinkeby(4) and görli(5)',
+          'Can not find chain name for 10293. This lib only supports mainnet(1), görli(5) and sepolia(11155111)',
           ErrorCodes.canNotFindChainId
         )
       );

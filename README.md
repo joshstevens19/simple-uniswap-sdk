@@ -79,9 +79,8 @@ export class UniswapPair {
 // can support any network using the `CustomNetwork` and `CloneUniswapContractDetails` properties
 export enum ChainId {
   MAINNET = 1,
-  RINKEBY = 4,
   GÖRLI = 5,
-  KOVAN = 42,
+  SEPOLIA = 11155111
 }
 
 interface UniswapPairContextBase {
@@ -391,7 +390,7 @@ export enum ErrorCodes {
 
 This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. we generate the transaction for you but you will still need to sign and send the transaction on your dApp once they confirm the swap.
 
-Please note `RINKEBY`, `GÖRLI` and `KOVAN` will only use `ETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
+Please note `GÖRLI` and `SEPOLIA` will only use `ETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
 
 ```ts
  /**
@@ -580,9 +579,8 @@ export interface Token {
 
 export enum ChainId {
   MAINNET = 1,
-  RINKEBY = 4,
   GÖRLI = 5,
-  KOVAN = 42,
+  SEPOLIA = 11155111,
 }
 
 export enum UniswapVersion {
@@ -615,24 +613,24 @@ const etherTradeExample = async () => {
   });
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
-  // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
+  // or erc20 > eth example below by using `ETH.GORLI().contractAddress`
   // which can be imported within `simple-uniswap-sdk`
   // aka > import { ETH } from 'simple-uniswap-sdk';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: ETH.MAINNET().contractAddress,
-  //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  //   fromTokenContractAddress: ETH.GORLI().contractAddress,
+  //   toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   //   ERC20 > ETH
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  //   toTokenContractAddress: ETH.MAINNET().contractAddress,,
+  //   fromTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
+  //   toTokenContractAddress: ETH.GORLI().contractAddress,,
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   // now to create the factory you just do
@@ -704,37 +702,37 @@ import Web3 from 'web3';
 const web3TradeExample = async () => {
   const uniswapPair = new UniswapPair({
     // the contract address of the token you want to convert FROM
-    fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+    fromTokenContractAddress: '0xe4E81Fa6B16327D4B78CFEB83AAdE04bA7075165',
     // the contract address of the token you want to convert TO
-    toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+    toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
     // the ethereum address of the user using this part of the dApp
     ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
     // you can pass in the provider url as well if you want
     // providerUrl: YOUR_PROVIDER_URL,
     // OR if you want to inject your own ethereum provider (no need for chainId if so)
     // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
-    chainId: ChainId.RINKEBY,
+    chainId: ChainId.GÖRLI,
   });
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
-  // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
+  // or erc20 > eth example below by using `ETH.GORLI().contractAddress`
   // which can be imported within `simple-uniswap-sdk`
   // aka > import { ETH } from 'simple-uniswap-sdk';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: ETH.MAINNET().contractAddress,
-  //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  //   fromTokenContractAddress: ETH.GORLI().contractAddress,
+  //   toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   //   ERC20 > ETH
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  //   toTokenContractAddress: ETH.MAINNET().contractAddress,,
+  //   fromTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
+  //   toTokenContractAddress: ETH.GORLI().contractAddress,,
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   // now to create the factory you just do
@@ -865,16 +863,16 @@ import {
 } from 'simple-uniswap-sdk';
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  fromTokenContractAddress: '0xe4E81Fa6B16327D4B78CFEB83AAdE04bA7075165',
   // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
   // OR if you want to inject your own ethereum provider (no need for chainId if so)
   // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
-  chainId: ChainId.RINKEBY,
+  chainId: ChainId.GÖRLI,
   settings: new UniswapPairSettings({
     gasSettings: {
       getGasPrice: async () => {
@@ -1174,8 +1172,8 @@ import { UniswapPair, ETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // use the ETH import from the lib, bare in mind you should use the
-  // network which yours on, so if your on rinkeby you should use
-  // ETH.RINKEBY
+  // network which yours on, so if your on görli you should use
+  // ETH.GÖRLI
   fromTokenContractAddress: ETH.MAINNET().contractAddress,
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -2657,8 +2655,8 @@ const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // use the ETH import from the lib, bare in mind you should use the
-  // network which yours on, so if your on rinkeby you should use
-  // ETH.RINKEBY
+  // network which yours on, so if your on görli you should use
+  // ETH.GÖRLI
   toTokenContractAddress: ETH.MAINNET().contractAddress,
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',

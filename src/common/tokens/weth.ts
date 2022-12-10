@@ -20,16 +20,6 @@ export class WETHContract {
     };
   }
 
-  public static RINKEBY(): Token {
-    return {
-      chainId: ChainId.RINKEBY,
-      contractAddress: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
-      decimals: 18,
-      symbol: WETH_SYMBOL,
-      name: WETH_NAME,
-    };
-  }
-
   public static GORLI(): Token {
     return {
       chainId: ChainId.GÖRLI,
@@ -40,10 +30,10 @@ export class WETHContract {
     };
   }
 
-  public static KOVAN(): Token {
+  public static SEPOLIA(): Token {
     return {
-      chainId: ChainId.KOVAN,
-      contractAddress: '0xd0A1E359811322d97991E03f863a0C30C2cF029C',
+      chainId: ChainId.SEPOLIA,
+      contractAddress: '0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa',
       decimals: 18,
       symbol: WETH_SYMBOL,
       name: WETH_NAME,
@@ -58,12 +48,10 @@ export class WETHContract {
     switch (chainId) {
       case ChainId.MAINNET:
         return this.MAINNET();
-      case ChainId.RINKEBY:
-        return this.RINKEBY();
       case ChainId.GÖRLI:
         return this.GORLI();
-      case ChainId.KOVAN:
-        return this.KOVAN();
+      case ChainId.SEPOLIA:
+        return this.SEPOLIA();
       default:
         throw new UniswapError(
           `${chainId} is not allowed`,
