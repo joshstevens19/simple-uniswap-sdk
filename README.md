@@ -4349,6 +4349,370 @@ console.log(tokens);
 ];
 ```
 
+This method will return you the tokens information like decimals, name etc.
+
+```ts
+async getTokens(tokenContractAddresses: string[]): Promise<Token[]>
+```
+
+```ts
+export interface Token {
+  chainId: ChainId;
+  contractAddress: string;
+  decimals: number;
+  symbol: string;
+  name: string;
+}
+```
+
+## Custom Networks
+
+Here are some common custom network configurations.
+
+### Polygon
+
+```ts
+export const polygonMainnetConfig = {
+  uniswapContractDetails: {
+    uniswapVersions: [UniswapVersion.v3],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
+        factoryAddress: '0x1f98431c8ad98523631ae4a59f267346ea31f984',
+        quoterAddress: '0xb27308f9f90d607463bb33ea1bebb41c27ce5ab6',
+      },
+    },
+  },
+  sushiContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        factoryAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+        pairAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Polygon Mainnet',
+    multicallContractAddress: '0x275617327c958bD06b5D6b871E7f491D76113dd8',
+    nativeCurrency: {
+      name: 'Polygon',
+      symbol: 'MATIC',
+      decimals: 18,
+      contractAddress: appendEthToContractAddress(
+        '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
+      ),
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 137,
+      contractAddress: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+      decimals: 18,
+      symbol: 'WMATIC',
+      name: 'Wrapped MATIC',
+    },
+  },
+}
+
+export const polygonTestnetConfig = {
+  uniswapContractDetails: {
+    uniswapVersions: [UniswapVersion.v3],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
+        factoryAddress: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
+        quoterAddress: '0xb27308f9f90d607463bb33ea1bebb41c27ce5ab6',
+      },
+    },
+  },
+  sushiContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        factoryAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+        pairAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Polygon Testnet Mumbai',
+    multicallContractAddress: '0xe9939e7Ea7D7fb619Ac57f648Da7B1D425832631',
+    nativeCurrency: {
+      name: 'Polygon',
+      symbol: 'MATIC',
+      decimals: 18,
+      contractAddress: appendEthToContractAddress(
+        '0x9c3c9283d3e44854697cd22d3faa240cfb032889'
+      ),
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 80001,
+      contractAddress: '0x9c3c9283d3e44854697cd22d3faa240cfb032889',
+      decimals: 18,
+      symbol: 'WMATIC',
+      name: 'Wrapped MATIC',
+    },
+  },
+}
+```
+
+### BSC
+
+```ts
+export const bscMainnetConfig = {
+  pancakeContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x10ED43C718714eb63d5aA57B78B54704E256024E',
+        factoryAddress: '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',
+        pairAddress: '0xca143ce32fe78f1f7019d7d551a6402fc5350c73',
+      },
+    },
+  },
+  sushiContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        factoryAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+        pairAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Binance Smart Chain Mainnet',
+    multicallContractAddress: '0xC50F4c1E81c873B2204D7eFf7069Ffec6Fbe136D',
+    nativeCurrency: {
+      name: 'Binance Coin',
+      symbol: 'BNB',
+      decimals: 18,
+      contractAddress: appendEthToContractAddress(
+        '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'
+      ),
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 56,
+      contractAddress: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+      decimals: 18,
+      symbol: 'WBNB',
+      name: 'Wrapped BNB',
+    },
+  },
+}
+
+export const bscTestnetConfig = {
+  pancakeContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
+        factoryAddress: '0x6725F303b657a9451d8BA641348b6761A6CC7a17',
+        pairAddress: '0x6725F303b657a9451d8BA641348b6761A6CC7a17',
+      },
+    },
+  },
+  sushiContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        factoryAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+        pairAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Binance Smart Chain Testnet',
+    multicallContractAddress: '0x8F3273Fb89B075b1645095ABaC6ed17B2d4Bc576',
+    nativeCurrency: {
+      name: 'Binance Coin',
+      symbol: 'tBNB',
+      decimals: 18,
+      contractAddress: appendEthToContractAddress(
+        '0xae13d989dac2f0debff460ac112a837c89baa7cd'
+      ),
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 97,
+      contractAddress: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+      decimals: 18,
+      symbol: 'WBNB',
+      name: 'Wrapped BNB',
+    },
+  },
+}
+```
+### Avalanche
+
+YetiSwap ABI: https://snowtrace.io/address/0x262DcFB36766C88E6A7a2953c16F8defc40c378A#code
+
+TraderJoe ABI: https://snowtrace.io/address/0x60aE616a2155Ee3d9A68541Ba4544862310933d4#code
+
+```ts
+export const avaxMainnetConfig = {
+  sushiContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        factoryAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+        pairAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+      },
+    },
+  },
+  yetiContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x262DcFB36766C88E6A7a2953c16F8defc40c378A',
+        factoryAddress: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',
+        pairAddress: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',
+        routerAbi: yetiSwapRouterABI,
+        routerMethods: {
+          swapETHForExactTokens: 'swapAVAXForExactTokens',
+          swapExactETHForTokens: 'swapExactAVAXForTokens',
+          swapExactETHForTokensSupportingFeeOnTransferTokens:
+            'swapExactAVAXForTokensSupportingFeeOnTransferTokens',
+          swapExactTokensForETH: 'swapExactTokensForAVAX',
+          swapExactTokensForETHSupportingFeeOnTransferTokens:
+            'swapExactTokensForAVAXSupportingFeeOnTransferTokens',
+          swapExactTokensForTokens: 'swapExactTokensForTokens',
+          swapExactTokensForTokensSupportingFeeOnTransferTokens:
+            'swapExactTokensForTokensSupportingFeeOnTransferTokens',
+          swapTokensForExactETH: 'swapTokensForExactAVAX',
+          swapTokensForExactTokens: 'swapTokensForExactTokens',
+        },
+      },
+    },
+  },
+  traderJoeContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x60aE616a2155Ee3d9A68541Ba4544862310933d4',
+        factoryAddress: '0x9ad6c38be94206ca50bb0d90783181662f0cfa10',
+        pairAddress: '0x9ad6c38be94206ca50bb0d90783181662f0cfa10',
+        routerAbi: traderJoeRouterABI,
+        routerMethods: {
+          swapETHForExactTokens: 'swapAVAXForExactTokens',
+          swapExactETHForTokens: 'swapExactAVAXForTokens',
+          swapExactETHForTokensSupportingFeeOnTransferTokens:
+            'swapExactAVAXForTokensSupportingFeeOnTransferTokens',
+          swapExactTokensForETH: 'swapExactTokensForAVAX',
+          swapExactTokensForETHSupportingFeeOnTransferTokens:
+            'swapExactTokensForAVAXSupportingFeeOnTransferTokens',
+          swapExactTokensForTokens: 'swapExactTokensForTokens',
+          swapExactTokensForTokensSupportingFeeOnTransferTokens:
+            'swapExactTokensForTokensSupportingFeeOnTransferTokens',
+          swapTokensForExactETH: 'swapTokensForExactAVAX',
+          swapTokensForExactTokens: 'swapTokensForExactTokens',
+        },
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Avalanche Network',
+    multicallContractAddress: '0xed386Fe855C1EFf2f843B910923Dd8846E45C5A4',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18,
+      contractAddress: appendEthToContractAddress(
+        '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
+      ),
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 43114,
+      contractAddress: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
+      decimals: 18,
+      symbol: 'WAVAX',
+      name: 'Wrapped AVAX',
+    },
+  },
+}
+
+export const avaxTestnetConfig = {
+  sushiContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        factoryAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+        pairAddress: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Avalanche Fuji Testnet',
+    multicallContractAddress: '0x3D015943d2780fE97FE3f69C97edA2CCC094f78c',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18,
+      contractAddress: appendEthToContractAddress(
+        '0xd00ae08403B9bbb9124bB305C09058E32C39A48c'
+      ),
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 43113,
+      contractAddress: '0xd00ae08403B9bbb9124bB305C09058E32C39A48c',
+      decimals: 18,
+      symbol: 'WAVAX',
+      name: 'Wrapped AVAAX',
+    },
+  },
+}
+```
+
+### Pulse
+
+```ts
+export const pulseTestnetConfig = {
+  uniswapContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
+        factoryAddress: '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95',
+        pairAddress: '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95',
+      },
+    },
+  },
+  pulsexContractDetails: {
+    uniswapVersions: [UniswapVersion.v2],
+    cloneUniswapContractDetails: {
+      v2Override: {
+        routerAddress: '0xb4A7633D8932de086c9264D5eb39a8399d7C0E3A',
+        factoryAddress: '0xb242aA8A863CfcE9fcBa2b9a6B00b4cd62343f27',
+        pairAddress: '0xb242aA8A863CfcE9fcBa2b9a6B00b4cd62343f27',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'PulseChain Testnet',
+    multicallContractAddress: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
+    nativeCurrency: {
+      name: 'Pulse',
+      symbol: 'tPLS',
+      decimals: 18,
+      contractAddress: appendEthToContractAddress(
+        '0x8a810ea8B121d08342E9e7696f4a9915cBE494B7'
+      ),
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 941,
+      contractAddress: '0x8a810ea8B121d08342E9e7696f4a9915cBE494B7',
+      decimals: 18,
+      symbol: 'WPLS',
+      name: 'Wrapped PLS',
+    },
+  },
+}
+
+```
+
 ## Tests
 
 The whole repo is covered in tests output below:
