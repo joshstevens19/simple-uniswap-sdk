@@ -4376,7 +4376,7 @@ export const polygonMainnetConfig = {
   uniswapContractDetails: {
     uniswapVersions: [UniswapVersion.v3],
     cloneUniswapContractDetails: {
-      v2Override: {
+      v3Override: {
         routerAddress: '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
         factoryAddress: '0x1f98431c8ad98523631ae4a59f267346ea31f984',
         quoterAddress: '0xb27308f9f90d607463bb33ea1bebb41c27ce5ab6',
@@ -4414,7 +4414,7 @@ export const polygonTestnetConfig = {
   uniswapContractDetails: {
     uniswapVersions: [UniswapVersion.v3],
     cloneUniswapContractDetails: {
-      v2Override: {
+      v3Override: {
         routerAddress: '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
         factoryAddress: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
         quoterAddress: '0xb27308f9f90d607463bb33ea1bebb41c27ce5ab6',
