@@ -4399,10 +4399,6 @@ export const polygonMainnetConfig = {
     nativeCurrency: {
       name: 'Polygon',
       symbol: 'MATIC',
-      decimals: 18,
-      contractAddress: appendEthToContractAddress(
-        '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
-      ),
     },
     nativeWrappedTokenInfo: {
       chainId: 137,
@@ -4441,10 +4437,6 @@ export const polygonTestnetConfig = {
     nativeCurrency: {
       name: 'Polygon',
       symbol: 'MATIC',
-      decimals: 18,
-      contractAddress: appendEthToContractAddress(
-        '0x9c3c9283d3e44854697cd22d3faa240cfb032889'
-      ),
     },
     nativeWrappedTokenInfo: {
       chainId: 80001,
@@ -4487,10 +4479,6 @@ export const bscMainnetConfig = {
     nativeCurrency: {
       name: 'Binance Coin',
       symbol: 'BNB',
-      decimals: 18,
-      contractAddress: appendEthToContractAddress(
-        '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'
-      ),
     },
     nativeWrappedTokenInfo: {
       chainId: 56,
@@ -4529,10 +4517,6 @@ export const bscTestnetConfig = {
     nativeCurrency: {
       name: 'Binance Coin',
       symbol: 'tBNB',
-      decimals: 18,
-      contractAddress: appendEthToContractAddress(
-        '0xae13d989dac2f0debff460ac112a837c89baa7cd'
-      ),
     },
     nativeWrappedTokenInfo: {
       chainId: 97,
@@ -4618,10 +4602,6 @@ export const avaxMainnetConfig = {
     nativeCurrency: {
       name: 'Avalanche',
       symbol: 'AVAX',
-      decimals: 18,
-      contractAddress: appendEthToContractAddress(
-        '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
-      ),
     },
     nativeWrappedTokenInfo: {
       chainId: 43114,
@@ -4650,10 +4630,6 @@ export const avaxTestnetConfig = {
     nativeCurrency: {
       name: 'Avalanche',
       symbol: 'AVAX',
-      decimals: 18,
-      contractAddress: appendEthToContractAddress(
-        '0xd00ae08403B9bbb9124bB305C09058E32C39A48c'
-      ),
     },
     nativeWrappedTokenInfo: {
       chainId: 43113,
@@ -4696,10 +4672,6 @@ export const pulseTestnetConfig = {
     nativeCurrency: {
       name: 'Pulse',
       symbol: 'tPLS',
-      decimals: 18,
-      contractAddress: appendEthToContractAddress(
-        '0x8a810ea8B121d08342E9e7696f4a9915cBE494B7'
-      ),
     },
     nativeWrappedTokenInfo: {
       chainId: 941,
