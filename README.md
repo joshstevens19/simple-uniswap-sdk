@@ -4364,6 +4364,54 @@ export interface Token {
   name: string;
 }
 ```
+## Mapping Custom Router Methods
+
+A Dex may use different method names for their contracts. You can map the Uniswap method names to the correct names in the override options
+
+This UniswapPairSettings is using YetiSwap on Avalanche C
+
+```ts
+settings: {
+  uniswapVersions: [UniswapVersion.v2],
+  cloneUniswapContractDetails: {
+    v2Override: {
+      routerAddress: '0x262DcFB36766C88E6A7a2953c16F8defc40c378A',
+      factoryAddress: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',
+      pairAddress: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',
+      routerAbi: yetiSwapRouterABI,
+      routerMethods: {
+        swapETHForExactTokens: 'swapAVAXForExactTokens',
+        swapExactETHForTokens: 'swapExactAVAXForTokens',
+        swapExactETHForTokensSupportingFeeOnTransferTokens:
+          'swapExactAVAXForTokensSupportingFeeOnTransferTokens',
+        swapExactTokensForETH: 'swapExactTokensForAVAX',
+        swapExactTokensForETHSupportingFeeOnTransferTokens:
+          'swapExactTokensForAVAXSupportingFeeOnTransferTokens',
+        swapExactTokensForTokens: 'swapExactTokensForTokens',
+        swapExactTokensForTokensSupportingFeeOnTransferTokens:
+          'swapExactTokensForTokensSupportingFeeOnTransferTokens',
+        swapTokensForExactETH: 'swapTokensForExactAVAX',
+        swapTokensForExactTokens: 'swapTokensForExactTokens',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Avalanche Network',
+    multicallContractAddress: '0xcA11bde05977b3631167028862bE2a173976CA11',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 43114,
+      contractAddress: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
+      decimals: 18,
+      symbol: 'WAVAX',
+      name: 'Wrapped AVAX',
+    },
+  },
+}
+```
 
 ## Custom Networks
 
