@@ -4368,7 +4368,7 @@ export interface Token {
 
 A Dex may use different method names for their contracts. You can map the Uniswap method names to the correct names in the override options
 
-This UniswapPairSettings is using YetiSwap on Avalanche C
+This UniswapPairSettings is using YetiSwap on Avalanche C-Chain
 
 ```ts
 settings: {
@@ -4413,9 +4413,7 @@ settings: {
 }
 ```
 
-## Custom Networks
-
-Here are some common custom network configurations.
+## Custom Network Configurations
 
 ### Multicall v3 Address
 | Chain | Address                                     | Source
@@ -4435,43 +4433,42 @@ Here are some common custom network configurations.
 ### Uniswap (v2)
 | Chain             | Router                                      | Factory
 | -                 | -                                           | - 
-| Ethereum          | 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D  | 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f
 | Pulse             | 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D  | 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f
 
 ### Sushi Swap (v2)
 | Chain             | Router                                      | Factory / Pair                                 
 | -                 | -                                           | -
 | Arbitrum One      | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
-| Avalanche C       | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| Avalanche C-Chain | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
 | Avalanche Fuji    | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| BSC               | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| BSC Testnet       | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
 | Celo              | 0x1421bDe4B10e8dd459b3BCb598810B1337D56842  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
 | Ethereum          | 0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F  | 0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac
 | Ethereum Görli    | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
 | Polygon           | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
 | Polygon Mumbai    | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
-| BSC               | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
-| BSC Testnet       | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
 
 ### Pancake Swap (v2)
 | Chain             | Router                                      | Factory / Pair                                 
 | -                 | -                                           | -
-| Ethereum          | 0xEfF92A263d31888d860bD50809A8D171709b7b1c  | 0x1097053Fd2ea711dad45caCcc45EfF7548fCB362
-| Ethereum Görli    | 0xEfF92A263d31888d860bD50809A8D171709b7b1c  | 0x1097053Fd2ea711dad45caCcc45EfF7548fCB362
 | BSC               | 0x10ED43C718714eb63d5aA57B78B54704E256024E  | 0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73
 | BSC Testnet       | 0xD99D1c33F9fC3444f8101754aBC46c52416550D1  | 0x6725F303b657a9451d8BA641348b6761A6CC7a17
+| Ethereum          | 0xEfF92A263d31888d860bD50809A8D171709b7b1c  | 0x1097053Fd2ea711dad45caCcc45EfF7548fCB362
+| Ethereum Görli    | 0xEfF92A263d31888d860bD50809A8D171709b7b1c  | 0x1097053Fd2ea711dad45caCcc45EfF7548fCB362
 
 ### YETI Swap (v2)
 YetiSwap ABI: https://snowtrace.io/address/0x262DcFB36766C88E6A7a2953c16F8defc40c378A#code
 | Chain             | Router                                      | Factory / Pair
 | -                 | -                                           | -
-| Avalanche C       | 0x262DcFB36766C88E6A7a2953c16F8defc40c378A  | 0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a
+| Avalanche C-Chain | 0x262DcFB36766C88E6A7a2953c16F8defc40c378A  | 0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a
 | Avalanche Fuji    | 0x208bF39BA61bd83D0362D01151ADbd3286b746c2  |  
 
-### TRADEJOE (v2)
+### TRADERJOE (v2)
 TraderJoe ABI: https://snowtrace.io/address/0x60aE616a2155Ee3d9A68541Ba4544862310933d4#code
 | Chain             | Router                                      | Factory / Pair
 | -                 | -                                           | -
-| Avalanche C       | 0x60aE616a2155Ee3d9A68541Ba4544862310933d4  | 0x9ad6c38be94206ca50bb0d90783181662f0cfa10
+| Avalanche C-Chain | 0x60aE616a2155Ee3d9A68541Ba4544862310933d4  | 0x9ad6c38be94206ca50bb0d90783181662f0cfa10
 
 ### PulseX (v2)
 | Chain             | Router                                      | Factory / Pair
