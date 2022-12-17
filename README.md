@@ -4419,6 +4419,7 @@ settings: {
 | Chain | Address                                     | Source
 | -     | -                                           | -
 | ALL   | 0xcA11bde05977b3631167028862bE2a173976CA11  | https://github.com/mds1/multicall#multicall3-contract-addresses
+| Pulse   | 0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696  | 
 
 ### Uniswap (v3)
 | Chain             | Router                                      | Factory                                     | Quoter
