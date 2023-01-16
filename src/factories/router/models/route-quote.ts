@@ -4,6 +4,8 @@ import { Transaction } from '../../pair/models/transaction';
 import { Token } from '../../token/models/token';
 
 export interface RouteQuote {
+  description?: string;
+  routerAddress: string;
   expectedConvertQuote: string;
   expectedConvertQuoteOrTokenAmountInMaxWithSlippage: string;
   transaction: Transaction;

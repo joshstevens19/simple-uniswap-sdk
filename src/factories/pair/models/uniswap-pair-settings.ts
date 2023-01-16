@@ -11,7 +11,7 @@ export class UniswapPairSettings {
   disableMultihops: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
   gasSettings?: GasSettings = undefined;
-  cloneUniswapContractDetails?: CloneUniswapContractDetails = undefined;
+  cloneUniswapContractDetails?: CloneUniswapContractDetails[] = undefined;
   customNetwork?: CustomNetwork = undefined;
 
   constructor(settings?: {
@@ -20,7 +20,7 @@ export class UniswapPairSettings {
     disableMultihops?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
     gasSettings?: GasSettings | undefined;
-    cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
+    cloneUniswapContractDetails?: CloneUniswapContractDetails[] | undefined;
     customNetwork?: CustomNetwork | undefined;
   }) {
     this.slippage = settings?.slippage || 0.005;

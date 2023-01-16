@@ -17,7 +17,7 @@ export class UniswapRouterContractFactoryV2 {
 
   constructor(
     private _ethersProvider: EthersProvider,
-    private _routerAddress: string = UniswapContractContextV2.routerAddress,
+    public _routerAddress: string = UniswapContractContextV2.routerAddress,
     private _routerAbi: JsonFragment[] = UniswapContractContextV2.routerAbi,
     private _routerMethods: Partial<IRouterMethods> = DEFAULT_ROUTER_METHOD
   ) {}
@@ -294,6 +294,7 @@ export class UniswapRouterContractFactoryV2 {
     to: string,
     deadline: BigNumberish
   ): string {
+
     return this._uniswapRouterContract.interface.encodeFunctionData(
       this._uniswapRouterNames[
         'swapExactTokensForETHSupportingFeeOnTransferTokens'
