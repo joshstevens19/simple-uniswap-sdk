@@ -69,27 +69,14 @@ export class UniswapRouterFactory {
     this._settings?.customNetwork?.multicallContractAddress
   );
 
-  private _uniswapRouterContractFactoryV2 = new UniswapRouterContractFactoryV2(
-    this._ethersProvider,
-    uniswapContracts.v2.getRouterAddress(
-      this._settings.cloneUniswapContractDetails
-    ),
-    uniswapContracts.v2.getRouterAbi(this._settings.cloneUniswapContractDetails),
-    uniswapContracts.v2.getRouterMethods(this._settings.cloneUniswapContractDetails)
-  );
+  private _uniswapRouterContractFactoryV2: UniswapRouterContractFactoryV2[] = [];
 
-  private _uniswapRouterContractFactoryV3 = new UniswapRouterContractFactoryV3(
-    this._ethersProvider,
-    uniswapContracts.v3.getRouterAddress(
-      this._settings.cloneUniswapContractDetails
-    ),
-    uniswapContracts.v3.getRouterAbi(this._settings.cloneUniswapContractDetails)
-  );
+  private _uniswapRouterContractFactoryV3: UniswapRouterContractFactoryV3[] = [];
+
 
   private _tokensFactory = new TokensFactory(
     this._ethersProvider,
-    this._settings.customNetwork,
-    this._settings.cloneUniswapContractDetails
+    this._settings.customNetwork
   );
 
   private readonly LIQUIDITY_PROVIDER_FEE_V2 = 0.003;
@@ -101,7 +88,39 @@ export class UniswapRouterFactory {
     private _toToken: Token,
     private _settings: UniswapPairSettings,
     private _ethersProvider: EthersProvider
-  ) {}
+  ) {
+
+
+    _settings.cloneUniswapContractDetails?.forEach(
+      (d) => {
+        if (d.v2Override) {
+          this._uniswapRouterContractFactoryV2.push(
+            new UniswapRouterContractFactoryV2(
+              this._ethersProvider,
+              uniswapContracts.v2.getRouterAddress(
+                d
+              ),
+              uniswapContracts.v2.getRouterAbi(d),
+              uniswapContracts.v2.getRouterMethods(d)
+            )
+          );
+        }
+
+        if (d.v3Override) {
+          this._uniswapRouterContractFactoryV3.push(
+            new UniswapRouterContractFactoryV3(
+              this._ethersProvider,
+              uniswapContracts.v3.getRouterAddress(
+                d
+              ),
+              uniswapContracts.v3.getRouterAbi(d)
+            )
+          );
+        }
+      }
+    );
+
+  }
 
   /**
    * Get all possible routes will only go up to 4 due to gas increase the more routes
@@ -132,14 +151,36 @@ export class UniswapRouterFactory {
     const contractCallContext: ContractCallContext[] = [];
 
     if (this._settings.uniswapVersions.includes(UniswapVersion.v2)) {
-      contractCallContext.push({
-        reference: UniswapVersion.v2,
-        contractAddress: uniswapContracts.v2.getPairAddress(
-          this._settings.cloneUniswapContractDetails
-        ),
-        abi: UniswapContractContextV2.pairAbi,
-        calls: [],
-      });
+      if (this._settings.cloneUniswapContractDetails?.length) {
+        this._settings.cloneUniswapContractDetails.forEach(
+          (d) => {
+            contractCallContext.push({
+              description: uniswapContracts.v2.getDescription(
+                d
+              ),
+              reference: UniswapVersion.v2,
+              contractAddress: uniswapContracts.v2.getPairAddress(
+                // this._settings.cloneUniswapContractDetails
+                d
+              ),
+              abi: UniswapContractContextV2.pairAbi,
+              calls: [],
+            });
+          }
+        );
+      } else {
+        contractCallContext.push({
+          description: uniswapContracts.v2.getDescription(
+            undefined
+          ),
+          reference: UniswapVersion.v2,
+          contractAddress: uniswapContracts.v2.getPairAddress(
+            undefined
+          ),
+          abi: UniswapContractContextV2.pairAbi,
+          calls: [],
+        });
+      }
 
       for (let pairs = 0; pairs < findPairs.length; pairs++) {
         for (
@@ -166,7 +207,7 @@ export class UniswapRouterFactory {
 
     // for now v3 quotes will just be direct aka UNI > AAVE etc!
     if (this._settings.uniswapVersions.includes(UniswapVersion.v3)) {
-      let v3Calls = [];
+      let v3Calls: { reference: string; methodName: string; methodParameters: (string | FeeAmount)[]; }[] = [];
       for (let pairs = 0; pairs < findPairs.length; pairs++) {
         for (
           let tokenPairs = 0;
@@ -196,14 +237,38 @@ export class UniswapRouterFactory {
         }
       }
 
-      contractCallContext.push({
-        reference: UniswapVersion.v3,
-        contractAddress: uniswapContracts.v3.getFactoryAddress(
-          this._settings.cloneUniswapContractDetails
-        ),
-        abi: UniswapContractContextV3.factoryAbi,
-        calls: v3Calls,
-      });
+
+
+      if (this._settings.cloneUniswapContractDetails?.length) {
+        this._settings.cloneUniswapContractDetails.forEach(
+          (d) => {
+            contractCallContext.push({
+              description: uniswapContracts.v3.getDescription(
+                d
+              ),
+              reference: UniswapVersion.v3,
+              contractAddress: uniswapContracts.v3.getFactoryAddress(
+                // this._settings.cloneUniswapContractDetails
+                d
+              ),
+              abi: UniswapContractContextV3.factoryAbi,
+              calls: v3Calls
+            });
+          }
+        );
+      } else {
+        contractCallContext.push({
+          description: uniswapContracts.v3.getDescription(
+            undefined
+          ),
+          reference: UniswapVersion.v3,
+          contractAddress: uniswapContracts.v3.getFactoryAddress(
+            undefined
+          ),
+          abi: UniswapContractContextV3.factoryAbi,
+          calls: v3Calls
+        });
+      }
     }
 
     const allPossibleRoutes: AllPossibleRoutes = { v2: [], v3: [] };
@@ -365,88 +430,155 @@ export class UniswapRouterFactory {
 
     const contractCallContext: ContractCallContext<RouteContext[]>[] = [];
     if (this._settings.uniswapVersions.includes(UniswapVersion.v2)) {
-      contractCallContext.push({
-        reference: UniswapVersion.v2,
-        contractAddress: uniswapContracts.v2.getRouterAddress(
-          this._settings.cloneUniswapContractDetails
-        ),
-        abi: uniswapContracts.v2.getRouterAbi(
-          this._settings.cloneUniswapContractDetails
-        ),
-        calls: [],
-        context: routes.v2,
-      });
+      if (this._settings.cloneUniswapContractDetails?.length) {
+        this._settings.cloneUniswapContractDetails.forEach(
+          (d) => {
+
+            const routerAddress = uniswapContracts.v2.getRouterAddress(
+              // this._settings.cloneUniswapContractDetails
+              d
+            );
+
+            contractCallContext.push({
+              description: uniswapContracts.v2.getDescription(
+                d
+              ),
+              reference: routerAddress + '_' +  UniswapVersion.v2,
+              contractAddress: routerAddress,
+              abi: uniswapContracts.v2.getRouterAbi(
+                // this._settings.cloneUniswapContractDetails
+                d
+              ),
+              calls: [],
+              context: routes.v2,
+            });
+          }
+        );
+      } else {
+
+        const routerAddress = uniswapContracts.v2.getRouterAddress(
+          undefined
+        );
+
+        contractCallContext.push({
+          description: uniswapContracts.v2.getDescription(
+            undefined
+          ),
+          reference: routerAddress + '_' +  UniswapVersion.v2,
+          contractAddress: routerAddress,
+          abi: uniswapContracts.v2.getRouterAbi(
+            undefined
+          ),
+          calls: [],
+          context: routes.v2,
+        });
+      }
+
 
       for (let i = 0; i < routes.v2.length; i++) {
         const routeCombo = routes.v2[i].route.map((c) => {
           return removeEthFromContractAddress(c.contractAddress);
         });
 
-        contractCallContext[0].calls.push({
-          reference: `route${i}`,
-          methodName:
-            direction === TradeDirection.input
-              ? 'getAmountsOut'
-              : 'getAmountsIn',
-          methodParameters: [tradeAmount, routeCombo],
-        });
+        contractCallContext.forEach(
+          (c) => {
+            c.calls.push({
+              reference: `route${i}`,
+              methodName:
+                direction === TradeDirection.input
+                  ? 'getAmountsOut'
+                  : 'getAmountsIn',
+              methodParameters: [tradeAmount, routeCombo],
+            });
+          }
+        );
       }
     }
 
     if (this._settings.uniswapVersions.includes(UniswapVersion.v3)) {
-      contractCallContext.push({
-        reference: UniswapVersion.v3,
-        contractAddress: uniswapContracts.v3.getQuoterAddress(
-          this._settings.cloneUniswapContractDetails
-        ),
-        abi: UniswapContractContextV3.quoterAbi,
-        calls: [],
-        context: routes.v3,
-      });
+      if (this._settings.cloneUniswapContractDetails?.length) {
+        this._settings.cloneUniswapContractDetails.forEach(
+          (d) => {
+            const quoterAddress = uniswapContracts.v3.getQuoterAddress(
+              // this._settings.cloneUniswapContractDetails
+              d
+            );
+
+            contractCallContext.push({
+              description: uniswapContracts.v3.getDescription(
+                d
+              ),
+              reference: quoterAddress + '_' + UniswapVersion.v3,
+              contractAddress: quoterAddress,
+              abi: UniswapContractContextV3.quoterAbi,
+              calls: [],
+              context: routes.v3,
+            });
+        });
+      } else {
+        const quoterAddress = uniswapContracts.v3.getQuoterAddress(
+          undefined
+        );
+
+        contractCallContext.push({
+          description: uniswapContracts.v3.getDescription(
+            undefined
+          ),
+          reference: quoterAddress + '_' + UniswapVersion.v3,
+          contractAddress: quoterAddress,
+          abi: UniswapContractContextV3.quoterAbi,
+          calls: [],
+          context: routes.v3,
+        });
+      }
 
       for (let i = 0; i < routes.v3.length; i++) {
         const routeCombo = routes.v3[i].route.map((c) => {
           return removeEthFromContractAddress(c.contractAddress);
         });
 
-        if (routeCombo.length == 2) {
-          contractCallContext[
-            this._settings.uniswapVersions.includes(UniswapVersion.v2) ? 1 : 0
-          ].calls.push({
-            reference: `route${i}`,
-            methodName:
-              direction === TradeDirection.input
-                ? 'quoteExactInputSingle'
-                : 'quoteExactOutputSingle',
-            methodParameters: [
-              routeCombo[0],
-              routeCombo[1],
-              percentToFeeAmount(routes.v3[i].liquidityProviderFeesV3[0]),
-              tradeAmount,
-              0,
-            ],
-          });
-        } else if (routeCombo.length > 2) {
-          contractCallContext[
-            this._settings.uniswapVersions.includes(UniswapVersion.v2) ? 1 : 0
-          ].calls.push({
-            reference: `route${i}`,
-            methodName:
-              direction === TradeDirection.input
-                ? 'quoteExactInput'
-                : 'quoteExactOutput',
-            methodParameters: [
-              this.getEncodedPoolsPath(
-                routeCombo,
-                routes.v3[i].liquidityProviderFeesV3,
-                direction
-              ),
-              tradeAmount,
-            ],
-          });
-        } else {
-          continue;
-        }
+        contractCallContext.forEach(
+          (c) => {
+            if (c.reference === UniswapVersion.v3) {
+
+              if (routeCombo.length == 2) {
+                c.calls.push({
+                  reference: `route${i}`,
+                  methodName:
+                    direction === TradeDirection.input
+                      ? 'quoteExactInputSingle'
+                      : 'quoteExactOutputSingle',
+                  methodParameters: [
+                    routeCombo[0],
+                    routeCombo[1],
+                    percentToFeeAmount(routes.v3[i].liquidityProviderFeesV3[0]),
+                    tradeAmount,
+                    0,
+                  ],
+                });
+              } else if (routeCombo.length > 2) {
+                c.calls.push({
+                  reference: `route${i}`,
+                  methodName:
+                    direction === TradeDirection.input
+                      ? 'quoteExactInput'
+                      : 'quoteExactOutput',
+                  methodParameters: [
+                    this.getEncodedPoolsPath(
+                      routeCombo,
+                      routes.v3[i].liquidityProviderFeesV3,
+                      direction
+                    ),
+                    tradeAmount,
+                  ],
+                });
+              // } else {
+              //   continue;
+              }
+
+            }
+          }
+        );
       }
     }
 
@@ -504,6 +636,8 @@ export class UniswapRouterFactory {
       bestRouteQuote: allRoutes[0],
       triedRoutesQuote: allRoutes.map((route) => {
         return {
+          description: route.description,
+          routerAddress: route.routerAddress,
           expectedConvertQuote: route.expectedConvertQuote,
           expectedConvertQuoteOrTokenAmountInMaxWithSlippage:
             route.expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
@@ -560,8 +694,9 @@ export class UniswapRouterFactory {
     ethAmountIn: BigNumber,
     tokenAmount: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const convertedMinTokens = tokenAmount
       .shiftedBy(this._toToken.decimals)
@@ -569,7 +704,7 @@ export class UniswapRouterFactory {
 
     switch (routeQuoteTradeContext.uniswapVersion) {
       case UniswapVersion.v2:
-        return this._uniswapRouterContractFactoryV2.swapExactETHForTokens(
+        return this._uniswapRouterContractFactoryV2.find((c) => c._routerAddress === routerAddress)?.swapExactETHForTokens(
           hexlify(convertedMinTokens),
           routeQuoteTradeContext.routePathArray.map((r) =>
             removeEthFromContractAddress(r)
@@ -582,7 +717,8 @@ export class UniswapRouterFactory {
           parseEther(ethAmountIn),
           convertedMinTokens,
           routeQuoteTradeContext,
-          deadline
+          deadline,
+          routerAddress
         );
       default:
         throw new UniswapError(
@@ -603,15 +739,16 @@ export class UniswapRouterFactory {
     ethAmountInMax: BigNumber,
     tokenAmountOut: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
     const amountOut = tokenAmountOut
       .shiftedBy(this._toToken.decimals)
       .decimalPlaces(0);
 
     switch (routeQuoteTradeContext.uniswapVersion) {
       case UniswapVersion.v2:
-        return this._uniswapRouterContractFactoryV2.swapETHForExactTokens(
+        return this._uniswapRouterContractFactoryV2.find((c) => c._routerAddress === routerAddress)?.swapETHForExactTokens(
           hexlify(amountOut),
           routeQuoteTradeContext.routePathArray.map((r) =>
             removeEthFromContractAddress(r)
@@ -624,7 +761,8 @@ export class UniswapRouterFactory {
           amountOut,
           parseEther(ethAmountInMax),
           routeQuoteTradeContext,
-          deadline
+          deadline,
+          routerAddress
         );
       default:
         throw new UniswapError(
@@ -645,8 +783,9 @@ export class UniswapRouterFactory {
     tokenAmount: BigNumber,
     ethAmountOutMin: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
       .shiftedBy(this._fromToken.decimals)
@@ -654,7 +793,7 @@ export class UniswapRouterFactory {
 
     switch (routeQuoteTradeContext.uniswapVersion) {
       case UniswapVersion.v2:
-        return this._uniswapRouterContractFactoryV2.swapExactTokensForETH(
+        return this._uniswapRouterContractFactoryV2.find((c) => c._routerAddress === routerAddress)?.swapExactTokensForETHSupportingFeeOnTransferTokens(
           hexlify(amountIn),
           hexlify(parseEther(ethAmountOutMin)),
           routeQuoteTradeContext.routePathArray.map((r) =>
@@ -668,7 +807,8 @@ export class UniswapRouterFactory {
           amountIn,
           parseEther(ethAmountOutMin),
           routeQuoteTradeContext,
-          deadline
+          deadline,
+          routerAddress
         );
       default:
         throw new UniswapError(
@@ -689,8 +829,9 @@ export class UniswapRouterFactory {
     tokenAmountInMax: BigNumber,
     ethAmountOut: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountInMax = tokenAmountInMax
       .shiftedBy(this._fromToken.decimals)
@@ -698,7 +839,7 @@ export class UniswapRouterFactory {
 
     switch (routeQuoteTradeContext.uniswapVersion) {
       case UniswapVersion.v2:
-        return this._uniswapRouterContractFactoryV2.swapTokensForExactETH(
+        return this._uniswapRouterContractFactoryV2.find((c) => c._routerAddress === routerAddress)?.swapExactTokensForTokensSupportingFeeOnTransferTokens(
           hexlify(parseEther(ethAmountOut)),
           hexlify(amountInMax),
           routeQuoteTradeContext.routePathArray.map((r) =>
@@ -712,7 +853,8 @@ export class UniswapRouterFactory {
           parseEther(ethAmountOut),
           amountInMax,
           routeQuoteTradeContext,
-          deadline
+          deadline,
+          routerAddress
         );
       default:
         throw new UniswapError(
@@ -733,8 +875,9 @@ export class UniswapRouterFactory {
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountIn = tokenAmount
       .shiftedBy(this._fromToken.decimals)
@@ -745,7 +888,9 @@ export class UniswapRouterFactory {
 
     switch (routeQuoteTradeContext.uniswapVersion) {
       case UniswapVersion.v2:
-        return this._uniswapRouterContractFactoryV2.swapExactTokensForTokens(
+
+
+        return this._uniswapRouterContractFactoryV2.find((c) => c._routerAddress === routerAddress)?.swapExactTokensForTokensSupportingFeeOnTransferTokens(
           hexlify(amountIn),
           hexlify(amountMin),
           routeQuoteTradeContext.routePathArray,
@@ -757,7 +902,8 @@ export class UniswapRouterFactory {
           amountIn,
           amountMin,
           routeQuoteTradeContext,
-          deadline
+          deadline,
+          routerAddress
         );
       default:
         throw new UniswapError(
@@ -778,8 +924,9 @@ export class UniswapRouterFactory {
     tokenAmountInMax: BigNumber,
     tokenAmountOut: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
     // uniswap adds extra digits on even if the token is say 8 digits long
     const amountInMax = tokenAmountInMax
       .shiftedBy(this._fromToken.decimals)
@@ -791,7 +938,7 @@ export class UniswapRouterFactory {
 
     switch (routeQuoteTradeContext.uniswapVersion) {
       case UniswapVersion.v2:
-        return this._uniswapRouterContractFactoryV2.swapTokensForExactTokens(
+        return this._uniswapRouterContractFactoryV2.find((c) => c._routerAddress === routerAddress)?.swapExactTokensForTokensSupportingFeeOnTransferTokens(
           hexlify(amountOut),
           hexlify(amountInMax),
           routeQuoteTradeContext.routePathArray,
@@ -803,7 +950,8 @@ export class UniswapRouterFactory {
           amountOut,
           amountInMax,
           routeQuoteTradeContext,
-          deadline
+          deadline,
+          routerAddress
         );
       default:
         throw new UniswapError(
@@ -824,12 +972,19 @@ export class UniswapRouterFactory {
     tokenAmount: BigNumber,
     tokenAmountMin: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
     const isNativeReceivingNativeEth = isNativeEth(
       this._toToken.contractAddress
     );
     const isSingle = routeQuoteTradeContext.routePathArray.length == 2;
+
+    const _uniswapRouterContractFactoryV3 = this._uniswapRouterContractFactoryV3.find((c) => c._routerAddress === routerAddress);
+
+    if (!_uniswapRouterContractFactoryV3) {
+      return;
+    }
 
     const multicallData: string[] = [];
     if (isSingle) {
@@ -848,7 +1003,7 @@ export class UniswapRouterFactory {
       };
 
       multicallData.push(
-        this._uniswapRouterContractFactoryV3.exactInputSingle(params)
+        _uniswapRouterContractFactoryV3.exactInputSingle(params)
       );
     } else {
       const params: ExactInputRequest = {
@@ -869,20 +1024,20 @@ export class UniswapRouterFactory {
       };
 
       multicallData.push(
-        this._uniswapRouterContractFactoryV3.exactInput(params)
+        _uniswapRouterContractFactoryV3.exactInput(params)
       );
     }
 
     if (isNativeEth(this._toToken.contractAddress)) {
       multicallData.push(
-        this._uniswapRouterContractFactoryV3.unwrapWETH9(
+        _uniswapRouterContractFactoryV3.unwrapWETH9(
           hexlify(tokenAmountMin),
           this._ethereumAddress
         )
       );
     }
 
-    return this._uniswapRouterContractFactoryV3.multicall(multicallData);
+    return _uniswapRouterContractFactoryV3.multicall(multicallData);
   }
 
   /**
@@ -896,8 +1051,15 @@ export class UniswapRouterFactory {
     amountOut: BigNumber,
     amountInMaximum: BigNumber,
     routeQuoteTradeContext: RouteQuoteTradeContext,
-    deadline: string
-  ): string {
+    deadline: string,
+    routerAddress: string
+  ): string | undefined {
+    const _uniswapRouterContractFactoryV3 = this._uniswapRouterContractFactoryV3.find((c) => c._routerAddress === routerAddress);
+
+    if (!_uniswapRouterContractFactoryV3) {
+      return;
+    }
+
     const isNativeReceivingNativeEth = isNativeEth(
       this._toToken.contractAddress
     );
@@ -920,7 +1082,7 @@ export class UniswapRouterFactory {
       };
 
       multicallData.push(
-        this._uniswapRouterContractFactoryV3.exactOutputSingle(params)
+        _uniswapRouterContractFactoryV3.exactOutputSingle(params)
       );
     } else {
       const params: ExactOutputRequest = {
@@ -939,20 +1101,20 @@ export class UniswapRouterFactory {
       };
 
       multicallData.push(
-        this._uniswapRouterContractFactoryV3.exactOutput(params)
+        _uniswapRouterContractFactoryV3.exactOutput(params)
       );
     }
 
     if (isNativeEth(this._toToken.contractAddress)) {
       multicallData.push(
-        this._uniswapRouterContractFactoryV3.unwrapWETH9(
+        _uniswapRouterContractFactoryV3.unwrapWETH9(
           hexlify(amountOut),
           this._ethereumAddress
         )
       );
     }
 
-    return this._uniswapRouterContractFactoryV3.multicall(multicallData);
+    return _uniswapRouterContractFactoryV3.multicall(multicallData);
   }
 
   /**
@@ -960,20 +1122,13 @@ export class UniswapRouterFactory {
    * @param data The data
    */
   private buildUpTransactionErc20(
-    uniswapVersion: UniswapVersion,
-    data: string
+    routerAddress: string,
+    data: string | undefined
   ): Transaction {
     return {
-      to:
-        uniswapVersion === UniswapVersion.v2
-          ? uniswapContracts.v2.getRouterAddress(
-              this._settings.cloneUniswapContractDetails
-            )
-          : uniswapContracts.v3.getRouterAddress(
-              this._settings.cloneUniswapContractDetails
-            ),
+      to: routerAddress,
       from: this._ethereumAddress,
-      data,
+      data: data || '',
       value: Constants.EMPTY_HEX_STRING,
     };
   }
@@ -984,21 +1139,14 @@ export class UniswapRouterFactory {
    * @param data The data
    */
   private buildUpTransactionEth(
-    uniswapVersion: UniswapVersion,
+    routerAddress: string,
     ethValue: BigNumber,
-    data: string
+    data: string | undefined
   ): Transaction {
     return {
-      to:
-        uniswapVersion === UniswapVersion.v2
-          ? uniswapContracts.v2.getRouterAddress(
-              this._settings.cloneUniswapContractDetails
-            )
-          : uniswapContracts.v3.getRouterAddress(
-              this._settings.cloneUniswapContractDetails
-            ),
+      to: routerAddress,
       from: this._ethereumAddress,
-      data,
+      data: data || '',
       value: toEthersBigNumber(parseEther(ethValue)).toHexString(),
     };
   }
@@ -1006,7 +1154,9 @@ export class UniswapRouterFactory {
   /**
    * Get the allowance and balance for the from and to token (will get balance for eth as well)
    */
-  private async getAllowanceAndBalanceForTokens(): Promise<{
+  private async getAllowanceAndBalanceForTokens(
+    routerAddress?: string
+  ): Promise<{
     fromToken: AllowanceAndBalanceOf;
     toToken: AllowanceAndBalanceOf;
   }> {
@@ -1014,7 +1164,8 @@ export class UniswapRouterFactory {
       await this._tokensFactory.getAllowanceAndBalanceOfForContracts(
         this._ethereumAddress,
         [this._fromToken.contractAddress, this._toToken.contractAddress],
-        false
+        false,
+        routerAddress
       );
 
     return {
@@ -1054,7 +1205,7 @@ export class UniswapRouterFactory {
   private async hasEnoughAllowanceAndBalance(
     amountToTrade: BigNumber,
     bestRouteQuote: RouteQuote,
-    direction: TradeDirection
+    direction: TradeDirection,
   ): Promise<{
     enoughBalance: boolean;
     fromBalance: string;
@@ -1063,7 +1214,7 @@ export class UniswapRouterFactory {
     enoughV3Allowance: boolean;
   }> {
     const allowanceAndBalancesForTokens =
-      await this.getAllowanceAndBalanceForTokens();
+      await this.getAllowanceAndBalanceForTokens(bestRouteQuote.routerAddress);
 
     let enoughBalance = false;
     let fromBalance = allowanceAndBalancesForTokens.fromToken.balanceOf;
@@ -1793,8 +1944,9 @@ export class UniswapRouterFactory {
                     i
                   ],
                   direction,
-                  contractCallReturnContext.originalContractCallContext
-                    .reference as UniswapVersion
+                  contractCallReturnContext.originalContractCallContext.reference.substring(contractCallReturnContext.originalContractCallContext.reference.lastIndexOf('_')+1) as UniswapVersion,
+                  contractCallReturnContext.originalContractCallContext.description,
+                  contractCallReturnContext.originalContractCallContext.reference.substring(0, contractCallReturnContext.originalContractCallContext.reference.lastIndexOf('_'))
                 )
               );
               break;
@@ -1807,8 +1959,9 @@ export class UniswapRouterFactory {
                     i
                   ],
                   direction,
-                  contractCallReturnContext.originalContractCallContext
-                    .reference as UniswapVersion
+                  contractCallReturnContext.originalContractCallContext.reference.substring(contractCallReturnContext.originalContractCallContext.reference.lastIndexOf('_')+1) as UniswapVersion,
+                  contractCallReturnContext.originalContractCallContext.description,
+                  contractCallReturnContext.originalContractCallContext.reference.substring(0, contractCallReturnContext.originalContractCallContext.reference.lastIndexOf('_'))
                 )
               );
               break;
@@ -1821,8 +1974,9 @@ export class UniswapRouterFactory {
                     i
                   ],
                   direction,
-                  contractCallReturnContext.originalContractCallContext
-                    .reference as UniswapVersion
+                  contractCallReturnContext.originalContractCallContext.reference.substring(contractCallReturnContext.originalContractCallContext.reference.lastIndexOf('_')+1) as UniswapVersion,
+                  contractCallReturnContext.originalContractCallContext.description,
+                  contractCallReturnContext.originalContractCallContext.reference.substring(0, contractCallReturnContext.originalContractCallContext.reference.lastIndexOf('_'))
                 )
               );
               break;
@@ -1881,7 +2035,9 @@ export class UniswapRouterFactory {
     callReturnContext: CallReturnContext,
     routeContext: RouteContext,
     direction: TradeDirection,
-    uniswapVersion: UniswapVersion
+    uniswapVersion: UniswapVersion,
+    description: string | undefined,
+    routerAddress: string
   ): RouteQuote {
     const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
       callReturnContext,
@@ -1923,21 +2079,26 @@ export class UniswapRouterFactory {
             amountToTrade,
             new BigNumber(expectedConvertQuoteOrTokenAmountInMaxWithSlippage),
             routeQuoteTradeContext,
-            tradeExpires.toString()
+            tradeExpires.toString(),
+            routerAddress
           )
         : this.generateTradeDataErc20ToErc20Output(
             new BigNumber(expectedConvertQuoteOrTokenAmountInMaxWithSlippage),
             amountToTrade,
             routeQuoteTradeContext,
-            tradeExpires.toString()
+            tradeExpires.toString(),
+            routerAddress
           );
 
-    const transaction = this.buildUpTransactionErc20(uniswapVersion, data);
+
+    const transaction = this.buildUpTransactionErc20(routerAddress, data);
 
     switch (uniswapVersion) {
       case UniswapVersion.v2:
       case UniswapVersion.v3:
         return {
+          description,
+          routerAddress: routerAddress,
           expectedConvertQuote,
           expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
           transaction,
@@ -1974,7 +2135,9 @@ export class UniswapRouterFactory {
     callReturnContext: CallReturnContext,
     routeContext: RouteContext,
     direction: TradeDirection,
-    uniswapVersion: UniswapVersion
+    uniswapVersion: UniswapVersion,
+    description: string | undefined,
+    routerAddress: string
   ): RouteQuote {
     const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
       callReturnContext,
@@ -2016,17 +2179,19 @@ export class UniswapRouterFactory {
             amountToTrade,
             new BigNumber(expectedConvertQuoteOrTokenAmountInMaxWithSlippage),
             routeQuoteTradeContext,
-            tradeExpires.toString()
+            tradeExpires.toString(),
+            routerAddress
           )
         : this.generateTradeDataEthToErc20Output(
             new BigNumber(expectedConvertQuoteOrTokenAmountInMaxWithSlippage),
             amountToTrade,
             routeQuoteTradeContext,
-            tradeExpires.toString()
+            tradeExpires.toString(),
+            routerAddress
           );
 
     const transaction = this.buildUpTransactionEth(
-      uniswapVersion,
+      routerAddress,
       direction === TradeDirection.input
         ? amountToTrade
         : new BigNumber(expectedConvertQuote),
@@ -2037,6 +2202,8 @@ export class UniswapRouterFactory {
       case UniswapVersion.v2:
       case UniswapVersion.v3:
         return {
+          description,
+          routerAddress: routerAddress,
           expectedConvertQuote,
           expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
           transaction,
@@ -2089,7 +2256,9 @@ export class UniswapRouterFactory {
     callReturnContext: CallReturnContext,
     routeContext: RouteContext,
     direction: TradeDirection,
-    uniswapVersion: UniswapVersion
+    uniswapVersion: UniswapVersion,
+    description: string | undefined,
+    routerAddress: string
   ): RouteQuote {
     const convertQuoteUnformatted = this.getConvertQuoteUnformatted(
       callReturnContext,
@@ -2125,28 +2294,32 @@ export class UniswapRouterFactory {
       liquidityProviderFeesV3: routeContext.liquidityProviderFeesV3,
       routePathArray: routePathArray,
     };
-    
+
     const data =
       direction === TradeDirection.input
         ? this.generateTradeDataErc20ToEthInput(
             amountToTrade,
             new BigNumber(expectedConvertQuoteOrTokenAmountInMaxWithSlippage),
             routeQuoteTradeContext,
-            tradeExpires.toString()
+            tradeExpires.toString(),
+            routerAddress
           )
         : this.generateTradeDataErc20ToEthOutput(
             new BigNumber(expectedConvertQuoteOrTokenAmountInMaxWithSlippage),
             amountToTrade,
             routeQuoteTradeContext,
-            tradeExpires.toString()
+            tradeExpires.toString(),
+            routerAddress
           );
 
-    const transaction = this.buildUpTransactionErc20(uniswapVersion, data);
+    const transaction = this.buildUpTransactionErc20(routerAddress, data);
 
     switch (uniswapVersion) {
       case UniswapVersion.v2:
       case UniswapVersion.v3:
         return {
+          description,
+          routerAddress: routerAddress,
           expectedConvertQuote,
           expectedConvertQuoteOrTokenAmountInMaxWithSlippage,
           transaction,

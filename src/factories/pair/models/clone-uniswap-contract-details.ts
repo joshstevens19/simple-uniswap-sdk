@@ -2,6 +2,7 @@ import { JsonFragment } from '@ethersproject/abi';
 import { IRouterMethods } from '../../router/models/route-methods';
 
 export interface CloneUniswapContractDetailsV2 {
+  description?: string;
   routerAddress: string;
   factoryAddress: string;
   pairAddress: string;
@@ -10,6 +11,7 @@ export interface CloneUniswapContractDetailsV2 {
 }
 
 export interface CloneUniswapContractDetailsV3 {
+  description?: string;
   routerAddress: string;
   factoryAddress: string;
   quoterAddress: string;

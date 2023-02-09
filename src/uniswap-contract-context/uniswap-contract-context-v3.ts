@@ -2,6 +2,11 @@ import { JsonFragment } from '@ethersproject/abi';
 
 export class UniswapContractContextV3 {
   /**
+   * The uniswap name
+   */
+  public static description = 'Uniswap';
+
+  /**
    * The uniswap router address
    */
   public static routerAddress = '0xE592427A0AEce92De3Edee1F18E0157C05861564';
