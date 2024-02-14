@@ -79,10 +79,8 @@ export class UniswapPair {
 // can support any network using the `CustomNetwork` and `CloneUniswapContractDetails` properties
 export enum ChainId {
   MAINNET = 1,
-  ROPSTEN = 3,
-  RINKEBY = 4,
   GÖRLI = 5,
-  KOVAN = 42,
+  SEPOLIA = 11155111
 }
 
 interface UniswapPairContextBase {
@@ -168,6 +166,7 @@ export class UniswapPairSettings {
   slippage: number;
   deadlineMinutes: number;
   disableMultihops: boolean;
+  disableObserver: boolean;
   uniswapVersions: UniswapVersion[] = [UniswapVersion.v2, UniswapVersion.v3];
   gasSettings?: GasSettings = undefined;
   // can be used to pass in a fork of uniswap contract details
@@ -179,6 +178,7 @@ export class UniswapPairSettings {
     slippage?: number | undefined;
     deadlineMinutes?: number | undefined;
     disableMultihops?: boolean | undefined;
+    disableObserver?: boolean | undefined;
     uniswapVersions?: UniswapVersion[] | undefined;
     gasSettings?: GasSettings | undefined;
     cloneUniswapContractDetails?: CloneUniswapContractDetails | undefined;
@@ -187,6 +187,7 @@ export class UniswapPairSettings {
     this.slippage = settings?.slippage || 0.0005;
     this.deadlineMinutes = settings?.deadlineMinutes || 20;
     this.disableMultihops = settings?.disableMultihops || false;
+    this.disableObserver = settings?.disableObserver || false;
     this.gasSettings = settings?.gasSettings;
     this.cloneUniswapContractDetails = settings?.cloneUniswapContractDetails;
     this.customNetwork = settings?.customNetwork;
@@ -238,6 +239,12 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
+    // if not supplied it will observe quote changes
+    // if your app listens to the block event else where
+    // the listener will be removed when the quote clears
+    // make this true if you want to manually listen to blocks
+    // and request a new quote
+    disableObserver: false,
     // for example if you only wanted to turn on quotes for v3 and not v3
     // you can only support the v3 enum same works if you only want v2 quotes
     // if you do not supply anything it query both v2 and v3
@@ -276,6 +283,12 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
+    // if not supplied it will observe quote changes
+    // if your app listens to the block event else where
+    // the listener will be removed when the quote clears
+    // make this true if you want to manually listen to blocks
+    // and request a new quote
+    disableObserver: false,
     // for example if you only wanted to turn on quotes for v3 and not v3
     // you can only support the v3 enum same works if you only want v2 quotes
     // if you do not supply anything it query both v2 and v3
@@ -313,6 +326,12 @@ const uniswapPair = new UniswapPair({
     // if this is true it will require swaps to direct
     // pairs
     disableMultihops: false,
+    // if not supplied it will observe quote changes
+    // if your app listens to the block event else where
+    // the listener will be removed when the quote clears
+    // make this true if you want to manually listen to blocks
+    // and request a new quote
+    disableObserver: false,
     // for example if you only wanted to turn on quotes for v3 and not v3
     // you can only support the v3 enum same works if you only want v2 quotes
     // if you do not supply anything it query both v2 and v3
@@ -371,7 +390,7 @@ export enum ErrorCodes {
 
 This will generate you the trade with all the information you need to show to the user on the dApp. It will find the best route price for you automatically. we generate the transaction for you but you will still need to sign and send the transaction on your dApp once they confirm the swap.
 
-Please note `ROPSTEN`, `RINKEBY`, `GÖRLI` and `KOVAN` will only use `ETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
+Please note `GÖRLI` and `SEPOLIA` will only use `ETH` as a main currency unlike `MAINNET` which uses everything, so you will get less routes on those testnets.
 
 ```ts
  /**
@@ -560,10 +579,8 @@ export interface Token {
 
 export enum ChainId {
   MAINNET = 1,
-  ROPSTEN = 3,
-  RINKEBY = 4,
   GÖRLI = 5,
-  KOVAN = 42,
+  SEPOLIA = 11155111,
 }
 
 export enum UniswapVersion {
@@ -596,24 +613,24 @@ const etherTradeExample = async () => {
   });
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
-  // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
+  // or erc20 > eth example below by using `ETH.GORLI().contractAddress`
   // which can be imported within `simple-uniswap-sdk`
   // aka > import { ETH } from 'simple-uniswap-sdk';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: ETH.MAINNET().contractAddress,
-  //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  //   fromTokenContractAddress: ETH.GORLI().contractAddress,
+  //   toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   //   ERC20 > ETH
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  //   toTokenContractAddress: ETH.MAINNET().contractAddress,,
+  //   fromTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
+  //   toTokenContractAddress: ETH.GORLI().contractAddress,,
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   // now to create the factory you just do
@@ -685,37 +702,37 @@ import Web3 from 'web3';
 const web3TradeExample = async () => {
   const uniswapPair = new UniswapPair({
     // the contract address of the token you want to convert FROM
-    fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+    fromTokenContractAddress: '0xe4E81Fa6B16327D4B78CFEB83AAdE04bA7075165',
     // the contract address of the token you want to convert TO
-    toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+    toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
     // the ethereum address of the user using this part of the dApp
     ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
     // you can pass in the provider url as well if you want
     // providerUrl: YOUR_PROVIDER_URL,
     // OR if you want to inject your own ethereum provider (no need for chainId if so)
     // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
-    chainId: ChainId.RINKEBY,
+    chainId: ChainId.GÖRLI,
   });
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
-  // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
+  // or erc20 > eth example below by using `ETH.GORLI().contractAddress`
   // which can be imported within `simple-uniswap-sdk`
   // aka > import { ETH } from 'simple-uniswap-sdk';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: ETH.MAINNET().contractAddress,
-  //   toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  //   fromTokenContractAddress: ETH.GORLI().contractAddress,
+  //   toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   //   ERC20 > ETH
   // const uniswapPair = new UniswapPair({
-  //   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
-  //   toTokenContractAddress: ETH.MAINNET().contractAddress,,
+  //   fromTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
+  //   toTokenContractAddress: ETH.GORLI().contractAddress,,
   //   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
-  //   chainId: ChainId.RINKEBY,
+  //   chainId: ChainId.GÖRLI,
   // });
 
   // now to create the factory you just do
@@ -846,16 +863,16 @@ import {
 } from 'simple-uniswap-sdk';
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
-  fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
+  fromTokenContractAddress: '0xe4E81Fa6B16327D4B78CFEB83AAdE04bA7075165',
   // the contract address of the token you want to convert TO
-  toTokenContractAddress: '0x1985365e9f78359a9B6AD760e32412f4a445E862',
+  toTokenContractAddress: '0x70cBa46d2e933030E2f274AE58c951C800548AeF',
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
   // you can pass in the provider url as well if you want
   // providerUrl: YOUR_PROVIDER_URL,
   // OR if you want to inject your own ethereum provider (no need for chainId if so)
   // ethereumProvider: YOUR_WEB3_ETHERS_OR_CUSTOM_ETHEREUM_PROVIDER,
-  chainId: ChainId.RINKEBY,
+  chainId: ChainId.GÖRLI,
   settings: new UniswapPairSettings({
     gasSettings: {
       getGasPrice: async () => {
@@ -1155,8 +1172,8 @@ import { UniswapPair, ETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
 
 const uniswapPair = new UniswapPair({
   // use the ETH import from the lib, bare in mind you should use the
-  // network which yours on, so if your on rinkeby you should use
-  // ETH.RINKEBY
+  // network which yours on, so if your on görli you should use
+  // ETH.GÖRLI
   fromTokenContractAddress: ETH.MAINNET().contractAddress,
   // the contract address of the token you want to convert TO
   toTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -2638,8 +2655,8 @@ const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // use the ETH import from the lib, bare in mind you should use the
-  // network which yours on, so if your on rinkeby you should use
-  // ETH.RINKEBY
+  // network which yours on, so if your on görli you should use
+  // ETH.GÖRLI
   toTokenContractAddress: ETH.MAINNET().contractAddress,
   // the ethereum address of the user using this part of the dApp
   ethereumAddress: '0xB1E6079212888f0bE0cf55874B2EB9d7a5e02cD9',
@@ -4331,6 +4348,133 @@ console.log(tokens);
   },
 ];
 ```
+
+This method will return you the tokens information like decimals, name etc.
+
+```ts
+async getTokens(tokenContractAddresses: string[]): Promise<Token[]>
+```
+
+```ts
+export interface Token {
+  chainId: ChainId;
+  contractAddress: string;
+  decimals: number;
+  symbol: string;
+  name: string;
+}
+```
+## Mapping Custom Router Methods
+
+A Dex may use different method names for their contracts. You can map the Uniswap method names to the correct names in the override options
+
+This UniswapPairSettings is using YetiSwap on Avalanche C-Chain
+
+```ts
+settings: {
+  uniswapVersions: [UniswapVersion.v2],
+  cloneUniswapContractDetails: {
+    v2Override: {
+      routerAddress: '0x262DcFB36766C88E6A7a2953c16F8defc40c378A',
+      factoryAddress: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',
+      pairAddress: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',
+      routerAbi: yetiSwapRouterABI,
+      routerMethods: {
+        swapETHForExactTokens: 'swapAVAXForExactTokens',
+        swapExactETHForTokens: 'swapExactAVAXForTokens',
+        swapExactETHForTokensSupportingFeeOnTransferTokens:
+          'swapExactAVAXForTokensSupportingFeeOnTransferTokens',
+        swapExactTokensForETH: 'swapExactTokensForAVAX',
+        swapExactTokensForETHSupportingFeeOnTransferTokens:
+          'swapExactTokensForAVAXSupportingFeeOnTransferTokens',
+        swapExactTokensForTokens: 'swapExactTokensForTokens',
+        swapExactTokensForTokensSupportingFeeOnTransferTokens:
+          'swapExactTokensForTokensSupportingFeeOnTransferTokens',
+        swapTokensForExactETH: 'swapTokensForExactAVAX',
+        swapTokensForExactTokens: 'swapTokensForExactTokens',
+      },
+    },
+  },
+  customNetwork: {
+    nameNetwork: 'Avalanche Network',
+    multicallContractAddress: '0xcA11bde05977b3631167028862bE2a173976CA11',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+    },
+    nativeWrappedTokenInfo: {
+      chainId: 43114,
+      contractAddress: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
+      decimals: 18,
+      symbol: 'WAVAX',
+      name: 'Wrapped AVAX',
+    },
+  },
+}
+```
+
+## Custom Network Configurations
+
+### Multicall v3 Address
+| Chain | Address                                     | Source
+| -     | -                                           | -
+| ALL   | 0xcA11bde05977b3631167028862bE2a173976CA11  | https://github.com/mds1/multicall#multicall3-contract-addresses
+| Pulse   | 0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696  | 
+
+### Uniswap (v3)
+| Chain             | Router                                      | Factory                                     | Quoter
+| -                 | -                                           | -                                           | -
+| Arbitrum One      | 0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45  | 0x1f98431c8ad98523631ae4a59f267346ea31f984  | 0xb27308f9f90d607463bb33ea1bebb41c27ce5ab6
+| Celo              | 0x5615CDAb10dc425a742d643d949a7F474C01abc4  | 0xAfE208a311B21f13EF87E33A90049fC17A7acDEc  | 0x82825d0554fA07f7FC52Ab63c961F330fdEFa8E8
+| Celo Alfajores    | 0x5615CDAb10dc425a742d643d949a7F474C01abc4  | 0xAfE208a311B21f13EF87E33A90049fC17A7acDEc  | 0x82825d0554fA07f7FC52Ab63c961F330fdEFa8E8
+| Optimism          | 0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45  | 0x1F98431c8aD98523631AE4a59f267346ea31F984  | 0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6
+| Polygon           | 0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45  | 0x1F98431c8aD98523631AE4a59f267346ea31F984  | 0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6
+| Polygon Mumbai    | 0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45  | 0x1F98431c8aD98523631AE4a59f267346ea31F984  | 0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6
+
+### Uniswap (v2)
+| Chain             | Router                                      | Factory
+| -                 | -                                           | - 
+| Pulse             | 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D  | 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f
+
+### Sushi Swap (v2)
+| Chain             | Router                                      | Factory / Pair                                 
+| -                 | -                                           | -
+| Arbitrum One      | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| Avalanche C-Chain | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| Avalanche Fuji    | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| BSC               | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| BSC Testnet       | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| Celo              | 0x1421bDe4B10e8dd459b3BCb598810B1337D56842  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| Ethereum          | 0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F  | 0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac
+| Ethereum Görli    | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| Polygon           | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+| Polygon Mumbai    | 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506  | 0xc35DADB65012eC5796536bD9864eD8773aBc74C4
+
+### Pancake Swap (v2)
+| Chain             | Router                                      | Factory / Pair                                 
+| -                 | -                                           | -
+| BSC               | 0x10ED43C718714eb63d5aA57B78B54704E256024E  | 0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73
+| BSC Testnet       | 0xD99D1c33F9fC3444f8101754aBC46c52416550D1  | 0x6725F303b657a9451d8BA641348b6761A6CC7a17
+| Ethereum          | 0xEfF92A263d31888d860bD50809A8D171709b7b1c  | 0x1097053Fd2ea711dad45caCcc45EfF7548fCB362
+| Ethereum Görli    | 0xEfF92A263d31888d860bD50809A8D171709b7b1c  | 0x1097053Fd2ea711dad45caCcc45EfF7548fCB362
+
+### YETI Swap (v2)
+YetiSwap ABI: https://snowtrace.io/address/0x262DcFB36766C88E6A7a2953c16F8defc40c378A#code
+| Chain             | Router                                      | Factory / Pair
+| -                 | -                                           | -
+| Avalanche C-Chain | 0x262DcFB36766C88E6A7a2953c16F8defc40c378A  | 0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a
+| Avalanche Fuji    | 0x208bF39BA61bd83D0362D01151ADbd3286b746c2  |  
+
+### TRADERJOE (v2)
+TraderJoe ABI: https://snowtrace.io/address/0x60aE616a2155Ee3d9A68541Ba4544862310933d4#code
+| Chain             | Router                                      | Factory / Pair
+| -                 | -                                           | -
+| Avalanche C-Chain | 0x60aE616a2155Ee3d9A68541Ba4544862310933d4  | 0x9ad6c38be94206ca50bb0d90783181662f0cfa10
+
+### PulseX (v2)
+| Chain             | Router                                      | Factory / Pair
+| -                 | -                                           | -
+| Pulse             | 0xb4A7633D8932de086c9264D5eb39a8399d7C0E3A  | 0xb242aA8A863CfcE9fcBa2b9a6B00b4cd62343f27
 
 ## Tests
 

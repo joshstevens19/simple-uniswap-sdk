@@ -1,3 +1,8 @@
+import { TradeContext } from './../factories/pair/models/trade-context';
+import { providers } from 'ethers'
+import { Networkish } from '@ethersproject/networks';
+import { TokensFactoryPublic } from './../factories/token/tokens.factory.public';
+import { TokenWithAllowanceInfo } from './../factories/token/models/token-with-allowance-info';
 import { ChainId } from '../enums/chain-id';
 import { UniswapVersion } from '../enums/uniswap-version';
 import { UniswapPairSettings } from '../factories/pair/models/uniswap-pair-settings';
@@ -29,6 +34,7 @@ const routeTest = async () => {
       // if not supplied it will use 20 a deadline minutes
       deadlineMinutes: 20,
       disableMultihops: false,
+      disableObserver: false,
       uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
       gasSettings: {
         getGasPrice: async () => '90',
@@ -36,14 +42,13 @@ const routeTest = async () => {
     }),
   });
 
-  const startTime = new Date().getTime();
+  // const startTime = new Date().getTime();
 
   const uniswapPairFactory = await uniswapPair.createFactory();
-
+  
   const trade = await uniswapPairFactory.trade('0.0001', TradeDirection.input);
-
-  console.log(new Date().getTime() - startTime);
-  console.log(trade);
+  // console.log(new Date().getTime() - startTime);
+  // console.log(trade);
 
   // console.log(JSON.stringify(trade, null, 4));
   // console.log(trade);
@@ -98,4 +103,153 @@ const routeTest = async () => {
   // console.log(data);
 };
 
-routeTest();
+const boundBlockListenerTest = async () => {
+  const getQuote = async (timeout: number) => {
+    const { provider } = new EthersProvider({chainId: ChainId.MAINNET})
+
+    const fromTokenContractAddress = ETH.MAINNET().contractAddress;
+    const toTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; // AAVE
+    const ethereumAddress = '0x37c81284caA97131339415687d192BF7D18F0f2a';
+
+    const settings = new UniswapPairSettings({
+      slippage: 0.005,
+      deadlineMinutes: 20,
+      disableMultihops: false,
+      uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+      gasSettings: {
+        getGasPrice: async () => '90',
+      },
+    });
+
+    const uniswapPair = new UniswapPair({
+      ethereumProvider: provider,
+      fromTokenContractAddress,
+      toTokenContractAddress,
+      ethereumAddress,
+      settings
+    });
+
+    const uniswapPairFactory = await uniswapPair.createFactory();
+    uniswapPairFactory
+    const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
+
+    console.log(`Quote: ${trade.expectedConvertQuote} ${trade.toToken.symbol}`);
+
+    // Listen for changes in our quote
+    trade.quoteChanged$.subscribe((value: TradeContext) => {
+      console.log(`Quote changed: ${value.expectedConvertQuote} ${value.toToken.symbol}`);
+    });
+
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, timeout)
+    })
+
+    trade.destroy()
+  }
+
+  getQuote(15_000)
+  getQuote(25_000)
+  getQuote(35_000)
+};
+
+const manualObserverTest = async () => {
+  const { provider } = new EthersProvider({chainId: ChainId.MAINNET})
+
+  const fromTokenContractAddress = ETH.MAINNET().contractAddress;
+  const toTokenContractAddress = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'; // AAVE
+  const ethereumAddress = '0x37c81284caA97131339415687d192BF7D18F0f2a';
+
+  const settings = new UniswapPairSettings({
+    // if not supplied it use `0.005` which is 0.5%;
+    // all figures
+    slippage: 0.005,
+    // if not supplied it will use 20 a deadline minutes
+    deadlineMinutes: 20,
+    disableMultihops: false,
+    // Prevent the built-in requoting
+    disableObserver: true,
+    uniswapVersions: [UniswapVersion.v2, UniswapVersion.v3],
+    gasSettings: {
+      getGasPrice: async () => '90',
+    },
+  });
+
+  const uniswapPair = new UniswapPair({
+    ethereumProvider: provider,
+    fromTokenContractAddress,
+    toTokenContractAddress,
+    ethereumAddress,
+    settings
+  });
+
+  const uniswapPairFactory = await uniswapPair.createFactory();
+  uniswapPairFactory
+  const trade = await uniswapPairFactory.trade('1', TradeDirection.input);
+
+  console.log(`Quote: ${trade.expectedConvertQuote} ${trade.toToken.symbol}`);
+
+  // Listen for changes in our quote
+  trade.quoteChanged$.subscribe((value: TradeContext) => {
+    console.log(`Quote changed: ${value.expectedConvertQuote} ${value.toToken.symbol}`);
+  });
+
+
+  // Manually requote for the newest prices
+  provider.on(
+    'block',
+    async () => {
+      console.log('Requoting...');
+      await uniswapPairFactory.requote();
+    }
+  );
+};
+
+const customNetworkBalancesTest = async () => {
+  const ethereumAddress = '0x37c81284caA97131339415687d192BF7D18F0f2a';
+  const chainId: Networkish = 941
+  const provider = new providers.JsonRpcProvider('https://rpc.v2b.testnet.pulsechain.com',
+    chainId
+  )
+
+  const tokensFactoryPublic = new TokensFactoryPublic({
+    ethereumProvider: provider,
+    customNetwork: {
+      nameNetwork: 'PulseChain Testnet',
+      multicallContractAddress: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
+      nativeCurrency: {
+        name: 'Pulse',
+        symbol: 'tPLS',
+      },
+      nativeWrappedTokenInfo: {
+        chainId,
+        contractAddress: '0x8a810ea8B121d08342E9e7696f4a9915cBE494B7',
+        decimals: 18,
+        symbol: 'WPLS',
+        name: 'Wrapped Pulse (PLS)',
+      },
+    },
+  })
+
+  let balances: TokenWithAllowanceInfo[] = []
+  const formatBalances = true
+
+  try {
+    balances =
+      await tokensFactoryPublic.getAllowanceAndBalanceOfForContracts(
+        ethereumAddress,
+        ['0x8a810ea8B121d08342E9e7696f4a9915cBE494B7', '0x2b591e99afe9f32eaa6214f7b7629768c40eeb39', '0x1da01e84f3d4e6716f274c987ae4bee5dc3c8288', '0xdac17f958d2ee523a2206206994597c13d831ec7'],
+        formatBalances
+      )
+  } catch (err) {
+    console.log(err)
+    balances = []
+  }
+
+  console.log(balances);
+}
+
+if (false) routeTest();
+if (false) manualObserverTest();
+if (true) boundBlockListenerTest();
+if (false) customNetworkBalancesTest();

@@ -594,9 +594,9 @@ export class UniswapRouterFactory {
 
   /**
    * Generate trade data eth > erc20
-   * @param tokenAmountInMax The amount in max
-   * @param ethAmountOut The amount to receive
-   * @param routeQuote The route quote
+   * @param ethAmountInMax The amount in max
+   * @param tokenAmountOut The amount to receive
+   * @param routeQuoteTradeContext The route quote
    * @param deadline The deadline it expiries unix time
    */
   private generateTradeDataEthToErc20Output(
@@ -725,7 +725,7 @@ export class UniswapRouterFactory {
   /**
    * Generate trade amount erc20 > erc20 for input
    * @param tokenAmount The token amount
-   * @param tokenAmountOut The min token amount out
+   * @param tokenAmountMin The min token amount out
    * @param routeQuoteTradeContext The route quote trade context
    * @param deadline The deadline it expiries unix time
    */
@@ -769,7 +769,7 @@ export class UniswapRouterFactory {
 
   /**
    * Generate trade amount erc20 > erc20 for output
-   * @param tokenAmount The token amount
+   * @param tokenAmountInMax The max token amount in
    * @param tokenAmountOut The min token amount out
    * @param routeQuoteTradeContext The route quote trade context
    * @param deadline The deadline it expiries unix time
@@ -908,7 +908,7 @@ export class UniswapRouterFactory {
       const params: ExactOutputSingleRequest = {
         tokenIn: removeEthFromContractAddress(this._fromToken.contractAddress),
         tokenOut: removeEthFromContractAddress(this._toToken.contractAddress),
-        fee: percentToFeeAmount(routeQuoteTradeContext.liquidityProviderFee[0]),
+        fee: percentToFeeAmount(routeQuoteTradeContext.liquidityProviderFeesV3[0]),
         recipient:
           isNativeReceivingNativeEth === true
             ? '0x0000000000000000000000000000000000000000'
