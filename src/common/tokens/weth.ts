@@ -60,6 +60,16 @@ export class WETHContract {
     };
   }
 
+  public static BASEMAINET(): Token {
+    return {
+      chainId: ChainId.BASEMAINNET,
+      contractAddress: '0x4200000000000000000000000000000000000006',
+      decimals: 18,
+      symbol: WETH_SYMBOL,
+      name: WETH_NAME,
+    };
+  }
+
   /**
    * Get WETH token info by chain id
    * @param chainId The chain id
@@ -75,6 +85,8 @@ export class WETHContract {
       case ChainId.GÖRLI:
         return this.GORLI();
       case ChainId.KOVAN:
+        return this.KOVAN();
+      case ChainId.BASEMAINNET:
         return this.KOVAN();
       default:
         throw new UniswapError(

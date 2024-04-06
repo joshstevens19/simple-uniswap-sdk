@@ -170,6 +170,8 @@ export class EthersProvider {
         return `https://goerli.infura.io/v3/${this._getApiKey}`;
       case ChainId.KOVAN:
         return `https://kovan.infura.io/v3/${this._getApiKey}`;
+      case ChainId.BASEMAINNET:
+        return `https://base-mainnet.infura.io/v3/${this._getApiKey}`;
       default:
         return undefined;
     }

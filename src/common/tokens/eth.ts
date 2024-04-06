@@ -107,6 +107,18 @@ export class ETH {
     };
   }
 
+  public static BASEMAIN(): Token {
+    return {
+      chainId: ChainId.BASEMAINNET,
+      contractAddress: appendEthToContractAddress(
+        '0x4200000000000000000000000000000000000006'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+
   /**
    * Get ETH token info by chain id
    * @param chainId The chain id
@@ -134,6 +146,8 @@ export class ETH {
         return this.GORLI();
       case ChainId.KOVAN:
         return this.KOVAN();
+      case ChainId.BASEMAINNET:
+        return this.BASEMAIN();
       default:
         throw new UniswapError(
           `${chainId} is not allowed`,
