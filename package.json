@@ -6,7 +6,7 @@
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "yarn build:esm && yarn build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "playground": "node ./dist/cjs/__TEST-SCRIPT__/playground.js",
@@ -19,8 +19,8 @@
     "gen-uniswap-factory-v3-abi": "abi-types-generator ./src/ABI/uniswap-factory-v3.json --output=./src/ABI/types --name=uniswap-factory-v3 --provider=ethers_v5",
     "gen-uniswap-pair-v2-abi": "abi-types-generator ./src/ABI/uniswap-pair-v2.json --output=./src/ABI/types --name=uniswap-pair-v2 --provider=ethers_v5",
     "gen-uniswap-quoter-v3-abi": "abi-types-generator ./src/ABI/uniswap-quoter-v3.json --output=./src/ABI/types --name=uniswap-quoter-v3 --provider=ethers_v5",
-    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi && npm run gen-uniswap-pair-v2-abi && npm run gen-uniswap-factory-v3-abi && npm run gen-uniswap-router-v3-abi && npm run gen-uniswap-quoter-v3-abi",
-    "prepublishOnly": "npm run build"
+    "gen-all-contract-types": "yarn gen-erc20-abi && yarn gen-uniswap-router-v2-abi && yarn gen-uniswap-factory-v2-abi && yarn gen-uniswap-pair-v2-abi && yarn gen-uniswap-factory-v3-abi && yarn gen-uniswap-router-v3-abi && yarn gen-uniswap-quoter-v3-abi",
+    "prepublishOnly": "yarn build"
   },
   "repository": {
     "type": "git",
