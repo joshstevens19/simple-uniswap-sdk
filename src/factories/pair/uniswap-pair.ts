@@ -127,13 +127,11 @@ export class UniswapPair {
       const chainId = this._ethersProvider.network().chainId;
       if (
         chainId !== ChainId.MAINNET &&
-        chainId !== ChainId.ROPSTEN &&
-        chainId !== ChainId.RINKEBY &&
         chainId !== ChainId.GÖRLI &&
-        chainId !== ChainId.KOVAN
+        chainId !== ChainId.SEPOLIA
       ) {
         throw new UniswapError(
-          `ChainId - ${chainId} is not supported. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4), and görli(5)`,
+          `ChainId - ${chainId} is not supported. This lib only supports mainnet(1), görli(5), sepolia(11155111)`,
           ErrorCodes.chainIdNotSupported
         );
       }

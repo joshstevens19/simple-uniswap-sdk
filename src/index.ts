@@ -18,6 +18,8 @@ export { GasSettings } from './factories/pair/models/gas-settings';
 export { TradeContext } from './factories/pair/models/trade-context';
 export { TradeDirection } from './factories/pair/models/trade-direction';
 export { Transaction } from './factories/pair/models/transaction';
+export * from './factories/pair/models/clone-uniswap-contract-details';
+export * from './factories/pair/models/custom-network';
 export {
   UniswapPairContextForChainId,
   UniswapPairContextForProviderUrl,

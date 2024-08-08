@@ -1,12 +1,12 @@
 {
   "name": "simple-uniswap-sdk",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "Simple easy to understand SDK for uniswap which looks over best v2 and v3 to find you the best swap quote",
   "main": "dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "yarn build:esm && yarn build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "playground": "node ./dist/cjs/__TEST-SCRIPT__/playground.js",
@@ -19,8 +19,8 @@
     "gen-uniswap-factory-v3-abi": "abi-types-generator ./src/ABI/uniswap-factory-v3.json --output=./src/ABI/types --name=uniswap-factory-v3 --provider=ethers_v5",
     "gen-uniswap-pair-v2-abi": "abi-types-generator ./src/ABI/uniswap-pair-v2.json --output=./src/ABI/types --name=uniswap-pair-v2 --provider=ethers_v5",
     "gen-uniswap-quoter-v3-abi": "abi-types-generator ./src/ABI/uniswap-quoter-v3.json --output=./src/ABI/types --name=uniswap-quoter-v3 --provider=ethers_v5",
-    "gen-all-contract-types": "npm run gen-erc20-abi && npm run gen-uniswap-router-v2-abi && npm run gen-uniswap-factory-v2-abi && npm run gen-uniswap-pair-v2-abi && npm run gen-uniswap-factory-v3-abi && npm run gen-uniswap-router-v3-abi && npm run gen-uniswap-quoter-v3-abi",
-    "prepublishOnly": "npm run build"
+    "gen-all-contract-types": "yarn gen-erc20-abi && yarn gen-uniswap-router-v2-abi && yarn gen-uniswap-factory-v2-abi && yarn gen-uniswap-pair-v2-abi && yarn gen-uniswap-factory-v3-abi && yarn gen-uniswap-router-v3-abi && yarn gen-uniswap-quoter-v3-abi",
+    "prepublishOnly": "yarn build"
   },
   "repository": {
     "type": "git",
@@ -46,11 +46,11 @@
     "ethereum-abi-types-generator": "^1.1.6"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^27.4.1",
     "@types/node-fetch": "^2.5.12",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
-    "typescript": "^4.1.3"
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.9.3"
   },
   "files": [
     "dist",

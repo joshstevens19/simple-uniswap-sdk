@@ -73,7 +73,7 @@ export class EthersProvider {
     const chainName = ChainNames.get(chainId);
     if (!chainName) {
       throw new UniswapError(
-        `Can not find chain name for ${chainId}. This lib only supports mainnet(1), ropsten(4), kovan(42), rinkeby(4) and görli(5)`,
+        `Can not find chain name for ${chainId}. This lib only supports mainnet(1), görli(5) and sepolia(11155111)`,
         ErrorCodes.canNotFindChainId
       );
     }
@@ -162,14 +162,10 @@ export class EthersProvider {
     switch (chainId) {
       case ChainId.MAINNET:
         return `https://mainnet.infura.io/v3/${this._getApiKey}`;
-      case ChainId.ROPSTEN:
-        return `https://ropsten.infura.io/v3/${this._getApiKey}`;
-      case ChainId.RINKEBY:
-        return `https://rinkeby.infura.io/v3/${this._getApiKey}`;
       case ChainId.GÖRLI:
         return `https://goerli.infura.io/v3/${this._getApiKey}`;
-      case ChainId.KOVAN:
-        return `https://kovan.infura.io/v3/${this._getApiKey}`;
+      case ChainId.SEPOLIA:
+        return `https://sepolia.infura.io/v3/${this._getApiKey}`;
       default:
         return undefined;
     }

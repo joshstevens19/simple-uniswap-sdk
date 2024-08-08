@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js';
+import { ethers } from 'ethers';
 import { Subject } from 'rxjs';
 import { CoinGecko } from '../../coin-gecko';
 import { Constants } from '../../common/constants';
@@ -52,11 +53,14 @@ export class UniswapPairFactory {
   private _watchingBlocks = false;
   private _currentTradeContext: CurrentTradeContext | undefined;
   private _quoteChanged$: Subject<TradeContext> = new Subject<TradeContext>();
+  private _listener: ethers.providers.Listener
 
   constructor(
     private _coinGecko: CoinGecko,
     private _uniswapPairFactoryContext: UniswapPairFactoryContext
-  ) {}
+  ) {
+    this._listener = () => this.handleNewBlock()
+  }
 
   /**
    * The to token
@@ -169,6 +173,13 @@ export class UniswapPairFactory {
     this.watchTradePrice();
 
     return trade;
+  }
+
+  /**
+   * Manually fetch the latest quotes
+   */
+  public async requote() {
+    await this.handleNewBlock();
   }
 
   /**
@@ -542,12 +553,10 @@ export class UniswapPairFactory {
    * Watch trade price move automatically emitting the stream if it changes
    */
   private watchTradePrice(): void {
-    if (!this._watchingBlocks) {
+    if (!this._watchingBlocks && !this._uniswapPairFactoryContext.settings.disableObserver) {
       this._uniswapPairFactoryContext.ethersProvider.provider.on(
         'block',
-        async () => {
-          await this.handleNewBlock();
-        }
+        this._listener
       );
       this._watchingBlocks = true;
     }
@@ -557,10 +566,13 @@ export class UniswapPairFactory {
    * unwatch any block streams
    */
   private unwatchTradePrice(): void {
-    this._uniswapPairFactoryContext.ethersProvider.provider.removeAllListeners(
-      'block'
-    );
-    this._watchingBlocks = false;
+    if (!this._uniswapPairFactoryContext.settings.disableObserver) { 
+      this._uniswapPairFactoryContext.ethersProvider.provider.off(
+        'block',
+        this._listener
+      );
+      this._watchingBlocks = false;
+    }
   }
 
   /**
