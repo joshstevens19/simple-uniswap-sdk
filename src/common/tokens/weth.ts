@@ -60,6 +60,16 @@ export class WETHContract {
     };
   }
 
+  public static SEPOLIA(): Token {
+    return {
+      chainId: ChainId.SEPOLIA,
+      contractAddress: '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14',
+      decimals: 18,
+      symbol: WETH_SYMBOL,
+      name: WETH_NAME,
+    };
+  }
+
   public static BASEMAINET(): Token {
     return {
       chainId: ChainId.BASEMAINNET,
@@ -86,8 +96,10 @@ export class WETHContract {
         return this.GORLI();
       case ChainId.KOVAN:
         return this.KOVAN();
+      case ChainId.SEPOLIA:
+        return this.SEPOLIA();
       case ChainId.BASEMAINNET:
-        return this.KOVAN();
+        return this.BASEMAINET();
       default:
         throw new UniswapError(
           `${chainId} is not allowed`,
