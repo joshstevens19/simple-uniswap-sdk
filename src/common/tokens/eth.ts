@@ -107,6 +107,30 @@ export class ETH {
     };
   }
 
+  public static SEPOLIA(): Token {
+    return {
+      chainId: ChainId.SEPOLIA,
+      contractAddress: appendEthToContractAddress(
+        '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+  
+  public static BASEMAIN(): Token {
+    return {
+      chainId: ChainId.BASEMAINNET,
+      contractAddress: appendEthToContractAddress(
+        '0x4200000000000000000000000000000000000006'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+
   /**
    * Get ETH token info by chain id
    * @param chainId The chain id
@@ -134,6 +158,10 @@ export class ETH {
         return this.GORLI();
       case ChainId.KOVAN:
         return this.KOVAN();
+      case ChainId.SEPOLIA:
+        return this.SEPOLIA();
+      case ChainId.BASEMAINNET:
+        return this.BASEMAIN();
       default:
         throw new UniswapError(
           `${chainId} is not allowed`,
