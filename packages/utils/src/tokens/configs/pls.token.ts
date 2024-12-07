@@ -1,5 +1,5 @@
 import type { Token } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import { WPLSToken } from './wpls.token'
 import { plsMainChainId, plsTestChainId } from '../../chains/chainIds'

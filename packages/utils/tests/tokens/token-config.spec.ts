@@ -6,7 +6,7 @@ import type {
   DiscriminatedMethodCalls,
   Erc20Types,
   MulticallResults,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 import { describe, it, expect } from 'vitest'
 
 import { testConfigurations } from '../../../../test/testing-setup/src/mocks/mocks'

@@ -1,5 +1,5 @@
 import type { DexConfig } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import {
   uniswapFactoryV3ABI,

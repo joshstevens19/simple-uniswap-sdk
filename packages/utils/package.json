@@ -1,7 +1,7 @@
 {
   "name": "@dex-toolkit/utils",
   "version": "1.0.0",
-  "author": "",
+  "author": "niZmosis",
   "license": "ISC",
   "keywords": [
     "dex-toolkit",
@@ -32,8 +32,8 @@
   },
   "dependencies": {
     "@dex-toolkit/number": "workspace:*",
-    "@ethereum-multicall/core": "workspace:*",
-    "@ethereum-multicall/utils": "workspace:*",
+    "@multicall-toolkit/core": "workspace:*",
+    "@multicall-toolkit/utils": "workspace:*",
     "@ethersproject/providers": "5.7.2",
     "bignumber.js": "9.1.2",
     "node-fetch": "2",
@@ -41,9 +41,9 @@
   },
   "devDependencies": {
     "@dex-toolkit/types": "workspace:*",
-    "@ethereum-abi-types-generator/converter-typescript": "workspace:*",
-    "@ethereum-abi-types-generator/core": "workspace:*",
-    "@ethereum-multicall/types": "workspace:*",
+    "@abi-toolkit/converter-typescript": "workspace:*",
+    "@abi-toolkit/core": "workspace:*",
+    "@multicall-toolkit/types": "workspace:*",
     "@types/node-fetch": "2.6.11"
   }
 }

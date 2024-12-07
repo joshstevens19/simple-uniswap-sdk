@@ -57,7 +57,7 @@ import {
   assertProtocol,
   MAX_HEX_STRING,
 } from '@dex-toolkit/utils'
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 
 import { parseTokenListFromTokenListContext, TokenList } from '../token-list'
 import { Tokens } from '../tokens'

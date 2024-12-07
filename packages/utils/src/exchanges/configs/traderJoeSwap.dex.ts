@@ -4,7 +4,7 @@ import type {
   UniswapPairV2Types,
   UniswapRouterV2Types,
 } from '@dex-toolkit/types'
-import type { ChainId, ContractDetail } from '@ethereum-multicall/types'
+import type { ChainId, ContractDetail } from '@multicall-toolkit/types'
 
 import {
   traderJoeRouterV2100ABI,

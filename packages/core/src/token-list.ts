@@ -17,7 +17,7 @@ import {
   tokenClasses,
   tokenListAssetToToken,
 } from '@dex-toolkit/utils'
-import type { Address, ChainId } from '@ethereum-multicall/types'
+import type { Address, ChainId } from '@multicall-toolkit/types'
 
 /**
  * Represents a collection of tokens for a specific chain and provides utility methods

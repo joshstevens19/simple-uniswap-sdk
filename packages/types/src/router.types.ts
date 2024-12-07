@@ -1,4 +1,4 @@
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 
 import type { IDexNumber } from './dex-number.types'
 import type { DexTag, DexProtocol } from './dex.types'

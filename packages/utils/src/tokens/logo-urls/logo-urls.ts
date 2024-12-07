@@ -1,4 +1,4 @@
-import type { Address, ChainId } from '@ethereum-multicall/types'
+import type { Address, ChainId } from '@multicall-toolkit/types'
 
 import {
   arbitrumMainChainId,

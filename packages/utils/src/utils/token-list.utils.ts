@@ -7,7 +7,7 @@ import type {
   TokenListContext,
   TokenListSource,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import {
   avaxChains,

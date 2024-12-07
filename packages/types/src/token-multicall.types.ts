@@ -2,7 +2,7 @@ import type {
   Address,
   MethodCall,
   MethodCallUnion,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 
 import type { Erc20Types } from './abis'
 import type { DexProtocol, DexTag } from './dex.types'

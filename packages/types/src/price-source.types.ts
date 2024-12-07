@@ -1,4 +1,4 @@
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 
 import type { StableCoinSymbol } from './token.types'
 

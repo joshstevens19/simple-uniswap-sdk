@@ -40,7 +40,7 @@ import {
   assertDexTag,
   assertIsAddress,
 } from '@dex-toolkit/utils'
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 
 import { TokenList } from './token-list'
 

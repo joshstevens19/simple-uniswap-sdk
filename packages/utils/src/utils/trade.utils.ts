@@ -16,7 +16,7 @@ import type {
   TradeParamsInput,
   TradeParamsOutput,
 } from '@dex-toolkit/types'
-import type { Address, ChainId } from '@ethereum-multicall/types'
+import type { Address, ChainId } from '@multicall-toolkit/types'
 import BigNumber from 'bignumber.js'
 import { BigNumber as EthersBigNumber } from 'ethers'
 

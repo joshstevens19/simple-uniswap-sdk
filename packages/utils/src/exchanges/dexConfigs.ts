@@ -10,7 +10,7 @@ import type {
   DexProtocol,
   VersionTag,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import type { DexClass } from './configs/abstractDex'
 import { DoveSwap } from './configs/doveSwap.dex'

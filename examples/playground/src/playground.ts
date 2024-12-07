@@ -23,7 +23,7 @@ import {
   UNIToken,
   WPLSToken,
 } from '@dex-toolkit/utils'
-import type { EthersProviderContext } from '@ethereum-multicall/types'
+import type { EthersProviderContext } from '@multicall-toolkit/types'
 import { ethers, providers, Wallet } from 'ethers'
 
 const walletAddress = '0xAcAe34847aB1c58E61f7CAA8a5f7e755a08195b1' // From Mocks

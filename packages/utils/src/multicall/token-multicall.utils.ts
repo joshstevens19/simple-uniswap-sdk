@@ -10,7 +10,7 @@ import type {
   TradeFormatValue,
   TradeFormatOptions,
 } from '@dex-toolkit/types'
-import type { ContractResults, GetReturnType } from '@ethereum-multicall/types'
+import type { ContractResults, GetReturnType } from '@multicall-toolkit/types'
 
 import {
   createMulticallReference,

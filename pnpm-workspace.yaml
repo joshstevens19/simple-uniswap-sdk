@@ -1,6 +1,6 @@
 packages:
   - 'packages/*'
-  - 'submodules/ethereum-abi-types-generator/packages/*'
-  - 'submodules/ethereum-multicall/packages/*'
+  - 'submodules/abi-toolkit/packages/*'
+  - 'submodules/multicall-toolkit/packages/*'
   - 'examples/*'
   - 'test/*'

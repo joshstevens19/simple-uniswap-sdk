@@ -1,7 +1,7 @@
 {
   "name": "@dex-toolkit/types",
   "version": "1.0.0",
-  "author": "",
+  "author": "niZmosis",
   "license": "ISC",
   "keywords": [
     "dex-toolkit",
@@ -30,8 +30,8 @@
     "start": "tsc -p tsconfig.esm.json --watch"
   },
   "devDependencies": {
-    "@ethereum-abi-types-generator/converter-typescript": "workspace:*",
-    "@ethereum-multicall/types": "workspace:*",
+    "@abi-toolkit/converter-typescript": "workspace:*",
+    "@multicall-toolkit/types": "workspace:*",
     "@ethersproject/abi": "5.7.0",
     "@ethersproject/providers": "5.7.2",
     "bignumber.js": "9.1.2",

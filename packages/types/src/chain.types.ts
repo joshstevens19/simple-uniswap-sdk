@@ -1,5 +1,5 @@
-import type { ChainId } from '@ethereum-multicall/types'
 import type { JsonFragment } from '@ethersproject/abi'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import type { DexType } from './dex.types'
 import type {

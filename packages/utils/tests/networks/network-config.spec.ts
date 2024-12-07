@@ -1,6 +1,6 @@
 import type { ChainConfig } from '@dex-toolkit/types'
-import { multicall3ABI } from '@ethereum-multicall/utils'
 import { JsonRpcProvider } from '@ethersproject/providers'
+import { multicall3ABI } from '@multicall-toolkit/utils'
 import { Contract, providers } from 'ethers'
 import { describe, it, expect } from 'vitest'
 

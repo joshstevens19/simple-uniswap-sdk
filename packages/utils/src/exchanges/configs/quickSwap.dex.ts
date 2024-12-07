@@ -5,7 +5,7 @@ import type {
   UniswapQuoterV3Types,
   UniswapRouterV3Types,
 } from '@dex-toolkit/types'
-import type { ChainId, ContractDetail } from '@ethereum-multicall/types'
+import type { ChainId, ContractDetail } from '@multicall-toolkit/types'
 
 import {
   uniswapFactoryV2ABI,

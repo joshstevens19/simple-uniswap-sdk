@@ -33,6 +33,6 @@
   },
   "devDependencies": {
     "@dex-toolkit/types": "workspace:*",
-    "@ethereum-multicall/types": "workspace:*"
+    "@multicall-toolkit/types": "workspace:*"
   }
 }

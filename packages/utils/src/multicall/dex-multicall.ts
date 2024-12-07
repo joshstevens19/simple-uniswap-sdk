@@ -1,6 +1,6 @@
 import type { IDexProvider } from '@dex-toolkit/types'
-import { Multicall } from '@ethereum-multicall/core'
-import { multicallChainIds } from '@ethereum-multicall/utils'
+import { Multicall } from '@multicall-toolkit/core'
+import { multicallChainIds } from '@multicall-toolkit/utils'
 
 import { getChainConfig } from '../chains/chainConfigs'
 

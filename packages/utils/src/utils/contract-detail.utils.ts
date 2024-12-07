@@ -6,7 +6,7 @@ import type {
   ContractDetailsV2,
   ContractDetailsV3,
 } from '@dex-toolkit/types'
-import type { ContractDetail } from '@ethereum-multicall/types'
+import type { ContractDetail } from '@multicall-toolkit/types'
 
 // ------------------------
 // Type Guards

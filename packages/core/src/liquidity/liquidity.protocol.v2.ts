@@ -45,7 +45,7 @@ import {
   calculateExpectedShareAfterAddV2,
   calculateExpectedShareAfterRemoveV2,
 } from '@dex-toolkit/utils'
-import type { Address, ContractDetail } from '@ethereum-multicall/types'
+import type { Address, ContractDetail } from '@multicall-toolkit/types'
 import { ethers, type TypedDataDomain, type TypedDataField } from 'ethers'
 import { v4 as generateId } from 'uuid'
 

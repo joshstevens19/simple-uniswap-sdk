@@ -5,7 +5,7 @@ import type {
   Token,
   VersionTag,
 } from '@dex-toolkit/types'
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 
 import { assertDexTag, assertProtocol, assertVersionTag } from '../utils'
 

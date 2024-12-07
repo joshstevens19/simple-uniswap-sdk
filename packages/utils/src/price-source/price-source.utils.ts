@@ -3,7 +3,7 @@ import type {
   PriceCalculationMethod,
   MultiPriceContext,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import { CoinGecko } from './coin-gecko'
 import { CoinMarketCap } from './coin-marketcap'

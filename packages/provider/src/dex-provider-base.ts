@@ -1,6 +1,6 @@
 import type { DexMulticallProviderContext } from '@dex-toolkit/types'
-import { MulticallProviderBase } from '@ethereum-multicall/provider'
-import type { ContractDetail } from '@ethereum-multicall/types'
+import { MulticallProviderBase } from '@multicall-toolkit/provider'
+import type { ContractDetail } from '@multicall-toolkit/types'
 
 import { DexProvider, parseDexProviderFromContext } from './dex-provider'
 

@@ -1,4 +1,4 @@
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 /**
  * Chain IDs for various blockchain networks.

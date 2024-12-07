@@ -19,9 +19,9 @@ import {
   isDexProvider,
   isEthersSignerContext,
 } from '@dex-toolkit/utils'
-import { MulticallProvider } from '@ethereum-multicall/provider'
-import type { Address, ProviderContext } from '@ethereum-multicall/types'
 import { BaseProvider } from '@ethersproject/providers'
+import { MulticallProvider } from '@multicall-toolkit/provider'
+import type { Address, ProviderContext } from '@multicall-toolkit/types'
 import type { Signer } from 'ethers'
 
 export class DexProvider extends MulticallProvider implements IDexProvider {

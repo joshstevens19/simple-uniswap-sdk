@@ -1,4 +1,4 @@
-import type { Address, ChainId } from '@ethereum-multicall/types'
+import type { Address, ChainId } from '@multicall-toolkit/types'
 
 import type { Protocols } from './contract-detail.types'
 import type { DexMulticallProviderContext } from './dex-provider.types'

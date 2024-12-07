@@ -83,18 +83,15 @@ importers:
       '@dex-toolkit/utils':
         specifier: workspace:*
         version: link:../../packages/utils
-      '@ethereum-multicall/core':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/core
       '@ethersproject/providers':
         specifier: 5.7.2
         version: 5.7.2
+      '@multicall-toolkit/core':
+        specifier: workspace:*
+        version: link:../../submodules/multicall-toolkit/packages/core
       bignumber.js:
         specifier: 9.1.2
         version: 9.1.2
-      ethereum-multicall:
-        specifier: 2.24.0
-        version: 2.24.0
       ethers:
         specifier: 5.7.2
         version: 5.7.2
@@ -105,12 +102,12 @@ importers:
       '@dex-toolkit/types':
         specifier: workspace:*
         version: link:../../packages/types
-      '@ethereum-multicall/types':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
       '@ethersproject/networks':
         specifier: 5.7.1
         version: 5.7.1
+      '@multicall-toolkit/types':
+        specifier: workspace:*
+        version: link:../../submodules/multicall-toolkit/packages/types
 
   examples/readme-examples:
     dependencies:
@@ -136,9 +133,9 @@ importers:
       '@dex-toolkit/types':
         specifier: workspace:*
         version: link:../../packages/types
-      '@ethereum-multicall/types':
+      '@multicall-toolkit/types':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
+        version: link:../../submodules/multicall-toolkit/packages/types
 
   packages/contracts:
     dependencies:
@@ -148,9 +145,9 @@ importers:
       '@dex-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
-      '@ethereum-multicall/utils':
+      '@multicall-toolkit/utils':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/utils
+        version: link:../../submodules/multicall-toolkit/packages/utils
     devDependencies:
       '@dex-toolkit/number':
         specifier: workspace:*
@@ -158,12 +155,12 @@ importers:
       '@dex-toolkit/types':
         specifier: workspace:*
         version: link:../types
-      '@ethereum-multicall/core':
+      '@multicall-toolkit/core':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/core
-      '@ethereum-multicall/types':
+        version: link:../../submodules/multicall-toolkit/packages/core
+      '@multicall-toolkit/types':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
+        version: link:../../submodules/multicall-toolkit/packages/types
       ethers:
         specifier: 5.7.2
         version: 5.7.2
@@ -182,12 +179,12 @@ importers:
       '@dex-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
-      '@ethereum-multicall/core':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/core
       '@ethersproject/providers':
         specifier: 5.7.2
         version: 5.7.2
+      '@multicall-toolkit/core':
+        specifier: workspace:*
+        version: link:../../submodules/multicall-toolkit/packages/core
       bignumber.js:
         specifier: 9.1.2
         version: 9.1.2
@@ -207,9 +204,9 @@ importers:
       '@dex-toolkit/types':
         specifier: workspace:*
         version: link:../types
-      '@ethereum-multicall/types':
+      '@multicall-toolkit/types':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
+        version: link:../../submodules/multicall-toolkit/packages/types
       '@types/node-fetch':
         specifier: 2.6.11
         version: 2.6.11
@@ -244,12 +241,12 @@ importers:
       '@dex-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
-      '@ethereum-multicall/provider':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/provider
       '@ethersproject/providers':
         specifier: 5.7.2
         version: 5.7.2
+      '@multicall-toolkit/provider':
+        specifier: workspace:*
+        version: link:../../submodules/multicall-toolkit/packages/provider
       ethers:
         specifier: 5.7.2
         version: 5.7.2
@@ -257,24 +254,24 @@ importers:
       '@dex-toolkit/types':
         specifier: workspace:*
         version: link:../types
-      '@ethereum-multicall/types':
+      '@multicall-toolkit/types':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
+        version: link:../../submodules/multicall-toolkit/packages/types
 
   packages/types:
     devDependencies:
-      '@ethereum-abi-types-generator/converter-typescript':
+      '@abi-toolkit/converter-typescript':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-abi-types-generator/packages/converter-typescript
-      '@ethereum-multicall/types':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
+        version: link:../../submodules/abi-toolkit/packages/converter-typescript
       '@ethersproject/abi':
         specifier: 5.7.0
         version: 5.7.0
       '@ethersproject/providers':
         specifier: 5.7.2
         version: 5.7.2
+      '@multicall-toolkit/types':
+        specifier: workspace:*
+        version: link:../../submodules/multicall-toolkit/packages/types
       bignumber.js:
         specifier: 9.1.2
         version: 9.1.2
@@ -290,15 +287,15 @@ importers:
       '@dex-toolkit/number':
         specifier: workspace:*
         version: link:../number
-      '@ethereum-multicall/core':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/core
-      '@ethereum-multicall/utils':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/utils
       '@ethersproject/providers':
         specifier: 5.7.2
         version: 5.7.2
+      '@multicall-toolkit/core':
+        specifier: workspace:*
+        version: link:../../submodules/multicall-toolkit/packages/core
+      '@multicall-toolkit/utils':
+        specifier: workspace:*
+        version: link:../../submodules/multicall-toolkit/packages/utils
       bignumber.js:
         specifier: 9.1.2
         version: 9.1.2
@@ -309,25 +306,25 @@ importers:
         specifier: '2'
         version: 2.7.0(encoding@0.1.13)
     devDependencies:
+      '@abi-toolkit/converter-typescript':
+        specifier: workspace:*
+        version: link:../../submodules/abi-toolkit/packages/converter-typescript
+      '@abi-toolkit/core':
+        specifier: workspace:*
+        version: link:../../submodules/abi-toolkit/packages/core
       '@dex-toolkit/types':
         specifier: workspace:*
         version: link:../types
-      '@ethereum-abi-types-generator/converter-typescript':
+      '@multicall-toolkit/types':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-abi-types-generator/packages/converter-typescript
-      '@ethereum-abi-types-generator/core':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-abi-types-generator/packages/core
-      '@ethereum-multicall/types':
-        specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
+        version: link:../../submodules/multicall-toolkit/packages/types
       '@types/node-fetch':
         specifier: 2.6.11
         version: 2.6.11
 
-  submodules/ethereum-abi-types-generator/packages/converter-typescript:
+  submodules/abi-toolkit/packages/converter-typescript:
     dependencies:
-      '@ethereum-abi-types-generator/utils':
+      '@abi-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
       bignumber.js:
@@ -352,7 +349,7 @@ importers:
         specifier: 0.12.7
         version: 0.12.7
     devDependencies:
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../types
       '@ethersproject/providers':
@@ -365,9 +362,9 @@ importers:
         specifier: 11.0.4
         version: 11.0.4
 
-  submodules/ethereum-abi-types-generator/packages/core:
+  submodules/abi-toolkit/packages/core:
     dependencies:
-      '@ethereum-abi-types-generator/utils':
+      '@abi-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
       colors:
@@ -386,10 +383,10 @@ importers:
         specifier: 17.7.2
         version: 17.7.2
     devDependencies:
-      '@ethereum-abi-types-generator/converter-typescript':
+      '@abi-toolkit/converter-typescript':
         specifier: workspace:*
         version: link:../converter-typescript
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../types
       '@types/fs-extra':
@@ -399,9 +396,9 @@ importers:
         specifier: 17.0.33
         version: 17.0.33
 
-  submodules/ethereum-abi-types-generator/packages/types: {}
+  submodules/abi-toolkit/packages/types: {}
 
-  submodules/ethereum-abi-types-generator/packages/utils:
+  submodules/abi-toolkit/packages/utils:
     dependencies:
       colors:
         specifier: 1.4.0
@@ -419,7 +416,7 @@ importers:
         specifier: 17.7.2
         version: 17.7.2
     devDependencies:
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../types
       '@ethersproject/abi':
@@ -432,71 +429,71 @@ importers:
         specifier: 17.0.32
         version: 17.0.32
 
-  submodules/ethereum-multicall/packages/contracts:
+  submodules/multicall-toolkit/packages/contracts:
     dependencies:
-      '@ethereum-multicall/provider':
+      '@multicall-toolkit/provider':
         specifier: workspace:*
         version: link:../provider
-      '@ethereum-multicall/utils':
+      '@multicall-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@ethereum-multicall/types':
+      '@multicall-toolkit/types':
         specifier: workspace:*
         version: link:../types
       ethers:
         specifier: 5.7.2
         version: 5.7.2
 
-  submodules/ethereum-multicall/packages/core:
+  submodules/multicall-toolkit/packages/core:
     dependencies:
-      '@ethereum-multicall/utils':
-        specifier: workspace:*
-        version: link:../utils
       '@ethersproject/providers':
         specifier: 5.7.2
         version: 5.7.2
+      '@multicall-toolkit/utils':
+        specifier: workspace:*
+        version: link:../utils
       ethers:
         specifier: 5.7.2
         version: 5.7.2
     devDependencies:
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
-        version: link:../../../ethereum-abi-types-generator/packages/types
-      '@ethereum-multicall/types':
-        specifier: workspace:*
-        version: link:../types
+        version: link:../../../abi-toolkit/packages/types
       '@ethersproject/abi':
         specifier: 5.7.0
         version: 5.7.0
+      '@multicall-toolkit/types':
+        specifier: workspace:*
+        version: link:../types
 
-  submodules/ethereum-multicall/packages/provider:
+  submodules/multicall-toolkit/packages/provider:
     dependencies:
-      '@ethereum-multicall/core':
+      '@ethersproject/providers':
+        specifier: 5.7.2
+        version: 5.7.2
+      '@multicall-toolkit/core':
         specifier: workspace:*
         version: link:../core
-      '@ethereum-multicall/utils':
+      '@multicall-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
-      '@ethersproject/providers':
-        specifier: 5.7.2
-        version: 5.7.2
       ethers:
         specifier: 5.7.2
         version: 5.7.2
     devDependencies:
-      '@ethereum-multicall/types':
+      '@multicall-toolkit/types':
         specifier: workspace:*
         version: link:../types
 
-  submodules/ethereum-multicall/packages/types:
+  submodules/multicall-toolkit/packages/types:
     devDependencies:
-      '@ethereum-abi-types-generator/converter-typescript':
+      '@abi-toolkit/converter-typescript':
         specifier: workspace:*
-        version: link:../../../ethereum-abi-types-generator/packages/converter-typescript
-      '@ethereum-abi-types-generator/types':
+        version: link:../../../abi-toolkit/packages/converter-typescript
+      '@abi-toolkit/types':
         specifier: workspace:*
-        version: link:../../../ethereum-abi-types-generator/packages/types
+        version: link:../../../abi-toolkit/packages/types
       '@ethersproject/abi':
         specifier: 5.7.0
         version: 5.7.0
@@ -507,26 +504,26 @@ importers:
         specifier: 5.7.2
         version: 5.7.2
 
-  submodules/ethereum-multicall/packages/utils:
+  submodules/multicall-toolkit/packages/utils:
     devDependencies:
-      '@ethereum-abi-types-generator/converter-typescript':
+      '@abi-toolkit/converter-typescript':
         specifier: workspace:*
-        version: link:../../../ethereum-abi-types-generator/packages/converter-typescript
-      '@ethereum-abi-types-generator/core':
+        version: link:../../../abi-toolkit/packages/converter-typescript
+      '@abi-toolkit/core':
         specifier: workspace:*
-        version: link:../../../ethereum-abi-types-generator/packages/core
-      '@ethereum-abi-types-generator/types':
+        version: link:../../../abi-toolkit/packages/core
+      '@abi-toolkit/types':
         specifier: workspace:*
-        version: link:../../../ethereum-abi-types-generator/packages/types
-      '@ethereum-multicall/types':
-        specifier: workspace:*
-        version: link:../types
+        version: link:../../../abi-toolkit/packages/types
       '@ethersproject/abi':
         specifier: 5.7.0
         version: 5.7.0
       '@ethersproject/providers':
         specifier: 5.7.2
         version: 5.7.2
+      '@multicall-toolkit/types':
+        specifier: workspace:*
+        version: link:../types
       ethers:
         specifier: 5.7.2
         version: 5.7.2
@@ -549,9 +546,9 @@ importers:
       '@dex-toolkit/types':
         specifier: workspace:*
         version: link:../../packages/types
-      '@ethereum-multicall/types':
+      '@multicall-toolkit/types':
         specifier: workspace:*
-        version: link:../../submodules/ethereum-multicall/packages/types
+        version: link:../../submodules/multicall-toolkit/packages/types
 
 packages:
 
@@ -2268,9 +2265,6 @@ packages:
   esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
-
-  ethereum-multicall@2.24.0:
-    resolution: {integrity: sha512-+xWNmtWdpL4zOdAF2zeLYa1ZsrHLeU7KLmBAsc0el140qdQmF9ubyM9SwKHzy+xztTHi+eCnmCjknqhEU25gFA==}
 
   ethers@4.0.49:
     resolution: {integrity: sha512-kPltTvWiyu+OktYy1IStSO16i2e7cS9D9OxZ81q2UUaiNPVrm/RTcbxamCXF9VUSKzJIdJV68EAIhTEVBalRWg==}
@@ -5452,7 +5446,7 @@ snapshots:
 
   '@types/bn.js@5.1.5':
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 22.6.1
 
   '@types/eslint@8.56.11':
     dependencies:
@@ -6318,7 +6312,7 @@ snapshots:
     dependencies:
       bn.js: 4.12.0
       brorand: 1.1.0
-      hash.js: 1.1.3
+      hash.js: 1.1.7
       hmac-drbg: 1.0.1
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
@@ -6616,14 +6610,6 @@ snapshots:
       '@types/estree': 1.0.5
 
   esutils@2.0.3: {}
-
-  ethereum-multicall@2.24.0:
-    dependencies:
-      '@ethersproject/providers': 5.7.2
-      ethers: 5.7.2
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
 
   ethers@4.0.49:
     dependencies:
@@ -7022,7 +7008,7 @@ snapshots:
 
   hmac-drbg@1.0.1:
     dependencies:
-      hash.js: 1.1.3
+      hash.js: 1.1.7
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
 

@@ -1,7 +1,7 @@
 {
   "name": "@dex-toolkit/contracts",
   "version": "1.0.0",
-  "author": "",
+  "author": "niZmosis",
   "license": "ISC",
   "keywords": [
     "dex-toolkit",
@@ -33,13 +33,13 @@
   "dependencies": {
     "@dex-toolkit/utils": "workspace:*",
     "@dex-toolkit/provider": "workspace:*",
-    "@ethereum-multicall/utils": "workspace:*"
+    "@multicall-toolkit/utils": "workspace:*"
   },
   "devDependencies": {
     "@dex-toolkit/number": "workspace:*",
     "@dex-toolkit/types": "workspace:*",
-    "@ethereum-multicall/core": "workspace:*",
-    "@ethereum-multicall/types": "workspace:*",
+    "@multicall-toolkit/core": "workspace:*",
+    "@multicall-toolkit/types": "workspace:*",
     "ethers": "5.7.2"
   }
 }

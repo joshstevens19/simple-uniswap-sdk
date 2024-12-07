@@ -5,7 +5,7 @@ import type {
   ChainIdAndProviderContext,
   EthersProviderContext,
   IMulticallProvider,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 import type { Signer } from 'ethers'
 
 import type { AuthenticatedProviderType, ChainConfig } from './chain.types'

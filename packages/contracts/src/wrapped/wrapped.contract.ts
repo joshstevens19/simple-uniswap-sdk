@@ -20,8 +20,8 @@ import type {
   MethodNames,
   ExecutionResult,
   ContractContext,
-} from '@ethereum-multicall/types'
-import { mapAbiFunctionNames } from '@ethereum-multicall/utils'
+} from '@multicall-toolkit/types'
+import { mapAbiFunctionNames } from '@multicall-toolkit/utils'
 import type { BigNumber, BigNumberish, ContractTransaction } from 'ethers'
 
 export class WrappedContract

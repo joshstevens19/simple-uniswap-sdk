@@ -1,5 +1,5 @@
 import type { IDexProvider, Token } from '@dex-toolkit/types'
-import { Multicall } from '@ethereum-multicall/core'
+import { Multicall } from '@multicall-toolkit/core'
 import { describe, it, expect } from 'vitest'
 
 import { DexMulticall } from '../../src/multicall/dex-multicall'

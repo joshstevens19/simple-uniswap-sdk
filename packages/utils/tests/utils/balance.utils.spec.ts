@@ -1,6 +1,6 @@
 import { DexNumber } from '@dex-toolkit/number'
 import type { Erc20Types } from '@dex-toolkit/types'
-import type { ContractResults } from '@ethereum-multicall/types'
+import type { ContractResults } from '@multicall-toolkit/types'
 import { BigNumber as EthersBigNumber } from 'ethers'
 import { parseUnits } from 'ethers/lib/utils'
 import { describe, it, expect } from 'vitest'

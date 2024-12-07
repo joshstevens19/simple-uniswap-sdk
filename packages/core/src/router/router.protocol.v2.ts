@@ -56,7 +56,7 @@ import type {
   MethodCall,
   MethodCallUnion,
   MulticallResults,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 import type { BigNumber } from 'ethers'
 
 import { RouterProtocolAbstract } from './router.protocol.abstract'

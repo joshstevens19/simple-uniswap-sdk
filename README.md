@@ -81,6 +81,7 @@ A powerful and flexible toolkit designed for seamless integration with multiple 
   - [Preparing a multicall ContractContext with the ERC20 Contract](#preparing-a-multicall-contractcontext-with-the-erc20-contract)
 - **[Supported DEXes and Chains](#supported-dexes-and-chains)**
 - **[Tests](#tests)**
+- **[Related Toolkits](#related-toolkits)**
 - **[Issues](#issues)**
 - **[Contributing](#contributing)**
 - **[License](#license)**
@@ -2830,6 +2831,18 @@ V3 Protocol
 ```shell
 // TODO
 ```
+
+## Related Toolkits
+
+Check out my other projects and forks for blockchain development!
+
+| Toolkit | Description |
+|---------|-------------|
+| [abi-toolkit](https://github.com/niZmosis/abi-toolkit) | TypeScript ABI generation and conversion utilities |
+| [provider-toolkit](https://github.com/niZmosis/provider-toolkit) | Web3 provider management and configuration tools |
+| [multicall-toolkit](https://github.com/niZmosis/multicall-toolkit) | Batch contract calls and state aggregation utilities |
+| [transaction-toolkit](https://github.com/niZmosis/transaction-toolkit) | Transaction building, simulation, and management tools |
+| [connector-toolkit](https://github.com/niZmosis/connector-toolkit) | Wallet connection and account management utilities |
 
 ## Issues
 

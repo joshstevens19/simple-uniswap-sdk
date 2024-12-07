@@ -1,4 +1,4 @@
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 import type { ContractReceipt } from 'ethers'
 import type { Observable, Subject } from 'rxjs'
 

@@ -1,5 +1,5 @@
 import type { ChainConfig } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import { bep20ABI, bep777ABI, erc1155ABI, erc721ABI } from '../../abis/index'
 import { BNBToken } from '../../tokens/configs/bnb.token'

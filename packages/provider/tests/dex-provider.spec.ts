@@ -1,6 +1,6 @@
 import type { UniswapPairV2Types } from '@dex-toolkit/types'
 import { ErrorCodes, DexError } from '@dex-toolkit/utils'
-import type { ContractDetail } from '@ethereum-multicall/types'
+import type { ContractDetail } from '@multicall-toolkit/types'
 import { describe, it, expect } from 'vitest'
 
 import {

@@ -32,11 +32,8 @@ import {
   processTokenCallResults,
   assertIsAddresses,
 } from '@dex-toolkit/utils'
-import type { Address } from '@ethereum-multicall/types'
-import type {
-  ContractContext,
-  MethodCallUnion,
-} from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
+import type { ContractContext, MethodCallUnion } from '@multicall-toolkit/types'
 
 import { TokenList } from './token-list'
 

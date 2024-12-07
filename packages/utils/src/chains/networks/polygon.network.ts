@@ -1,5 +1,5 @@
 import type { ChainConfig } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import { erc1155ABI, erc20ABI, erc721ABI, erc777ABI } from '../../abis/index'
 import { POLToken } from '../../tokens/configs/pol.token'

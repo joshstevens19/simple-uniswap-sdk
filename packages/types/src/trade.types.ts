@@ -1,5 +1,5 @@
-import type { Address, CustomNetwork } from '@ethereum-multicall/types'
 import type { JsonFragment } from '@ethersproject/abi'
+import type { Address, CustomNetwork } from '@multicall-toolkit/types'
 import type BigNumber from 'bignumber.js'
 import type {
   ContractReceipt,

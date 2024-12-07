@@ -58,7 +58,7 @@ import {
   INCToken,
   AAVEToken,
 } from '@dex-toolkit/utils'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import type { DexTestCase } from './mock.types'
 

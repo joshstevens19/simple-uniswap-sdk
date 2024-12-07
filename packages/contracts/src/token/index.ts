@@ -1,5 +1,5 @@
 import type { DexMulticallProviderContext } from '@dex-toolkit/types'
-import type { ContractDetailToken } from '@ethereum-multicall/types'
+import type { ContractDetailToken } from '@multicall-toolkit/types'
 
 import { Erc1155Contract } from './erc1155.contract'
 import { Erc20Contract } from './erc20.contract'

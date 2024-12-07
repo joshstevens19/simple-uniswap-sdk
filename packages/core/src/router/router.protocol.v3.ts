@@ -65,7 +65,7 @@ import type {
   ContractResults,
   MethodResult,
   MulticallResults,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 
 import { RouterProtocolAbstract } from './router.protocol.abstract'
 

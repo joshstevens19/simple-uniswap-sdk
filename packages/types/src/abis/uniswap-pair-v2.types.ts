@@ -1,4 +1,4 @@
-import type { EthersContractContextV5 } from '@ethereum-abi-types-generator/converter-typescript'
+import type { EthersContractContextV5 } from '@abi-toolkit/converter-typescript'
 import type {
   ContractTransaction,
   BytesLike,

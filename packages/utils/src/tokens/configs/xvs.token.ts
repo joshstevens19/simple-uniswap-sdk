@@ -1,5 +1,5 @@
 import type { Token } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import { zksyncMainChainId } from '../../chains/chainIds'
 import { getImageUrlForToken } from '../logo-urls/logo-urls'

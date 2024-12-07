@@ -40,7 +40,7 @@ import type {
   ContractContext,
   MethodCall,
   MethodCallUnion,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 
 import { RouterAbstract } from './router.abstract'
 import { RouterProtocolV2 } from './router.protocol.v2'

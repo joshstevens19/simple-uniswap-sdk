@@ -6,7 +6,7 @@ import {
   getChainConfig,
   plsMainChainId,
 } from '@dex-toolkit/utils'
-import type { MethodCall } from '@ethereum-multicall/types'
+import type { MethodCall } from '@multicall-toolkit/types'
 import { Contract, ethers, providers, utils } from 'ethers'
 
 type NodeTestResult = {

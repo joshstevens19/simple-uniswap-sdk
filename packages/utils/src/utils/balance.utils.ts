@@ -18,7 +18,7 @@ import type {
   Address,
   ContractContext,
   MulticallResults,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 
 import { getAbiForStandard } from './abi.utils'
 import {

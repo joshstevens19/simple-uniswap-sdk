@@ -1,9 +1,5 @@
-import type {
-  Address,
-  ChainId,
-  ContractDetail,
-} from '@ethereum-multicall/types'
 import type { JsonFragment } from '@ethersproject/abi'
+import type { Address, ChainId, ContractDetail } from '@multicall-toolkit/types'
 
 import type {
   UniswapFactoryV2Types,

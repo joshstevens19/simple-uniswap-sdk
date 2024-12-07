@@ -1,10 +1,10 @@
-import type { EthersProvider } from '@ethereum-multicall/types'
 import {
   type ExternalProvider,
   JsonRpcProvider,
   Web3Provider,
   Provider,
 } from '@ethersproject/providers'
+import type { EthersProvider } from '@multicall-toolkit/types'
 import { BigNumber, type BigNumberish, type BytesLike } from 'ethers'
 import { isBytesLike, isHexString, toUtf8String } from 'ethers/lib/utils'
 

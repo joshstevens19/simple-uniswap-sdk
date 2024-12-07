@@ -1,5 +1,5 @@
 import type { DexType, Token, VersionTag } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 type NativeTokens = {
   nativeCoin: Token

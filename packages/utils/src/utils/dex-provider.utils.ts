@@ -3,7 +3,7 @@ import type {
   DexChainIdAndProviderContext,
   DexAuthenticatedProviderContext,
 } from '@dex-toolkit/types'
-import type { EthersProviderContext } from '@ethereum-multicall/types'
+import type { EthersProviderContext } from '@multicall-toolkit/types'
 
 // ------------------------
 // Type Guards

@@ -9,7 +9,7 @@ import type {
   Erc777Types,
   Erc20Types,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@ethereum-multicall/types'
+import type { ChainId } from '@multicall-toolkit/types'
 
 import {
   isAddress,

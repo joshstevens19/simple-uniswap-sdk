@@ -56,7 +56,7 @@ import type {
   Address,
   ContractDetail,
   MethodCall,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 import { v4 as generateId } from 'uuid'
 
 import {

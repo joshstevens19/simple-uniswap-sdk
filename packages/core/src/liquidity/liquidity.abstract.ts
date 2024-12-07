@@ -38,7 +38,7 @@ import {
   MAX_HEX_STRING,
   MIN_HEX_STRING,
 } from '@dex-toolkit/utils'
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 
 import { TokenContract } from '../token-contract'
 import { parseTokenListFromTokenListContext, TokenList } from '../token-list'

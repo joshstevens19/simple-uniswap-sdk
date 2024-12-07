@@ -29,7 +29,7 @@ import type {
   ExecutionResult,
   MethodCall,
   MethodNames,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 import type {
   BigNumberish,
   BytesLike,

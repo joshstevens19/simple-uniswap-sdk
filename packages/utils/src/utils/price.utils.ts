@@ -1,6 +1,6 @@
 import { DexNumber } from '@dex-toolkit/number'
 import type { PoolReserve, Token } from '@dex-toolkit/types'
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 
 import { isSameAddress } from './address.utils'
 import { DexError, ErrorCodes } from '../errors'

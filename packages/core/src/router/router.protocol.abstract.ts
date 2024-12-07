@@ -39,7 +39,7 @@ import type {
   MethodCallUnion,
   MulticallResults,
   MethodResult,
-} from '@ethereum-multicall/types'
+} from '@multicall-toolkit/types'
 
 import { RouterAbstract } from './router.abstract'
 

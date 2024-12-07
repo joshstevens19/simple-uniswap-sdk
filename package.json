@@ -1,7 +1,7 @@
 {
   "name": "dex-toolkit",
   "version": "1.0.0",
-  "author": "",
+  "author": "niZmosis",
   "license": "ISC",
   "private": true,
   "description": "Simple easy to understand SDK for various decentralized exchanges which looks over best v2 and v3 to find you the best swap quote.",
@@ -12,13 +12,13 @@
     "uniswap",
     "dex"
   ],
-  "homepage": "https://github.com/uniswap-integration/simple-uniswap-sdk#readme",
+  "homepage": "https://github.com/niZmosis/dex-toolkit#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uniswap-integration/simple-uniswap-sdk.git"
+    "url": "git+https://github.com/niZmosis/dex-toolkit.git"
   },
   "bugs": {
-    "url": "https://github.com/uniswap-integration/simple-uniswap-sdk/issues"
+    "url": "https://github.com/niZmosis/dex-toolkit/issues"
   },
   "type": "module",
   "scripts": {

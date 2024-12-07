@@ -71,7 +71,7 @@ import {
   transformCoinAddressToWrappedAddress,
   transformWrappedTokenToCoin,
 } from '@dex-toolkit/utils'
-import type { Address } from '@ethereum-multicall/types'
+import type { Address } from '@multicall-toolkit/types'
 import { ethers } from 'ethers'
 import { finalize, Observable, Subject } from 'rxjs'
 import { v4 as generateId } from 'uuid'
