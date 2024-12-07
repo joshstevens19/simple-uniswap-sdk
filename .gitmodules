@@ -1,6 +1,6 @@
-[submodule "submodules/ethereum-abi-types-generator"]
-	path = submodules/ethereum-abi-types-generator
-	url = git@github.com:niZmosis/ethereum-abi-types-generator.git
-[submodule "submodules/ethereum-multicall"]
-	path = submodules/ethereum-multicall
-	url = git@github.com:niZmosis/ethereum-multicall.git
+[submodule "submodules/abi-toolkit"]
+	path = submodules/abi-toolkit
+	url = git@github.com:niZmosis/abi-toolkit.git
+[submodule "submodules/multicall-toolkit"]
+	path = submodules/multicall-toolkit
+	url = git@github.com:niZmosis/multicall-toolkit.git
