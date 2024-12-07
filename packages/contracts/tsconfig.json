@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "composite": true,
+    "incremental": true,
+    "outDir": "./dist",
+    "moduleResolution": "Node"
+  }
+}

@@ -1,0 +1,8 @@
+// export { default as arbitrumIcon } from './arbitrum.svg'
+// export { default as avalancheIcon } from './avalanche64.webp'
+// export { default as bnbIcon } from './bnb64.webp'
+// export { default as celoIcon } from './celo.svg'
+// export { default as ethIcon } from './eth64.webp'
+// export { default as optimismIcon } from './optimism.svg'
+// export { default as plsIcon } from './pls64.webp'
+// export { default as polygonIcon } from './polygon.svg'

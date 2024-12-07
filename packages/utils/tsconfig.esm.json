@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests",
+    "vitest.config.ts",
+    "**/*.spec.ts"
+  ],
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/esm",
+    "module": "ESNext"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "entryPointStrategy": "packages",
+  "entryPoints": ["packages/*"],
+  "out": "docs",
+  "includeVersion": true,
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "excludeExternals": true,
+  "excludeNotDocumented": false,
+  "tsconfig": "tsconfig.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/tests/**",
+    "**/__tests__/**",
+    "test/**"
+  ]
+}

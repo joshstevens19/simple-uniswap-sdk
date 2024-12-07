@@ -1,0 +1,38 @@
+{
+  "name": "testing-setup",
+  "keywords": [
+    "dex-toolkit"
+  ],
+  "author": "niZmosis",
+  "license": "ISC",
+  "repository": "github:niZmosis/dex-toolkit",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.0",
+  "files": [
+    "dist/*"
+  ],
+  "type": "commonjs",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "tsc -p tsconfig.build.json --watch",
+    "setup:test": "node ./dist/setup.js",
+    "generate:wallet": "node ./dist/generate.js",
+    "node:limits": "node ./dist/node-limits.js"
+  },
+  "dependencies": {
+    "@dex-toolkit/contracts": "workspace:*",
+    "@dex-toolkit/provider": "workspace:*",
+    "@dex-toolkit/utils": "workspace:*",
+    "ethers": "5.7.2"
+  },
+  "devDependencies": {
+    "@dex-toolkit/types": "workspace:*",
+    "@ethereum-multicall/types": "workspace:*"
+  }
+}

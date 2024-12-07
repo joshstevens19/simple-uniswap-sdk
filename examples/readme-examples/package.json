@@ -1,0 +1,38 @@
+{
+  "name": "readme-examples",
+  "keywords": [
+    "dex-toolkit"
+  ],
+  "author": "niZmosis",
+  "license": "ISC",
+  "repository": "github:niZmosis/dex-toolkit",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.0",
+  "files": [
+    "dist/*"
+  ],
+  "type": "commonjs",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "tsc -p tsconfig.build.json --watch",
+    "dev": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@dex-toolkit/contracts": "workspace:*",
+    "@dex-toolkit/core": "workspace:*",
+    "@dex-toolkit/number": "workspace:*",
+    "@dex-toolkit/provider": "workspace:*",
+    "@dex-toolkit/utils": "workspace:*",
+    "ethers": "5.7.2"
+  },
+  "devDependencies": {
+    "@dex-toolkit/types": "workspace:*",
+    "@ethereum-multicall/types": "workspace:*"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "independent",
+  "npmClient": "pnpm",
+  "stream": true,
+  "exact": true,
+  "command": {
+    "publish": {
+      "private": false,
+      "ignoreChanges": ["**/examples/**", "**/tests/**"]
+    },
+    "version": {
+      "allowBranch": "main",
+      "message": "chore(release): publish %s",
+      "conventionalCommits": true,
+      "changelogPreset": "angular"
+    }
+  }
+}

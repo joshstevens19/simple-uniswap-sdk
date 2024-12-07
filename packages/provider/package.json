@@ -1,0 +1,43 @@
+{
+  "name": "@dex-toolkit/provider",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "keywords": [
+    "dex-toolkit",
+    "ethereum",
+    "blockchain",
+    "uniswap",
+    "dex"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "dist/esm/index.js",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js"
+  },
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "pnpm build:esm && pnpm build:cjs",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "start": "tsc -p tsconfig.esm.json --watch"
+  },
+  "dependencies": {
+    "@dex-toolkit/number": "workspace:*",
+    "@dex-toolkit/utils": "workspace:*",
+    "@ethereum-multicall/provider": "workspace:*",
+    "@ethersproject/providers": "5.7.2",
+    "ethers": "5.7.2"
+  },
+  "devDependencies": {
+    "@dex-toolkit/types": "workspace:*",
+    "@ethereum-multicall/types": "workspace:*"
+  }
+}
