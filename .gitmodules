@@ -4,3 +4,6 @@
 [submodule "submodules/multicall-toolkit"]
 	path = submodules/multicall-toolkit
 	url = git@github.com:niZmosis/multicall-toolkit.git
+[submodule "submodules/chain-toolkit"]
+	path = submodules/chain-toolkit
+	url = git@github.com:niZmosis/chain-toolkit.git
