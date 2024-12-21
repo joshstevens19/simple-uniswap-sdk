@@ -38,7 +38,7 @@ Returns the contract details.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:33
+[packages/contracts/src/token/erc20.contract.ts:33](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L33)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/contracts/src/token/erc20.contract.ts:33
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:29
+[packages/contracts/src/token/erc20.contract.ts:29](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L29)
 
 ***
 
@@ -62,7 +62,7 @@ packages/contracts/src/token/erc20.contract.ts:29
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -72,7 +72,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:31
+[packages/contracts/src/token/erc20.contract.ts:31](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L31)
 
 ***
 
@@ -108,7 +108,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -144,7 +144,7 @@ Get the ERC20 contract
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:54
+[packages/contracts/src/token/erc20.contract.ts:54](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L54)
 
 ***
 
@@ -160,7 +160,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:59
+[packages/contracts/src/token/erc20.contract.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L59)
 
 ***
 
@@ -182,7 +182,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ## Methods
 
@@ -214,7 +214,7 @@ The amount of tokens that are allowed to be spent.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:375
+[packages/contracts/src/token/erc20.contract.ts:375](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L375)
 
 ***
 
@@ -242,7 +242,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:385
+[packages/contracts/src/token/erc20.contract.ts:385](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L385)
 
 ***
 
@@ -278,7 +278,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:210
+[packages/contracts/src/token/erc20.contract.ts:210](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L210)
 
 ***
 
@@ -306,7 +306,7 @@ The balance of the specified address.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:309
+[packages/contracts/src/token/erc20.contract.ts:309](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L309)
 
 ***
 
@@ -330,7 +330,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:318
+[packages/contracts/src/token/erc20.contract.ts:318](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L318)
 
 ***
 
@@ -371,7 +371,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:175
+[packages/contracts/src/token/erc20.contract.ts:175](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L175)
 
 ***
 
@@ -403,7 +403,7 @@ The result of the contract method invocation with the appropriate return type.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:69
+[packages/contracts/src/token/erc20.contract.ts:69](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L69)
 
 ***
 
@@ -425,7 +425,7 @@ The number of decimals.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:292
+[packages/contracts/src/token/erc20.contract.ts:292](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L292)
 
 ***
 
@@ -443,7 +443,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:300
+[packages/contracts/src/token/erc20.contract.ts:300](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L300)
 
 ***
 
@@ -471,7 +471,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:228
+[packages/contracts/src/token/erc20.contract.ts:228](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L228)
 
 ***
 
@@ -499,7 +499,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:93
+[packages/contracts/src/token/erc20.contract.ts:93](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L93)
 
 ***
 
@@ -527,7 +527,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:365
+[packages/contracts/src/token/erc20.contract.ts:365](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L365)
 
 ***
 
@@ -559,7 +559,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:280
+[packages/contracts/src/token/erc20.contract.ts:280](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L280)
 
 ***
 
@@ -602,7 +602,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -624,7 +624,7 @@ The name of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:191
+[packages/contracts/src/token/erc20.contract.ts:191](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L191)
 
 ***
 
@@ -642,7 +642,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:199
+[packages/contracts/src/token/erc20.contract.ts:199](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L199)
 
 ***
 
@@ -674,7 +674,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:109
+[packages/contracts/src/token/erc20.contract.ts:109](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L109)
 
 ***
 
@@ -708,7 +708,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:136
+[packages/contracts/src/token/erc20.contract.ts:136](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L136)
 
 ***
 
@@ -730,7 +730,7 @@ The symbol of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:328
+[packages/contracts/src/token/erc20.contract.ts:328](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L328)
 
 ***
 
@@ -748,7 +748,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:336
+[packages/contracts/src/token/erc20.contract.ts:336](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L336)
 
 ***
 
@@ -770,7 +770,7 @@ The total supply of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:236
+[packages/contracts/src/token/erc20.contract.ts:236](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L236)
 
 ***
 
@@ -788,7 +788,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:244
+[packages/contracts/src/token/erc20.contract.ts:244](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L244)
 
 ***
 
@@ -824,7 +824,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:347
+[packages/contracts/src/token/erc20.contract.ts:347](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L347)
 
 ***
 
@@ -864,4 +864,4 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc20.contract.ts:259
+[packages/contracts/src/token/erc20.contract.ts:259](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc20.contract.ts#L259)

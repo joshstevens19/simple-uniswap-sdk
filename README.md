@@ -2746,6 +2746,18 @@ console.log({
 })
 ```
 
+### Migrating
+
+```typescript
+TokensFactoryPublic - Tokens
+appendEthToContractAddress - transformWrappedAddressToCoinAddress
+UniswapPair - 
+UniswapPairSettings - TradeSettings
+UniswapVersion - DexVersion
+isNativeEth - isCoinAddress
+cloneUniswapContractDetails?.v2Override - protocols.protocolV2
+```
+
 ## Supported DEXes and Chains
 
 If the Dex/Chain combination is not listed, you can use a CustomNetwork and DexContext on the Trade to support it. You may also make a PR to add it to the library.

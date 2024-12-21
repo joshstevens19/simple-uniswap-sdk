@@ -17,4 +17,4 @@ Used internally by the Trade class.
 
 ## Defined in
 
-packages/types/src/trade.types.ts:425
+[packages/types/src/trade.types.ts:425](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/trade.types.ts#L425)

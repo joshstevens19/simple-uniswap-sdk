@@ -33,4 +33,4 @@ DexError - Throws an error if the `dexContext` is not supported, or if the chain
 
 ## Defined in
 
-packages/provider/src/dex-provider.ts:266
+[packages/provider/src/dex-provider.ts:266](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L266)

@@ -1,5 +1,5 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { DexType } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import type { DexTestCase, DexTestCaseFilter } from './mock.types'
 

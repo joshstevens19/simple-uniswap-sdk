@@ -34,7 +34,7 @@ Returns the contract details.
 
 #### Defined in
 
-packages/provider/src/dex-provider-base.ts:10
+[packages/provider/src/dex-provider-base.ts:10](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider-base.ts#L10)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/provider/src/dex-provider-base.ts:10
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -62,7 +62,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/provider/src/dex-provider-base.ts:8
+[packages/provider/src/dex-provider-base.ts:8](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider-base.ts#L8)
 
 ## Accessors
 
@@ -84,7 +84,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -100,7 +100,7 @@ Returns the underlying `DexProvider`.
 
 #### Defined in
 
-packages/provider/src/dex-provider-base.ts:24
+[packages/provider/src/dex-provider-base.ts:24](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider-base.ts#L24)
 
 ***
 
@@ -122,7 +122,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ## Methods
 
@@ -165,4 +165,4 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31

@@ -1,3 +1,4 @@
+import { plsTestChainId } from '@chain-toolkit/chains'
 import { Erc20Contract, PairContract } from '@dex-toolkit/contracts'
 import { Tokens, DexFactory, TokenContract, TokenList } from '@dex-toolkit/core'
 import { DexNumber } from '@dex-toolkit/number'
@@ -9,7 +10,6 @@ import type {
 } from '@dex-toolkit/types'
 import {
   tradeDirectionMap,
-  plsTestChainId,
   pulseXRouterV2ABI,
   uniswapFactoryV2ABI,
   uniswapPairV2ABI,

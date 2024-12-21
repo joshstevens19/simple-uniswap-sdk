@@ -1,12 +1,12 @@
+import { plsMainChainId, plsTestChainId } from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { DexConfig } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import {
   pulseXRouterV2ABI,
   uniswapFactoryV2ABI,
   uniswapPairV2ABI,
 } from '../../abis/index'
-import { plsMainChainId, plsTestChainId } from '../../chains/chainIds'
 import { BIDToken, PLSXToken } from '../../tokens/configs/index'
 import { dexTypeMap } from '../../utils/dex.utils'
 

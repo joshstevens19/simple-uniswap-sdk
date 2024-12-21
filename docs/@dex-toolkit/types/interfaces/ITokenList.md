@@ -19,7 +19,7 @@ The chain ID associated with the token list factory.
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:96
+[packages/types/src/token-list.types.ts:97](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L97)
 
 ***
 
@@ -31,7 +31,7 @@ packages/types/src/token-list.types.ts:96
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:99
+[packages/types/src/token-list.types.ts:100](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L100)
 
 ***
 
@@ -43,7 +43,7 @@ The list of token list sources being used by the factory.
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:102
+[packages/types/src/token-list.types.ts:103](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L103)
 
 ***
 
@@ -55,7 +55,7 @@ The array of tokens managed by the factory.
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:105
+[packages/types/src/token-list.types.ts:106](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L106)
 
 ## Methods
 
@@ -73,7 +73,7 @@ A promise that resolves to an array of `TokenListAsset` objects.
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:131
+[packages/types/src/token-list.types.ts:132](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L132)
 
 ***
 
@@ -99,7 +99,7 @@ The matching `Token` object if found; otherwise, `undefined`.
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:113
+[packages/types/src/token-list.types.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L114)
 
 ***
 
@@ -117,7 +117,7 @@ A promise that resolves to an array of `TokenListAsset` objects.
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:124
+[packages/types/src/token-list.types.ts:125](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L125)
 
 ***
 
@@ -141,4 +141,4 @@ An array of unique `Token` objects.
 
 #### Defined in
 
-packages/types/src/token-list.types.ts:139
+[packages/types/src/token-list.types.ts:140](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L140)

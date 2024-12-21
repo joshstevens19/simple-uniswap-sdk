@@ -30,7 +30,7 @@
 
 #### Defined in
 
-packages/utils/src/price-source/coin-gecko.ts:55
+[packages/utils/src/price-source/coin-gecko.ts:56](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/coin-gecko.ts#L56)
 
 ## Properties
 
@@ -44,7 +44,7 @@ packages/utils/src/price-source/coin-gecko.ts:55
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:17
+[packages/utils/src/price-source/price-source.ts:18](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L18)
 
 ***
 
@@ -66,7 +66,7 @@ packages/utils/src/price-source/price-source.ts:17
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:18
+[packages/utils/src/price-source/price-source.ts:19](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L19)
 
 ***
 
@@ -80,7 +80,7 @@ packages/utils/src/price-source/price-source.ts:18
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:22
+[packages/utils/src/price-source/price-source.ts:23](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L23)
 
 ## Methods
 
@@ -118,7 +118,7 @@ A promise that resolves to an object containing the fiat prices.
 
 #### Defined in
 
-packages/utils/src/price-source/coin-gecko.ts:59
+[packages/utils/src/price-source/coin-gecko.ts:60](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/coin-gecko.ts#L60)
 
 ***
 
@@ -154,4 +154,4 @@ A promise that resolves to an object containing the fiat prices.
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:37
+[packages/utils/src/price-source/price-source.ts:38](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L38)

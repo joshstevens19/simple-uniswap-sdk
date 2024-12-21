@@ -24,6 +24,7 @@
     "dev": "node ./dist/index.js"
   },
   "dependencies": {
+    "@chain-toolkit/chains": "workspace:*",
     "@dex-toolkit/contracts": "workspace:*",
     "@dex-toolkit/core": "workspace:*",
     "@dex-toolkit/number": "workspace:*",

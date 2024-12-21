@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:29
+[packages/utils/src/tokens/configs/uni.token.ts:29](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L29)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/uni.token.ts:29
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:44
+[packages/utils/src/tokens/configs/uni.token.ts:44](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L44)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/uni.token.ts:44
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:60
+[packages/utils/src/tokens/configs/uni.token.ts:60](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L60)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/tokens/configs/uni.token.ts:60
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:75
+[packages/utils/src/tokens/configs/uni.token.ts:75](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L75)
 
 ***
 
@@ -112,7 +112,7 @@ packages/utils/src/tokens/configs/uni.token.ts:75
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:90
+[packages/utils/src/tokens/configs/uni.token.ts:90](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L90)
 
 ***
 
@@ -130,7 +130,7 @@ packages/utils/src/tokens/configs/uni.token.ts:90
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:117
+[packages/utils/src/tokens/configs/uni.token.ts:117](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L117)
 
 ***
 
@@ -148,7 +148,7 @@ packages/utils/src/tokens/configs/uni.token.ts:117
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:132
+[packages/utils/src/tokens/configs/uni.token.ts:132](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L132)
 
 ***
 
@@ -174,7 +174,7 @@ packages/utils/src/tokens/configs/uni.token.ts:132
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:148
+[packages/utils/src/tokens/configs/uni.token.ts:148](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L148)
 
 ## Methods
 
@@ -192,4 +192,4 @@ packages/utils/src/tokens/configs/uni.token.ts:148
 
 #### Defined in
 
-packages/utils/src/tokens/configs/uni.token.ts:177
+[packages/utils/src/tokens/configs/uni.token.ts:177](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/uni.token.ts#L177)

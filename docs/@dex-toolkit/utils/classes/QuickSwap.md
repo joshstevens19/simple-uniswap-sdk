@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/quickSwap.dex.ts:109
+[packages/utils/src/exchanges/configs/quickSwap.dex.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/quickSwap.dex.ts#L110)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/exchanges/configs/quickSwap.dex.ts:109
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/quickSwap.dex.ts:176
+[packages/utils/src/exchanges/configs/quickSwap.dex.ts:177](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/quickSwap.dex.ts#L177)
 
 ## Methods
 
@@ -64,7 +64,7 @@ packages/utils/src/exchanges/configs/quickSwap.dex.ts:176
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/quickSwap.dex.ts:236
+[packages/utils/src/exchanges/configs/quickSwap.dex.ts:237](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/quickSwap.dex.ts#L237)
 
 ***
 
@@ -82,4 +82,4 @@ packages/utils/src/exchanges/configs/quickSwap.dex.ts:236
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/quickSwap.dex.ts:225
+[packages/utils/src/exchanges/configs/quickSwap.dex.ts:226](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/quickSwap.dex.ts#L226)

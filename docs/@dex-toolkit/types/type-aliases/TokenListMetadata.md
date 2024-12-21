@@ -56,4 +56,4 @@ The version of the token list.
 
 ## Defined in
 
-packages/types/src/token-list.types.ts:30
+[packages/types/src/token-list.types.ts:31](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L31)

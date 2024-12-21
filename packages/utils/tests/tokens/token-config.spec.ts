@@ -107,7 +107,7 @@ describe('Token Configurations', () => {
       return
     }
 
-    describe(`Chain ${chainId} (${getChainConfig(+chainId).displayName})`, () => {
+    describe(`Chain ${chainId} (${getChainConfig(+chainId).uiName})`, () => {
       const validTokens = tokens.filter(
         (token): token is Token =>
           !!token.contractAddress && standardTokens.includes(token.standard),

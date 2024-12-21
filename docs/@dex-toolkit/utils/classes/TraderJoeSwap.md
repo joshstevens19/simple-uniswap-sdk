@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:481
+[packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:482](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts#L482)
 
 ***
 
@@ -58,7 +58,7 @@ packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:481
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:302
+[packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:303](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts#L303)
 
 ***
 
@@ -84,7 +84,7 @@ packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:302
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:572
+[packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:573](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts#L573)
 
 ***
 
@@ -102,7 +102,7 @@ packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:572
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:713
+[packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:714](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts#L714)
 
 ## Methods
 
@@ -116,7 +116,7 @@ packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:713
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:768
+[packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:769](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts#L769)
 
 ***
 
@@ -134,4 +134,4 @@ packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:768
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:749
+[packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts:750](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/traderJoeSwap.dex.ts#L750)

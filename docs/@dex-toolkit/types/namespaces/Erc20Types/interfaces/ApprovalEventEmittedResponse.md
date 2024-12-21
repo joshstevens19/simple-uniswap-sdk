@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/erc20.types.ts:35
+[packages/types/src/abis/erc20.types.ts:35](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc20.types.ts#L35)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/erc20.types.ts:35
 
 #### Defined in
 
-packages/types/src/abis/erc20.types.ts:36
+[packages/types/src/abis/erc20.types.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc20.types.ts#L36)
 
 ***
 
@@ -34,4 +34,4 @@ packages/types/src/abis/erc20.types.ts:36
 
 #### Defined in
 
-packages/types/src/abis/erc20.types.ts:37
+[packages/types/src/abis/erc20.types.ts:37](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc20.types.ts#L37)

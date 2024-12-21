@@ -54,4 +54,4 @@ If no token standard is found for the current chain ID, or if no ABI is availabl
 
 ## Defined in
 
-packages/utils/src/utils/balance.utils.ts:163
+[packages/utils/src/utils/balance.utils.ts:163](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/balance.utils.ts#L163)

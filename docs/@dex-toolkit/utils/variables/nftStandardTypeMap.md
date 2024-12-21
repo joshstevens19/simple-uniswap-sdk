@@ -46,4 +46,4 @@ Combined type map for all supported NFT token types.
 
 ## Defined in
 
-packages/utils/src/utils/standards.utils.ts:59
+[packages/utils/src/utils/standards.utils.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/standards.utils.ts#L59)

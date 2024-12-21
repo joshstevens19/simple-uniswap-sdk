@@ -17,4 +17,4 @@ The key is the address of the token, and the value is the price.
 
 ## Defined in
 
-packages/types/src/price-source.types.ts:74
+[packages/types/src/price-source.types.ts:74](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/price-source.types.ts#L74)

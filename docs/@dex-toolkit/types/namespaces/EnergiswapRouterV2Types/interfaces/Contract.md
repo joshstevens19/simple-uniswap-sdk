@@ -27,7 +27,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:59
+[packages/types/src/abis/energiswap-router-v2.types.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L59)
 
 ***
 
@@ -82,7 +82,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:74
+[packages/types/src/abis/energiswap-router-v2.types.ts:74](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L74)
 
 ***
 
@@ -129,7 +129,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:97
+[packages/types/src/abis/energiswap-router-v2.types.ts:97](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L97)
 
 ***
 
@@ -156,7 +156,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:113
+[packages/types/src/abis/energiswap-router-v2.types.ts:113](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L113)
 
 ***
 
@@ -191,7 +191,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:126
+[packages/types/src/abis/energiswap-router-v2.types.ts:126](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L126)
 
 ***
 
@@ -226,7 +226,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:141
+[packages/types/src/abis/energiswap-router-v2.types.ts:141](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L141)
 
 ***
 
@@ -257,7 +257,7 @@ Type: address[], Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:155
+[packages/types/src/abis/energiswap-router-v2.types.ts:155](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L155)
 
 ***
 
@@ -288,7 +288,7 @@ Type: address[], Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:168
+[packages/types/src/abis/energiswap-router-v2.types.ts:168](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L168)
 
 ***
 
@@ -315,7 +315,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:180
+[packages/types/src/abis/energiswap-router-v2.types.ts:180](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L180)
 
 ***
 
@@ -338,7 +338,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:190
+[packages/types/src/abis/energiswap-router-v2.types.ts:190](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L190)
 
 ***
 
@@ -373,7 +373,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:200
+[packages/types/src/abis/energiswap-router-v2.types.ts:200](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L200)
 
 ***
 
@@ -424,7 +424,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:219
+[packages/types/src/abis/energiswap-router-v2.types.ts:219](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L219)
 
 ***
 
@@ -471,7 +471,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:241
+[packages/types/src/abis/energiswap-router-v2.types.ts:241](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L241)
 
 ***
 
@@ -518,7 +518,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:262
+[packages/types/src/abis/energiswap-router-v2.types.ts:262](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L262)
 
 ***
 
@@ -581,7 +581,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:287
+[packages/types/src/abis/energiswap-router-v2.types.ts:287](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L287)
 
 ***
 
@@ -644,7 +644,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:316
+[packages/types/src/abis/energiswap-router-v2.types.ts:316](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L316)
 
 ***
 
@@ -711,7 +711,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:346
+[packages/types/src/abis/energiswap-router-v2.types.ts:346](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L346)
 
 ***
 
@@ -750,7 +750,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:370
+[packages/types/src/abis/energiswap-router-v2.types.ts:370](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L370)
 
 ***
 
@@ -789,7 +789,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:387
+[packages/types/src/abis/energiswap-router-v2.types.ts:387](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L387)
 
 ***
 
@@ -832,7 +832,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:405
+[packages/types/src/abis/energiswap-router-v2.types.ts:405](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L405)
 
 ***
 
@@ -875,7 +875,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:424
+[packages/types/src/abis/energiswap-router-v2.types.ts:424](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L424)
 
 ***
 
@@ -918,7 +918,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:443
+[packages/types/src/abis/energiswap-router-v2.types.ts:443](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L443)
 
 ***
 
@@ -961,7 +961,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:462
+[packages/types/src/abis/energiswap-router-v2.types.ts:462](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L462)
 
 ***
 
@@ -1000,7 +1000,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:480
+[packages/types/src/abis/energiswap-router-v2.types.ts:480](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L480)
 
 ***
 
@@ -1043,7 +1043,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:498
+[packages/types/src/abis/energiswap-router-v2.types.ts:498](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L498)
 
 ***
 
@@ -1086,4 +1086,4 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/energiswap-router-v2.types.ts:517
+[packages/types/src/abis/energiswap-router-v2.types.ts:517](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/energiswap-router-v2.types.ts#L517)

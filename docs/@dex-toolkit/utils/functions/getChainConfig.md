@@ -24,4 +24,4 @@ The configuration object for the specified chain ID
 
 ## Defined in
 
-packages/utils/src/chains/chainConfigs.ts:119
+[packages/utils/src/chains/chainConfigs.ts:104](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/chainConfigs.ts#L104)

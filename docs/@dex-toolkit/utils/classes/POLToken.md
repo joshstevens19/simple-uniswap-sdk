@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pol.token.ts:26
+[packages/utils/src/tokens/configs/pol.token.ts:26](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pol.token.ts#L26)
 
 ***
 
@@ -58,7 +58,7 @@ packages/utils/src/tokens/configs/pol.token.ts:26
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pol.token.ts:40
+[packages/utils/src/tokens/configs/pol.token.ts:40](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pol.token.ts#L40)
 
 ***
 
@@ -84,7 +84,7 @@ packages/utils/src/tokens/configs/pol.token.ts:40
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pol.token.ts:70
+[packages/utils/src/tokens/configs/pol.token.ts:70](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pol.token.ts#L70)
 
 ## Methods
 
@@ -102,4 +102,4 @@ packages/utils/src/tokens/configs/pol.token.ts:70
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pol.token.ts:101
+[packages/utils/src/tokens/configs/pol.token.ts:101](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pol.token.ts#L101)

@@ -30,4 +30,4 @@ The destination token information including balances and allowances.
 
 ## Defined in
 
-packages/types/src/token.types.ts:109
+[packages/types/src/token.types.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token.types.ts#L110)

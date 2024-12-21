@@ -13,4 +13,4 @@ Maps token list source keys to `TokenListSource` objects.
 
 ## Defined in
 
-packages/types/src/token-list.types.ts:86
+[packages/types/src/token-list.types.ts:87](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L87)

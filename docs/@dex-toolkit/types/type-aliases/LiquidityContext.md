@@ -203,4 +203,4 @@ The version of the DEX used for liquidity.
 
 ## Defined in
 
-packages/types/src/liquidity.types.ts:313
+[packages/types/src/liquidity.types.ts:313](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/liquidity.types.ts#L313)

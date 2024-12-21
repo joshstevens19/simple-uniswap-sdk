@@ -10,4 +10,4 @@
 
 ## Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:17
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:17](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L17)

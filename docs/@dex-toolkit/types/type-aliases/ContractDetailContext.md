@@ -12,4 +12,4 @@ Context for contract details, which can either be full contract details or detai
 
 ## Defined in
 
-packages/types/src/contract-detail.types.ts:81
+[packages/types/src/contract-detail.types.ts:78](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/contract-detail.types.ts#L78)

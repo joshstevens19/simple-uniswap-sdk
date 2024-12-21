@@ -1,8 +1,8 @@
+import { plsMainChainId, plsTestChainId } from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { Token } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import { WPLSToken } from './wpls.token'
-import { plsMainChainId, plsTestChainId } from '../../chains/chainIds'
 import { transformWrappedAddressToCoinAddress } from '../../utils/address.utils'
 import { getImageUrlForToken } from '../logo-urls/logo-urls'
 

@@ -31,6 +31,9 @@
     "gen:abis": "abi-types-generator generate"
   },
   "dependencies": {
+    "@chain-toolkit/chains": "workspace:*",
+    "@chain-toolkit/networks": "workspace:*",
+    "@chain-toolkit/schemas": "workspace:*",
     "@dex-toolkit/number": "workspace:*",
     "@multicall-toolkit/core": "workspace:*",
     "@multicall-toolkit/utils": "workspace:*",

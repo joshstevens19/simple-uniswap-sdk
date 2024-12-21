@@ -35,7 +35,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:165
+[packages/types/src/abis/wrapped.types.ts:165](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L165)
 
 ***
 
@@ -66,7 +66,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:72
+[packages/types/src/abis/wrapped.types.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L72)
 
 ***
 
@@ -93,7 +93,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:124
+[packages/types/src/abis/wrapped.types.ts:124](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L124)
 
 ***
 
@@ -116,7 +116,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:116
+[packages/types/src/abis/wrapped.types.ts:116](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L116)
 
 ***
 
@@ -139,7 +139,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:154
+[packages/types/src/abis/wrapped.types.ts:154](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L154)
 
 ***
 
@@ -162,7 +162,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:63
+[packages/types/src/abis/wrapped.types.ts:63](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L63)
 
 ***
 
@@ -185,7 +185,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:134
+[packages/types/src/abis/wrapped.types.ts:134](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L134)
 
 ***
 
@@ -208,7 +208,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:83
+[packages/types/src/abis/wrapped.types.ts:83](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L83)
 
 ***
 
@@ -239,7 +239,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:143
+[packages/types/src/abis/wrapped.types.ts:143](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L143)
 
 ***
 
@@ -274,7 +274,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:93
+[packages/types/src/abis/wrapped.types.ts:93](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L93)
 
 ***
 
@@ -301,4 +301,4 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:106
+[packages/types/src/abis/wrapped.types.ts:106](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L106)

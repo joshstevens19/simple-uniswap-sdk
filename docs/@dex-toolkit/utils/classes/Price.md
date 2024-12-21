@@ -28,7 +28,7 @@
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:24
+[packages/utils/src/price-source/price-source.ts:25](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L25)
 
 ## Properties
 
@@ -38,7 +38,7 @@ packages/utils/src/price-source/price-source.ts:24
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:17
+[packages/utils/src/price-source/price-source.ts:18](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L18)
 
 ***
 
@@ -56,7 +56,7 @@ packages/utils/src/price-source/price-source.ts:17
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:18
+[packages/utils/src/price-source/price-source.ts:19](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L19)
 
 ***
 
@@ -66,7 +66,7 @@ packages/utils/src/price-source/price-source.ts:18
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:22
+[packages/utils/src/price-source/price-source.ts:23](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L23)
 
 ## Methods
 
@@ -98,7 +98,7 @@ A promise that resolves to an object containing the fiat prices.
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:84
+[packages/utils/src/price-source/price-source.ts:85](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L85)
 
 ***
 
@@ -130,4 +130,4 @@ A promise that resolves to an object containing the fiat prices.
 
 #### Defined in
 
-packages/utils/src/price-source/price-source.ts:37
+[packages/utils/src/price-source/price-source.ts:38](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/price-source/price-source.ts#L38)

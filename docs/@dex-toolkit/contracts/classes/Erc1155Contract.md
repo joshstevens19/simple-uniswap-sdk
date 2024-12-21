@@ -38,7 +38,7 @@ Returns the contract details.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:38
+[packages/contracts/src/token/erc1155.contract.ts:38](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L38)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/contracts/src/token/erc1155.contract.ts:38
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:34
+[packages/contracts/src/token/erc1155.contract.ts:34](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L34)
 
 ***
 
@@ -62,7 +62,7 @@ packages/contracts/src/token/erc1155.contract.ts:34
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -72,7 +72,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:36
+[packages/contracts/src/token/erc1155.contract.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L36)
 
 ***
 
@@ -108,7 +108,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -144,7 +144,7 @@ Get the ERC1155 contract
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:59
+[packages/contracts/src/token/erc1155.contract.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L59)
 
 ***
 
@@ -160,7 +160,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:64
+[packages/contracts/src/token/erc1155.contract.ts:64](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L64)
 
 ***
 
@@ -182,7 +182,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ## Methods
 
@@ -214,7 +214,7 @@ The balance of the account for the token ID.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:199
+[packages/contracts/src/token/erc1155.contract.ts:199](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L199)
 
 ***
 
@@ -246,7 +246,7 @@ The array of balances.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:225
+[packages/contracts/src/token/erc1155.contract.ts:225](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L225)
 
 ***
 
@@ -274,7 +274,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:241
+[packages/contracts/src/token/erc1155.contract.ts:241](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L241)
 
 ***
 
@@ -302,7 +302,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:212
+[packages/contracts/src/token/erc1155.contract.ts:212](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L212)
 
 ***
 
@@ -343,7 +343,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:181
+[packages/contracts/src/token/erc1155.contract.ts:181](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L181)
 
 ***
 
@@ -375,7 +375,7 @@ The result of the contract method invocation with the appropriate return type.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:74
+[packages/contracts/src/token/erc1155.contract.ts:74](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L74)
 
 ***
 
@@ -403,7 +403,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:98
+[packages/contracts/src/token/erc1155.contract.ts:98](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L98)
 
 ***
 
@@ -443,7 +443,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:310
+[packages/contracts/src/token/erc1155.contract.ts:310](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L310)
 
 ***
 
@@ -483,7 +483,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:363
+[packages/contracts/src/token/erc1155.contract.ts:363](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L363)
 
 ***
 
@@ -511,7 +511,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:404
+[packages/contracts/src/token/erc1155.contract.ts:404](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L404)
 
 ***
 
@@ -554,7 +554,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -586,7 +586,7 @@ True if the operator is approved for all tokens, false otherwise.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:254
+[packages/contracts/src/token/erc1155.contract.ts:254](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L254)
 
 ***
 
@@ -614,7 +614,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:270
+[packages/contracts/src/token/erc1155.contract.ts:270](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L270)
 
 ***
 
@@ -646,7 +646,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:114
+[packages/contracts/src/token/erc1155.contract.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L114)
 
 ***
 
@@ -680,7 +680,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:141
+[packages/contracts/src/token/erc1155.contract.ts:141](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L141)
 
 ***
 
@@ -728,7 +728,7 @@ A promise that resolves to a contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:287
+[packages/contracts/src/token/erc1155.contract.ts:287](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L287)
 
 ***
 
@@ -776,7 +776,7 @@ A promise that resolves to a contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:336
+[packages/contracts/src/token/erc1155.contract.ts:336](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L336)
 
 ***
 
@@ -812,7 +812,7 @@ A promise that resolves to a contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:386
+[packages/contracts/src/token/erc1155.contract.ts:386](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L386)
 
 ***
 
@@ -840,7 +840,7 @@ True if the contract supports the interface, false otherwise.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:413
+[packages/contracts/src/token/erc1155.contract.ts:413](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L413)
 
 ***
 
@@ -864,7 +864,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:422
+[packages/contracts/src/token/erc1155.contract.ts:422](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L422)
 
 ***
 
@@ -892,7 +892,7 @@ The URI of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:433
+[packages/contracts/src/token/erc1155.contract.ts:433](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L433)
 
 ***
 
@@ -916,4 +916,4 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc1155.contract.ts:442
+[packages/contracts/src/token/erc1155.contract.ts:442](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc1155.contract.ts#L442)

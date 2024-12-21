@@ -31,7 +31,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:122
+[packages/types/src/abis/bep777.types.ts:122](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L122)
 
 ***
 
@@ -62,7 +62,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:134
+[packages/types/src/abis/bep777.types.ts:134](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L134)
 
 ***
 
@@ -93,7 +93,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:255
+[packages/types/src/abis/bep777.types.ts:255](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L255)
 
 ***
 
@@ -120,7 +120,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:111
+[packages/types/src/abis/bep777.types.ts:111](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L111)
 
 ***
 
@@ -143,7 +143,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:103
+[packages/types/src/abis/bep777.types.ts:103](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L103)
 
 ***
 
@@ -174,7 +174,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:162
+[packages/types/src/abis/bep777.types.ts:162](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L162)
 
 ***
 
@@ -201,7 +201,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:232
+[packages/types/src/abis/bep777.types.ts:232](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L232)
 
 ***
 
@@ -232,7 +232,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:305
+[packages/types/src/abis/bep777.types.ts:305](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L305)
 
 ***
 
@@ -263,7 +263,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:175
+[packages/types/src/abis/bep777.types.ts:175](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L175)
 
 ***
 
@@ -294,7 +294,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:279
+[packages/types/src/abis/bep777.types.ts:279](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L279)
 
 ***
 
@@ -317,7 +317,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:89
+[packages/types/src/abis/bep777.types.ts:89](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L89)
 
 ***
 
@@ -360,7 +360,7 @@ Type: bytes, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:217
+[packages/types/src/abis/bep777.types.ts:217](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L217)
 
 ***
 
@@ -391,7 +391,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:292
+[packages/types/src/abis/bep777.types.ts:292](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L292)
 
 ***
 
@@ -418,7 +418,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:267
+[packages/types/src/abis/bep777.types.ts:267](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L267)
 
 ***
 
@@ -449,7 +449,7 @@ Type: bytes, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:201
+[packages/types/src/abis/bep777.types.ts:201](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L201)
 
 ***
 
@@ -476,7 +476,7 @@ Type: address[], Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:243
+[packages/types/src/abis/bep777.types.ts:243](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L243)
 
 ***
 
@@ -499,7 +499,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep777.types.ts:96
+[packages/types/src/abis/bep777.types.ts:96](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L96)
 
 ***
 
@@ -536,7 +536,7 @@ Type: uint256, Indexed: false
 
 ##### Defined in
 
-packages/types/src/abis/bep777.types.ts:148
+[packages/types/src/abis/bep777.types.ts:148](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L148)
 
 #### transfer(to, value, overrides)
 
@@ -565,4 +565,4 @@ Type: uint256, Indexed: false
 
 ##### Defined in
 
-packages/types/src/abis/bep777.types.ts:188
+[packages/types/src/abis/bep777.types.ts:188](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep777.types.ts#L188)

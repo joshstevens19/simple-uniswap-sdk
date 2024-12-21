@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/mkr.token.ts:25
+[packages/utils/src/tokens/configs/mkr.token.ts:25](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/mkr.token.ts#L25)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/mkr.token.ts:25
 
 #### Defined in
 
-packages/utils/src/tokens/configs/mkr.token.ts:42
+[packages/utils/src/tokens/configs/mkr.token.ts:42](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/mkr.token.ts#L42)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/mkr.token.ts:42
 
 #### Defined in
 
-packages/utils/src/tokens/configs/mkr.token.ts:58
+[packages/utils/src/tokens/configs/mkr.token.ts:58](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/mkr.token.ts#L58)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/tokens/configs/mkr.token.ts:58
 
 #### Defined in
 
-packages/utils/src/tokens/configs/mkr.token.ts:74
+[packages/utils/src/tokens/configs/mkr.token.ts:74](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/mkr.token.ts#L74)
 
 ***
 
@@ -112,7 +112,7 @@ packages/utils/src/tokens/configs/mkr.token.ts:74
 
 #### Defined in
 
-packages/utils/src/tokens/configs/mkr.token.ts:90
+[packages/utils/src/tokens/configs/mkr.token.ts:90](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/mkr.token.ts#L90)
 
 ## Methods
 
@@ -130,4 +130,4 @@ packages/utils/src/tokens/configs/mkr.token.ts:90
 
 #### Defined in
 
-packages/utils/src/tokens/configs/mkr.token.ts:119
+[packages/utils/src/tokens/configs/mkr.token.ts:119](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/mkr.token.ts#L119)

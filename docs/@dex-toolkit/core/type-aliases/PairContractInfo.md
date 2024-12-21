@@ -22,4 +22,4 @@ Information about a pair contract.
 
 ## Defined in
 
-packages/core/src/liquidity/liquidity.protocol.v2.ts:61
+[packages/core/src/liquidity/liquidity.protocol.v2.ts:61](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.protocol.v2.ts#L61)

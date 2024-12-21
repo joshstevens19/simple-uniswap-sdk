@@ -31,7 +31,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:97
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:97](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L97)
 
 ***
 
@@ -58,7 +58,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:108
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:108](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L108)
 
 ***
 
@@ -97,7 +97,7 @@ Type: uint16, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:122
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:122](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L122)
 
 ***
 
@@ -120,7 +120,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:135
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:135](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L135)
 
 ***
 
@@ -151,7 +151,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:144
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:144](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L144)
 
 ***
 
@@ -182,7 +182,7 @@ Type: uint24, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:157
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:157](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L157)
 
 ***
 
@@ -217,7 +217,7 @@ Type: bool, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:171
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:171](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L171)
 
 ***
 
@@ -252,7 +252,7 @@ Type: bool, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:186
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:186](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L186)
 
 ***
 
@@ -275,7 +275,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:198
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:198](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L198)
 
 ***
 
@@ -334,7 +334,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:214
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:214](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L214)
 
 ***
 
@@ -389,7 +389,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:240
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:240](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L240)
 
 ***
 
@@ -432,7 +432,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:262
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:262](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L262)
 
 ***
 
@@ -475,7 +475,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:281
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:281](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L281)
 
 ***
 
@@ -518,7 +518,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:300
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:300](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L300)
 
 ***
 
@@ -565,7 +565,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:320
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:320](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L320)
 
 ***
 
@@ -612,7 +612,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:341
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:341](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L341)
 
 ***
 
@@ -659,7 +659,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:362
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:362](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L362)
 
 ***
 
@@ -706,7 +706,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:383
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:383](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L383)
 
 ***
 
@@ -753,7 +753,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:404
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:404](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L404)
 
 ***
 
@@ -800,7 +800,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:425
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:425](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L425)
 
 ***
 
@@ -835,7 +835,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:443
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:443](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L443)
 
 ***
 
@@ -858,4 +858,4 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:455
+[packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts:455](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-0-0.types.ts#L455)

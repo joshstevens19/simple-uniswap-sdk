@@ -42,4 +42,4 @@ If no matching `DexConfig` is found for a `DexChainConfig`, or if the context is
 
 ## Defined in
 
-packages/utils/src/exchanges/dexConfigs.ts:222
+[packages/utils/src/exchanges/dexConfigs.ts:222](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/dexConfigs.ts#L222)

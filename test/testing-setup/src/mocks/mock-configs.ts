@@ -1,4 +1,3 @@
-import type { DexType } from '@dex-toolkit/types'
 import {
   arbitrumMainChainId,
   avaxMainChainId,
@@ -12,8 +11,13 @@ import {
   plsMainChainId,
   plsTestChainId,
   polygonMainChainId,
+  zkEVMMainChainId,
   zksyncMainChainId,
   zoraMainChainId,
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
+import type { DexType } from '@dex-toolkit/types'
+import {
   AVAXToken,
   AVIAToken,
   BNBToken,
@@ -53,12 +57,10 @@ import {
   YOLOToken,
   YTSToken,
   ZROToken,
-  zkEVMMainChainId,
   HEXToken,
   INCToken,
   AAVEToken,
 } from '@dex-toolkit/utils'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import type { DexTestCase } from './mock.types'
 

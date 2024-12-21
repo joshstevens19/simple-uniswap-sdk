@@ -38,7 +38,7 @@ Returns the contract details.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:38
+[packages/contracts/src/token/erc777.contract.ts:38](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L38)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/contracts/src/token/erc777.contract.ts:38
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:34
+[packages/contracts/src/token/erc777.contract.ts:34](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L34)
 
 ***
 
@@ -62,7 +62,7 @@ packages/contracts/src/token/erc777.contract.ts:34
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -72,7 +72,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:36
+[packages/contracts/src/token/erc777.contract.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L36)
 
 ***
 
@@ -108,7 +108,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -144,7 +144,7 @@ Get the ERC777 contract
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:59
+[packages/contracts/src/token/erc777.contract.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L59)
 
 ***
 
@@ -160,7 +160,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:64
+[packages/contracts/src/token/erc777.contract.ts:64](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L64)
 
 ***
 
@@ -182,7 +182,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ## Methods
 
@@ -214,7 +214,7 @@ A promise that resolves to a void.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:318
+[packages/contracts/src/token/erc777.contract.ts:318](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L318)
 
 ***
 
@@ -242,7 +242,7 @@ The balance of the specified address.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:268
+[packages/contracts/src/token/erc777.contract.ts:268](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L268)
 
 ***
 
@@ -266,7 +266,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:277
+[packages/contracts/src/token/erc777.contract.ts:277](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L277)
 
 ***
 
@@ -307,7 +307,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:181
+[packages/contracts/src/token/erc777.contract.ts:181](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L181)
 
 ***
 
@@ -339,7 +339,7 @@ The result of the contract method invocation with the appropriate return type.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:74
+[packages/contracts/src/token/erc777.contract.ts:74](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L74)
 
 ***
 
@@ -361,7 +361,7 @@ The list of default operators.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:248
+[packages/contracts/src/token/erc777.contract.ts:248](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L248)
 
 ***
 
@@ -379,7 +379,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:256
+[packages/contracts/src/token/erc777.contract.ts:256](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L256)
 
 ***
 
@@ -401,7 +401,7 @@ A promise that resolves to void.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:341
+[packages/contracts/src/token/erc777.contract.ts:341](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L341)
 
 ***
 
@@ -419,7 +419,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:349
+[packages/contracts/src/token/erc777.contract.ts:349](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L349)
 
 ***
 
@@ -443,7 +443,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:333
+[packages/contracts/src/token/erc777.contract.ts:333](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L333)
 
 ***
 
@@ -471,7 +471,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:98
+[packages/contracts/src/token/erc777.contract.ts:98](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L98)
 
 ***
 
@@ -511,7 +511,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:442
+[packages/contracts/src/token/erc777.contract.ts:442](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L442)
 
 ***
 
@@ -535,7 +535,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:479
+[packages/contracts/src/token/erc777.contract.ts:479](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L479)
 
 ***
 
@@ -559,7 +559,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:393
+[packages/contracts/src/token/erc777.contract.ts:393](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L393)
 
 ***
 
@@ -595,7 +595,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:518
+[packages/contracts/src/token/erc777.contract.ts:518](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L518)
 
 ***
 
@@ -619,7 +619,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:548
+[packages/contracts/src/token/erc777.contract.ts:548](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L548)
 
 ***
 
@@ -662,7 +662,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -684,7 +684,7 @@ The granularity of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:229
+[packages/contracts/src/token/erc777.contract.ts:229](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L229)
 
 ***
 
@@ -702,7 +702,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:237
+[packages/contracts/src/token/erc777.contract.ts:237](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L237)
 
 ***
 
@@ -734,7 +734,7 @@ True if the operator is authorized, false otherwise.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:289
+[packages/contracts/src/token/erc777.contract.ts:289](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L289)
 
 ***
 
@@ -762,7 +762,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:305
+[packages/contracts/src/token/erc777.contract.ts:305](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L305)
 
 ***
 
@@ -784,7 +784,7 @@ The name of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:197
+[packages/contracts/src/token/erc777.contract.ts:197](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L197)
 
 ***
 
@@ -802,7 +802,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:205
+[packages/contracts/src/token/erc777.contract.ts:205](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L205)
 
 ***
 
@@ -850,7 +850,7 @@ A promise that resolves to a contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:415
+[packages/contracts/src/token/erc777.contract.ts:415](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L415)
 
 ***
 
@@ -882,7 +882,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:114
+[packages/contracts/src/token/erc777.contract.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L114)
 
 ***
 
@@ -916,7 +916,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:141
+[packages/contracts/src/token/erc777.contract.ts:141](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L141)
 
 ***
 
@@ -948,7 +948,7 @@ A promise that resolves to a contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:464
+[packages/contracts/src/token/erc777.contract.ts:464](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L464)
 
 ***
 
@@ -982,7 +982,7 @@ A promise that resolves to a contract transaction.
 
 ##### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:362
+[packages/contracts/src/token/erc777.contract.ts:362](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L362)
 
 #### revokeOperator(_newDefaultOperators, overrides)
 
@@ -1012,7 +1012,7 @@ A promise that resolves to a contract transaction.
 
 ##### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:373
+[packages/contracts/src/token/erc777.contract.ts:373](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L373)
 
 ***
 
@@ -1056,7 +1056,7 @@ A promise that resolves to a contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:494
+[packages/contracts/src/token/erc777.contract.ts:494](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L494)
 
 ***
 
@@ -1088,7 +1088,7 @@ A promise that resolves to a contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:533
+[packages/contracts/src/token/erc777.contract.ts:533](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L533)
 
 ***
 
@@ -1110,7 +1110,7 @@ The symbol of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:213
+[packages/contracts/src/token/erc777.contract.ts:213](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L213)
 
 ***
 
@@ -1128,4 +1128,4 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc777.contract.ts:221
+[packages/contracts/src/token/erc777.contract.ts:221](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc777.contract.ts#L221)

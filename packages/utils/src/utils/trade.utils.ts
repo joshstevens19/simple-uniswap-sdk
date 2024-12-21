@@ -1,3 +1,4 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import { DexNumber } from '@dex-toolkit/number'
 import type {
   Token,
@@ -16,7 +17,7 @@ import type {
   TradeParamsInput,
   TradeParamsOutput,
 } from '@dex-toolkit/types'
-import type { Address, ChainId } from '@multicall-toolkit/types'
+import type { Address } from '@multicall-toolkit/types'
 import BigNumber from 'bignumber.js'
 import { BigNumber as EthersBigNumber } from 'ethers'
 
@@ -26,7 +27,7 @@ import {
   isLiquidityProviderFeePercentV2,
   isLiquidityProviderFeePercentV3,
 } from './router.utils'
-import { getChainConfig } from '../chains/chainConfigs'
+import { getChainConfig } from '../networks/chainConfigs'
 import { DexError } from '../errors/dex-error'
 import { ErrorCodes } from '../errors/error-codes'
 

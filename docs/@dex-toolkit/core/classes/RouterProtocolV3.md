@@ -34,7 +34,7 @@
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:95
+[packages/core/src/router/router.protocol.v3.ts:95](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L95)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/core/src/router/router.protocol.v3.ts:95
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:82
+[packages/core/src/router/router.abstract.ts:82](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L82)
 
 ***
 
@@ -62,7 +62,7 @@ packages/core/src/router/router.abstract.ts:82
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:78
+[packages/core/src/router/router.abstract.ts:78](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L78)
 
 ***
 
@@ -72,7 +72,7 @@ packages/core/src/router/router.abstract.ts:78
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:80
+[packages/core/src/router/router.protocol.v3.ts:80](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L80)
 
 ***
 
@@ -86,7 +86,7 @@ packages/core/src/router/router.protocol.v3.ts:80
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:68
+[packages/core/src/router/router.abstract.ts:68](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L68)
 
 ***
 
@@ -100,7 +100,7 @@ packages/core/src/router/router.abstract.ts:68
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:84
+[packages/core/src/router/router.abstract.ts:84](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L84)
 
 ***
 
@@ -114,7 +114,7 @@ packages/core/src/router/router.abstract.ts:84
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:72
+[packages/core/src/router/router.abstract.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L72)
 
 ***
 
@@ -128,7 +128,7 @@ packages/core/src/router/router.abstract.ts:72
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:74
+[packages/core/src/router/router.abstract.ts:74](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L74)
 
 ***
 
@@ -138,7 +138,7 @@ packages/core/src/router/router.abstract.ts:74
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:90
+[packages/core/src/router/router.protocol.v3.ts:90](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L90)
 
 ***
 
@@ -148,7 +148,7 @@ packages/core/src/router/router.protocol.v3.ts:90
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:85
+[packages/core/src/router/router.protocol.v3.ts:85](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L85)
 
 ***
 
@@ -158,7 +158,7 @@ packages/core/src/router/router.protocol.v3.ts:85
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:75
+[packages/core/src/router/router.protocol.v3.ts:75](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L75)
 
 ***
 
@@ -172,7 +172,7 @@ packages/core/src/router/router.protocol.v3.ts:75
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:80
+[packages/core/src/router/router.abstract.ts:80](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L80)
 
 ***
 
@@ -186,7 +186,7 @@ packages/core/src/router/router.abstract.ts:80
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:70
+[packages/core/src/router/router.abstract.ts:70](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L70)
 
 ***
 
@@ -200,7 +200,7 @@ packages/core/src/router/router.abstract.ts:70
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:86
+[packages/core/src/router/router.abstract.ts:86](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L86)
 
 ***
 
@@ -214,7 +214,7 @@ packages/core/src/router/router.abstract.ts:86
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:66
+[packages/core/src/router/router.abstract.ts:66](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L66)
 
 ***
 
@@ -228,7 +228,7 @@ packages/core/src/router/router.abstract.ts:66
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:76
+[packages/core/src/router/router.abstract.ts:76](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L76)
 
 ## Accessors
 
@@ -250,7 +250,7 @@ An array of all possible pairs for the trade.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:943
+[packages/core/src/router/router.abstract.ts:943](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L943)
 
 ***
 
@@ -272,7 +272,7 @@ An array of all tokens including the `fromToken`, `toToken`, and the base tokens
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:896
+[packages/core/src/router/router.abstract.ts:896](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L896)
 
 ***
 
@@ -294,7 +294,7 @@ The dex configs by dex type.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:273
+[packages/core/src/router/router.abstract.ts:273](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L273)
 
 ***
 
@@ -314,7 +314,7 @@ Get the dex provider
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:246
+[packages/core/src/router/router.abstract.ts:246](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L246)
 
 ***
 
@@ -336,7 +336,7 @@ A two-dimensional array where each sub-array is a pair involving the `fromToken`
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1000
+[packages/core/src/router/router.abstract.ts:1000](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1000)
 
 ***
 
@@ -356,7 +356,7 @@ Get the from token
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:218
+[packages/core/src/router/router.abstract.ts:218](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L218)
 
 ***
 
@@ -378,7 +378,7 @@ A three-dimensional array where each sub-array contains pairs of tokens.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:959
+[packages/core/src/router/router.abstract.ts:959](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L959)
 
 ***
 
@@ -400,7 +400,7 @@ The native currency information.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:264
+[packages/core/src/router/router.abstract.ts:264](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L264)
 
 ***
 
@@ -422,7 +422,7 @@ The native wrapped token information.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:255
+[packages/core/src/router/router.abstract.ts:255](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L255)
 
 ***
 
@@ -442,7 +442,7 @@ Get the dex protocol
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:206
+[packages/core/src/router/router.protocol.v3.ts:206](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L206)
 
 ***
 
@@ -464,7 +464,7 @@ A two-dimensional array where each sub-array is a pair involving the `toToken`.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1041
+[packages/core/src/router/router.abstract.ts:1041](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1041)
 
 ***
 
@@ -484,7 +484,7 @@ Get the to token
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:225
+[packages/core/src/router/router.abstract.ts:225](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L225)
 
 ***
 
@@ -504,7 +504,7 @@ Get the token list factory
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:239
+[packages/core/src/router/router.abstract.ts:239](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L239)
 
 ***
 
@@ -524,7 +524,7 @@ Get the tokens factory
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:232
+[packages/core/src/router/router.abstract.ts:232](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L232)
 
 ***
 
@@ -544,7 +544,7 @@ Get the trade path
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:280
+[packages/core/src/router/router.abstract.ts:280](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L280)
 
 ## Methods
 
@@ -576,7 +576,7 @@ An array of base tokens, optionally including the native wrapped token.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:912
+[packages/core/src/router/router.abstract.ts:912](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L912)
 
 ***
 
@@ -622,7 +622,7 @@ The direction you want to get the quote from
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:1296
+[packages/core/src/router/router.protocol.v3.ts:1296](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L1296)
 
 ***
 
@@ -662,7 +662,7 @@ A promise that resolves to a `RouteQuote` object representing the route quote.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:377
+[packages/core/src/router/router.abstract.ts:377](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L377)
 
 ***
 
@@ -702,7 +702,7 @@ A promise that resolves to a `RouteQuote` object representing the route quote.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:432
+[packages/core/src/router/router.abstract.ts:432](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L432)
 
 ***
 
@@ -746,7 +746,7 @@ The transaction.
 
 #### Defined in
 
-packages/core/src/router/router.protocol.abstract.ts:125
+[packages/core/src/router/router.protocol.abstract.ts:125](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.abstract.ts#L125)
 
 ***
 
@@ -782,7 +782,7 @@ A `DexTransaction` object representing the transaction.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:304
+[packages/core/src/router/router.abstract.ts:304](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L304)
 
 ***
 
@@ -822,7 +822,7 @@ The transaction.
 
 #### Defined in
 
-packages/core/src/router/router.protocol.abstract.ts:67
+[packages/core/src/router/router.protocol.abstract.ts:67](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.abstract.ts#L67)
 
 ***
 
@@ -850,7 +850,7 @@ A `DexTransaction` object representing the transaction.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:345
+[packages/core/src/router/router.abstract.ts:345](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L345)
 
 ***
 
@@ -911,7 +911,7 @@ Throws an error if any of the required parameters are missing or if an invalid t
 
 #### Defined in
 
-packages/core/src/router/router.protocol.abstract.ts:203
+[packages/core/src/router/router.protocol.abstract.ts:203](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.abstract.ts#L203)
 
 ***
 
@@ -961,7 +961,7 @@ The dex version tag.
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:291
+[packages/core/src/router/router.protocol.v3.ts:291](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L291)
 
 ***
 
@@ -1011,7 +1011,7 @@ The dex version tag.
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:427
+[packages/core/src/router/router.protocol.v3.ts:427](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L427)
 
 ***
 
@@ -1051,7 +1051,7 @@ A promise that resolves to an array of `RouteQuote` objects, sorted by the most 
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:631
+[packages/core/src/router/router.abstract.ts:631](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L631)
 
 ***
 
@@ -1087,7 +1087,7 @@ A promise that resolves to a `BestRouteQuoteContext` object containing the best 
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:507
+[packages/core/src/router/router.abstract.ts:507](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L507)
 
 ***
 
@@ -1133,7 +1133,7 @@ The version tag
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:797
+[packages/core/src/router/router.protocol.v3.ts:797](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L797)
 
 ***
 
@@ -1169,7 +1169,7 @@ A two-dimensional array where each sub-array is a pair of tokens.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:875
+[packages/core/src/router/router.abstract.ts:875](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L875)
 
 ***
 
@@ -1205,7 +1205,7 @@ An array of `RouteQuote` objects representing the best route quotes.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:734
+[packages/core/src/router/router.abstract.ts:734](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L734)
 
 ***
 
@@ -1233,7 +1233,7 @@ Get coin balance
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1084
+[packages/core/src/router/router.abstract.ts:1084](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1084)
 
 ***
 
@@ -1275,7 +1275,7 @@ The direction you want to get the quote from
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:1470
+[packages/core/src/router/router.protocol.v3.ts:1470](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L1470)
 
 ***
 
@@ -1321,7 +1321,7 @@ The encoded string.
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:1749
+[packages/core/src/router/router.protocol.v3.ts:1749](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L1749)
 
 ***
 
@@ -1355,7 +1355,7 @@ The trade direction
 
 #### Defined in
 
-packages/core/src/router/router.protocol.abstract.ts:670
+[packages/core/src/router/router.protocol.abstract.ts:670](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.abstract.ts#L670)
 
 ***
 
@@ -1375,7 +1375,7 @@ packages/core/src/router/router.protocol.abstract.ts:670
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:229
+[packages/core/src/router/router.protocol.v3.ts:229](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L229)
 
 ***
 
@@ -1415,7 +1415,7 @@ DexError if the to token contract address is not found.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1191
+[packages/core/src/router/router.abstract.ts:1191](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1191)
 
 ***
 
@@ -1471,7 +1471,7 @@ A promise that resolves to an object containing the balance and allowance inform
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1243
+[packages/core/src/router/router.abstract.ts:1243](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1243)
 
 ***
 
@@ -1511,7 +1511,7 @@ A promise that resolves to an array of objects containing the reserves of token0
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:1646
+[packages/core/src/router/router.protocol.v3.ts:1646](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L1646)
 
 ***
 
@@ -1547,7 +1547,7 @@ An array of `Pool` objects representing the available token pairs. Will return a
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:1575
+[packages/core/src/router/router.protocol.v3.ts:1575](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L1575)
 
 ***
 
@@ -1567,7 +1567,7 @@ packages/core/src/router/router.protocol.v3.ts:1575
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:267
+[packages/core/src/router/router.protocol.v3.ts:267](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L267)
 
 ***
 
@@ -1623,7 +1623,7 @@ A promise that resolves to the price impact percentage as a string.
 
 #### Defined in
 
-packages/core/src/router/router.protocol.abstract.ts:343
+[packages/core/src/router/router.protocol.abstract.ts:343](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.abstract.ts#L343)
 
 ***
 
@@ -1643,7 +1643,7 @@ packages/core/src/router/router.protocol.abstract.ts:343
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:248
+[packages/core/src/router/router.protocol.v3.ts:248](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L248)
 
 ***
 
@@ -1663,7 +1663,7 @@ Get all possible routes will only go up to 4 due to gas increase the more routes
 
 #### Defined in
 
-packages/core/src/router/router.protocol.abstract.ts:447
+[packages/core/src/router/router.protocol.abstract.ts:447](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.abstract.ts#L447)
 
 ***
 
@@ -1699,7 +1699,7 @@ A promise that resolves to an array of `RouteQuote` objects representing the pos
 
 #### Defined in
 
-packages/core/src/router/router.protocol.abstract.ts:568
+[packages/core/src/router/router.protocol.abstract.ts:568](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.abstract.ts#L568)
 
 ***
 
@@ -1719,7 +1719,7 @@ packages/core/src/router/router.protocol.abstract.ts:568
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:210
+[packages/core/src/router/router.protocol.v3.ts:210](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L210)
 
 ***
 
@@ -1739,7 +1739,7 @@ Get the token prices for the from and to tokens, indexed by contract address.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1424
+[packages/core/src/router/router.abstract.ts:1424](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1424)
 
 ***
 
@@ -1791,7 +1791,7 @@ DexError if the balance is not provided.
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1152
+[packages/core/src/router/router.abstract.ts:1152](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1152)
 
 ***
 
@@ -1835,7 +1835,7 @@ A `TokenBalanceInfo` object containing the allowance and a boolean indicating if
 
 #### Defined in
 
-packages/core/src/router/router.abstract.ts:1103
+[packages/core/src/router/router.abstract.ts:1103](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.abstract.ts#L1103)
 
 ***
 
@@ -1855,7 +1855,7 @@ Get all possible routes will only go up to 4 due to gas increase the more routes
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:572
+[packages/core/src/router/router.protocol.v3.ts:572](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L572)
 
 ***
 
@@ -1893,7 +1893,7 @@ The direction you want to get the quote from
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:1012
+[packages/core/src/router/router.protocol.v3.ts:1012](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L1012)
 
 ***
 
@@ -1924,7 +1924,7 @@ An array of `RoutePath` objects representing all possible trading routes.
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:665
+[packages/core/src/router/router.protocol.v3.ts:665](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L665)
 
 ***
 
@@ -1963,4 +1963,4 @@ The direction you want to get the quote from
 
 #### Defined in
 
-packages/core/src/router/router.protocol.v3.ts:1203
+[packages/core/src/router/router.protocol.v3.ts:1203](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/router/router.protocol.v3.ts#L1203)

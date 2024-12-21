@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:147
+[packages/types/src/abis/uniswap-pool-v3.types.ts:147](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L147)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:147
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:148
+[packages/types/src/abis/uniswap-pool-v3.types.ts:148](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L148)
 
 ***
 
@@ -34,7 +34,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:148
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:149
+[packages/types/src/abis/uniswap-pool-v3.types.ts:149](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L149)
 
 ***
 
@@ -44,7 +44,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:149
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:150
+[packages/types/src/abis/uniswap-pool-v3.types.ts:150](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L150)
 
 ***
 
@@ -54,7 +54,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:150
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:146
+[packages/types/src/abis/uniswap-pool-v3.types.ts:146](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L146)
 
 ***
 
@@ -64,4 +64,4 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:146
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:145
+[packages/types/src/abis/uniswap-pool-v3.types.ts:145](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L145)

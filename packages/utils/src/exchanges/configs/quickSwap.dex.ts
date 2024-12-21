@@ -1,3 +1,5 @@
+import { polygonMainChainId, zkEVMMainChainId } from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type {
   DexConfig,
   UniswapFactoryV3Types,
@@ -5,7 +7,7 @@ import type {
   UniswapQuoterV3Types,
   UniswapRouterV3Types,
 } from '@dex-toolkit/types'
-import type { ChainId, ContractDetail } from '@multicall-toolkit/types'
+import type { ContractDetail } from '@multicall-toolkit/types'
 
 import {
   uniswapFactoryV2ABI,
@@ -17,7 +19,6 @@ import {
   quickSwapQuoterV3ABI,
   quickSwapPositionManagerV3ABI,
 } from '../../abis/index'
-import { polygonMainChainId, zkEVMMainChainId } from '../../chains/chainIds'
 import { POLToken, WPOLToken } from '../../tokens/configs/index'
 import { dexTypeMap } from '../../utils/dex.utils'
 

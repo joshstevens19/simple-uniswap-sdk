@@ -24,4 +24,4 @@ Must return the gas price in GWEI.
 
 ## Defined in
 
-packages/types/src/dex.types.ts:129
+[packages/types/src/dex.types.ts:130](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex.types.ts#L130)

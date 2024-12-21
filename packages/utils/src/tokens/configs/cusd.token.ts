@@ -1,11 +1,10 @@
-import type { Token } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
-
 import {
   arbitrumMainChainId,
   celoMainChainId,
   energiMainChainId,
-} from '../../chains/chainIds'
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
+import type { Token } from '@dex-toolkit/types'
 
 export class CUSDToken {
   private static commonProps: Omit<

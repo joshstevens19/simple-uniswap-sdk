@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:115
+[packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:115](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts#L115)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:115
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:117
+[packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:117](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts#L117)
 
 ***
 
@@ -34,4 +34,4 @@ packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:117
 
 #### Defined in
 
-packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:116
+[packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts:116](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/traderJoe-router-v2-2-2-0.types.ts#L116)

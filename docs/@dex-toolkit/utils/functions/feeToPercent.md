@@ -36,4 +36,4 @@ console.log(feeTier500, feeTier3000, feeTier10000);
 
 ## Defined in
 
-packages/utils/src/utils/router.utils.ts:36
+[packages/utils/src/utils/router.utils.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/router.utils.ts#L36)

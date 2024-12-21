@@ -36,7 +36,7 @@
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:42
+[packages/contracts/src/quoter/quoter.contract.ts:42](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L42)
 
 ## Properties
 
@@ -46,7 +46,7 @@ packages/contracts/src/quoter/quoter.contract.ts:42
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:38
+[packages/contracts/src/quoter/quoter.contract.ts:38](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L38)
 
 ***
 
@@ -60,7 +60,7 @@ packages/contracts/src/quoter/quoter.contract.ts:38
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -70,7 +70,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:40
+[packages/contracts/src/quoter/quoter.contract.ts:40](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L40)
 
 ***
 
@@ -106,7 +106,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -142,7 +142,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:109
+[packages/contracts/src/quoter/quoter.contract.ts:109](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L109)
 
 ***
 
@@ -164,7 +164,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ***
 
@@ -180,7 +180,7 @@ Get the quoter contract
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:104
+[packages/contracts/src/quoter/quoter.contract.ts:104](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L104)
 
 ## Methods
 
@@ -202,7 +202,7 @@ The WETH9 address.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:279
+[packages/contracts/src/quoter/quoter.contract.ts:279](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L279)
 
 ***
 
@@ -220,7 +220,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:287
+[packages/contracts/src/quoter/quoter.contract.ts:287](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L287)
 
 ***
 
@@ -232,7 +232,7 @@ Executes a multicall for the given contract methods.
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"quoteExactInput"`\> \| `MethodCall`\<`Contract`, `"quoteExactInputSingle"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutput"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutputSingle"`\> \| `MethodCall`\<`Contract`, `"uniswapV3SwapCallback"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"quoteExactInput"`\> \| `MethodCall`\<`Contract`, `"quoteExactInputSingle"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutput"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutputSingle"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"uniswapV3SwapCallback"`\>\>
 
 The type of the calls object.
 
@@ -261,7 +261,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:231
+[packages/contracts/src/quoter/quoter.contract.ts:231](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L231)
 
 ***
 
@@ -289,7 +289,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:337
+[packages/contracts/src/quoter/quoter.contract.ts:337](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L337)
 
 ***
 
@@ -329,7 +329,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:381
+[packages/contracts/src/quoter/quoter.contract.ts:384](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L384)
 
 ***
 
@@ -357,7 +357,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:448
+[packages/contracts/src/quoter/quoter.contract.ts:451](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L451)
 
 ***
 
@@ -397,7 +397,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:495
+[packages/contracts/src/quoter/quoter.contract.ts:498](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L498)
 
 ***
 
@@ -440,7 +440,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -462,7 +462,7 @@ The factory address.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:298
+[packages/contracts/src/quoter/quoter.contract.ts:298](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L298)
 
 ***
 
@@ -480,7 +480,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:306
+[packages/contracts/src/quoter/quoter.contract.ts:306](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L306)
 
 ***
 
@@ -512,7 +512,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:159
+[packages/contracts/src/quoter/quoter.contract.ts:159](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L159)
 
 ***
 
@@ -524,7 +524,7 @@ Helper function to dynamically prepare a contract context based on custom or def
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"quoteExactInput"`\> \| `MethodCall`\<`Contract`, `"quoteExactInputSingle"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutput"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutputSingle"`\> \| `MethodCall`\<`Contract`, `"uniswapV3SwapCallback"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"quoteExactInput"`\> \| `MethodCall`\<`Contract`, `"quoteExactInputSingle"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutput"`\> \| `MethodCall`\<`Contract`, `"quoteExactOutputSingle"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"uniswapV3SwapCallback"`\>\>
 
 • **TCustomData** = `unknown`
 
@@ -546,7 +546,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:188
+[packages/contracts/src/quoter/quoter.contract.ts:188](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L188)
 
 ***
 
@@ -582,7 +582,7 @@ Quote information including output amount, sqrt price after, ticks crossed, and 
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:320
+[packages/contracts/src/quoter/quoter.contract.ts:320](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L320)
 
 ***
 
@@ -611,7 +611,7 @@ The CallContext object to be used with Multicall.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:349
+[packages/contracts/src/quoter/quoter.contract.ts:352](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L352)
 
 ***
 
@@ -643,7 +643,7 @@ Quote information including output amount, sqrt price after, ticks crossed, and 
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:362
+[packages/contracts/src/quoter/quoter.contract.ts:365](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L365)
 
 ***
 
@@ -684,7 +684,7 @@ The CallContext object to be used with Multicall.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:408
+[packages/contracts/src/quoter/quoter.contract.ts:411](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L411)
 
 ***
 
@@ -720,7 +720,7 @@ Quote information including input amount, sqrt price after, ticks crossed, and g
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:431
+[packages/contracts/src/quoter/quoter.contract.ts:434](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L434)
 
 ***
 
@@ -749,7 +749,7 @@ The CallContext object to be used with Multicall.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:463
+[packages/contracts/src/quoter/quoter.contract.ts:466](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L466)
 
 ***
 
@@ -781,7 +781,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:476
+[packages/contracts/src/quoter/quoter.contract.ts:479](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L479)
 
 ***
 
@@ -822,7 +822,7 @@ The CallContext object to be used with Multicall.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:522
+[packages/contracts/src/quoter/quoter.contract.ts:525](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L525)
 
 ***
 
@@ -858,7 +858,7 @@ The callback result.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:545
+[packages/contracts/src/quoter/quoter.contract.ts:548](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L548)
 
 ***
 
@@ -890,4 +890,4 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/quoter/quoter.contract.ts:564
+[packages/contracts/src/quoter/quoter.contract.ts:567](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/quoter/quoter.contract.ts#L567)

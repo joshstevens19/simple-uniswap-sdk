@@ -30,4 +30,4 @@ Optional error code to throw if assertion fails.
 
 ## Defined in
 
-packages/utils/src/exchanges/dexConfigs.ts:134
+[packages/utils/src/exchanges/dexConfigs.ts:134](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/dexConfigs.ts#L134)

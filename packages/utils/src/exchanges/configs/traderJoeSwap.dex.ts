@@ -1,10 +1,19 @@
+import {
+  arbitrumMainChainId,
+  avaxFujiChainId,
+  avaxMainChainId,
+  bscMainChainId,
+  bscTestChainId,
+  ethMainChainId,
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type {
   DexConfig,
   UniswapFactoryV2Types,
   UniswapPairV2Types,
   UniswapRouterV2Types,
 } from '@dex-toolkit/types'
-import type { ChainId, ContractDetail } from '@multicall-toolkit/types'
+import type { ContractDetail } from '@multicall-toolkit/types'
 
 import {
   traderJoeRouterV2100ABI,
@@ -18,14 +27,6 @@ import {
   uniswapFactoryV2ABI,
   uniswapPairV2ABI,
 } from '../../abis/index'
-import {
-  arbitrumMainChainId,
-  avaxFujiChainId,
-  avaxMainChainId,
-  bscMainChainId,
-  bscTestChainId,
-  ethMainChainId,
-} from '../../chains/chainIds'
 import {
   AVAXToken,
   BNBToken,

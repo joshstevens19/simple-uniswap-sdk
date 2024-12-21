@@ -24,4 +24,4 @@ A boolean indicating whether the value is a `TradeParamsOutput`.
 
 ## Defined in
 
-packages/utils/src/utils/trade.utils.ts:639
+[packages/utils/src/utils/trade.utils.ts:640](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/trade.utils.ts#L640)

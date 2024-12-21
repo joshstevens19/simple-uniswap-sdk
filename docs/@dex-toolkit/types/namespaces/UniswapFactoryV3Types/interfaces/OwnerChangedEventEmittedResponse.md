@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:45
+[packages/types/src/abis/uniswap-factory-v3.types.ts:45](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L45)
 
 ***
 
@@ -24,4 +24,4 @@ packages/types/src/abis/uniswap-factory-v3.types.ts:45
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:44
+[packages/types/src/abis/uniswap-factory-v3.types.ts:44](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L44)

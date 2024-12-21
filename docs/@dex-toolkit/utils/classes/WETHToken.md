@@ -40,7 +40,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:45
+[packages/utils/src/tokens/configs/weth.token.ts:45](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L45)
 
 ***
 
@@ -66,7 +66,7 @@ packages/utils/src/tokens/configs/weth.token.ts:45
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:65
+[packages/utils/src/tokens/configs/weth.token.ts:65](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L65)
 
 ***
 
@@ -92,7 +92,7 @@ packages/utils/src/tokens/configs/weth.token.ts:65
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:84
+[packages/utils/src/tokens/configs/weth.token.ts:84](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L84)
 
 ***
 
@@ -118,7 +118,7 @@ packages/utils/src/tokens/configs/weth.token.ts:84
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:103
+[packages/utils/src/tokens/configs/weth.token.ts:103](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L103)
 
 ***
 
@@ -152,7 +152,7 @@ packages/utils/src/tokens/configs/weth.token.ts:103
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:124
+[packages/utils/src/tokens/configs/weth.token.ts:124](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L124)
 
 ***
 
@@ -178,7 +178,7 @@ packages/utils/src/tokens/configs/weth.token.ts:124
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:151
+[packages/utils/src/tokens/configs/weth.token.ts:151](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L151)
 
 ***
 
@@ -196,7 +196,7 @@ packages/utils/src/tokens/configs/weth.token.ts:151
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:170
+[packages/utils/src/tokens/configs/weth.token.ts:170](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L170)
 
 ***
 
@@ -222,7 +222,7 @@ packages/utils/src/tokens/configs/weth.token.ts:170
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:200
+[packages/utils/src/tokens/configs/weth.token.ts:200](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L200)
 
 ***
 
@@ -248,7 +248,7 @@ packages/utils/src/tokens/configs/weth.token.ts:200
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:181
+[packages/utils/src/tokens/configs/weth.token.ts:181](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L181)
 
 ***
 
@@ -274,7 +274,7 @@ packages/utils/src/tokens/configs/weth.token.ts:181
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:220
+[packages/utils/src/tokens/configs/weth.token.ts:220](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L220)
 
 ***
 
@@ -300,7 +300,7 @@ packages/utils/src/tokens/configs/weth.token.ts:220
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:241
+[packages/utils/src/tokens/configs/weth.token.ts:241](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L241)
 
 ## Methods
 
@@ -318,4 +318,4 @@ packages/utils/src/tokens/configs/weth.token.ts:241
 
 #### Defined in
 
-packages/utils/src/tokens/configs/weth.token.ts:260
+[packages/utils/src/tokens/configs/weth.token.ts:260](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/weth.token.ts#L260)

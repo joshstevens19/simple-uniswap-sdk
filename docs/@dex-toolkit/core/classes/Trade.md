@@ -33,7 +33,7 @@ Specifies the format type for numeric values in class methods.
 
 #### Defined in
 
-packages/core/src/trade.ts:172
+[packages/core/src/trade.ts:172](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L172)
 
 ## Properties
 
@@ -45,7 +45,7 @@ Configurations for supported DEXs.
 
 #### Defined in
 
-packages/core/src/trade.ts:115
+[packages/core/src/trade.ts:115](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L115)
 
 ***
 
@@ -57,7 +57,7 @@ Provider instance for interacting with the blockchain and DEX.
 
 #### Defined in
 
-packages/core/src/trade.ts:125
+[packages/core/src/trade.ts:125](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L125)
 
 ***
 
@@ -69,7 +69,7 @@ Format settings for numeric values.
 
 #### Defined in
 
-packages/core/src/trade.ts:160
+[packages/core/src/trade.ts:160](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L160)
 
 ***
 
@@ -81,7 +81,7 @@ The token being traded from.
 
 #### Defined in
 
-packages/core/src/trade.ts:95
+[packages/core/src/trade.ts:95](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L95)
 
 ***
 
@@ -93,7 +93,7 @@ Contract instance for the "from" token.
 
 #### Defined in
 
-packages/core/src/trade.ts:135
+[packages/core/src/trade.ts:135](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L135)
 
 ***
 
@@ -105,7 +105,7 @@ Last block number processed by the trade watcher.
 
 #### Defined in
 
-packages/core/src/trade.ts:150
+[packages/core/src/trade.ts:150](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L150)
 
 ***
 
@@ -117,7 +117,7 @@ Listener for new block events.
 
 #### Defined in
 
-packages/core/src/trade.ts:170
+[packages/core/src/trade.ts:170](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L170)
 
 ***
 
@@ -129,7 +129,7 @@ Information about the native currency on the network.
 
 #### Defined in
 
-packages/core/src/trade.ts:105
+[packages/core/src/trade.ts:105](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L105)
 
 ***
 
@@ -141,7 +141,7 @@ Information about the wrapped version of the native currency.
 
 #### Defined in
 
-packages/core/src/trade.ts:110
+[packages/core/src/trade.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L110)
 
 ***
 
@@ -153,7 +153,7 @@ Router instance for managing trade paths and operations.
 
 #### Defined in
 
-packages/core/src/trade.ts:145
+[packages/core/src/trade.ts:145](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L145)
 
 ***
 
@@ -165,7 +165,7 @@ Configuration settings for the trade.
 
 #### Defined in
 
-packages/core/src/trade.ts:130
+[packages/core/src/trade.ts:130](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L130)
 
 ***
 
@@ -177,7 +177,7 @@ Active trade subscriptions.
 
 #### Defined in
 
-packages/core/src/trade.ts:165
+[packages/core/src/trade.ts:165](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L165)
 
 ***
 
@@ -189,7 +189,7 @@ The token being traded to.
 
 #### Defined in
 
-packages/core/src/trade.ts:100
+[packages/core/src/trade.ts:100](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L100)
 
 ***
 
@@ -201,7 +201,7 @@ Contract instance for the "to" token.
 
 #### Defined in
 
-packages/core/src/trade.ts:140
+[packages/core/src/trade.ts:140](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L140)
 
 ***
 
@@ -213,7 +213,7 @@ The user's wallet address.
 
 #### Defined in
 
-packages/core/src/trade.ts:120
+[packages/core/src/trade.ts:120](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L120)
 
 ***
 
@@ -225,7 +225,7 @@ Flag indicating whether the trade is monitoring new blocks.
 
 #### Defined in
 
-packages/core/src/trade.ts:155
+[packages/core/src/trade.ts:155](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L155)
 
 ## Accessors
 
@@ -241,7 +241,7 @@ Get the dex provider
 
 #### Defined in
 
-packages/core/src/trade.ts:371
+[packages/core/src/trade.ts:371](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L371)
 
 ***
 
@@ -257,7 +257,7 @@ Get the from token
 
 #### Defined in
 
-packages/core/src/trade.ts:329
+[packages/core/src/trade.ts:329](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L329)
 
 ***
 
@@ -273,7 +273,7 @@ Get the from token factory
 
 #### Defined in
 
-packages/core/src/trade.ts:343
+[packages/core/src/trade.ts:343](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L343)
 
 ***
 
@@ -289,7 +289,7 @@ Retrieves the native currency information for the current network.
 
 #### Defined in
 
-packages/core/src/trade.ts:385
+[packages/core/src/trade.ts:385](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L385)
 
 ***
 
@@ -305,7 +305,7 @@ Retrieves the native wrapped token information for the current network.
 
 #### Defined in
 
-packages/core/src/trade.ts:378
+[packages/core/src/trade.ts:378](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L378)
 
 ***
 
@@ -321,7 +321,7 @@ Get the router factory
 
 #### Defined in
 
-packages/core/src/trade.ts:364
+[packages/core/src/trade.ts:364](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L364)
 
 ***
 
@@ -337,7 +337,7 @@ Get the to token
 
 #### Defined in
 
-packages/core/src/trade.ts:336
+[packages/core/src/trade.ts:336](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L336)
 
 ***
 
@@ -353,7 +353,7 @@ Get the to token factory
 
 #### Defined in
 
-packages/core/src/trade.ts:350
+[packages/core/src/trade.ts:350](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L350)
 
 ***
 
@@ -369,7 +369,7 @@ Get the token list factory
 
 #### Defined in
 
-packages/core/src/trade.ts:357
+[packages/core/src/trade.ts:357](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L357)
 
 ***
 
@@ -385,7 +385,7 @@ Get the trade path
 
 #### Defined in
 
-packages/core/src/trade.ts:392
+[packages/core/src/trade.ts:392](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L392)
 
 ## Methods
 
@@ -416,7 +416,7 @@ This is called automatically when:
 
 #### Defined in
 
-packages/core/src/trade.ts:1427
+[packages/core/src/trade.ts:1427](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1427)
 
 ***
 
@@ -441,7 +441,7 @@ A function that executes the trade operation
 
 #### Defined in
 
-packages/core/src/trade.ts:1335
+[packages/core/src/trade.ts:1335](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1335)
 
 ***
 
@@ -486,7 +486,7 @@ The context is maintained internally in DexNumber format for accurate comparison
 
 #### Defined in
 
-packages/core/src/trade.ts:1307
+[packages/core/src/trade.ts:1307](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1307)
 
 ***
 
@@ -511,7 +511,7 @@ This method:
 
 #### Defined in
 
-packages/core/src/trade.ts:1479
+[packages/core/src/trade.ts:1479](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1479)
 
 ***
 
@@ -543,7 +543,7 @@ A promise that resolves to the best route quote.
 
 #### Defined in
 
-packages/core/src/trade.ts:409
+[packages/core/src/trade.ts:409](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L409)
 
 ***
 
@@ -590,7 +590,7 @@ Promise resolving to transaction data for approval
 
 #### Defined in
 
-packages/core/src/trade.ts:681
+[packages/core/src/trade.ts:681](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L681)
 
 ***
 
@@ -630,7 +630,7 @@ DexError if the trade path is not supported or if the trade context could not be
 
 #### Defined in
 
-packages/core/src/trade.ts:842
+[packages/core/src/trade.ts:842](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L842)
 
 ***
 
@@ -670,7 +670,7 @@ DexError if the trade path is not supported.
 
 #### Defined in
 
-packages/core/src/trade.ts:896
+[packages/core/src/trade.ts:896](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L896)
 
 ***
 
@@ -706,7 +706,7 @@ DexError if the trade path is not supported.
 
 #### Defined in
 
-packages/core/src/trade.ts:1052
+[packages/core/src/trade.ts:1052](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1052)
 
 ***
 
@@ -734,7 +734,7 @@ A promise that resolves to an object containing the allowance and balance inform
 
 #### Defined in
 
-packages/core/src/trade.ts:635
+[packages/core/src/trade.ts:635](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L635)
 
 ***
 
@@ -762,7 +762,7 @@ A promise that resolves to the balance of the from token.
 
 #### Defined in
 
-packages/core/src/trade.ts:513
+[packages/core/src/trade.ts:513](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L513)
 
 ***
 
@@ -806,7 +806,7 @@ A promise that resolves to the allowance.
 
 #### Defined in
 
-packages/core/src/trade.ts:559
+[packages/core/src/trade.ts:559](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L559)
 
 ***
 
@@ -846,7 +846,7 @@ A promise that resolves to an array of tuples containing the reserves of token0 
 
 #### Defined in
 
-packages/core/src/trade.ts:480
+[packages/core/src/trade.ts:480](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L480)
 
 ***
 
@@ -878,7 +878,7 @@ A promise that resolves to the route quotes.
 
 #### Defined in
 
-packages/core/src/trade.ts:438
+[packages/core/src/trade.ts:438](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L438)
 
 ***
 
@@ -906,7 +906,7 @@ A promise that resolves to an object containing the allowance and balance inform
 
 #### Defined in
 
-packages/core/src/trade.ts:653
+[packages/core/src/trade.ts:653](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L653)
 
 ***
 
@@ -934,7 +934,7 @@ A promise that resolves to the balance of the to token.
 
 #### Defined in
 
-packages/core/src/trade.ts:535
+[packages/core/src/trade.ts:535](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L535)
 
 ***
 
@@ -978,7 +978,7 @@ A promise that resolves to the allowance.
 
 #### Defined in
 
-packages/core/src/trade.ts:599
+[packages/core/src/trade.ts:599](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L599)
 
 ***
 
@@ -1011,7 +1011,7 @@ before they're accessed. If it throws, it indicates an internal state issue.
 
 #### Defined in
 
-packages/core/src/trade.ts:1452
+[packages/core/src/trade.ts:1452](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1452)
 
 ***
 
@@ -1027,7 +1027,7 @@ Find all possible routes
 
 #### Defined in
 
-packages/core/src/trade.ts:461
+[packages/core/src/trade.ts:461](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L461)
 
 ***
 
@@ -1071,7 +1071,7 @@ If there's an error processing subscription updates
 
 #### Defined in
 
-packages/core/src/trade.ts:1616
+[packages/core/src/trade.ts:1616](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1616)
 
 ***
 
@@ -1113,7 +1113,7 @@ If there's an error generating or processing the new context
 
 #### Defined in
 
-packages/core/src/trade.ts:1508
+[packages/core/src/trade.ts:1508](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1508)
 
 ***
 
@@ -1141,7 +1141,7 @@ If any required parameter is missing or invalid, or if the trade path is not sup
 
 #### Defined in
 
-packages/core/src/trade.ts:793
+[packages/core/src/trade.ts:793](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L793)
 
 ***
 
@@ -1179,7 +1179,7 @@ await liquidity.requote("subscription-123", 15372648);
 
 #### Defined in
 
-packages/core/src/trade.ts:1158
+[packages/core/src/trade.ts:1158](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1158)
 
 ***
 
@@ -1208,7 +1208,7 @@ Block watching is started unless explicitly disabled in settings.
 
 #### Defined in
 
-packages/core/src/trade.ts:1211
+[packages/core/src/trade.ts:1211](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1211)
 
 ***
 
@@ -1231,7 +1231,7 @@ to prevent unnecessary block processing.
 
 #### Defined in
 
-packages/core/src/trade.ts:1192
+[packages/core/src/trade.ts:1192](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1192)
 
 ***
 
@@ -1254,4 +1254,4 @@ The watcher is automatically managed based on active subscriptions.
 
 #### Defined in
 
-packages/core/src/trade.ts:1175
+[packages/core/src/trade.ts:1175](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/trade.ts#L1175)

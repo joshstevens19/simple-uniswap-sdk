@@ -33,7 +33,7 @@ It provides functionalities to retrieve token details, balances, allowances, and
 
 #### Defined in
 
-packages/core/src/tokens.ts:63
+[packages/core/src/tokens.ts:60](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L60)
 
 ## Properties
 
@@ -45,7 +45,7 @@ DEX configurations grouped by DEX tag.
 
 #### Defined in
 
-packages/core/src/tokens.ts:56
+[packages/core/src/tokens.ts:53](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L53)
 
 ***
 
@@ -57,7 +57,7 @@ The underlying `DexProvider` instance for interacting with the blockchain.
 
 #### Defined in
 
-packages/core/src/tokens.ts:51
+[packages/core/src/tokens.ts:48](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L48)
 
 ***
 
@@ -69,7 +69,7 @@ An instance of `TokenList` for managing token metadata.
 
 #### Defined in
 
-packages/core/src/tokens.ts:61
+[packages/core/src/tokens.ts:58](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L58)
 
 ## Accessors
 
@@ -85,7 +85,7 @@ Get the dex configs keyed
 
 #### Defined in
 
-packages/core/src/tokens.ts:106
+[packages/core/src/tokens.ts:103](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L103)
 
 ***
 
@@ -101,7 +101,7 @@ Returns the underlying `DexProvider`.
 
 #### Defined in
 
-packages/core/src/tokens.ts:101
+[packages/core/src/tokens.ts:98](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L98)
 
 ***
 
@@ -117,7 +117,7 @@ Get the token list factory
 
 #### Defined in
 
-packages/core/src/tokens.ts:111
+[packages/core/src/tokens.ts:108](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L108)
 
 ## Methods
 
@@ -164,7 +164,7 @@ A promise resolving to an object mapping token contract addresses to their corre
 
 #### Defined in
 
-packages/core/src/tokens.ts:210
+[packages/core/src/tokens.ts:207](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L207)
 
 ***
 
@@ -206,7 +206,7 @@ A promise resolving to an array of `MultiDexTokenWithAllowanceInfo` objects.
 
 #### Defined in
 
-packages/core/src/tokens.ts:127
+[packages/core/src/tokens.ts:124](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L124)
 
 ***
 
@@ -238,4 +238,4 @@ if contract call contexts are not available.
 
 #### Defined in
 
-packages/core/src/tokens.ts:314
+[packages/core/src/tokens.ts:311](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/tokens.ts#L311)

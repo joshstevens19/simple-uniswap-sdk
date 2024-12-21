@@ -1,10 +1,10 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import type {
   ContractDetailsV2,
   ContractDetailsV3,
   DexConfig,
   DexType,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 import { ethers } from 'ethers'
 import { describe, it, expect } from 'vitest'
 

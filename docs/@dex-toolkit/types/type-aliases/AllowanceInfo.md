@@ -16,4 +16,4 @@ Represents the allowance of a token for different DEX versions.
 
 ## Defined in
 
-packages/types/src/token.types.ts:77
+[packages/types/src/token.types.ts:78](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token.types.ts#L78)

@@ -24,4 +24,4 @@ A boolean indicating whether the trade path is from a coin (either to a token or
 
 ## Defined in
 
-packages/utils/src/utils/trade.utils.ts:672
+[packages/utils/src/utils/trade.utils.ts:673](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/trade.utils.ts#L673)

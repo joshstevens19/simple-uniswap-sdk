@@ -46,4 +46,4 @@ Multi-hop trades will have an array of values, one for each hop
 
 ## Defined in
 
-packages/types/src/router.types.ts:123
+[packages/types/src/router.types.ts:123](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/router.types.ts#L123)

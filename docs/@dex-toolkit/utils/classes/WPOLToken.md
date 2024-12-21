@@ -40,7 +40,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wpol.token.ts:23
+[packages/utils/src/tokens/configs/wpol.token.ts:23](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wpol.token.ts#L23)
 
 ***
 
@@ -66,7 +66,7 @@ packages/utils/src/tokens/configs/wpol.token.ts:23
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wpol.token.ts:51
+[packages/utils/src/tokens/configs/wpol.token.ts:51](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wpol.token.ts#L51)
 
 ## Methods
 
@@ -84,4 +84,4 @@ packages/utils/src/tokens/configs/wpol.token.ts:51
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wpol.token.ts:82
+[packages/utils/src/tokens/configs/wpol.token.ts:82](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wpol.token.ts#L82)

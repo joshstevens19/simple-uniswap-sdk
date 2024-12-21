@@ -27,7 +27,7 @@ import {
   transformWrappedAddressToCoinAddress,
 } from './address.utils'
 import { MAX_HEX_STRING } from './constants'
-import { getChainConfig } from '../chains/chainConfigs'
+import { getChainConfig } from '../networks/chainConfigs'
 import { DexError } from '../errors/dex-error'
 import { ErrorCodes } from '../errors/error-codes'
 import {

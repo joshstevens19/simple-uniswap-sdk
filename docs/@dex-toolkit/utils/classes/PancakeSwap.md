@@ -41,7 +41,7 @@ V3 Deployments:
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:54
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:54](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L54)
 
 ***
 
@@ -59,7 +59,7 @@ packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:54
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:117
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:117](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L117)
 
 ***
 
@@ -85,7 +85,7 @@ packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:117
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:179
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:179](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L179)
 
 ***
 
@@ -103,7 +103,7 @@ packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:179
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:294
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:294](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L294)
 
 ***
 
@@ -121,7 +121,7 @@ packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:294
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:356
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:356](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L356)
 
 ***
 
@@ -139,7 +139,7 @@ packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:356
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:418
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:418](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L418)
 
 ## Methods
 
@@ -153,7 +153,7 @@ packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:418
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:501
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:501](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L501)
 
 ***
 
@@ -171,4 +171,4 @@ packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:501
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:480
+[packages/utils/src/exchanges/configs/pancakeSwap.dex.ts:480](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pancakeSwap.dex.ts#L480)

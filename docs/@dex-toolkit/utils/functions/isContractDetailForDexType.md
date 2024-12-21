@@ -24,4 +24,4 @@ True if the context is of type ContractDetailForDexType, false otherwise.
 
 ## Defined in
 
-packages/utils/src/utils/contract-detail.utils.ts:71
+[packages/utils/src/utils/contract-detail.utils.ts:71](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/contract-detail.utils.ts#L71)

@@ -24,4 +24,4 @@ Helper function to wrap any error as a DexError
 
 ## Defined in
 
-packages/utils/src/errors/dex-error.ts:129
+[packages/utils/src/errors/dex-error.ts:129](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L129)

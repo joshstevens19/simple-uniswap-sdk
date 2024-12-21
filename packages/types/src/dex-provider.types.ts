@@ -1,14 +1,14 @@
+import type { AuthenticatedProviderType, ChainId } from '@chain-toolkit/schemas'
 import type {
   Address,
   BaseProviderContext,
-  ChainId,
   ChainIdAndProviderContext,
   EthersProviderContext,
   IMulticallProvider,
 } from '@multicall-toolkit/types'
 import type { Signer } from 'ethers'
 
-import type { AuthenticatedProviderType, ChainConfig } from './chain.types'
+import type { ChainConfig } from './chain.types'
 import type {
   DexCustomNetwork,
   TradeFormat,

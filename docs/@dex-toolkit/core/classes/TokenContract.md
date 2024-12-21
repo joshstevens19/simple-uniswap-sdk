@@ -42,7 +42,7 @@ Represents a token contract on the blockchain and provides various utilities to 
 
 #### Defined in
 
-packages/core/src/token-contract.ts:81
+[packages/core/src/token-contract.ts:81](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L81)
 
 ## Properties
 
@@ -56,7 +56,7 @@ packages/core/src/token-contract.ts:81
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -68,7 +68,7 @@ Configuration details for different DEXs.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:54
+[packages/core/src/token-contract.ts:54](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L54)
 
 ***
 
@@ -80,7 +80,7 @@ Instance of `DexMulticall` for batch contract calls.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:59
+[packages/core/src/token-contract.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L59)
 
 ***
 
@@ -106,7 +106,7 @@ Cache for the token details.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:79
+[packages/core/src/token-contract.ts:79](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L79)
 
 ***
 
@@ -118,7 +118,7 @@ Instance of `Erc20Contract` for interacting with the token contract.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:69
+[packages/core/src/token-contract.ts:69](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L69)
 
 ***
 
@@ -130,7 +130,7 @@ Address of the token contract.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:64
+[packages/core/src/token-contract.ts:64](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L64)
 
 ***
 
@@ -142,7 +142,7 @@ Token list containing metadata about available tokens.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:74
+[packages/core/src/token-contract.ts:74](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L74)
 
 ## Accessors
 
@@ -164,7 +164,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -180,7 +180,7 @@ Get the dex configs keyed
 
 #### Defined in
 
-packages/core/src/token-contract.ts:153
+[packages/core/src/token-contract.ts:153](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L153)
 
 ***
 
@@ -222,7 +222,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ***
 
@@ -238,7 +238,7 @@ Get the token contract
 
 #### Defined in
 
-packages/core/src/token-contract.ts:163
+[packages/core/src/token-contract.ts:163](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L163)
 
 ***
 
@@ -254,7 +254,7 @@ Get the token contract address
 
 #### Defined in
 
-packages/core/src/token-contract.ts:158
+[packages/core/src/token-contract.ts:158](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L158)
 
 ***
 
@@ -270,7 +270,7 @@ Get the token list factory
 
 #### Defined in
 
-packages/core/src/token-contract.ts:168
+[packages/core/src/token-contract.ts:168](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L168)
 
 ## Methods
 
@@ -330,7 +330,7 @@ If router configuration is missing
 
 #### Defined in
 
-packages/core/src/token-contract.ts:271
+[packages/core/src/token-contract.ts:271](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L271)
 
 ***
 
@@ -366,7 +366,7 @@ The balance of the user.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:191
+[packages/core/src/token-contract.ts:191](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L191)
 
 ***
 
@@ -399,7 +399,7 @@ The encoded approve data.
 
 #### Defined in
 
-packages/core/src/token-contract.ts:386
+[packages/core/src/token-contract.ts:386](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L386)
 
 ***
 
@@ -442,7 +442,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -478,7 +478,7 @@ A promise that resolves to an AllowanceAndBalanceOf object
 
 #### Defined in
 
-packages/core/src/token-contract.ts:219
+[packages/core/src/token-contract.ts:219](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L219)
 
 ***
 
@@ -494,7 +494,7 @@ Get the token details
 
 #### Defined in
 
-packages/core/src/token-contract.ts:403
+[packages/core/src/token-contract.ts:403](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L403)
 
 ***
 
@@ -510,4 +510,4 @@ Get the total supply of tokens which exist
 
 #### Defined in
 
-packages/core/src/token-contract.ts:175
+[packages/core/src/token-contract.ts:175](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-contract.ts#L175)

@@ -1,3 +1,4 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import { parseDecimals } from '@dex-toolkit/number'
 import type {
   Token,
@@ -9,7 +10,6 @@ import type {
   Erc777Types,
   Erc20Types,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import {
   isAddress,
@@ -18,7 +18,7 @@ import {
 } from './address.utils'
 import { decodeHexString } from './ethers.utils'
 import { isStandard } from './standards.utils'
-import { isChainId } from '../chains/chain-utils'
+import { isChainId } from '../networks/chain-utils'
 import { DexError, ErrorCodes } from '../errors'
 import { tokenClasses } from '../tokens/tokenConfigs'
 

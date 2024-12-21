@@ -19,4 +19,4 @@ Token call option defining which method mapping to use
 
 ## Defined in
 
-packages/types/src/token-multicall.types.ts:56
+[packages/types/src/token-multicall.types.ts:56](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-multicall.types.ts#L56)

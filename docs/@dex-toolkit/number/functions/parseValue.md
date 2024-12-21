@@ -24,4 +24,4 @@ A normalized BigNumber.Value.
 
 ## Defined in
 
-packages/number/src/dex-number.ts:43
+[packages/number/src/dex-number.ts:43](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L43)

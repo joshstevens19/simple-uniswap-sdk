@@ -12,4 +12,4 @@ Represents the types of decentralized exchanges (DEX) supported.
 
 ## Defined in
 
-packages/types/src/dex.types.ts:11
+[packages/types/src/dex.types.ts:12](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex.types.ts#L12)

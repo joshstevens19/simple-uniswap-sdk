@@ -24,4 +24,4 @@ True if the protocol is a DexProtocol V3.
 
 ## Defined in
 
-packages/utils/src/utils/dex.utils.ts:102
+[packages/utils/src/utils/dex.utils.ts:102](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/dex.utils.ts#L102)

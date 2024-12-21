@@ -10,8 +10,8 @@ import {
   isSameAddress,
   transformWrappedAddressToCoinAddress,
 } from './address.utils'
-import { getChainConfig } from '../chains/chainConfigs'
-import { dexChains } from '../chains/chainIds'
+import { getChainConfig } from '../networks/chainConfigs'
+import { dexChains } from '../networks/chainIds'
 import { DexError } from '../errors/dex-error'
 import { ErrorCodes } from '../errors/error-codes'
 

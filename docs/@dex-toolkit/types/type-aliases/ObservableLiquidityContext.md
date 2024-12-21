@@ -27,4 +27,4 @@ This is the callback from the observer$ subscribe() function.
 
 ## Defined in
 
-packages/types/src/liquidity.types.ts:402
+[packages/types/src/liquidity.types.ts:402](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/liquidity.types.ts#L402)

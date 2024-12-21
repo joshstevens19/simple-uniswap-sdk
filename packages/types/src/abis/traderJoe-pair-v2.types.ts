@@ -38,33 +38,36 @@ export interface EventsContext {
     sender: string,
     approved: boolean,
   ): EventFilter
-  CollectedProtocolFees(feeRecipient: string, protocolFees: Bytes): EventFilter
+  CollectedProtocolFees(
+    feeRecipient: string,
+    protocolFees: BytesLike,
+  ): EventFilter
   CompositionFees(
     sender: string,
     id: BigNumberish,
-    totalFees: Bytes,
-    protocolFees: Bytes,
+    totalFees: BytesLike,
+    protocolFees: BytesLike,
   ): EventFilter
   DepositedToBins(
     sender: string,
     to: string,
     ids: BigNumberish[],
-    amounts: Bytes[],
+    amounts: BytesLike[],
   ): EventFilter
   FlashLoan(
     sender: string,
     receiver: string,
     activeId: BigNumberish,
-    amounts: Bytes,
-    totalFees: Bytes,
-    protocolFees: Bytes,
+    amounts: BytesLike,
+    totalFees: BytesLike,
+    protocolFees: BytesLike,
   ): EventFilter
   ForcedDecay(
     sender: string,
     idReference: BigNumberish,
     volatilityReference: BigNumberish,
   ): EventFilter
-  HooksParametersSet(sender: string, hooksParameters: Bytes): EventFilter
+  HooksParametersSet(sender: string, hooksParameters: BytesLike): EventFilter
   Initialized(version: BigNumberish): EventFilter
   OracleLengthIncreased(sender: string, oracleLength: BigNumberish): EventFilter
   StaticFeeParametersSet(
@@ -81,11 +84,11 @@ export interface EventsContext {
     sender: string,
     to: string,
     id: BigNumberish,
-    amountsIn: Bytes,
-    amountsOut: Bytes,
+    amountsIn: BytesLike,
+    amountsOut: BytesLike,
     volatilityAccumulator: BigNumberish,
-    totalFees: Bytes,
-    protocolFees: Bytes,
+    totalFees: BytesLike,
+    protocolFees: BytesLike,
   ): EventFilter
   TransferBatch(
     sender: string,
@@ -98,7 +101,7 @@ export interface EventsContext {
     sender: string,
     to: string,
     ids: BigNumberish[],
-    amounts: Bytes[],
+    amounts: BytesLike[],
   ): EventFilter
 }
 export type MethodNames =

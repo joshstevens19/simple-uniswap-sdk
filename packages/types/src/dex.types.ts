@@ -1,4 +1,5 @@
-import type { Address, ChainId } from '@multicall-toolkit/types'
+import type { ChainId } from '@chain-toolkit/schemas'
+import type { Address } from '@multicall-toolkit/types'
 
 import type { Protocols } from './contract-detail.types'
 import type { DexMulticallProviderContext } from './dex-provider.types'

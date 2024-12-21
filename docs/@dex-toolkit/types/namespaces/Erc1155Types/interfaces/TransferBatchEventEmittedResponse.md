@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:67
+[packages/types/src/abis/erc1155.types.ts:67](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L67)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/erc1155.types.ts:67
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:69
+[packages/types/src/abis/erc1155.types.ts:69](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L69)
 
 ***
 
@@ -34,7 +34,7 @@ packages/types/src/abis/erc1155.types.ts:69
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:66
+[packages/types/src/abis/erc1155.types.ts:66](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L66)
 
 ***
 
@@ -44,7 +44,7 @@ packages/types/src/abis/erc1155.types.ts:66
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:68
+[packages/types/src/abis/erc1155.types.ts:68](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L68)
 
 ***
 
@@ -54,4 +54,4 @@ packages/types/src/abis/erc1155.types.ts:68
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:70
+[packages/types/src/abis/erc1155.types.ts:70](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L70)

@@ -1,5 +1,14 @@
+import {
+  arbitrumMainChainId,
+  baseMainChainId,
+  bscMainChainId,
+  bscTestChainId,
+  ethMainChainId,
+  zkEVMMainChainId,
+  zksyncMainChainId,
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { DexConfig } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import {
   uniswapFactoryV2ABI,
@@ -11,15 +20,6 @@ import {
   uniswapRouterV2ABI,
   uniswapRouterV3ABI,
 } from '../../abis/index'
-import {
-  arbitrumMainChainId,
-  baseMainChainId,
-  bscMainChainId,
-  bscTestChainId,
-  ethMainChainId,
-  zkEVMMainChainId,
-  zksyncMainChainId,
-} from '../../chains/chainIds'
 import {
   BNBToken,
   ETHCoin,

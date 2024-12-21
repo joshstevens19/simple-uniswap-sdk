@@ -40,7 +40,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/hex.token.ts:18
+[packages/utils/src/tokens/configs/hex.token.ts:18](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/hex.token.ts#L18)
 
 ## Methods
 
@@ -58,4 +58,4 @@ packages/utils/src/tokens/configs/hex.token.ts:18
 
 #### Defined in
 
-packages/utils/src/tokens/configs/hex.token.ts:46
+[packages/utils/src/tokens/configs/hex.token.ts:46](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/hex.token.ts#L46)

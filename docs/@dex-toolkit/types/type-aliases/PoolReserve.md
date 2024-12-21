@@ -56,4 +56,4 @@ The reserve amount for the second token.
 
 ## Defined in
 
-packages/types/src/router.types.ts:194
+[packages/types/src/router.types.ts:194](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/router.types.ts#L194)

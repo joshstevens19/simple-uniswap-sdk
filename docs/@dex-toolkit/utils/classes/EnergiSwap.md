@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/energiswap.dex.ts:75
+[packages/utils/src/exchanges/configs/energiswap.dex.ts:76](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/energiswap.dex.ts#L76)
 
 ## Methods
 
@@ -46,7 +46,7 @@ packages/utils/src/exchanges/configs/energiswap.dex.ts:75
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/energiswap.dex.ts:118
+[packages/utils/src/exchanges/configs/energiswap.dex.ts:119](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/energiswap.dex.ts#L119)
 
 ***
 
@@ -64,4 +64,4 @@ packages/utils/src/exchanges/configs/energiswap.dex.ts:118
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/energiswap.dex.ts:109
+[packages/utils/src/exchanges/configs/energiswap.dex.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/energiswap.dex.ts#L110)

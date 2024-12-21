@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
+import { plsMainChainId } from '@chain-toolkit/chains'
 import { Erc20Contract } from '@dex-toolkit/contracts'
 import {
   getAllDexConfigsForChainId,
   getAllTokensForChainId,
   getChainConfig,
-  plsMainChainId,
 } from '@dex-toolkit/utils'
 import type { MethodCall } from '@multicall-toolkit/types'
 import { Contract, ethers, providers, utils } from 'ethers'
@@ -74,9 +74,7 @@ async function probeChainNodes(chainId: number): Promise<NodeTestResult[]> {
   }
 
   console.log(
-    colorize.cyan(
-      `\n🔗 Testing ${chainConfig.displayName} (Chain ID: ${chainId})`,
-    ),
+    colorize.cyan(`\n🔗 Testing ${chainConfig.uiName} (Chain ID: ${chainId})`),
   )
 
   const results: NodeTestResult[] = []
@@ -355,9 +353,7 @@ async function testChainNodes(chainId: number): Promise<NodeTestResult[]> {
   if (!chainConfig) return []
 
   console.log(
-    colorize.cyan(
-      `\n🔗 Testing ${chainConfig.displayName} (Chain ID: ${chainId})`,
-    ),
+    colorize.cyan(`\n🔗 Testing ${chainConfig.uiName} (Chain ID: ${chainId})`),
   )
 
   const results: NodeTestResult[] = []
@@ -389,7 +385,7 @@ async function testChainNodes(chainId: number): Promise<NodeTestResult[]> {
 
         const result: NodeTestResult = {
           chainId,
-          chainName: chainConfig.displayName,
+          chainName: chainConfig.uiName,
           nodeName: node.name,
           url: node.url,
           chunkLimit: {
@@ -415,7 +411,7 @@ async function testChainNodes(chainId: number): Promise<NodeTestResult[]> {
       } catch (error) {
         results.push({
           chainId,
-          chainName: chainConfig.displayName,
+          chainName: chainConfig.uiName,
           nodeName: node.name,
           url: node.url,
           error: error instanceof Error ? error.message : String(error),
@@ -588,7 +584,7 @@ async function testCallDataLimit(chainId: number): Promise<NodeTestResult[]> {
 
   console.log(
     colorize.cyan(
-      `\n🔗 Testing Call Data Limit on ${chainConfig.displayName} (Chain ID: ${chainId})`,
+      `\n🔗 Testing Call Data Limit on ${chainConfig.uiName} (Chain ID: ${chainId})`,
     ),
   )
 
@@ -625,7 +621,7 @@ async function testCallDataLimit(chainId: number): Promise<NodeTestResult[]> {
 
         const result: NodeTestResult = {
           chainId,
-          chainName: chainConfig.displayName,
+          chainName: chainConfig.uiName,
           nodeName: node.name,
           url: node.url,
           chunkLimit: {
@@ -658,7 +654,7 @@ async function testCallDataLimit(chainId: number): Promise<NodeTestResult[]> {
       } catch (error) {
         results.push({
           chainId,
-          chainName: chainConfig.displayName,
+          chainName: chainConfig.uiName,
           nodeName: node.name,
           url: node.url,
           chunkLimit: {

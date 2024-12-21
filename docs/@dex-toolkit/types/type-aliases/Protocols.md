@@ -48,4 +48,4 @@ position manager, and pool contracts.
 
 ## Defined in
 
-packages/types/src/contract-detail.types.ts:142
+[packages/types/src/contract-detail.types.ts:139](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/contract-detail.types.ts#L139)

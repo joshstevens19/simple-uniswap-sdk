@@ -39,7 +39,7 @@ Type: uint24, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:77
+[packages/types/src/abis/uniswap-factory-v3.types.ts:77](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L77)
 
 ***
 
@@ -70,7 +70,7 @@ Type: int24, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:91
+[packages/types/src/abis/uniswap-factory-v3.types.ts:91](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L91)
 
 ***
 
@@ -97,7 +97,7 @@ Type: uint24, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:103
+[packages/types/src/abis/uniswap-factory-v3.types.ts:103](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L103)
 
 ***
 
@@ -132,7 +132,7 @@ Type: uint24, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:116
+[packages/types/src/abis/uniswap-factory-v3.types.ts:116](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L116)
 
 ***
 
@@ -155,7 +155,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:128
+[packages/types/src/abis/uniswap-factory-v3.types.ts:128](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L128)
 
 ***
 
@@ -178,7 +178,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:135
+[packages/types/src/abis/uniswap-factory-v3.types.ts:135](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L135)
 
 ***
 
@@ -205,4 +205,4 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-factory-v3.types.ts:143
+[packages/types/src/abis/uniswap-factory-v3.types.ts:143](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v3.types.ts#L143)

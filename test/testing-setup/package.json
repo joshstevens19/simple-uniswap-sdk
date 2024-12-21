@@ -32,6 +32,7 @@
     "ethers": "5.7.2"
   },
   "devDependencies": {
+    "@chain-toolkit/schemas": "workspace:*",
     "@dex-toolkit/types": "workspace:*",
     "@multicall-toolkit/types": "workspace:*"
   }

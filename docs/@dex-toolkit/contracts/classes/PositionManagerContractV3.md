@@ -36,7 +36,7 @@
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:48
+[packages/contracts/src/position/position-manager.contract.ts:48](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L48)
 
 ## Properties
 
@@ -46,7 +46,7 @@ packages/contracts/src/position/position-manager.contract.ts:48
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:44
+[packages/contracts/src/position/position-manager.contract.ts:44](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L44)
 
 ***
 
@@ -60,7 +60,7 @@ packages/contracts/src/position/position-manager.contract.ts:44
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -70,7 +70,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:46
+[packages/contracts/src/position/position-manager.contract.ts:46](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L46)
 
 ***
 
@@ -106,7 +106,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -142,7 +142,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:114
+[packages/contracts/src/position/position-manager.contract.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L114)
 
 ***
 
@@ -164,7 +164,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ***
 
@@ -180,7 +180,7 @@ Get the position manager contract
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:109
+[packages/contracts/src/position/position-manager.contract.ts:109](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L109)
 
 ## Methods
 
@@ -202,7 +202,7 @@ The DOMAIN_SEPARATOR.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:298
+[packages/contracts/src/position/position-manager.contract.ts:298](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L298)
 
 ***
 
@@ -220,7 +220,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:306
+[packages/contracts/src/position/position-manager.contract.ts:306](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L306)
 
 ***
 
@@ -242,7 +242,7 @@ The PERMIT_TYPEHASH.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:317
+[packages/contracts/src/position/position-manager.contract.ts:317](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L317)
 
 ***
 
@@ -260,7 +260,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:325
+[packages/contracts/src/position/position-manager.contract.ts:325](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L325)
 
 ***
 
@@ -282,7 +282,7 @@ The WETH9 address.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:336
+[packages/contracts/src/position/position-manager.contract.ts:336](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L336)
 
 ***
 
@@ -300,7 +300,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:344
+[packages/contracts/src/position/position-manager.contract.ts:344](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L344)
 
 ***
 
@@ -336,7 +336,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:358
+[packages/contracts/src/position/position-manager.contract.ts:358](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L358)
 
 ***
 
@@ -364,7 +364,7 @@ The number of tokens owned.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:385
+[packages/contracts/src/position/position-manager.contract.ts:385](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L385)
 
 ***
 
@@ -388,7 +388,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:394
+[packages/contracts/src/position/position-manager.contract.ts:394](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L394)
 
 ***
 
@@ -410,7 +410,7 @@ The base URI.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:404
+[packages/contracts/src/position/position-manager.contract.ts:404](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L404)
 
 ***
 
@@ -428,7 +428,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:412
+[packages/contracts/src/position/position-manager.contract.ts:412](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L412)
 
 ***
 
@@ -460,7 +460,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:425
+[packages/contracts/src/position/position-manager.contract.ts:425](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L425)
 
 ***
 
@@ -472,7 +472,7 @@ Executes a multicall for the given contract methods.
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"baseURI"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"isApprovedForAll"`\> \| `MethodCall`\<`Contract`, `"safeTransferFrom"`\> \| `MethodCall`\<`Contract`, `"setApprovalForAll"`\> \| `MethodCall`\<`Contract`, `"supportsInterface"`\> \| `MethodCall`\<`Contract`, `"getApproved"`\> \| `MethodCall`\<`Contract`, `"ownerOf"`\> \| `MethodCall`\<`Contract`, `"tokenURI"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"createAndInitializePoolIfNecessary"`\> \| `MethodCall`\<`Contract`, `"decreaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"increaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"multicall"`\> \| `MethodCall`\<`Contract`, `"refundETH"`\> \| `MethodCall`\<`Contract`, `"selfPermit"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowed"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowedIfNecessary"`\> \| `MethodCall`\<`Contract`, `"selfPermitIfNecessary"`\> \| `MethodCall`\<`Contract`, `"sweepToken"`\> \| `MethodCall`\<`Contract`, `"tokenByIndex"`\> \| `MethodCall`\<`Contract`, `"tokenOfOwnerByIndex"`\> \| `MethodCall`\<`Contract`, `"uniswapV3MintCallback"`\> \| `MethodCall`\<`Contract`, `"unwrapWETH9"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"baseURI"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"isApprovedForAll"`\> \| `MethodCall`\<`Contract`, `"safeTransferFrom"`\> \| `MethodCall`\<`Contract`, `"setApprovalForAll"`\> \| `MethodCall`\<`Contract`, `"supportsInterface"`\> \| `MethodCall`\<`Contract`, `"getApproved"`\> \| `MethodCall`\<`Contract`, `"ownerOf"`\> \| `MethodCall`\<`Contract`, `"tokenURI"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"createAndInitializePoolIfNecessary"`\> \| `MethodCall`\<`Contract`, `"decreaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"increaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"multicall"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"selfPermit"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowed"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowedIfNecessary"`\> \| `MethodCall`\<`Contract`, `"selfPermitIfNecessary"`\> \| `MethodCall`\<`Contract`, `"sweepToken"`\> \| `MethodCall`\<`Contract`, `"tokenByIndex"`\> \| `MethodCall`\<`Contract`, `"tokenOfOwnerByIndex"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"refundETH"`\> \| `MethodCall`\<`Contract`, `"uniswapV3MintCallback"`\> \| `MethodCall`\<`Contract`, `"unwrapWETH9"`\>\>
 
 The type of the calls object.
 
@@ -501,7 +501,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:242
+[packages/contracts/src/position/position-manager.contract.ts:242](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L242)
 
 ***
 
@@ -533,7 +533,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:450
+[packages/contracts/src/position/position-manager.contract.ts:450](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L450)
 
 ***
 
@@ -577,7 +577,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:480
+[packages/contracts/src/position/position-manager.contract.ts:480](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L480)
 
 ***
 
@@ -609,7 +609,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:521
+[packages/contracts/src/position/position-manager.contract.ts:521](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L521)
 
 ***
 
@@ -637,7 +637,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:376
+[packages/contracts/src/position/position-manager.contract.ts:376](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L376)
 
 ***
 
@@ -661,7 +661,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:440
+[packages/contracts/src/position/position-manager.contract.ts:440](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L440)
 
 ***
 
@@ -685,7 +685,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:465
+[packages/contracts/src/position/position-manager.contract.ts:465](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L465)
 
 ***
 
@@ -721,7 +721,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:501
+[packages/contracts/src/position/position-manager.contract.ts:501](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L501)
 
 ***
 
@@ -745,7 +745,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:536
+[packages/contracts/src/position/position-manager.contract.ts:536](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L536)
 
 ***
 
@@ -769,7 +769,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:602
+[packages/contracts/src/position/position-manager.contract.ts:602](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L602)
 
 ***
 
@@ -793,7 +793,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:658
+[packages/contracts/src/position/position-manager.contract.ts:658](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L658)
 
 ***
 
@@ -817,7 +817,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:685
+[packages/contracts/src/position/position-manager.contract.ts:685](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L685)
 
 ***
 
@@ -861,7 +861,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:769
+[packages/contracts/src/position/position-manager.contract.ts:769](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L769)
 
 ***
 
@@ -879,7 +879,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:829
+[packages/contracts/src/position/position-manager.contract.ts:829](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L829)
 
 ***
 
@@ -917,7 +917,7 @@ The encoded function data as a string.
 
 ##### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:899
+[packages/contracts/src/position/position-manager.contract.ts:899](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L899)
 
 #### encodeSafeTransferFrom(from, to, tokenId, data, overrides)
 
@@ -955,7 +955,7 @@ The encoded function data as a string.
 
 ##### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:915
+[packages/contracts/src/position/position-manager.contract.ts:915](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L915)
 
 ***
 
@@ -991,7 +991,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:964
+[packages/contracts/src/position/position-manager.contract.ts:964](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L964)
 
 ***
 
@@ -1035,7 +1035,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1019
+[packages/contracts/src/position/position-manager.contract.ts:1019](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1019)
 
 ***
 
@@ -1079,7 +1079,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1078
+[packages/contracts/src/position/position-manager.contract.ts:1078](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1078)
 
 ***
 
@@ -1123,7 +1123,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1132
+[packages/contracts/src/position/position-manager.contract.ts:1132](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1132)
 
 ***
 
@@ -1167,7 +1167,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1186
+[packages/contracts/src/position/position-manager.contract.ts:1186](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1186)
 
 ***
 
@@ -1195,7 +1195,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1229
+[packages/contracts/src/position/position-manager.contract.ts:1229](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1229)
 
 ***
 
@@ -1227,7 +1227,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1282
+[packages/contracts/src/position/position-manager.contract.ts:1282](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1282)
 
 ***
 
@@ -1259,7 +1259,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1430
+[packages/contracts/src/position/position-manager.contract.ts:1430](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1430)
 
 ***
 
@@ -1291,7 +1291,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1465
+[packages/contracts/src/position/position-manager.contract.ts:1465](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1465)
 
 ***
 
@@ -1319,7 +1319,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1502
+[packages/contracts/src/position/position-manager.contract.ts:1502](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1502)
 
 ***
 
@@ -1362,7 +1362,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -1384,7 +1384,7 @@ The factory address.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:546
+[packages/contracts/src/position/position-manager.contract.ts:546](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L546)
 
 ***
 
@@ -1402,7 +1402,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:554
+[packages/contracts/src/position/position-manager.contract.ts:554](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L554)
 
 ***
 
@@ -1430,7 +1430,7 @@ The currently approved address for this token.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:566
+[packages/contracts/src/position/position-manager.contract.ts:566](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L566)
 
 ***
 
@@ -1454,7 +1454,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:575
+[packages/contracts/src/position/position-manager.contract.ts:575](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L575)
 
 ***
 
@@ -1486,7 +1486,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:587
+[packages/contracts/src/position/position-manager.contract.ts:587](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L587)
 
 ***
 
@@ -1518,7 +1518,7 @@ True if `operator` is an approved operator for `owner`, false otherwise.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:614
+[packages/contracts/src/position/position-manager.contract.ts:614](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L614)
 
 ***
 
@@ -1546,7 +1546,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:630
+[packages/contracts/src/position/position-manager.contract.ts:630](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L630)
 
 ***
 
@@ -1578,7 +1578,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:643
+[packages/contracts/src/position/position-manager.contract.ts:643](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L643)
 
 ***
 
@@ -1610,7 +1610,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:670
+[packages/contracts/src/position/position-manager.contract.ts:670](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L670)
 
 ***
 
@@ -1632,7 +1632,7 @@ The name of the token.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:693
+[packages/contracts/src/position/position-manager.contract.ts:693](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L693)
 
 ***
 
@@ -1650,7 +1650,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:701
+[packages/contracts/src/position/position-manager.contract.ts:701](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L701)
 
 ***
 
@@ -1678,7 +1678,7 @@ The address of the owner of the token.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:713
+[packages/contracts/src/position/position-manager.contract.ts:713](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L713)
 
 ***
 
@@ -1702,7 +1702,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:722
+[packages/contracts/src/position/position-manager.contract.ts:722](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L722)
 
 ***
 
@@ -1754,7 +1754,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:739
+[packages/contracts/src/position/position-manager.contract.ts:739](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L739)
 
 ***
 
@@ -1782,7 +1782,7 @@ The position information.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:792
+[packages/contracts/src/position/position-manager.contract.ts:792](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L792)
 
 ***
 
@@ -1806,7 +1806,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:806
+[packages/contracts/src/position/position-manager.contract.ts:806](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L806)
 
 ***
 
@@ -1838,7 +1838,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:204
+[packages/contracts/src/position/position-manager.contract.ts:204](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L204)
 
 ***
 
@@ -1850,7 +1850,7 @@ Helper function to dynamically prepare a contract context based on custom or def
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"baseURI"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"isApprovedForAll"`\> \| `MethodCall`\<`Contract`, `"safeTransferFrom"`\> \| `MethodCall`\<`Contract`, `"setApprovalForAll"`\> \| `MethodCall`\<`Contract`, `"supportsInterface"`\> \| `MethodCall`\<`Contract`, `"getApproved"`\> \| `MethodCall`\<`Contract`, `"ownerOf"`\> \| `MethodCall`\<`Contract`, `"tokenURI"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"createAndInitializePoolIfNecessary"`\> \| `MethodCall`\<`Contract`, `"decreaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"increaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"multicall"`\> \| `MethodCall`\<`Contract`, `"refundETH"`\> \| `MethodCall`\<`Contract`, `"selfPermit"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowed"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowedIfNecessary"`\> \| `MethodCall`\<`Contract`, `"selfPermitIfNecessary"`\> \| `MethodCall`\<`Contract`, `"sweepToken"`\> \| `MethodCall`\<`Contract`, `"tokenByIndex"`\> \| `MethodCall`\<`Contract`, `"tokenOfOwnerByIndex"`\> \| `MethodCall`\<`Contract`, `"uniswapV3MintCallback"`\> \| `MethodCall`\<`Contract`, `"unwrapWETH9"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"baseURI"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"isApprovedForAll"`\> \| `MethodCall`\<`Contract`, `"safeTransferFrom"`\> \| `MethodCall`\<`Contract`, `"setApprovalForAll"`\> \| `MethodCall`\<`Contract`, `"supportsInterface"`\> \| `MethodCall`\<`Contract`, `"getApproved"`\> \| `MethodCall`\<`Contract`, `"ownerOf"`\> \| `MethodCall`\<`Contract`, `"tokenURI"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"createAndInitializePoolIfNecessary"`\> \| `MethodCall`\<`Contract`, `"decreaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"increaseLiquidity"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"multicall"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"selfPermit"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowed"`\> \| `MethodCall`\<`Contract`, `"selfPermitAllowedIfNecessary"`\> \| `MethodCall`\<`Contract`, `"selfPermitIfNecessary"`\> \| `MethodCall`\<`Contract`, `"sweepToken"`\> \| `MethodCall`\<`Contract`, `"tokenByIndex"`\> \| `MethodCall`\<`Contract`, `"tokenOfOwnerByIndex"`\> \| `MethodCall`\<`Contract`, `"WETH9"`\> \| `MethodCall`\<`Contract`, `"refundETH"`\> \| `MethodCall`\<`Contract`, `"uniswapV3MintCallback"`\> \| `MethodCall`\<`Contract`, `"unwrapWETH9"`\>\>
 
 • **TCustomData** = `unknown`
 
@@ -1872,7 +1872,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:166
+[packages/contracts/src/position/position-manager.contract.ts:166](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L166)
 
 ***
 
@@ -1900,7 +1900,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:817
+[packages/contracts/src/position/position-manager.contract.ts:817](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L817)
 
 ***
 
@@ -1942,7 +1942,7 @@ The contract transaction.
 
 ##### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:841
+[packages/contracts/src/position/position-manager.contract.ts:841](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L841)
 
 #### safeTransferFrom(from, to, tokenId, data, overrides)
 
@@ -1984,7 +1984,7 @@ The contract transaction.
 
 ##### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:857
+[packages/contracts/src/position/position-manager.contract.ts:857](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L857)
 
 ***
 
@@ -2036,7 +2036,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:989
+[packages/contracts/src/position/position-manager.contract.ts:989](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L989)
 
 ***
 
@@ -2088,7 +2088,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1048
+[packages/contracts/src/position/position-manager.contract.ts:1048](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1048)
 
 ***
 
@@ -2140,7 +2140,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1107
+[packages/contracts/src/position/position-manager.contract.ts:1107](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1107)
 
 ***
 
@@ -2192,7 +2192,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1161
+[packages/contracts/src/position/position-manager.contract.ts:1161](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1161)
 
 ***
 
@@ -2228,7 +2228,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1211
+[packages/contracts/src/position/position-manager.contract.ts:1211](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1211)
 
 ***
 
@@ -2256,7 +2256,7 @@ True if the contract implements `interfaceId`.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1238
+[packages/contracts/src/position/position-manager.contract.ts:1238](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1238)
 
 ***
 
@@ -2280,7 +2280,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1247
+[packages/contracts/src/position/position-manager.contract.ts:1247](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1247)
 
 ***
 
@@ -2320,7 +2320,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1261
+[packages/contracts/src/position/position-manager.contract.ts:1261](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1261)
 
 ***
 
@@ -2342,7 +2342,7 @@ The symbol of the token.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1298
+[packages/contracts/src/position/position-manager.contract.ts:1298](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1298)
 
 ***
 
@@ -2360,7 +2360,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1306
+[packages/contracts/src/position/position-manager.contract.ts:1306](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1306)
 
 ***
 
@@ -2388,7 +2388,7 @@ The token ID at the given index of all the tokens stored by the contract.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1318
+[packages/contracts/src/position/position-manager.contract.ts:1318](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1318)
 
 ***
 
@@ -2412,7 +2412,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1327
+[packages/contracts/src/position/position-manager.contract.ts:1327](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1327)
 
 ***
 
@@ -2444,7 +2444,7 @@ The token ID owned by `owner` at the given `index` of its token list.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1339
+[packages/contracts/src/position/position-manager.contract.ts:1339](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1339)
 
 ***
 
@@ -2472,7 +2472,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1355
+[packages/contracts/src/position/position-manager.contract.ts:1355](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1355)
 
 ***
 
@@ -2500,7 +2500,7 @@ The Uniform Resource Identifier (URI) for `tokenId` token.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1367
+[packages/contracts/src/position/position-manager.contract.ts:1367](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1367)
 
 ***
 
@@ -2524,7 +2524,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1376
+[packages/contracts/src/position/position-manager.contract.ts:1376](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1376)
 
 ***
 
@@ -2546,7 +2546,7 @@ The total amount of tokens.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1386
+[packages/contracts/src/position/position-manager.contract.ts:1386](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1386)
 
 ***
 
@@ -2564,7 +2564,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1394
+[packages/contracts/src/position/position-manager.contract.ts:1394](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1394)
 
 ***
 
@@ -2604,7 +2604,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1409
+[packages/contracts/src/position/position-manager.contract.ts:1409](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1409)
 
 ***
 
@@ -2644,7 +2644,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1446
+[packages/contracts/src/position/position-manager.contract.ts:1446](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1446)
 
 ***
 
@@ -2680,4 +2680,4 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/position/position-manager.contract.ts:1484
+[packages/contracts/src/position/position-manager.contract.ts:1484](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/position/position-manager.contract.ts#L1484)

@@ -36,4 +36,4 @@ The sqrtPriceX96 limit or 0 if price limiting is disabled
 
 ## Defined in
 
-packages/utils/src/utils/router.utils.ts:73
+[packages/utils/src/utils/router.utils.ts:73](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/router.utils.ts#L73)

@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/joe.token.ts:22
+[packages/utils/src/tokens/configs/joe.token.ts:22](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/joe.token.ts#L22)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/joe.token.ts:22
 
 #### Defined in
 
-packages/utils/src/tokens/configs/joe.token.ts:37
+[packages/utils/src/tokens/configs/joe.token.ts:37](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/joe.token.ts#L37)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/joe.token.ts:37
 
 #### Defined in
 
-packages/utils/src/tokens/configs/joe.token.ts:52
+[packages/utils/src/tokens/configs/joe.token.ts:52](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/joe.token.ts#L52)
 
 ## Methods
 
@@ -86,4 +86,4 @@ packages/utils/src/tokens/configs/joe.token.ts:52
 
 #### Defined in
 
-packages/utils/src/tokens/configs/joe.token.ts:67
+[packages/utils/src/tokens/configs/joe.token.ts:67](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/joe.token.ts#L67)

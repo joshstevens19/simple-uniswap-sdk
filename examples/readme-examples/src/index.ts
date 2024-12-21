@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { plsTestChainId } from '@chain-toolkit/chains'
 import { Erc20Contract, PairContract } from '@dex-toolkit/contracts'
 import { Tokens, DexFactory, TokenContract, TokenList } from '@dex-toolkit/core'
 import { DexNumber } from '@dex-toolkit/number'
@@ -9,7 +10,6 @@ import type {
 } from '@dex-toolkit/types'
 import {
   tradeDirectionMap,
-  plsTestChainId,
   uniswapPairV2ABI,
   MAX_HEX_STRING,
   getAllTokenListSources,

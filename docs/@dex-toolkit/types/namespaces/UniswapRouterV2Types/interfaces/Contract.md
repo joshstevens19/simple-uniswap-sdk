@@ -27,7 +27,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:57
+[packages/types/src/abis/uniswap-router-v2.types.ts:57](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L57)
 
 ***
 
@@ -82,7 +82,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:72
+[packages/types/src/abis/uniswap-router-v2.types.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L72)
 
 ***
 
@@ -129,7 +129,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:95
+[packages/types/src/abis/uniswap-router-v2.types.ts:95](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L95)
 
 ***
 
@@ -152,7 +152,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:110
+[packages/types/src/abis/uniswap-router-v2.types.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L110)
 
 ***
 
@@ -187,7 +187,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:120
+[packages/types/src/abis/uniswap-router-v2.types.ts:120](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L120)
 
 ***
 
@@ -222,7 +222,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:135
+[packages/types/src/abis/uniswap-router-v2.types.ts:135](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L135)
 
 ***
 
@@ -253,7 +253,7 @@ Type: address[], Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:149
+[packages/types/src/abis/uniswap-router-v2.types.ts:149](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L149)
 
 ***
 
@@ -284,7 +284,7 @@ Type: address[], Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:162
+[packages/types/src/abis/uniswap-router-v2.types.ts:162](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L162)
 
 ***
 
@@ -319,7 +319,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:176
+[packages/types/src/abis/uniswap-router-v2.types.ts:176](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L176)
 
 ***
 
@@ -370,7 +370,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:195
+[packages/types/src/abis/uniswap-router-v2.types.ts:195](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L195)
 
 ***
 
@@ -417,7 +417,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:217
+[packages/types/src/abis/uniswap-router-v2.types.ts:217](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L217)
 
 ***
 
@@ -464,7 +464,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:238
+[packages/types/src/abis/uniswap-router-v2.types.ts:238](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L238)
 
 ***
 
@@ -527,7 +527,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:263
+[packages/types/src/abis/uniswap-router-v2.types.ts:263](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L263)
 
 ***
 
@@ -590,7 +590,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:292
+[packages/types/src/abis/uniswap-router-v2.types.ts:292](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L292)
 
 ***
 
@@ -657,7 +657,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:322
+[packages/types/src/abis/uniswap-router-v2.types.ts:322](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L322)
 
 ***
 
@@ -696,7 +696,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:346
+[packages/types/src/abis/uniswap-router-v2.types.ts:346](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L346)
 
 ***
 
@@ -735,7 +735,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:363
+[packages/types/src/abis/uniswap-router-v2.types.ts:363](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L363)
 
 ***
 
@@ -774,7 +774,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:380
+[packages/types/src/abis/uniswap-router-v2.types.ts:380](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L380)
 
 ***
 
@@ -817,7 +817,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:398
+[packages/types/src/abis/uniswap-router-v2.types.ts:398](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L398)
 
 ***
 
@@ -860,7 +860,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:417
+[packages/types/src/abis/uniswap-router-v2.types.ts:417](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L417)
 
 ***
 
@@ -903,7 +903,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:436
+[packages/types/src/abis/uniswap-router-v2.types.ts:436](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L436)
 
 ***
 
@@ -946,7 +946,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:455
+[packages/types/src/abis/uniswap-router-v2.types.ts:455](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L455)
 
 ***
 
@@ -989,7 +989,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:474
+[packages/types/src/abis/uniswap-router-v2.types.ts:474](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L474)
 
 ***
 
@@ -1032,4 +1032,4 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v2.types.ts:493
+[packages/types/src/abis/uniswap-router-v2.types.ts:493](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v2.types.ts#L493)

@@ -28,4 +28,4 @@ An object containing the prices of token A in terms of token B and vice versa.
 
 ## Defined in
 
-packages/utils/src/utils/liquidity.utils.ts:440
+[packages/utils/src/utils/liquidity.utils.ts:440](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/liquidity.utils.ts#L440)

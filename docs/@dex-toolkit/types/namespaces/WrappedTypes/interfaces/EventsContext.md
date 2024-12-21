@@ -26,7 +26,7 @@
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:18
+[packages/types/src/abis/wrapped.types.ts:18](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L18)
 
 ***
 
@@ -46,7 +46,7 @@ packages/types/src/abis/wrapped.types.ts:18
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:20
+[packages/types/src/abis/wrapped.types.ts:20](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L20)
 
 ***
 
@@ -68,7 +68,7 @@ packages/types/src/abis/wrapped.types.ts:20
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:19
+[packages/types/src/abis/wrapped.types.ts:19](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L19)
 
 ***
 
@@ -88,4 +88,4 @@ packages/types/src/abis/wrapped.types.ts:19
 
 #### Defined in
 
-packages/types/src/abis/wrapped.types.ts:21
+[packages/types/src/abis/wrapped.types.ts:21](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/wrapped.types.ts#L21)

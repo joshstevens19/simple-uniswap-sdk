@@ -284,6 +284,15 @@ importers:
 
   packages/utils:
     dependencies:
+      '@chain-toolkit/chains':
+        specifier: workspace:*
+        version: link:../../submodules/chain-toolkit/packages/chains
+      '@chain-toolkit/networks':
+        specifier: workspace:*
+        version: link:../../submodules/chain-toolkit/packages/networks
+      '@chain-toolkit/schemas':
+        specifier: workspace:*
+        version: link:../../submodules/chain-toolkit/packages/schemas
       '@dex-toolkit/number':
         specifier: workspace:*
         version: link:../number
@@ -428,6 +437,28 @@ importers:
       '@types/yargs':
         specifier: 17.0.32
         version: 17.0.32
+
+  submodules/chain-toolkit/packages/chains:
+    devDependencies:
+      '@chain-toolkit/schemas':
+        specifier: workspace:*
+        version: link:../schemas
+
+  submodules/chain-toolkit/packages/networks:
+    dependencies:
+      '@chain-toolkit/chains':
+        specifier: workspace:*
+        version: link:../chains
+    devDependencies:
+      '@chain-toolkit/schemas':
+        specifier: workspace:*
+        version: link:../schemas
+
+  submodules/chain-toolkit/packages/schemas:
+    dependencies:
+      zod:
+        specifier: ^3.23.8
+        version: 3.24.1
 
   submodules/multicall-toolkit/packages/contracts:
     dependencies:
@@ -4481,6 +4512,9 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zod@3.24.1:
+    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
 snapshots:
 
@@ -9087,3 +9121,5 @@ snapshots:
   yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.24.1: {}

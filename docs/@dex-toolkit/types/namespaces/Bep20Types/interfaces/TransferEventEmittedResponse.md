@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:41
+[packages/types/src/abis/bep20.types.ts:41](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L41)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/bep20.types.ts:41
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:42
+[packages/types/src/abis/bep20.types.ts:42](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L42)
 
 ***
 
@@ -34,4 +34,4 @@ packages/types/src/abis/bep20.types.ts:42
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:43
+[packages/types/src/abis/bep20.types.ts:43](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L43)

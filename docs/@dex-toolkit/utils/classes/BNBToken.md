@@ -40,7 +40,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/bnb.token.ts:20
+[packages/utils/src/tokens/configs/bnb.token.ts:20](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/bnb.token.ts#L20)
 
 ## Methods
 
@@ -58,4 +58,4 @@ packages/utils/src/tokens/configs/bnb.token.ts:20
 
 #### Defined in
 
-packages/utils/src/tokens/configs/bnb.token.ts:52
+[packages/utils/src/tokens/configs/bnb.token.ts:52](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/bnb.token.ts#L52)

@@ -1,5 +1,6 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { JsonFragment } from '@ethersproject/abi'
-import type { Address, ChainId, ContractDetail } from '@multicall-toolkit/types'
+import type { Address, ContractDetail } from '@multicall-toolkit/types'
 
 import type {
   UniswapFactoryV2Types,

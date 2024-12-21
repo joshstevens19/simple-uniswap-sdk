@@ -1,8 +1,3 @@
-import type { CoinGeckoResponse, PriceCurrencies } from '@dex-toolkit/types'
-import type { Address, ChainId } from '@multicall-toolkit/types'
-import fetch from 'node-fetch'
-
-import { Price } from './price-source'
 import {
   arbitrumChains,
   avaxChains,
@@ -12,7 +7,13 @@ import {
   optimismChains,
   plsChains,
   polygonChains,
-} from '../chains/chainIds'
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
+import type { CoinGeckoResponse, PriceCurrencies } from '@dex-toolkit/types'
+import type { Address } from '@multicall-toolkit/types'
+import fetch from 'node-fetch'
+
+import { Price } from './price-source'
 import { getAddress } from '../utils/address.utils'
 
 const getCoinGeckoIdForChainId = (chainId: ChainId) => {

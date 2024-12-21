@@ -120,7 +120,7 @@ describe('Router', () => {
           },
         }
 
-        describe(`${chainConfig.displayName} (${chainId})`, () => {
+        describe(`${chainConfig.uiName} (${chainId})`, () => {
           describe('Constructor', () => {
             const fromToken = primaryToken
             const toToken = noAllowanceToken

@@ -6,7 +6,7 @@
 
 # Type Alias: ChainConfig
 
-> **ChainConfig**: `Omit`\<`Required`\<[`DexCustomNetwork`](DexCustomNetwork.md)\>, `"nativeCurrency"`\> & `object`
+> **ChainConfig**: `Omit`\<`Required`\<[`DexCustomNetwork`](DexCustomNetwork.md)\>, `"nativeCurrency"`\> & `Omit`\<`ChainConfigBase`, `"nativeCurrency"`\> & `object`
 
 Complete configuration for a blockchain network.
 This configuration type contains all necessary information to interact with a blockchain,
@@ -14,65 +14,9 @@ including network details, available nodes, supported standards, and UI-related 
 
 ## Type declaration
 
-### blockExplorerUrls
-
-> **blockExplorerUrls**: `object`[]
-
-### bridgeUrls?
-
-> `optional` **bridgeUrls**: `object`[]
-
-### chainId
-
-> **chainId**: `ChainId`
-
-### chainName
-
-> **chainName**: `string`
-
-### chainType
-
-> **chainType**: [`ChainType`](ChainType.md)
-
-### color
-
-> **color**: `string`
-
-### displayName
-
-> **displayName**: `string`
-
-### faucets?
-
-> `optional` **faucets**: `object`[]
-
-### gasUrls
-
-> **gasUrls**: `object`[]
-
-### logoUrl?
-
-> `optional` **logoUrl**: `string`
-
-### marketDataIds?
-
-> `optional` **marketDataIds**: `object`
-
-### marketDataIds.coinGeckoId?
-
-> `optional` **marketDataIds.coinGeckoId**: `string`
-
-### marketDataIds.coinMarketCapId?
-
-> `optional` **marketDataIds.coinMarketCapId**: `string`
-
 ### nativeCurrency
 
 > **nativeCurrency**: [`Token`](Token.md)
-
-### nodes
-
-> **nodes**: [`NodeProviders`](NodeProviders.md)
 
 ### standards
 
@@ -126,18 +70,6 @@ including network details, available nodes, supported standards, and UI-related 
 
 > **standards.token777.standard**: [`Standard777`](Standard777.md)
 
-### supportedDexs
-
-> **supportedDexs**: [`DexType`](DexType.md)[]
-
-### symbol
-
-> **symbol**: `string`
-
-### transactionTypes
-
-> **transactionTypes**: (`"legacy"` \| `"eip2930"` \| `"eip1559"`)[]
-
 ## Defined in
 
-packages/types/src/chain.types.ts:83
+[packages/types/src/chain.types.ts:18](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/chain.types.ts#L18)

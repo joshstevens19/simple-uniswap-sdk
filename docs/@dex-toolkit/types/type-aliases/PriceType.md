@@ -16,4 +16,4 @@ Represents the supported price data sources.
 
 ## Defined in
 
-packages/types/src/price-source.types.ts:12
+[packages/types/src/price-source.types.ts:12](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/price-source.types.ts#L12)

@@ -1,5 +1,3 @@
-import type { Address, ChainId } from '@multicall-toolkit/types'
-
 import {
   arbitrumMainChainId,
   arbitrumSepoliaChainId,
@@ -16,7 +14,10 @@ import {
   plsMainChainId,
   plsTestChainId,
   polygonMainChainId,
-} from '../../chains/chainIds'
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
+import type { Address } from '@multicall-toolkit/types'
+
 import { getAddress, isAddress, isCoinAddress } from '../../utils/address.utils'
 
 /**

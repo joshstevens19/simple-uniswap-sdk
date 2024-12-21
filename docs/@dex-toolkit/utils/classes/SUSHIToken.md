@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:30
+[packages/utils/src/tokens/configs/sushi.token.ts:30](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L30)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/sushi.token.ts:30
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:49
+[packages/utils/src/tokens/configs/sushi.token.ts:49](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L49)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/sushi.token.ts:49
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:69
+[packages/utils/src/tokens/configs/sushi.token.ts:69](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L69)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/tokens/configs/sushi.token.ts:69
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:88
+[packages/utils/src/tokens/configs/sushi.token.ts:88](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L88)
 
 ***
 
@@ -104,7 +104,7 @@ packages/utils/src/tokens/configs/sushi.token.ts:88
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:99
+[packages/utils/src/tokens/configs/sushi.token.ts:99](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L99)
 
 ***
 
@@ -122,7 +122,7 @@ packages/utils/src/tokens/configs/sushi.token.ts:99
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:118
+[packages/utils/src/tokens/configs/sushi.token.ts:118](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L118)
 
 ***
 
@@ -140,7 +140,7 @@ packages/utils/src/tokens/configs/sushi.token.ts:118
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:137
+[packages/utils/src/tokens/configs/sushi.token.ts:137](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L137)
 
 ## Methods
 
@@ -158,4 +158,4 @@ packages/utils/src/tokens/configs/sushi.token.ts:137
 
 #### Defined in
 
-packages/utils/src/tokens/configs/sushi.token.ts:149
+[packages/utils/src/tokens/configs/sushi.token.ts:149](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/sushi.token.ts#L149)

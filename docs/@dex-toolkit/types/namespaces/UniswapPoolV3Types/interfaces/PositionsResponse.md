@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:204
+[packages/types/src/abis/uniswap-pool-v3.types.ts:204](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L204)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:204
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:206
+[packages/types/src/abis/uniswap-pool-v3.types.ts:206](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L206)
 
 ***
 
@@ -34,7 +34,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:206
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:208
+[packages/types/src/abis/uniswap-pool-v3.types.ts:208](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L208)
 
 ***
 
@@ -44,7 +44,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:208
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:210
+[packages/types/src/abis/uniswap-pool-v3.types.ts:210](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L210)
 
 ***
 
@@ -54,7 +54,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:210
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:212
+[packages/types/src/abis/uniswap-pool-v3.types.ts:212](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L212)
 
 ***
 
@@ -64,7 +64,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:212
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:205
+[packages/types/src/abis/uniswap-pool-v3.types.ts:205](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L205)
 
 ***
 
@@ -74,7 +74,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:205
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:207
+[packages/types/src/abis/uniswap-pool-v3.types.ts:207](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L207)
 
 ***
 
@@ -84,7 +84,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:207
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:213
+[packages/types/src/abis/uniswap-pool-v3.types.ts:213](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L213)
 
 ***
 
@@ -94,7 +94,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:213
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:203
+[packages/types/src/abis/uniswap-pool-v3.types.ts:203](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L203)
 
 ***
 
@@ -104,7 +104,7 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:203
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:209
+[packages/types/src/abis/uniswap-pool-v3.types.ts:209](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L209)
 
 ***
 
@@ -114,4 +114,4 @@ packages/types/src/abis/uniswap-pool-v3.types.ts:209
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pool-v3.types.ts:211
+[packages/types/src/abis/uniswap-pool-v3.types.ts:211](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pool-v3.types.ts#L211)

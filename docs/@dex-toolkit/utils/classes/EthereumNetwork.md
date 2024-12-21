@@ -28,7 +28,7 @@
 
 #### Defined in
 
-packages/utils/src/chains/networks/ethereum.network.ts:157
+[packages/utils/src/chains/networks/ethereum.network.ts:49](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/ethereum.network.ts#L49)
 
 ***
 
@@ -42,7 +42,7 @@ packages/utils/src/chains/networks/ethereum.network.ts:157
 
 #### Defined in
 
-packages/utils/src/chains/networks/ethereum.network.ts:61
+[packages/utils/src/chains/networks/ethereum.network.ts:37](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/ethereum.network.ts#L37)
 
 ***
 
@@ -56,7 +56,7 @@ packages/utils/src/chains/networks/ethereum.network.ts:61
 
 #### Defined in
 
-packages/utils/src/chains/networks/ethereum.network.ts:308
+[packages/utils/src/chains/networks/ethereum.network.ts:61](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/ethereum.network.ts#L61)
 
 ***
 
@@ -74,4 +74,4 @@ packages/utils/src/chains/networks/ethereum.network.ts:308
 
 #### Defined in
 
-packages/utils/src/chains/networks/ethereum.network.ts:410
+[packages/utils/src/chains/networks/ethereum.network.ts:73](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/ethereum.network.ts#L73)

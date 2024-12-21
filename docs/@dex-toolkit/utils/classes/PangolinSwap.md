@@ -40,7 +40,7 @@
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:71
+[packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pangolinSwap.dex.ts#L72)
 
 ## Methods
 
@@ -54,7 +54,7 @@ packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:71
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:147
+[packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:148](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pangolinSwap.dex.ts#L148)
 
 ***
 
@@ -72,4 +72,4 @@ packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:147
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:136
+[packages/utils/src/exchanges/configs/pangolinSwap.dex.ts:137](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pangolinSwap.dex.ts#L137)

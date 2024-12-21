@@ -33,7 +33,7 @@ The number of decimal places
 
 #### Defined in
 
-packages/types/src/dex-number.types.ts:121
+[packages/types/src/dex-number.types.ts:121](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-number.types.ts#L121)
 
 ***
 
@@ -45,7 +45,7 @@ The rounding mode used for calculations
 
 #### Defined in
 
-packages/types/src/dex-number.types.ts:123
+[packages/types/src/dex-number.types.ts:123](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-number.types.ts#L123)
 
 ***
 
@@ -60,7 +60,7 @@ The shifting state of the number:
 
 #### Defined in
 
-packages/types/src/dex-number.types.ts:119
+[packages/types/src/dex-number.types.ts:119](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-number.types.ts#L119)
 
 ***
 
@@ -72,7 +72,7 @@ The coefficient array representing the significant digits
 
 #### Defined in
 
-packages/types/src/dex-number.types.ts:112
+[packages/types/src/dex-number.types.ts:112](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-number.types.ts#L112)
 
 ***
 
@@ -84,7 +84,7 @@ The exponent of the number in scientific notation
 
 #### Defined in
 
-packages/types/src/dex-number.types.ts:110
+[packages/types/src/dex-number.types.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-number.types.ts#L110)
 
 ***
 
@@ -96,4 +96,4 @@ The sign of the number: 1 for positive, -1 for negative
 
 #### Defined in
 
-packages/types/src/dex-number.types.ts:108
+[packages/types/src/dex-number.types.ts:108](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-number.types.ts#L108)

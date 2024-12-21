@@ -1,3 +1,17 @@
+import {
+  plsTestChainId,
+  ethMainChainId,
+  plsMainChainId,
+  arbitrumMainChainId,
+  avaxMainChainId,
+  baseMainChainId,
+  blastMainChainId,
+  bscMainChainId,
+  polygonMainChainId,
+  zksyncMainChainId,
+  zoraMainChainId,
+  celoMainChainId,
+} from '@chain-toolkit/chains'
 import { DexProvider } from '@dex-toolkit/provider'
 import type {
   ChainConfig,
@@ -10,26 +24,14 @@ import {
   DAIToken,
   UNIToken,
   USDTToken,
-  plsTestChainId,
   getChainConfig,
   getDexConfig,
   REPToken,
   FUNToken,
   SKLToken,
   getVersionTagFromVersion,
-  ethMainChainId,
   dexMainChains,
   dexTestChains,
-  plsMainChainId,
-  arbitrumMainChainId,
-  avaxMainChainId,
-  baseMainChainId,
-  blastMainChainId,
-  bscMainChainId,
-  polygonMainChainId,
-  zksyncMainChainId,
-  zoraMainChainId,
-  celoMainChainId,
 } from '@dex-toolkit/utils'
 
 import { TestCases } from './mock-configs'

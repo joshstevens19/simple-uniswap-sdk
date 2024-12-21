@@ -28,7 +28,7 @@
 
 #### Defined in
 
-packages/utils/src/chains/networks/arbitrum.network.ts:52
+[packages/utils/src/chains/networks/arbitrum.network.ts:35](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/arbitrum.network.ts#L35)
 
 ***
 
@@ -42,7 +42,7 @@ packages/utils/src/chains/networks/arbitrum.network.ts:52
 
 #### Defined in
 
-packages/utils/src/chains/networks/arbitrum.network.ts:117
+[packages/utils/src/chains/networks/arbitrum.network.ts:47](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/arbitrum.network.ts#L47)
 
 ***
 
@@ -60,4 +60,4 @@ packages/utils/src/chains/networks/arbitrum.network.ts:117
 
 #### Defined in
 
-packages/utils/src/chains/networks/arbitrum.network.ts:190
+[packages/utils/src/chains/networks/arbitrum.network.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/arbitrum.network.ts#L59)

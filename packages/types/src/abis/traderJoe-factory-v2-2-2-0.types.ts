@@ -69,12 +69,12 @@ export interface EventsContext {
   QuoteAssetAdded(quoteAsset: string): EventFilter
   QuoteAssetRemoved(quoteAsset: string): EventFilter
   RoleAdminChanged(
-    role: Bytes,
-    previousAdminRole: Bytes,
-    newAdminRole: Bytes,
+    role: BytesLike,
+    previousAdminRole: BytesLike,
+    newAdminRole: BytesLike,
   ): EventFilter
-  RoleGranted(role: Bytes, account: string, sender: string): EventFilter
-  RoleRevoked(role: Bytes, account: string, sender: string): EventFilter
+  RoleGranted(role: BytesLike, account: string, sender: string): EventFilter
+  RoleRevoked(role: BytesLike, account: string, sender: string): EventFilter
 }
 export type MethodNames =
   | 'DEFAULT_ADMIN_ROLE'
@@ -312,7 +312,7 @@ export interface Contract {
     tokenX: string,
     tokenY: string,
     overrides?: ContractCallOverrides,
-  ): Promise<LbPairsAvailableResponse[]>
+  ): Promise<GetAllLBPairsLbPairsAvailableResponse[]>
   /**
    * Payable: false
    * Constant: true
@@ -359,7 +359,7 @@ export interface Contract {
     tokenB: string,
     binStep: BigNumberish,
     overrides?: ContractCallOverrides,
-  ): Promise<LbPairInformationResponse>
+  ): Promise<GetLBPairInformationLbPairInformationResponse>
   /**
    * Payable: false
    * Constant: true

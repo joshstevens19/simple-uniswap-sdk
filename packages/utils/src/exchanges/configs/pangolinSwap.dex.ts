@@ -1,12 +1,13 @@
+import { avaxFujiChainId, avaxMainChainId } from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { DexConfig, UniswapRouterV2Types } from '@dex-toolkit/types'
-import type { ChainId, ContractDetail } from '@multicall-toolkit/types'
+import type { ContractDetail } from '@multicall-toolkit/types'
 
 import {
   pangolinRouterV2ABI,
   uniswapFactoryV2ABI,
   uniswapPairV2ABI,
 } from '../../abis/index'
-import { avaxFujiChainId, avaxMainChainId } from '../../chains/chainIds'
 import { AVAXToken, WAVAXToken } from '../../tokens/configs/index'
 import { dexTypeMap } from '../../utils/dex.utils'
 

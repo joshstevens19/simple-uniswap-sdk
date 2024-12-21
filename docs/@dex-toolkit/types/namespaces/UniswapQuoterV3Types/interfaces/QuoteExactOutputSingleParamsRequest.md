@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:71
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:71](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L71)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/uniswap-quoter-v3.types.ts:71
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:72
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L72)
 
 ***
 
@@ -34,7 +34,7 @@ packages/types/src/abis/uniswap-quoter-v3.types.ts:72
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:73
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:73](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L73)
 
 ***
 
@@ -44,7 +44,7 @@ packages/types/src/abis/uniswap-quoter-v3.types.ts:73
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:69
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:69](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L69)
 
 ***
 
@@ -54,4 +54,4 @@ packages/types/src/abis/uniswap-quoter-v3.types.ts:69
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:70
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:70](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L70)

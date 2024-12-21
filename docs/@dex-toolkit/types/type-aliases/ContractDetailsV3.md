@@ -63,4 +63,4 @@ The Uniswap V3 router contract details, which can have overridden methods.
 
 ## Defined in
 
-packages/types/src/contract-detail.types.ts:117
+[packages/types/src/contract-detail.types.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/contract-detail.types.ts#L114)

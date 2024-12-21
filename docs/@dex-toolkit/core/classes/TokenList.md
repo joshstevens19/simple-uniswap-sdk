@@ -35,7 +35,7 @@ to fetch and manage token metadata.
 
 #### Defined in
 
-packages/core/src/token-list.ts:47
+[packages/core/src/token-list.ts:48](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L48)
 
 ## Properties
 
@@ -51,7 +51,7 @@ The chain ID for which the token list is relevant.
 
 #### Defined in
 
-packages/core/src/token-list.ts:30
+[packages/core/src/token-list.ts:31](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L31)
 
 ***
 
@@ -67,7 +67,7 @@ Custom network configuration, if applicable.
 
 #### Defined in
 
-packages/core/src/token-list.ts:35
+[packages/core/src/token-list.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L36)
 
 ***
 
@@ -83,7 +83,7 @@ A list of token list sources providing token metadata.
 
 #### Defined in
 
-packages/core/src/token-list.ts:40
+[packages/core/src/token-list.ts:41](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L41)
 
 ***
 
@@ -99,7 +99,7 @@ An internal cache of fetched tokens.
 
 #### Defined in
 
-packages/core/src/token-list.ts:45
+[packages/core/src/token-list.ts:46](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L46)
 
 ## Methods
 
@@ -121,7 +121,7 @@ A promise resolving to an array of `Token` objects retrieved from the sources.
 
 #### Defined in
 
-packages/core/src/token-list.ts:143
+[packages/core/src/token-list.ts:144](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L144)
 
 ***
 
@@ -151,7 +151,7 @@ The matching `Token` object if found; otherwise, `undefined`.
 
 #### Defined in
 
-packages/core/src/token-list.ts:63
+[packages/core/src/token-list.ts:64](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L64)
 
 ***
 
@@ -173,7 +173,7 @@ A promise resolving to an array of `Token` objects.
 
 #### Defined in
 
-packages/core/src/token-list.ts:103
+[packages/core/src/token-list.ts:104](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L104)
 
 ***
 
@@ -201,4 +201,4 @@ An array of unique `Token` objects.
 
 #### Defined in
 
-packages/core/src/token-list.ts:166
+[packages/core/src/token-list.ts:167](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/token-list.ts#L167)

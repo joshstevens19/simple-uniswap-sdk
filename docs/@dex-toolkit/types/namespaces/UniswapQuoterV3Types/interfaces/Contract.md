@@ -27,7 +27,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:93
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:93](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L93)
 
 ***
 
@@ -50,7 +50,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:100
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:100](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L100)
 
 ***
 
@@ -81,7 +81,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:109
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:109](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L109)
 
 ***
 
@@ -108,7 +108,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:121
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:121](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L121)
 
 ***
 
@@ -139,7 +139,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:133
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:133](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L133)
 
 ***
 
@@ -166,7 +166,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:145
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:145](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L145)
 
 ***
 
@@ -201,4 +201,4 @@ Type: bytes, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-quoter-v3.types.ts:158
+[packages/types/src/abis/uniswap-quoter-v3.types.ts:158](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-quoter-v3.types.ts#L158)

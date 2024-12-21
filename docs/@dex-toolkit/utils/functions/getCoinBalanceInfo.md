@@ -51,4 +51,4 @@ If the native currency cannot be found for the provided chain ID.
 
 ## Defined in
 
-packages/utils/src/utils/balance.utils.ts:52
+[packages/utils/src/utils/balance.utils.ts:52](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/balance.utils.ts#L52)

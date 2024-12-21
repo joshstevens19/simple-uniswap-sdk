@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:32
+[packages/utils/src/tokens/configs/wbtc.token.ts:32](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L32)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:32
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:47
+[packages/utils/src/tokens/configs/wbtc.token.ts:47](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L47)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:47
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:63
+[packages/utils/src/tokens/configs/wbtc.token.ts:63](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L63)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:63
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:95
+[packages/utils/src/tokens/configs/wbtc.token.ts:95](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L95)
 
 ***
 
@@ -104,7 +104,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:95
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:78
+[packages/utils/src/tokens/configs/wbtc.token.ts:78](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L78)
 
 ***
 
@@ -130,7 +130,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:78
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:110
+[packages/utils/src/tokens/configs/wbtc.token.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L110)
 
 ***
 
@@ -148,7 +148,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:110
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:139
+[packages/utils/src/tokens/configs/wbtc.token.ts:139](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L139)
 
 ***
 
@@ -166,7 +166,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:139
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:154
+[packages/utils/src/tokens/configs/wbtc.token.ts:154](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L154)
 
 ***
 
@@ -192,7 +192,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:154
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:170
+[packages/utils/src/tokens/configs/wbtc.token.ts:170](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L170)
 
 ***
 
@@ -210,7 +210,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:170
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:197
+[packages/utils/src/tokens/configs/wbtc.token.ts:197](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L197)
 
 ***
 
@@ -228,7 +228,7 @@ packages/utils/src/tokens/configs/wbtc.token.ts:197
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:208
+[packages/utils/src/tokens/configs/wbtc.token.ts:208](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L208)
 
 ## Methods
 
@@ -246,4 +246,4 @@ packages/utils/src/tokens/configs/wbtc.token.ts:208
 
 #### Defined in
 
-packages/utils/src/tokens/configs/wbtc.token.ts:223
+[packages/utils/src/tokens/configs/wbtc.token.ts:223](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/wbtc.token.ts#L223)

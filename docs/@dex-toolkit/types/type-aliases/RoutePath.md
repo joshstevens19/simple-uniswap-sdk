@@ -50,4 +50,4 @@ The version of the DEX used for the quote. Undefined when wrapping/unwrapping to
 
 ## Defined in
 
-packages/types/src/router.types.ts:147
+[packages/types/src/router.types.ts:147](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/router.types.ts#L147)

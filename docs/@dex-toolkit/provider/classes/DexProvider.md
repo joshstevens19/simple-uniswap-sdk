@@ -34,7 +34,7 @@
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:32
+[packages/provider/src/dex-provider.ts:32](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L32)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/provider/src/dex-provider.ts:32
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:28
+[packages/provider/src/dex-provider.ts:28](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L28)
 
 ***
 
@@ -68,7 +68,7 @@ The internal blockchain provider.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:5
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:5
 
 ***
 
@@ -88,7 +88,7 @@ The Multicall instance.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:7
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:7
 
 ***
 
@@ -108,7 +108,7 @@ The provider context, which includes chain and network details.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:6
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:6
 
 ***
 
@@ -118,7 +118,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:30
+[packages/provider/src/dex-provider.ts:30](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L30)
 
 ## Accessors
 
@@ -138,7 +138,7 @@ Retrieves the chain configuration for the provider.
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:213
+[packages/provider/src/dex-provider.ts:213](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L213)
 
 ***
 
@@ -158,7 +158,7 @@ Retrieves the name of the chain associated with the provider.
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:221
+[packages/provider/src/dex-provider.ts:221](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L221)
 
 ***
 
@@ -180,7 +180,7 @@ packages/provider/src/dex-provider.ts:221
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:217
+[packages/provider/src/dex-provider.ts:217](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L217)
 
 ***
 
@@ -204,7 +204,7 @@ Retrieves the network details for the blockchain provider.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:11
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:11
 
 ***
 
@@ -228,7 +228,7 @@ Retrieves the blockchain provider instance.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:9
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:9
 
 ***
 
@@ -248,7 +248,7 @@ Retrieves the signer with the attached provider
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:209
+[packages/provider/src/dex-provider.ts:209](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L209)
 
 ## Methods
 
@@ -284,7 +284,7 @@ their results in a structured format.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:14
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:14
 
 ***
 
@@ -332,7 +332,7 @@ A function that creates the contract call context.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:13
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:13
 
 ***
 
@@ -372,7 +372,7 @@ A promise that resolves to the native coin balance as an IDexNumber.
 
 #### Defined in
 
-packages/provider/src/dex-provider.ts:238
+[packages/provider/src/dex-provider.ts:238](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/provider/src/dex-provider.ts#L238)
 
 ***
 
@@ -408,4 +408,4 @@ The generated contract instance of the specified type.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider.d.ts:12

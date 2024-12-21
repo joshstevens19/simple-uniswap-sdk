@@ -35,7 +35,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:92
+[packages/types/src/abis/erc1155.types.ts:92](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L92)
 
 ***
 
@@ -66,7 +66,7 @@ Type: uint256[], Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:105
+[packages/types/src/abis/erc1155.types.ts:105](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L105)
 
 ***
 
@@ -97,7 +97,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:118
+[packages/types/src/abis/erc1155.types.ts:118](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L118)
 
 ***
 
@@ -140,7 +140,7 @@ Type: bytes, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:134
+[packages/types/src/abis/erc1155.types.ts:134](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L134)
 
 ***
 
@@ -183,7 +183,7 @@ Type: bytes, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:153
+[packages/types/src/abis/erc1155.types.ts:153](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L153)
 
 ***
 
@@ -214,7 +214,7 @@ Type: bool, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:169
+[packages/types/src/abis/erc1155.types.ts:169](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L169)
 
 ***
 
@@ -241,7 +241,7 @@ Type: bytes4, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:181
+[packages/types/src/abis/erc1155.types.ts:181](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L181)
 
 ***
 
@@ -268,4 +268,4 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/erc1155.types.ts:192
+[packages/types/src/abis/erc1155.types.ts:192](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/erc1155.types.ts#L192)

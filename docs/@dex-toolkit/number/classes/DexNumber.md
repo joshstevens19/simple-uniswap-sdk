@@ -52,7 +52,7 @@ The numeric value. Can be a number, string, BigNumber, or hex string.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:131
+[packages/number/src/dex-number.ts:131](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L131)
 
 ## Properties
 
@@ -68,7 +68,7 @@ The number of decimal places
 
 #### Defined in
 
-packages/number/src/dex-number.ts:118
+[packages/number/src/dex-number.ts:118](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L118)
 
 ***
 
@@ -84,7 +84,7 @@ The rounding mode
 
 #### Defined in
 
-packages/number/src/dex-number.ts:121
+[packages/number/src/dex-number.ts:121](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L121)
 
 ***
 
@@ -100,7 +100,7 @@ The shifted state of the number
 
 #### Defined in
 
-packages/number/src/dex-number.ts:115
+[packages/number/src/dex-number.ts:115](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L115)
 
 ***
 
@@ -395,7 +395,7 @@ Gets the number of decimal places for the number.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:260
+[packages/number/src/dex-number.ts:260](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L260)
 
 ***
 
@@ -415,7 +415,7 @@ Gets the shifted state of the number.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:256
+[packages/number/src/dex-number.ts:256](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L256)
 
 ## Methods
 
@@ -447,7 +447,7 @@ x.abs()                     // '0.8'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:316
+[packages/number/src/dex-number.ts:316](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L316)
 
 ***
 
@@ -479,7 +479,7 @@ x.absoluteValue()           // '0.8'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:312
+[packages/number/src/dex-number.ts:312](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L312)
 
 ***
 
@@ -508,7 +508,7 @@ A new DexNumber instance with adjusted decimals.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:603
+[packages/number/src/dex-number.ts:603](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L603)
 
 ***
 
@@ -528,7 +528,7 @@ Clones the current instance.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:173
+[packages/number/src/dex-number.ts:173](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L173)
 
 ***
 
@@ -573,7 +573,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:268
+[packages/number/src/dex-number.ts:268](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L268)
 
 ***
 
@@ -601,7 +601,7 @@ Creates a new DexNumber while preserving state
 
 #### Defined in
 
-packages/number/src/dex-number.ts:233
+[packages/number/src/dex-number.ts:233](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L233)
 
 ***
 
@@ -651,7 +651,7 @@ y.decimalPlaces()                      // 102
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:320
+[packages/number/src/dex-number.ts:320](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L320)
 
 #### decimalPlaces(decimalPlaces, roundingMode)
 
@@ -707,7 +707,7 @@ Rounding mode, integer, 0 to 8.
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:321
+[packages/number/src/dex-number.ts:321](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L321)
 
 ***
 
@@ -746,7 +746,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:370
+[packages/number/src/dex-number.ts:370](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L370)
 
 ***
 
@@ -785,7 +785,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:360
+[packages/number/src/dex-number.ts:360](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L360)
 
 ***
 
@@ -824,7 +824,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:374
+[packages/number/src/dex-number.ts:374](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L374)
 
 ***
 
@@ -874,7 +874,7 @@ y.dp()                                 // 102
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:340
+[packages/number/src/dex-number.ts:340](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L340)
 
 #### dp(decimalPlaces, roundingMode)
 
@@ -930,7 +930,7 @@ Rounding mode, integer, 0 to 8.
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:341
+[packages/number/src/dex-number.ts:341](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L341)
 
 ***
 
@@ -974,7 +974,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:273
+[packages/number/src/dex-number.ts:273](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L273)
 
 ***
 
@@ -1033,7 +1033,7 @@ The modulus.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:383
+[packages/number/src/dex-number.ts:383](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L383)
 
 ***
 
@@ -1072,7 +1072,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:280
+[packages/number/src/dex-number.ts:280](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L280)
 
 ***
 
@@ -1111,7 +1111,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:287
+[packages/number/src/dex-number.ts:287](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L287)
 
 ***
 
@@ -1150,7 +1150,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:379
+[packages/number/src/dex-number.ts:379](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L379)
 
 ***
 
@@ -1194,7 +1194,7 @@ The roundng mode, an integer, 0 to 8.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:398
+[packages/number/src/dex-number.ts:398](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L398)
 
 ***
 
@@ -1238,7 +1238,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:276
+[packages/number/src/dex-number.ts:276](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L276)
 
 ***
 
@@ -1310,7 +1310,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:283
+[packages/number/src/dex-number.ts:283](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L283)
 
 ***
 
@@ -1349,7 +1349,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:290
+[packages/number/src/dex-number.ts:290](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L290)
 
 ***
 
@@ -1419,7 +1419,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:297
+[packages/number/src/dex-number.ts:297](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L297)
 
 ***
 
@@ -1458,7 +1458,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:304
+[packages/number/src/dex-number.ts:304](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L304)
 
 ***
 
@@ -1540,7 +1540,7 @@ Checks if the number is in neutral state
 
 #### Defined in
 
-packages/number/src/dex-number.ts:169
+[packages/number/src/dex-number.ts:169](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L169)
 
 ***
 
@@ -1591,7 +1591,7 @@ Checks if the number is in shifted state
 
 #### Defined in
 
-packages/number/src/dex-number.ts:161
+[packages/number/src/dex-number.ts:161](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L161)
 
 ***
 
@@ -1611,7 +1611,7 @@ Checks if the number is in unshifted state
 
 #### Defined in
 
-packages/number/src/dex-number.ts:165
+[packages/number/src/dex-number.ts:165](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L165)
 
 ***
 
@@ -1679,7 +1679,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:294
+[packages/number/src/dex-number.ts:294](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L294)
 
 ***
 
@@ -1718,7 +1718,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:301
+[packages/number/src/dex-number.ts:301](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L301)
 
 ***
 
@@ -1757,7 +1757,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:403
+[packages/number/src/dex-number.ts:403](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L403)
 
 ***
 
@@ -1805,7 +1805,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:420
+[packages/number/src/dex-number.ts:420](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L420)
 
 ***
 
@@ -1853,7 +1853,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:415
+[packages/number/src/dex-number.ts:415](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L415)
 
 ***
 
@@ -1893,7 +1893,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:424
+[packages/number/src/dex-number.ts:424](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L424)
 
 ***
 
@@ -1924,7 +1924,7 @@ y.negated()                     // '1.3'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:450
+[packages/number/src/dex-number.ts:450](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L450)
 
 ***
 
@@ -1960,7 +1960,7 @@ Converts any input value to a BigNumber with matching decimals
 
 #### Defined in
 
-packages/number/src/dex-number.ts:183
+[packages/number/src/dex-number.ts:183](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L183)
 
 ***
 
@@ -2000,7 +2000,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:455
+[packages/number/src/dex-number.ts:455](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L455)
 
 ***
 
@@ -2059,7 +2059,7 @@ The modulus.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:394
+[packages/number/src/dex-number.ts:394](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L394)
 
 ***
 
@@ -2105,7 +2105,7 @@ Whether to include integer trailing zeros in the significant digit count.
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:485
+[packages/number/src/dex-number.ts:485](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L485)
 
 #### precision(significantDigits, roundingMode)
 
@@ -2147,7 +2147,7 @@ y.precision(true)                     // 6
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:486
+[packages/number/src/dex-number.ts:486](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L486)
 
 ***
 
@@ -2194,7 +2194,7 @@ Whether to include integer trailing zeros in the significant digit count.
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:467
+[packages/number/src/dex-number.ts:467](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L467)
 
 #### sd(significantDigits, roundingMode)
 
@@ -2237,7 +2237,7 @@ y.sd(true)                     // 6
 
 ##### Defined in
 
-packages/number/src/dex-number.ts:468
+[packages/number/src/dex-number.ts:468](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L468)
 
 ***
 
@@ -2267,7 +2267,7 @@ DexNumber.fromUnshifted('1', 18).shift(); // Returns DexNumber representing '100
 
 #### Defined in
 
-packages/number/src/dex-number.ts:612
+[packages/number/src/dex-number.ts:612](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L612)
 
 ***
 
@@ -2310,7 +2310,7 @@ The shift value, integer, -9007199254740991 to 9007199254740991.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:597
+[packages/number/src/dex-number.ts:597](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L597)
 
 ***
 
@@ -2345,7 +2345,7 @@ y.sqrt()                  // '1.73205080756887729353'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:517
+[packages/number/src/dex-number.ts:517](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L517)
 
 ***
 
@@ -2380,7 +2380,7 @@ y.squareRoot()                  // '1.73205080756887729353'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:506
+[packages/number/src/dex-number.ts:506](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L506)
 
 ***
 
@@ -2420,7 +2420,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:446
+[packages/number/src/dex-number.ts:446](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L446)
 
 ***
 
@@ -2443,7 +2443,7 @@ A bigint.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:699
+[packages/number/src/dex-number.ts:699](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L699)
 
 ***
 
@@ -2466,7 +2466,7 @@ A BigNumber instance.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:695
+[packages/number/src/dex-number.ts:695](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L695)
 
 ***
 
@@ -2506,7 +2506,7 @@ price.toDecimalString(2, BigNumber.ROUND_UP); // Returns '100.13'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:741
+[packages/number/src/dex-number.ts:741](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L741)
 
 ***
 
@@ -2529,7 +2529,7 @@ An ethers.js BigNumber.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:690
+[packages/number/src/dex-number.ts:690](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L690)
 
 ***
 
@@ -2675,7 +2675,7 @@ Rounding mode, integer, 0 to 8.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:668
+[packages/number/src/dex-number.ts:668](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L668)
 
 ***
 
@@ -2915,7 +2915,7 @@ The maximum denominator, integer > 0, or Infinity.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:521
+[packages/number/src/dex-number.ts:521](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L521)
 
 ***
 
@@ -2945,7 +2945,7 @@ value.toHexString(); // Returns '0xde0b6b3a7640000'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:757
+[packages/number/src/dex-number.ts:757](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L757)
 
 ***
 
@@ -3133,7 +3133,7 @@ amount.toReadableString(5, 'en-US'); // Returns '1.234,56789' in English locale
 
 #### Defined in
 
-packages/number/src/dex-number.ts:704
+[packages/number/src/dex-number.ts:704](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L704)
 
 ***
 
@@ -3173,7 +3173,7 @@ console.log(serialized);
 
 #### Defined in
 
-packages/number/src/dex-number.ts:646
+[packages/number/src/dex-number.ts:646](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L646)
 
 ***
 
@@ -3270,7 +3270,7 @@ The formatted number in the specified format
 
 #### Defined in
 
-packages/number/src/dex-number.ts:762
+[packages/number/src/dex-number.ts:762](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L762)
 
 ***
 
@@ -3300,7 +3300,7 @@ amount.toSmallestUnitString(); // Returns '1000000000'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:752
+[packages/number/src/dex-number.ts:752](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L752)
 
 ***
 
@@ -3329,7 +3329,7 @@ DexNumber.fromShifted('1000000000000000000', 18).unshift(); // Returns DexNumber
 
 #### Defined in
 
-packages/number/src/dex-number.ts:627
+[packages/number/src/dex-number.ts:627](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L627)
 
 ***
 
@@ -3505,7 +3505,7 @@ function calculateTotal(value: DexNumber | SerializedDexNumber) {
 
 #### Defined in
 
-packages/number/src/dex-number.ts:874
+[packages/number/src/dex-number.ts:874](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L874)
 
 ***
 
@@ -3543,7 +3543,7 @@ const dexNum = DexNumber.fromAtomic('1500000000000000000', 18); // Represents 1.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:1037
+[packages/number/src/dex-number.ts:1037](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L1037)
 
 ***
 
@@ -3583,7 +3583,7 @@ console.log(dexNum.unshift().toFixed()) // "1.0"
 
 #### Defined in
 
-packages/number/src/dex-number.ts:938
+[packages/number/src/dex-number.ts:938](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L938)
 
 ***
 
@@ -3619,7 +3619,7 @@ A new DexNumber instance.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:890
+[packages/number/src/dex-number.ts:890](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L890)
 
 ***
 
@@ -3658,7 +3658,7 @@ const dexNum = DexNumber.fromAtomic('1.5', 18); // Represents 1.5 Ether.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:1014
+[packages/number/src/dex-number.ts:1014](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L1014)
 
 ***
 
@@ -3696,7 +3696,7 @@ console.log(restored.multipliedBy(2).toString()); // "246.9"
 
 #### Defined in
 
-packages/number/src/dex-number.ts:826
+[packages/number/src/dex-number.ts:826](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L826)
 
 ***
 
@@ -3731,7 +3731,7 @@ const shiftedDexNum = DexNumber.fromShifted('1000000000000000000', 18); // Repre
 
 #### Defined in
 
-packages/number/src/dex-number.ts:987
+[packages/number/src/dex-number.ts:987](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L987)
 
 ***
 
@@ -3763,7 +3763,7 @@ A new DexNumber instance.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:912
+[packages/number/src/dex-number.ts:912](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L912)
 
 ***
 
@@ -3798,7 +3798,7 @@ const unshiftedDexNum = DexNumber.fromUnshifted('1', 18); // Represents 1 Ether.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:964
+[packages/number/src/dex-number.ts:964](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L964)
 
 ***
 
@@ -3878,7 +3878,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:555
+[packages/number/src/dex-number.ts:555](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L555)
 
 ***
 
@@ -3916,7 +3916,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:543
+[packages/number/src/dex-number.ts:543](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L543)
 
 ***
 
@@ -3954,7 +3954,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:572
+[packages/number/src/dex-number.ts:572](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L572)
 
 ***
 
@@ -3992,7 +3992,7 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:560
+[packages/number/src/dex-number.ts:560](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L560)
 
 ***
 
@@ -4043,7 +4043,7 @@ BigNumber.random(20)            // '0.78193327636914089009'
 
 #### Defined in
 
-packages/number/src/dex-number.ts:577
+[packages/number/src/dex-number.ts:577](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L577)
 
 ***
 
@@ -4135,4 +4135,4 @@ A numeric value.
 
 #### Defined in
 
-packages/number/src/dex-number.ts:582
+[packages/number/src/dex-number.ts:582](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/number/src/dex-number.ts#L582)

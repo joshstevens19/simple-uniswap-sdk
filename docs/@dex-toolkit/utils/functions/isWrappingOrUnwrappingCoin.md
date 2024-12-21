@@ -44,4 +44,4 @@ If the native currency or wrapped token information is missing for the specified
 
 ## Defined in
 
-packages/utils/src/utils/wrapped.utils.ts:206
+[packages/utils/src/utils/wrapped.utils.ts:206](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/wrapped.utils.ts#L206)

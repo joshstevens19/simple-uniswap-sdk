@@ -29,4 +29,4 @@ True if the object is of type ContractDetail, false otherwise.
 
 ## Defined in
 
-packages/utils/src/utils/contract-detail.utils.ts:22
+[packages/utils/src/utils/contract-detail.utils.ts:22](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/contract-detail.utils.ts#L22)

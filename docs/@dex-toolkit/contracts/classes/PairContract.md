@@ -36,7 +36,7 @@
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:48
+[packages/contracts/src/pair/pair.contract.ts:48](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L48)
 
 ## Properties
 
@@ -46,7 +46,7 @@ packages/contracts/src/pair/pair.contract.ts:48
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:44
+[packages/contracts/src/pair/pair.contract.ts:44](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L44)
 
 ***
 
@@ -60,7 +60,7 @@ packages/contracts/src/pair/pair.contract.ts:44
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -70,7 +70,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:46
+[packages/contracts/src/pair/pair.contract.ts:46](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L46)
 
 ***
 
@@ -106,7 +106,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -142,7 +142,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:128
+[packages/contracts/src/pair/pair.contract.ts:128](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L128)
 
 ***
 
@@ -164,7 +164,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ***
 
@@ -180,7 +180,7 @@ Get the pair contract
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:123
+[packages/contracts/src/pair/pair.contract.ts:123](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L123)
 
 ## Methods
 
@@ -202,7 +202,7 @@ The domain separator.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:288
+[packages/contracts/src/pair/pair.contract.ts:288](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L288)
 
 ***
 
@@ -220,7 +220,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:296
+[packages/contracts/src/pair/pair.contract.ts:296](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L296)
 
 ***
 
@@ -242,7 +242,7 @@ The minimum liquidity.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:307
+[packages/contracts/src/pair/pair.contract.ts:307](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L307)
 
 ***
 
@@ -260,7 +260,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:315
+[packages/contracts/src/pair/pair.contract.ts:315](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L315)
 
 ***
 
@@ -282,7 +282,7 @@ The PERMIT_TYPEHASH.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:326
+[packages/contracts/src/pair/pair.contract.ts:326](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L326)
 
 ***
 
@@ -300,7 +300,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:334
+[packages/contracts/src/pair/pair.contract.ts:334](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L334)
 
 ***
 
@@ -332,7 +332,7 @@ The allowance.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:347
+[packages/contracts/src/pair/pair.contract.ts:347](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L347)
 
 ***
 
@@ -360,7 +360,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:357
+[packages/contracts/src/pair/pair.contract.ts:357](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L357)
 
 ***
 
@@ -396,7 +396,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:773
+[packages/contracts/src/pair/pair.contract.ts:773](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L773)
 
 ***
 
@@ -424,7 +424,7 @@ The balance.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:582
+[packages/contracts/src/pair/pair.contract.ts:582](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L582)
 
 ***
 
@@ -448,7 +448,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:591
+[packages/contracts/src/pair/pair.contract.ts:591](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L591)
 
 ***
 
@@ -480,7 +480,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:478
+[packages/contracts/src/pair/pair.contract.ts:478](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L478)
 
 ***
 
@@ -492,7 +492,7 @@ Executes a multicall for the given contract methods.
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"sync"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"allowance"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"decimals"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transfer"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"MINIMUM_LIQUIDITY"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"getReserves"`\> \| `MethodCall`\<`Contract`, `"kLast"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"nonces"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"price0CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"price1CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"skim"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"sync"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"allowance"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"decimals"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transfer"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"getReserves"`\> \| `MethodCall`\<`Contract`, `"MINIMUM_LIQUIDITY"`\> \| `MethodCall`\<`Contract`, `"kLast"`\> \| `MethodCall`\<`Contract`, `"nonces"`\> \| `MethodCall`\<`Contract`, `"price0CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"price1CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"skim"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\>\>
 
 The type of the calls object.
 
@@ -521,7 +521,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:250
+[packages/contracts/src/pair/pair.contract.ts:250](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L250)
 
 ***
 
@@ -543,7 +543,7 @@ The number of decimals.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:693
+[packages/contracts/src/pair/pair.contract.ts:693](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L693)
 
 ***
 
@@ -561,7 +561,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:701
+[packages/contracts/src/pair/pair.contract.ts:701](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L701)
 
 ***
 
@@ -589,7 +589,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:791
+[packages/contracts/src/pair/pair.contract.ts:791](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L791)
 
 ***
 
@@ -613,7 +613,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:490
+[packages/contracts/src/pair/pair.contract.ts:490](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L490)
 
 ***
 
@@ -641,7 +641,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:446
+[packages/contracts/src/pair/pair.contract.ts:446](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L446)
 
 ***
 
@@ -665,7 +665,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:468
+[packages/contracts/src/pair/pair.contract.ts:468](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L468)
 
 ***
 
@@ -713,7 +713,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:906
+[packages/contracts/src/pair/pair.contract.ts:906](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L906)
 
 ***
 
@@ -737,7 +737,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:554
+[packages/contracts/src/pair/pair.contract.ts:554](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L554)
 
 ***
 
@@ -773,7 +773,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:527
+[packages/contracts/src/pair/pair.contract.ts:527](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L527)
 
 ***
 
@@ -791,7 +791,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:573
+[packages/contracts/src/pair/pair.contract.ts:573](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L573)
 
 ***
 
@@ -819,7 +819,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:820
+[packages/contracts/src/pair/pair.contract.ts:820](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L820)
 
 ***
 
@@ -851,7 +851,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:853
+[packages/contracts/src/pair/pair.contract.ts:853](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L853)
 
 ***
 
@@ -894,7 +894,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -916,7 +916,7 @@ The factory address.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:390
+[packages/contracts/src/pair/pair.contract.ts:390](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L390)
 
 ***
 
@@ -934,7 +934,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:398
+[packages/contracts/src/pair/pair.contract.ts:398](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L398)
 
 ***
 
@@ -956,7 +956,7 @@ The reserves of the pair.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:368
+[packages/contracts/src/pair/pair.contract.ts:368](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L368)
 
 ***
 
@@ -974,7 +974,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:379
+[packages/contracts/src/pair/pair.contract.ts:379](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L379)
 
 ***
 
@@ -1010,7 +1010,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:428
+[packages/contracts/src/pair/pair.contract.ts:428](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L428)
 
 ***
 
@@ -1032,7 +1032,7 @@ The kLast value.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:409
+[packages/contracts/src/pair/pair.contract.ts:409](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L409)
 
 ***
 
@@ -1050,7 +1050,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:417
+[packages/contracts/src/pair/pair.contract.ts:417](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L417)
 
 ***
 
@@ -1082,7 +1082,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:456
+[packages/contracts/src/pair/pair.contract.ts:456](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L456)
 
 ***
 
@@ -1104,7 +1104,7 @@ The name of the token.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:658
+[packages/contracts/src/pair/pair.contract.ts:658](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L658)
 
 ***
 
@@ -1122,7 +1122,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:666
+[packages/contracts/src/pair/pair.contract.ts:666](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L666)
 
 ***
 
@@ -1150,7 +1150,7 @@ The nonce.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:751
+[packages/contracts/src/pair/pair.contract.ts:751](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L751)
 
 ***
 
@@ -1174,7 +1174,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:760
+[packages/contracts/src/pair/pair.contract.ts:760](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L760)
 
 ***
 
@@ -1230,7 +1230,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:873
+[packages/contracts/src/pair/pair.contract.ts:873](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L873)
 
 ***
 
@@ -1262,7 +1262,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:178
+[packages/contracts/src/pair/pair.contract.ts:178](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L178)
 
 ***
 
@@ -1274,7 +1274,7 @@ Helper function to dynamically prepare a contract context based on custom or def
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"sync"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"allowance"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"decimals"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transfer"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"MINIMUM_LIQUIDITY"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"getReserves"`\> \| `MethodCall`\<`Contract`, `"kLast"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"nonces"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"price0CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"price1CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"skim"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"symbol"`\> \| `MethodCall`\<`Contract`, `"name"`\> \| `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"sync"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"allowance"`\> \| `MethodCall`\<`Contract`, `"approve"`\> \| `MethodCall`\<`Contract`, `"balanceOf"`\> \| `MethodCall`\<`Contract`, `"decimals"`\> \| `MethodCall`\<`Contract`, `"totalSupply"`\> \| `MethodCall`\<`Contract`, `"transfer"`\> \| `MethodCall`\<`Contract`, `"transferFrom"`\> \| `MethodCall`\<`Contract`, `"DOMAIN_SEPARATOR"`\> \| `MethodCall`\<`Contract`, `"PERMIT_TYPEHASH"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"permit"`\> \| `MethodCall`\<`Contract`, `"getReserves"`\> \| `MethodCall`\<`Contract`, `"MINIMUM_LIQUIDITY"`\> \| `MethodCall`\<`Contract`, `"kLast"`\> \| `MethodCall`\<`Contract`, `"nonces"`\> \| `MethodCall`\<`Contract`, `"price0CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"price1CumulativeLast"`\> \| `MethodCall`\<`Contract`, `"skim"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\>\>
 
 • **TCustomData** = `unknown`
 
@@ -1296,7 +1296,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:207
+[packages/contracts/src/pair/pair.contract.ts:207](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L207)
 
 ***
 
@@ -1318,7 +1318,7 @@ The cumulative price of token0.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:712
+[packages/contracts/src/pair/pair.contract.ts:712](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L712)
 
 ***
 
@@ -1336,7 +1336,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:720
+[packages/contracts/src/pair/pair.contract.ts:720](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L720)
 
 ***
 
@@ -1358,7 +1358,7 @@ The cumulative price of token1.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:731
+[packages/contracts/src/pair/pair.contract.ts:731](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L731)
 
 ***
 
@@ -1376,7 +1376,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:739
+[packages/contracts/src/pair/pair.contract.ts:739](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L739)
 
 ***
 
@@ -1408,7 +1408,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:542
+[packages/contracts/src/pair/pair.contract.ts:542](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L542)
 
 ***
 
@@ -1452,7 +1452,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:503
+[packages/contracts/src/pair/pair.contract.ts:503](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L503)
 
 ***
 
@@ -1474,7 +1474,7 @@ The symbol of the token.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:674
+[packages/contracts/src/pair/pair.contract.ts:674](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L674)
 
 ***
 
@@ -1492,7 +1492,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:682
+[packages/contracts/src/pair/pair.contract.ts:682](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L682)
 
 ***
 
@@ -1520,7 +1520,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:563
+[packages/contracts/src/pair/pair.contract.ts:563](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L563)
 
 ***
 
@@ -1542,7 +1542,7 @@ The address of token0.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:601
+[packages/contracts/src/pair/pair.contract.ts:601](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L601)
 
 ***
 
@@ -1560,7 +1560,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:609
+[packages/contracts/src/pair/pair.contract.ts:609](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L609)
 
 ***
 
@@ -1582,7 +1582,7 @@ The address of token1.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:620
+[packages/contracts/src/pair/pair.contract.ts:620](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L620)
 
 ***
 
@@ -1600,7 +1600,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:628
+[packages/contracts/src/pair/pair.contract.ts:628](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L628)
 
 ***
 
@@ -1622,7 +1622,7 @@ The total supply.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:639
+[packages/contracts/src/pair/pair.contract.ts:639](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L639)
 
 ***
 
@@ -1640,7 +1640,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:647
+[packages/contracts/src/pair/pair.contract.ts:647](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L647)
 
 ***
 
@@ -1676,7 +1676,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:802
+[packages/contracts/src/pair/pair.contract.ts:802](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L802)
 
 ***
 
@@ -1716,4 +1716,4 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pair/pair.contract.ts:832
+[packages/contracts/src/pair/pair.contract.ts:832](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pair/pair.contract.ts#L832)

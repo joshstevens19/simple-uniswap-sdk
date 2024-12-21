@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pepe.token.ts:24
+[packages/utils/src/tokens/configs/pepe.token.ts:24](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pepe.token.ts#L24)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/pepe.token.ts:24
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pepe.token.ts:39
+[packages/utils/src/tokens/configs/pepe.token.ts:39](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pepe.token.ts#L39)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/pepe.token.ts:39
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pepe.token.ts:55
+[packages/utils/src/tokens/configs/pepe.token.ts:55](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pepe.token.ts#L55)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/tokens/configs/pepe.token.ts:55
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pepe.token.ts:70
+[packages/utils/src/tokens/configs/pepe.token.ts:70](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pepe.token.ts#L70)
 
 ***
 
@@ -104,7 +104,7 @@ packages/utils/src/tokens/configs/pepe.token.ts:70
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pepe.token.ts:85
+[packages/utils/src/tokens/configs/pepe.token.ts:85](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pepe.token.ts#L85)
 
 ## Methods
 
@@ -122,4 +122,4 @@ packages/utils/src/tokens/configs/pepe.token.ts:85
 
 #### Defined in
 
-packages/utils/src/tokens/configs/pepe.token.ts:100
+[packages/utils/src/tokens/configs/pepe.token.ts:100](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/pepe.token.ts#L100)

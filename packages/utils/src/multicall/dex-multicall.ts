@@ -2,7 +2,7 @@ import type { IDexProvider } from '@dex-toolkit/types'
 import { Multicall } from '@multicall-toolkit/core'
 import { multicallChainIds } from '@multicall-toolkit/utils'
 
-import { getChainConfig } from '../chains/chainConfigs'
+import { getChainConfig } from '../networks/chainConfigs'
 
 export class DexMulticall extends Multicall {
   constructor(dexProvider: IDexProvider) {

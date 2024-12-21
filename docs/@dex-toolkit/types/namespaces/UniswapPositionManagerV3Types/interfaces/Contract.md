@@ -27,7 +27,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:197
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:197](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L197)
 
 ***
 
@@ -50,7 +50,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:204
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:204](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L204)
 
 ***
 
@@ -73,7 +73,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:211
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:211](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L211)
 
 ***
 
@@ -104,7 +104,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:220
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:220](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L220)
 
 ***
 
@@ -131,7 +131,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:232
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:232](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L232)
 
 ***
 
@@ -154,7 +154,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:242
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:242](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L242)
 
 ***
 
@@ -181,7 +181,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:250
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:250](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L250)
 
 ***
 
@@ -208,7 +208,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:261
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:261](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L261)
 
 ***
 
@@ -247,7 +247,7 @@ Type: uint160, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:275
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:275](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L275)
 
 ***
 
@@ -274,7 +274,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:289
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:289](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L289)
 
 ***
 
@@ -297,7 +297,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:299
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:299](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L299)
 
 ***
 
@@ -324,7 +324,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:307
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:307](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L307)
 
 ***
 
@@ -351,7 +351,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:318
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:318](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L318)
 
 ***
 
@@ -382,7 +382,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:330
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:330](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L330)
 
 ***
 
@@ -409,7 +409,7 @@ Type: tuple, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:342
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:342](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L342)
 
 ***
 
@@ -436,7 +436,7 @@ Type: bytes[], Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:353
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:353](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L353)
 
 ***
 
@@ -459,7 +459,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:363
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:363](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L363)
 
 ***
 
@@ -486,7 +486,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:371
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:371](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L371)
 
 ***
 
@@ -533,7 +533,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:387
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:387](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L387)
 
 ***
 
@@ -560,7 +560,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:403
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:403](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L403)
 
 ***
 
@@ -583,7 +583,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:413
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:413](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L413)
 
 ***
 
@@ -620,7 +620,7 @@ Type: uint256, Indexed: false
 
 ##### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:425
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:425](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L425)
 
 #### safeTransferFrom(from, to, tokenId, _data, overrides)
 
@@ -657,7 +657,7 @@ Type: bytes, Indexed: false
 
 ##### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:441
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:441](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L441)
 
 ***
 
@@ -704,7 +704,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:460
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:460](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L460)
 
 ***
 
@@ -751,7 +751,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:481
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:481](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L481)
 
 ***
 
@@ -798,7 +798,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:502
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:502](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L502)
 
 ***
 
@@ -845,7 +845,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:523
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:523](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L523)
 
 ***
 
@@ -876,7 +876,7 @@ Type: bool, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:540
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:540](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L540)
 
 ***
 
@@ -903,7 +903,7 @@ Type: bytes4, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:552
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:552](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L552)
 
 ***
 
@@ -938,7 +938,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:565
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:565](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L565)
 
 ***
 
@@ -961,7 +961,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:577
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:577](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L577)
 
 ***
 
@@ -988,7 +988,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:585
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:585](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L585)
 
 ***
 
@@ -1019,7 +1019,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:597
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:597](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L597)
 
 ***
 
@@ -1046,7 +1046,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:609
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:609](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L609)
 
 ***
 
@@ -1069,7 +1069,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:619
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:619](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L619)
 
 ***
 
@@ -1104,7 +1104,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:629
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:629](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L629)
 
 ***
 
@@ -1139,7 +1139,7 @@ Type: bytes, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:644
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:644](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L644)
 
 ***
 
@@ -1170,4 +1170,4 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:658
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:658](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L658)

@@ -48,4 +48,4 @@ The protocol of the DEX
 
 ## Defined in
 
-packages/types/src/liquidity.types.ts:263
+[packages/types/src/liquidity.types.ts:263](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/liquidity.types.ts#L263)

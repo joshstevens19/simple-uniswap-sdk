@@ -1,3 +1,4 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { DexProvider } from '@dex-toolkit/provider'
 import type {
   TokenListAsset,
@@ -17,7 +18,7 @@ import {
   tokenClasses,
   tokenListAssetToToken,
 } from '@dex-toolkit/utils'
-import type { Address, ChainId } from '@multicall-toolkit/types'
+import type { Address } from '@multicall-toolkit/types'
 
 /**
  * Represents a collection of tokens for a specific chain and provides utility methods

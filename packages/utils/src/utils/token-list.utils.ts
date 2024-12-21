@@ -1,3 +1,17 @@
+import {
+  avaxFujiChainId,
+  avaxMainChainId,
+  bscMainChainId,
+  bscTestChainId,
+  ethHoleskyChainId,
+  ethMainChainId,
+  ethSepoliaChainId,
+  optimismMainChainId,
+  optimismSepoliaChainId,
+  plsMainChainId,
+  plsTestChainId,
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type {
   ITokenList,
   StandardToken,
@@ -7,21 +21,12 @@ import type {
   TokenListContext,
   TokenListSource,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
-
-import {
-  avaxChains,
-  bscChains,
-  ethChains,
-  optimismChains,
-  plsChains,
-} from '../chains/chainIds'
 
 export const tokenListConfig: TokenListConfig = {
   DEFIBIDS: {
     name: 'DefiBids Token List',
     url: 'https://assets.defibids.com/tokenlists/defibidstokenlist',
-    chainIds: plsChains,
+    chainIds: [plsMainChainId, plsTestChainId],
   },
   UNISWAP: {
     name: 'Uniswap Labs Default',
@@ -46,7 +51,13 @@ export const tokenListConfig: TokenListConfig = {
   COMPOUND: {
     name: 'Compound',
     url: 'https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json',
-    chainIds: [...ethChains, ...optimismChains],
+    chainIds: [
+      ethMainChainId,
+      ethHoleskyChainId,
+      ethSepoliaChainId,
+      optimismMainChainId,
+      optimismSepoliaChainId,
+    ],
   },
   SUSHI: {
     name: 'SushiSwap Menu',
@@ -56,32 +67,32 @@ export const tokenListConfig: TokenListConfig = {
   PANCAKE: {
     name: 'PancakeSwap Top 100',
     url: 'https://tokens.pancakeswap.finance/pancakeswap-top-100.json',
-    chainIds: bscChains,
+    chainIds: [bscMainChainId, bscTestChainId],
   },
   PANCAKE_EXT: {
     name: 'PancakeSwap Extended',
     url: 'https://tokens.pancakeswap.finance/pancakeswap-extended.json',
-    chainIds: bscChains,
+    chainIds: [bscMainChainId, bscTestChainId],
   },
   PANGOLIN: {
     name: 'Pangolin',
     url: 'https://raw.githubusercontent.com/pangolindex/tokenlists/main/pangolin.tokenlist.json',
-    chainIds: avaxChains,
+    chainIds: [avaxMainChainId, avaxFujiChainId],
   },
   OPTIMISM: {
     name: 'Optimism',
     url: 'https://static.optimism.io/optimism.tokenlist.json',
-    chainIds: optimismChains,
+    chainIds: [optimismMainChainId, optimismSepoliaChainId],
   },
   YETI: {
     name: 'Top Tokens',
     url: 'https://raw.githubusercontent.com/YetiSwap/tokenlists/main/top15.tokenlist.json',
-    chainIds: avaxChains,
+    chainIds: [avaxMainChainId, avaxFujiChainId],
   },
   TRADER_JOE: {
     name: 'Trader Joe',
     url: 'https://raw.githubusercontent.com/traderjoe-xyz/joe-tokenlists/main/src/joe.tokenlist-v2.json',
-    chainIds: avaxChains,
+    chainIds: [avaxMainChainId, avaxFujiChainId],
   },
 }
 

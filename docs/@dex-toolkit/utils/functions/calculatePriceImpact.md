@@ -44,4 +44,4 @@ A promise that resolves to a string representing the overall price impact percen
 
 ## Defined in
 
-packages/utils/src/utils/pairs.utils.ts:110
+[packages/utils/src/utils/pairs.utils.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/pairs.utils.ts#L110)

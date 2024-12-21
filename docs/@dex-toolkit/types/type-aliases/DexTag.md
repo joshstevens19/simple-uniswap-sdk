@@ -12,4 +12,4 @@ Represents a tag used to identify DEX instances, which can be a standard DEX or 
 
 ## Defined in
 
-packages/types/src/dex.types.ts:27
+[packages/types/src/dex.types.ts:28](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex.types.ts#L28)

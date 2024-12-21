@@ -1,5 +1,6 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { CryptoCompareResponse, PriceCurrencies } from '@dex-toolkit/types'
-import type { Address, ChainId } from '@multicall-toolkit/types'
+import type { Address } from '@multicall-toolkit/types'
 import fetch from 'node-fetch'
 
 import { Price } from './price-source'

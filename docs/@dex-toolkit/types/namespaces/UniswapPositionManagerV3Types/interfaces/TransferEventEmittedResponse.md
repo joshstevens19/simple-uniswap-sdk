@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:125
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:125](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L125)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/uniswap-position-manager-v3.types.ts:125
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:126
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:126](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L126)
 
 ***
 
@@ -34,4 +34,4 @@ packages/types/src/abis/uniswap-position-manager-v3.types.ts:126
 
 #### Defined in
 
-packages/types/src/abis/uniswap-position-manager-v3.types.ts:127
+[packages/types/src/abis/uniswap-position-manager-v3.types.ts:127](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-position-manager-v3.types.ts#L127)

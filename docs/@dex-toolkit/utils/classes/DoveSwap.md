@@ -38,7 +38,7 @@ V3 Deployments:
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/doveSwap.dex.ts:33
+[packages/utils/src/exchanges/configs/doveSwap.dex.ts:33](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/doveSwap.dex.ts#L33)
 
 ## Methods
 
@@ -52,7 +52,7 @@ packages/utils/src/exchanges/configs/doveSwap.dex.ts:33
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/doveSwap.dex.ts:86
+[packages/utils/src/exchanges/configs/doveSwap.dex.ts:86](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/doveSwap.dex.ts#L86)
 
 ***
 
@@ -70,4 +70,4 @@ packages/utils/src/exchanges/configs/doveSwap.dex.ts:86
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/doveSwap.dex.ts:77
+[packages/utils/src/exchanges/configs/doveSwap.dex.ts:77](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/doveSwap.dex.ts#L77)

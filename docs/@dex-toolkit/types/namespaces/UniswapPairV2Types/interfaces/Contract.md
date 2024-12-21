@@ -27,7 +27,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:126
+[packages/types/src/abis/uniswap-pair-v2.types.ts:126](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L126)
 
 ***
 
@@ -50,7 +50,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:133
+[packages/types/src/abis/uniswap-pair-v2.types.ts:133](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L133)
 
 ***
 
@@ -73,7 +73,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:140
+[packages/types/src/abis/uniswap-pair-v2.types.ts:140](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L140)
 
 ***
 
@@ -104,7 +104,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:149
+[packages/types/src/abis/uniswap-pair-v2.types.ts:149](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L149)
 
 ***
 
@@ -135,7 +135,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:162
+[packages/types/src/abis/uniswap-pair-v2.types.ts:162](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L162)
 
 ***
 
@@ -162,7 +162,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:174
+[packages/types/src/abis/uniswap-pair-v2.types.ts:174](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L174)
 
 ***
 
@@ -189,7 +189,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:185
+[packages/types/src/abis/uniswap-pair-v2.types.ts:185](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L185)
 
 ***
 
@@ -212,7 +212,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:195
+[packages/types/src/abis/uniswap-pair-v2.types.ts:195](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L195)
 
 ***
 
@@ -235,7 +235,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:202
+[packages/types/src/abis/uniswap-pair-v2.types.ts:202](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L202)
 
 ***
 
@@ -258,7 +258,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:209
+[packages/types/src/abis/uniswap-pair-v2.types.ts:209](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L209)
 
 ***
 
@@ -289,7 +289,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:218
+[packages/types/src/abis/uniswap-pair-v2.types.ts:218](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L218)
 
 ***
 
@@ -312,7 +312,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:229
+[packages/types/src/abis/uniswap-pair-v2.types.ts:229](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L229)
 
 ***
 
@@ -339,7 +339,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:237
+[packages/types/src/abis/uniswap-pair-v2.types.ts:237](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L237)
 
 ***
 
@@ -362,7 +362,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:247
+[packages/types/src/abis/uniswap-pair-v2.types.ts:247](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L247)
 
 ***
 
@@ -389,7 +389,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:255
+[packages/types/src/abis/uniswap-pair-v2.types.ts:255](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L255)
 
 ***
 
@@ -440,7 +440,7 @@ Type: bytes32, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:272
+[packages/types/src/abis/uniswap-pair-v2.types.ts:272](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L272)
 
 ***
 
@@ -463,7 +463,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:288
+[packages/types/src/abis/uniswap-pair-v2.types.ts:288](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L288)
 
 ***
 
@@ -486,7 +486,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:295
+[packages/types/src/abis/uniswap-pair-v2.types.ts:295](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L295)
 
 ***
 
@@ -513,7 +513,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:303
+[packages/types/src/abis/uniswap-pair-v2.types.ts:303](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L303)
 
 ***
 
@@ -552,7 +552,7 @@ Type: bytes, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:317
+[packages/types/src/abis/uniswap-pair-v2.types.ts:317](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L317)
 
 ***
 
@@ -575,7 +575,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:330
+[packages/types/src/abis/uniswap-pair-v2.types.ts:330](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L330)
 
 ***
 
@@ -598,7 +598,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:337
+[packages/types/src/abis/uniswap-pair-v2.types.ts:337](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L337)
 
 ***
 
@@ -621,7 +621,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:344
+[packages/types/src/abis/uniswap-pair-v2.types.ts:344](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L344)
 
 ***
 
@@ -644,7 +644,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:351
+[packages/types/src/abis/uniswap-pair-v2.types.ts:351](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L351)
 
 ***
 
@@ -667,7 +667,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:358
+[packages/types/src/abis/uniswap-pair-v2.types.ts:358](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L358)
 
 ***
 
@@ -698,7 +698,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:367
+[packages/types/src/abis/uniswap-pair-v2.types.ts:367](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L367)
 
 ***
 
@@ -733,4 +733,4 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:381
+[packages/types/src/abis/uniswap-pair-v2.types.ts:381](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L381)

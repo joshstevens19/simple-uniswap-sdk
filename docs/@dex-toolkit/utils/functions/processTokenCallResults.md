@@ -58,4 +58,4 @@ An object containing the parsed token details. If `dexTag` is provided, the obje
 
 ## Defined in
 
-packages/utils/src/multicall/token-multicall.utils.ts:106
+[packages/utils/src/multicall/token-multicall.utils.ts:106](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/multicall/token-multicall.utils.ts#L106)

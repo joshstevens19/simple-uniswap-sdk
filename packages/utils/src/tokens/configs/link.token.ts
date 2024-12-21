@@ -1,6 +1,3 @@
-import type { Token } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
-
 import {
   arbitrumMainChainId,
   ethMainChainId,
@@ -28,7 +25,10 @@ import {
   zksyncMainChainId,
   zksyncSepoliaChainId,
   bscTestChainId,
-} from '../../chains/chainIds'
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
+import type { Token } from '@dex-toolkit/types'
+
 import { getImageUrlForToken } from '../logo-urls/logo-urls'
 
 /**

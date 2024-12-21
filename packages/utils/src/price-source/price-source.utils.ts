@@ -1,9 +1,9 @@
+import type { ChainId } from '@chain-toolkit/schemas'
 import type {
   PriceContext,
   PriceCalculationMethod,
   MultiPriceContext,
 } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import { CoinGecko } from './coin-gecko'
 import { CoinMarketCap } from './coin-marketcap'

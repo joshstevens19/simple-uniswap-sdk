@@ -30,4 +30,4 @@ An array of `CallContext` objects, each representing a method call to be made on
 
 ## Defined in
 
-packages/utils/src/multicall/token-multicall.utils.ts:31
+[packages/utils/src/multicall/token-multicall.utils.ts:31](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/multicall/token-multicall.utils.ts#L31)

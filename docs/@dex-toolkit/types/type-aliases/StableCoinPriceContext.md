@@ -26,4 +26,4 @@ Fixed to 'stablecoin' for this type.
 
 ## Defined in
 
-packages/types/src/price-source.types.ts:31
+[packages/types/src/price-source.types.ts:31](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/price-source.types.ts#L31)

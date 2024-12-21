@@ -31,7 +31,7 @@ The format in which numerical values (e.g., balances, amounts) are returned.
 
 #### Defined in
 
-packages/core/src/dex.factory.ts:30
+[packages/core/src/dex.factory.ts:30](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/dex.factory.ts#L30)
 
 ## Properties
 
@@ -41,7 +41,7 @@ packages/core/src/dex.factory.ts:30
 
 #### Defined in
 
-packages/core/src/dex.factory.ts:30
+[packages/core/src/dex.factory.ts:30](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/dex.factory.ts#L30)
 
 ***
 
@@ -53,7 +53,7 @@ The underlying `DexProvider` instance used for DEX operations.
 
 #### Defined in
 
-packages/core/src/dex.factory.ts:28
+[packages/core/src/dex.factory.ts:28](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/dex.factory.ts#L28)
 
 ## Accessors
 
@@ -69,7 +69,7 @@ Returns the underlying `DexProvider`.
 
 #### Defined in
 
-packages/core/src/dex.factory.ts:40
+[packages/core/src/dex.factory.ts:40](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/dex.factory.ts#L40)
 
 ## Methods
 
@@ -97,7 +97,7 @@ if the token addresses are invalid or not found in the token list.
 
 #### Defined in
 
-packages/core/src/dex.factory.ts:133
+[packages/core/src/dex.factory.ts:133](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/dex.factory.ts#L133)
 
 ***
 
@@ -125,4 +125,4 @@ if the token addresses are invalid or not found in the token list.
 
 #### Defined in
 
-packages/core/src/dex.factory.ts:53
+[packages/core/src/dex.factory.ts:53](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/dex.factory.ts#L53)

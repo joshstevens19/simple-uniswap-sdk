@@ -29,4 +29,4 @@ A `RoutePathsByDex` object where route paths for the specified DEX protocol are 
 
 ## Defined in
 
-packages/utils/src/utils/router.utils.ts:183
+[packages/utils/src/utils/router.utils.ts:183](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/router.utils.ts#L183)

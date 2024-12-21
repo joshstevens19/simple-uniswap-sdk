@@ -1,5 +1,5 @@
 export * from './abis/index'
-export * from './chains/index'
+export * from './networks/index'
 export * from './errors/index'
 export * from './exchanges/index'
 export * from './multicall/index'

@@ -1,12 +1,13 @@
+import { avaxMainChainId } from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { DexConfig, UniswapRouterV2Types } from '@dex-toolkit/types'
-import type { ChainId, ContractDetail } from '@multicall-toolkit/types'
+import type { ContractDetail } from '@multicall-toolkit/types'
 
 import {
   uniswapFactoryV2ABI,
   uniswapPairV2ABI,
   yetiSwapRouterV2ABI,
 } from '../../abis/index'
-import { avaxMainChainId } from '../../chains/chainIds'
 import { AVAXToken, WAVAXToken } from '../../tokens/configs/index'
 import { dexTypeMap } from '../../utils/dex.utils'
 

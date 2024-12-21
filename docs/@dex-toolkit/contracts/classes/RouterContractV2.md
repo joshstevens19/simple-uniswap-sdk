@@ -36,7 +36,7 @@
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:47
+[packages/contracts/src/router/router-v2.contract.ts:47](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L47)
 
 ## Properties
 
@@ -46,7 +46,7 @@ packages/contracts/src/router/router-v2.contract.ts:47
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:43
+[packages/contracts/src/router/router-v2.contract.ts:43](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L43)
 
 ***
 
@@ -60,7 +60,7 @@ packages/contracts/src/router/router-v2.contract.ts:43
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -70,7 +70,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:45
+[packages/contracts/src/router/router-v2.contract.ts:45](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L45)
 
 ***
 
@@ -106,7 +106,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -142,7 +142,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:114
+[packages/contracts/src/router/router-v2.contract.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L114)
 
 ***
 
@@ -164,7 +164,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ***
 
@@ -180,7 +180,7 @@ Get the router contract
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:109
+[packages/contracts/src/router/router-v2.contract.ts:109](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L109)
 
 ## Methods
 
@@ -202,7 +202,7 @@ The WETH address.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:255
+[packages/contracts/src/router/router-v2.contract.ts:255](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L255)
 
 ***
 
@@ -220,7 +220,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:263
+[packages/contracts/src/router/router-v2.contract.ts:263](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L263)
 
 ***
 
@@ -280,7 +280,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:280
+[packages/contracts/src/router/router-v2.contract.ts:280](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L280)
 
 ***
 
@@ -332,7 +332,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:349
+[packages/contracts/src/router/router-v2.contract.ts:349](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L349)
 
 ***
 
@@ -373,7 +373,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:236
+[packages/contracts/src/router/router-v2.contract.ts:236](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L236)
 
 ***
 
@@ -425,7 +425,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:316
+[packages/contracts/src/router/router-v2.contract.ts:316](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L316)
 
 ***
 
@@ -469,7 +469,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:379
+[packages/contracts/src/router/router-v2.contract.ts:379](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L379)
 
 ***
 
@@ -517,7 +517,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:629
+[packages/contracts/src/router/router-v2.contract.ts:629](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L629)
 
 ***
 
@@ -561,7 +561,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:690
+[packages/contracts/src/router/router-v2.contract.ts:690](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L690)
 
 ***
 
@@ -605,7 +605,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:744
+[packages/contracts/src/router/router-v2.contract.ts:744](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L744)
 
 ***
 
@@ -665,7 +665,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:818
+[packages/contracts/src/router/router-v2.contract.ts:818](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L818)
 
 ***
 
@@ -725,7 +725,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:904
+[packages/contracts/src/router/router-v2.contract.ts:904](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L904)
 
 ***
 
@@ -789,7 +789,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:997
+[packages/contracts/src/router/router-v2.contract.ts:997](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L997)
 
 ***
 
@@ -825,7 +825,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1055
+[packages/contracts/src/router/router-v2.contract.ts:1055](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1055)
 
 ***
 
@@ -861,7 +861,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1099
+[packages/contracts/src/router/router-v2.contract.ts:1099](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1099)
 
 ***
 
@@ -897,7 +897,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1143
+[packages/contracts/src/router/router-v2.contract.ts:1143](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1143)
 
 ***
 
@@ -937,7 +937,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1188
+[packages/contracts/src/router/router-v2.contract.ts:1188](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1188)
 
 ***
 
@@ -977,7 +977,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1237
+[packages/contracts/src/router/router-v2.contract.ts:1237](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1237)
 
 ***
 
@@ -1017,7 +1017,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1283
+[packages/contracts/src/router/router-v2.contract.ts:1283](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1283)
 
 ***
 
@@ -1057,7 +1057,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1332
+[packages/contracts/src/router/router-v2.contract.ts:1332](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1332)
 
 ***
 
@@ -1097,7 +1097,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1378
+[packages/contracts/src/router/router-v2.contract.ts:1378](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1378)
 
 ***
 
@@ -1137,7 +1137,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1427
+[packages/contracts/src/router/router-v2.contract.ts:1427](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1427)
 
 ***
 
@@ -1180,7 +1180,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -1202,7 +1202,7 @@ The factory address.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:401
+[packages/contracts/src/router/router-v2.contract.ts:401](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L401)
 
 ***
 
@@ -1220,7 +1220,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:409
+[packages/contracts/src/router/router-v2.contract.ts:409](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L409)
 
 ***
 
@@ -1256,7 +1256,7 @@ The required input amount.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:423
+[packages/contracts/src/router/router-v2.contract.ts:423](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L423)
 
 ***
 
@@ -1288,7 +1288,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:442
+[packages/contracts/src/router/router-v2.contract.ts:442](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L442)
 
 ***
 
@@ -1324,7 +1324,7 @@ The output amount obtained.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:461
+[packages/contracts/src/router/router-v2.contract.ts:461](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L461)
 
 ***
 
@@ -1356,7 +1356,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:480
+[packages/contracts/src/router/router-v2.contract.ts:480](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L480)
 
 ***
 
@@ -1388,7 +1388,7 @@ An array of input amounts for each token in the path.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:498
+[packages/contracts/src/router/router-v2.contract.ts:498](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L498)
 
 ***
 
@@ -1416,7 +1416,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:514
+[packages/contracts/src/router/router-v2.contract.ts:514](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L514)
 
 ***
 
@@ -1448,7 +1448,7 @@ An array of output amounts for each token in the path.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:527
+[packages/contracts/src/router/router-v2.contract.ts:527](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L527)
 
 ***
 
@@ -1476,7 +1476,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:543
+[packages/contracts/src/router/router-v2.contract.ts:543](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L543)
 
 ***
 
@@ -1508,7 +1508,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:164
+[packages/contracts/src/router/router-v2.contract.ts:164](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L164)
 
 ***
 
@@ -1542,7 +1542,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:193
+[packages/contracts/src/router/router-v2.contract.ts:193](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L193)
 
 ***
 
@@ -1578,7 +1578,7 @@ The equivalent amount of token B.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:557
+[packages/contracts/src/router/router-v2.contract.ts:557](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L557)
 
 ***
 
@@ -1610,7 +1610,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:576
+[packages/contracts/src/router/router-v2.contract.ts:576](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L576)
 
 ***
 
@@ -1666,7 +1666,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:596
+[packages/contracts/src/router/router-v2.contract.ts:596](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L596)
 
 ***
 
@@ -1718,7 +1718,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:660
+[packages/contracts/src/router/router-v2.contract.ts:660](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L660)
 
 ***
 
@@ -1770,7 +1770,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:719
+[packages/contracts/src/router/router-v2.contract.ts:719](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L719)
 
 ***
 
@@ -1838,7 +1838,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:773
+[packages/contracts/src/router/router-v2.contract.ts:773](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L773)
 
 ***
 
@@ -1906,7 +1906,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:859
+[packages/contracts/src/router/router-v2.contract.ts:859](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L859)
 
 ***
 
@@ -1978,7 +1978,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:949
+[packages/contracts/src/router/router-v2.contract.ts:949](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L949)
 
 ***
 
@@ -2022,7 +2022,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1034
+[packages/contracts/src/router/router-v2.contract.ts:1034](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1034)
 
 ***
 
@@ -2066,7 +2066,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1078
+[packages/contracts/src/router/router-v2.contract.ts:1078](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1078)
 
 ***
 
@@ -2110,7 +2110,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1122
+[packages/contracts/src/router/router-v2.contract.ts:1122](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1122)
 
 ***
 
@@ -2158,7 +2158,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1165
+[packages/contracts/src/router/router-v2.contract.ts:1165](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1165)
 
 ***
 
@@ -2206,7 +2206,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1214
+[packages/contracts/src/router/router-v2.contract.ts:1214](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1214)
 
 ***
 
@@ -2254,7 +2254,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1260
+[packages/contracts/src/router/router-v2.contract.ts:1260](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1260)
 
 ***
 
@@ -2302,7 +2302,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1309
+[packages/contracts/src/router/router-v2.contract.ts:1309](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1309)
 
 ***
 
@@ -2350,7 +2350,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1355
+[packages/contracts/src/router/router-v2.contract.ts:1355](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1355)
 
 ***
 
@@ -2398,4 +2398,4 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/router/router-v2.contract.ts:1404
+[packages/contracts/src/router/router-v2.contract.ts:1404](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/router/router-v2.contract.ts#L1404)

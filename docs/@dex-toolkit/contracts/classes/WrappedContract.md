@@ -38,7 +38,7 @@ Returns the contract details.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:35
+[packages/contracts/src/wrapped/wrapped.contract.ts:35](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L35)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/contracts/src/wrapped/wrapped.contract.ts:35
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:31
+[packages/contracts/src/wrapped/wrapped.contract.ts:31](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L31)
 
 ***
 
@@ -62,7 +62,7 @@ packages/contracts/src/wrapped/wrapped.contract.ts:31
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -72,7 +72,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:33
+[packages/contracts/src/wrapped/wrapped.contract.ts:33](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L33)
 
 ***
 
@@ -108,7 +108,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -144,7 +144,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:96
+[packages/contracts/src/wrapped/wrapped.contract.ts:96](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L96)
 
 ***
 
@@ -166,7 +166,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ***
 
@@ -182,7 +182,7 @@ Get the wrapped contract
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:91
+[packages/contracts/src/wrapped/wrapped.contract.ts:91](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L91)
 
 ## Methods
 
@@ -214,7 +214,7 @@ The amount of tokens that are allowed to be spent.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:457
+[packages/contracts/src/wrapped/wrapped.contract.ts:457](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L457)
 
 ***
 
@@ -242,7 +242,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:473
+[packages/contracts/src/wrapped/wrapped.contract.ts:473](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L473)
 
 ***
 
@@ -278,7 +278,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:248
+[packages/contracts/src/wrapped/wrapped.contract.ts:248](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L248)
 
 ***
 
@@ -306,7 +306,7 @@ The balance of the specified address.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:372
+[packages/contracts/src/wrapped/wrapped.contract.ts:372](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L372)
 
 ***
 
@@ -330,7 +330,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:381
+[packages/contracts/src/wrapped/wrapped.contract.ts:381](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L381)
 
 ***
 
@@ -371,7 +371,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:213
+[packages/contracts/src/wrapped/wrapped.contract.ts:213](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L213)
 
 ***
 
@@ -403,7 +403,7 @@ The result of the contract method invocation with the appropriate return type.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:106
+[packages/contracts/src/wrapped/wrapped.contract.ts:106](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L106)
 
 ***
 
@@ -425,7 +425,7 @@ The number of decimals.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:355
+[packages/contracts/src/wrapped/wrapped.contract.ts:355](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L355)
 
 ***
 
@@ -443,7 +443,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:363
+[packages/contracts/src/wrapped/wrapped.contract.ts:363](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L363)
 
 ***
 
@@ -471,7 +471,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:437
+[packages/contracts/src/wrapped/wrapped.contract.ts:437](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L437)
 
 ***
 
@@ -499,7 +499,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:266
+[packages/contracts/src/wrapped/wrapped.contract.ts:266](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L266)
 
 ***
 
@@ -517,7 +517,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:447
+[packages/contracts/src/wrapped/wrapped.contract.ts:447](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L447)
 
 ***
 
@@ -545,7 +545,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:130
+[packages/contracts/src/wrapped/wrapped.contract.ts:130](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L130)
 
 ***
 
@@ -573,7 +573,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:428
+[packages/contracts/src/wrapped/wrapped.contract.ts:428](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L428)
 
 ***
 
@@ -605,7 +605,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:318
+[packages/contracts/src/wrapped/wrapped.contract.ts:318](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L318)
 
 ***
 
@@ -629,7 +629,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:347
+[packages/contracts/src/wrapped/wrapped.contract.ts:347](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L347)
 
 ***
 
@@ -672,7 +672,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -694,7 +694,7 @@ The name of the token.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:229
+[packages/contracts/src/wrapped/wrapped.contract.ts:229](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L229)
 
 ***
 
@@ -712,7 +712,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:237
+[packages/contracts/src/wrapped/wrapped.contract.ts:237](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L237)
 
 ***
 
@@ -744,7 +744,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:146
+[packages/contracts/src/wrapped/wrapped.contract.ts:146](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L146)
 
 ***
 
@@ -778,7 +778,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:173
+[packages/contracts/src/wrapped/wrapped.contract.ts:173](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L173)
 
 ***
 
@@ -800,7 +800,7 @@ The symbol of the token.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:391
+[packages/contracts/src/wrapped/wrapped.contract.ts:391](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L391)
 
 ***
 
@@ -818,7 +818,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:399
+[packages/contracts/src/wrapped/wrapped.contract.ts:399](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L399)
 
 ***
 
@@ -840,7 +840,7 @@ The total supply of the token.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:274
+[packages/contracts/src/wrapped/wrapped.contract.ts:274](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L274)
 
 ***
 
@@ -858,7 +858,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:282
+[packages/contracts/src/wrapped/wrapped.contract.ts:282](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L282)
 
 ***
 
@@ -894,7 +894,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:410
+[packages/contracts/src/wrapped/wrapped.contract.ts:410](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L410)
 
 ***
 
@@ -934,7 +934,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:297
+[packages/contracts/src/wrapped/wrapped.contract.ts:297](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L297)
 
 ***
 
@@ -966,4 +966,4 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/wrapped/wrapped.contract.ts:332
+[packages/contracts/src/wrapped/wrapped.contract.ts:332](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/wrapped/wrapped.contract.ts#L332)

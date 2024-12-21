@@ -1,7 +1,7 @@
+import { blastMainChainId, blastSepoliaChainId } from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { Token } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
-import { blastMainChainId, blastSepoliaChainId } from '../../chains/chainIds'
 import { getImageUrlForToken } from '../logo-urls/logo-urls'
 
 export class USDBToken {

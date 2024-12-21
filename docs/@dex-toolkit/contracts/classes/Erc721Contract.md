@@ -38,7 +38,7 @@ Returns the contract details.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:40
+[packages/contracts/src/token/erc721.contract.ts:39](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L39)
 
 ## Properties
 
@@ -48,7 +48,7 @@ packages/contracts/src/token/erc721.contract.ts:40
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:36
+[packages/contracts/src/token/erc721.contract.ts:35](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L35)
 
 ***
 
@@ -62,7 +62,7 @@ packages/contracts/src/token/erc721.contract.ts:36
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -72,7 +72,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:38
+[packages/contracts/src/token/erc721.contract.ts:37](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L37)
 
 ***
 
@@ -108,7 +108,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -144,7 +144,7 @@ Get the ERC721 contract
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:61
+[packages/contracts/src/token/erc721.contract.ts:60](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L60)
 
 ***
 
@@ -160,7 +160,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:66
+[packages/contracts/src/token/erc721.contract.ts:65](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L65)
 
 ***
 
@@ -182,7 +182,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ## Methods
 
@@ -218,7 +218,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:222
+[packages/contracts/src/token/erc721.contract.ts:221](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L221)
 
 ***
 
@@ -246,7 +246,7 @@ The balance of tokens owned by the specified address.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:249
+[packages/contracts/src/token/erc721.contract.ts:248](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L248)
 
 ***
 
@@ -270,7 +270,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:258
+[packages/contracts/src/token/erc721.contract.ts:257](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L257)
 
 ***
 
@@ -311,7 +311,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:183
+[packages/contracts/src/token/erc721.contract.ts:182](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L182)
 
 ***
 
@@ -343,7 +343,7 @@ The result of the contract method invocation with the appropriate return type.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:76
+[packages/contracts/src/token/erc721.contract.ts:75](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L75)
 
 ***
 
@@ -371,7 +371,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:240
+[packages/contracts/src/token/erc721.contract.ts:239](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L239)
 
 ***
 
@@ -399,7 +399,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:100
+[packages/contracts/src/token/erc721.contract.ts:99](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L99)
 
 ***
 
@@ -427,7 +427,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:679
+[packages/contracts/src/token/erc721.contract.ts:678](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L678)
 
 ***
 
@@ -451,7 +451,7 @@ The encoded data as a string.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:415
+[packages/contracts/src/token/erc721.contract.ts:414](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L414)
 
 ***
 
@@ -491,7 +491,7 @@ The encoded function data as a string.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:492
+[packages/contracts/src/token/erc721.contract.ts:491](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L491)
 
 ***
 
@@ -519,7 +519,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:548
+[packages/contracts/src/token/erc721.contract.ts:547](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L547)
 
 ***
 
@@ -551,7 +551,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:621
+[packages/contracts/src/token/erc721.contract.ts:620](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L620)
 
 ***
 
@@ -575,7 +575,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:650
+[packages/contracts/src/token/erc721.contract.ts:649](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L649)
 
 ***
 
@@ -618,7 +618,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -646,7 +646,7 @@ The address approved for the specified token ID.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:269
+[packages/contracts/src/token/erc721.contract.ts:268](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L268)
 
 ***
 
@@ -670,7 +670,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:278
+[packages/contracts/src/token/erc721.contract.ts:277](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L277)
 
 ***
 
@@ -702,7 +702,7 @@ True if the operator is approved for all tokens, false otherwise.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:290
+[packages/contracts/src/token/erc721.contract.ts:289](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L289)
 
 ***
 
@@ -730,7 +730,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:306
+[packages/contracts/src/token/erc721.contract.ts:305](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L305)
 
 ***
 
@@ -766,7 +766,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:661
+[packages/contracts/src/token/erc721.contract.ts:660](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L660)
 
 ***
 
@@ -788,7 +788,7 @@ The name of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:317
+[packages/contracts/src/token/erc721.contract.ts:316](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L316)
 
 ***
 
@@ -806,7 +806,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:325
+[packages/contracts/src/token/erc721.contract.ts:324](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L324)
 
 ***
 
@@ -828,7 +828,7 @@ The owner of the contract.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:365
+[packages/contracts/src/token/erc721.contract.ts:364](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L364)
 
 ***
 
@@ -846,7 +846,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:373
+[packages/contracts/src/token/erc721.contract.ts:372](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L372)
 
 ***
 
@@ -874,7 +874,7 @@ The owner of the specified token ID.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:382
+[packages/contracts/src/token/erc721.contract.ts:381](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L381)
 
 ***
 
@@ -898,7 +898,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:391
+[packages/contracts/src/token/erc721.contract.ts:390](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L390)
 
 ***
 
@@ -930,7 +930,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:116
+[packages/contracts/src/token/erc721.contract.ts:115](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L115)
 
 ***
 
@@ -964,7 +964,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:143
+[packages/contracts/src/token/erc721.contract.ts:142](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L142)
 
 ***
 
@@ -992,7 +992,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:402
+[packages/contracts/src/token/erc721.contract.ts:401](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L401)
 
 ***
 
@@ -1034,7 +1034,7 @@ The contract transaction.
 
 ##### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:429
+[packages/contracts/src/token/erc721.contract.ts:428](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L428)
 
 #### safeTransferFrom(from, to, tokenId, data, overrides)
 
@@ -1076,7 +1076,7 @@ The contract transaction.
 
 ##### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:445
+[packages/contracts/src/token/erc721.contract.ts:444](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L444)
 
 ***
 
@@ -1112,7 +1112,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:530
+[packages/contracts/src/token/erc721.contract.ts:529](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L529)
 
 ***
 
@@ -1140,7 +1140,7 @@ True if the contract implements the interface, false otherwise.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:557
+[packages/contracts/src/token/erc721.contract.ts:556](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L556)
 
 ***
 
@@ -1164,7 +1164,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:566
+[packages/contracts/src/token/erc721.contract.ts:565](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L565)
 
 ***
 
@@ -1186,7 +1186,7 @@ The symbol of the token.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:333
+[packages/contracts/src/token/erc721.contract.ts:332](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L332)
 
 ***
 
@@ -1204,7 +1204,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:341
+[packages/contracts/src/token/erc721.contract.ts:340](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L340)
 
 ***
 
@@ -1226,7 +1226,7 @@ The token ID as a BigNumber.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:349
+[packages/contracts/src/token/erc721.contract.ts:348](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L348)
 
 ***
 
@@ -1244,7 +1244,7 @@ The call context for the method.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:357
+[packages/contracts/src/token/erc721.contract.ts:356](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L356)
 
 ***
 
@@ -1272,7 +1272,7 @@ The token URI.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:577
+[packages/contracts/src/token/erc721.contract.ts:576](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L576)
 
 ***
 
@@ -1296,7 +1296,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:586
+[packages/contracts/src/token/erc721.contract.ts:585](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L585)
 
 ***
 
@@ -1336,7 +1336,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:600
+[packages/contracts/src/token/erc721.contract.ts:599](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L599)
 
 ***
 
@@ -1368,4 +1368,4 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/token/erc721.contract.ts:635
+[packages/contracts/src/token/erc721.contract.ts:634](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/token/erc721.contract.ts#L634)

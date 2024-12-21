@@ -40,4 +40,4 @@ The converted `Token` object.
 
 ## Defined in
 
-packages/utils/src/utils/token-list.utils.ts:139
+[packages/utils/src/utils/token-list.utils.ts:150](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/token-list.utils.ts#L150)

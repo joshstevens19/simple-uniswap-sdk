@@ -32,4 +32,4 @@ The token associated with the specified chain ID, or undefined if not found.
 
 ## Defined in
 
-packages/types/src/token.types.ts:11
+[packages/types/src/token.types.ts:12](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token.types.ts#L12)

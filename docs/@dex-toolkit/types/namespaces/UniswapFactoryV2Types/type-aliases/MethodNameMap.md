@@ -10,4 +10,4 @@
 
 ## Defined in
 
-packages/types/src/abis/uniswap-factory-v2.types.ts:34
+[packages/types/src/abis/uniswap-factory-v2.types.ts:34](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-factory-v2.types.ts#L34)

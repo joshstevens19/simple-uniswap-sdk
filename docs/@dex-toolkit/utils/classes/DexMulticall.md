@@ -30,7 +30,7 @@
 
 #### Defined in
 
-packages/utils/src/multicall/dex-multicall.ts:8
+[packages/utils/src/multicall/dex-multicall.ts:8](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/multicall/dex-multicall.ts#L8)
 
 ## Properties
 
@@ -46,7 +46,7 @@ The type of execution for this Multicall instance.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:9
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:9
 
 ***
 
@@ -62,7 +62,7 @@ The options for this Multicall instance.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:11
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:11
 
 ## Methods
 
@@ -96,7 +96,7 @@ An array of aggregate call contexts.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:51
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:51
 
 ***
 
@@ -132,7 +132,7 @@ The aggregate response.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:126
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:126
 
 ***
 
@@ -164,7 +164,7 @@ The built aggregate response.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:119
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:119
 
 ***
 
@@ -206,7 +206,7 @@ Executes multiple contract calls, with optional batching support.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:28
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:28
 
 ***
 
@@ -228,7 +228,7 @@ submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:28
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:43
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:43
 
 ***
 
@@ -250,7 +250,7 @@ submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:43
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:42
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:42
 
 ***
 
@@ -294,7 +294,7 @@ A function that creates a call context for the specified contract.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:24
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:24
 
 ***
 
@@ -326,7 +326,7 @@ The decoded value or `undefined` if decoding fails.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:70
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:70
 
 ***
 
@@ -358,7 +358,7 @@ A promise that resolves to the aggregate response.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:84
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:84
 
 ***
 
@@ -391,7 +391,7 @@ A promise that resolves to an array of `AggregateResponse`.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:41
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:41
 
 ***
 
@@ -430,7 +430,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:98
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:98
 
 ***
 
@@ -462,7 +462,7 @@ A promise that resolves to the aggregate response.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:112
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:112
 
 ***
 
@@ -494,7 +494,7 @@ A promise that resolves to the aggregate response.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:105
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:105
 
 ***
 
@@ -526,7 +526,7 @@ An array of ABI outputs or undefined if not found.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:77
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:77
 
 ***
 
@@ -554,7 +554,7 @@ The formatted return values.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:63
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:63
 
 ***
 
@@ -582,7 +582,7 @@ The return data.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:57
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:57
 
 ***
 
@@ -610,7 +610,7 @@ An array of objects with target and callData properties.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:135
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:135
 
 ***
 
@@ -638,4 +638,4 @@ submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:135
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/core/dist/esm/multicall.d.ts:44
+submodules/multicall-toolkit/packages/core/dist/esm/multicall.d.ts:44

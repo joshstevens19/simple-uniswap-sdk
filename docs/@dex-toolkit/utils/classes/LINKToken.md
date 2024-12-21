@@ -42,7 +42,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:53
+[packages/utils/src/tokens/configs/link.token.ts:53](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L53)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/link.token.ts:53
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:72
+[packages/utils/src/tokens/configs/link.token.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L72)
 
 ***
 
@@ -94,7 +94,7 @@ packages/utils/src/tokens/configs/link.token.ts:72
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:95
+[packages/utils/src/tokens/configs/link.token.ts:95](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L95)
 
 ***
 
@@ -120,7 +120,7 @@ packages/utils/src/tokens/configs/link.token.ts:95
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:114
+[packages/utils/src/tokens/configs/link.token.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L114)
 
 ***
 
@@ -146,7 +146,7 @@ packages/utils/src/tokens/configs/link.token.ts:114
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:133
+[packages/utils/src/tokens/configs/link.token.ts:133](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L133)
 
 ***
 
@@ -172,7 +172,7 @@ packages/utils/src/tokens/configs/link.token.ts:133
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:152
+[packages/utils/src/tokens/configs/link.token.ts:152](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L152)
 
 ***
 
@@ -190,7 +190,7 @@ packages/utils/src/tokens/configs/link.token.ts:152
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:171
+[packages/utils/src/tokens/configs/link.token.ts:171](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L171)
 
 ***
 
@@ -224,7 +224,7 @@ packages/utils/src/tokens/configs/link.token.ts:171
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:183
+[packages/utils/src/tokens/configs/link.token.ts:183](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L183)
 
 ***
 
@@ -250,7 +250,7 @@ packages/utils/src/tokens/configs/link.token.ts:183
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:210
+[packages/utils/src/tokens/configs/link.token.ts:210](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L210)
 
 ***
 
@@ -276,7 +276,7 @@ packages/utils/src/tokens/configs/link.token.ts:210
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:229
+[packages/utils/src/tokens/configs/link.token.ts:229](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L229)
 
 ***
 
@@ -302,7 +302,7 @@ packages/utils/src/tokens/configs/link.token.ts:229
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:248
+[packages/utils/src/tokens/configs/link.token.ts:248](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L248)
 
 ***
 
@@ -328,7 +328,7 @@ packages/utils/src/tokens/configs/link.token.ts:248
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:267
+[packages/utils/src/tokens/configs/link.token.ts:267](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L267)
 
 ***
 
@@ -354,7 +354,7 @@ packages/utils/src/tokens/configs/link.token.ts:267
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:294
+[packages/utils/src/tokens/configs/link.token.ts:294](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L294)
 
 ## Methods
 
@@ -372,4 +372,4 @@ packages/utils/src/tokens/configs/link.token.ts:294
 
 #### Defined in
 
-packages/utils/src/tokens/configs/link.token.ts:321
+[packages/utils/src/tokens/configs/link.token.ts:321](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/link.token.ts#L321)

@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:32
+[packages/utils/src/tokens/configs/aave.token.ts:32](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L32)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/aave.token.ts:32
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:47
+[packages/utils/src/tokens/configs/aave.token.ts:47](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L47)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/aave.token.ts:47
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:63
+[packages/utils/src/tokens/configs/aave.token.ts:63](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L63)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/tokens/configs/aave.token.ts:63
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:92
+[packages/utils/src/tokens/configs/aave.token.ts:92](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L92)
 
 ***
 
@@ -104,7 +104,7 @@ packages/utils/src/tokens/configs/aave.token.ts:92
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:77
+[packages/utils/src/tokens/configs/aave.token.ts:77](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L77)
 
 ***
 
@@ -122,7 +122,7 @@ packages/utils/src/tokens/configs/aave.token.ts:77
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:108
+[packages/utils/src/tokens/configs/aave.token.ts:108](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L108)
 
 ***
 
@@ -140,7 +140,7 @@ packages/utils/src/tokens/configs/aave.token.ts:108
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:123
+[packages/utils/src/tokens/configs/aave.token.ts:123](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L123)
 
 ***
 
@@ -166,7 +166,7 @@ packages/utils/src/tokens/configs/aave.token.ts:123
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:139
+[packages/utils/src/tokens/configs/aave.token.ts:139](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L139)
 
 ## Methods
 
@@ -184,4 +184,4 @@ packages/utils/src/tokens/configs/aave.token.ts:139
 
 #### Defined in
 
-packages/utils/src/tokens/configs/aave.token.ts:166
+[packages/utils/src/tokens/configs/aave.token.ts:166](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/aave.token.ts#L166)

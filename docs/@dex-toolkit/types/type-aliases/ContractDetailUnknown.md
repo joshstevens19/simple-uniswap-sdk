@@ -34,4 +34,4 @@ A mapping of method names to custom names or overrides for contract methods.
 
 ## Defined in
 
-packages/types/src/contract-detail.types.ts:39
+[packages/types/src/contract-detail.types.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/contract-detail.types.ts#L36)

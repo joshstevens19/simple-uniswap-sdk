@@ -20,7 +20,7 @@ Interface representing a DEX provider, which manages interaction with a blockcha
 
 #### Defined in
 
-packages/types/src/dex-provider.types.ts:63
+[packages/types/src/dex-provider.types.ts:63](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-provider.types.ts#L63)
 
 ***
 
@@ -36,7 +36,7 @@ The internal blockchain provider.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:38
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:38
 
 ***
 
@@ -52,7 +52,7 @@ The Multicall instance.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:42
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:42
 
 ***
 
@@ -68,7 +68,7 @@ The provider context, which includes chain and network details.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:40
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:40
 
 ## Accessors
 
@@ -84,7 +84,7 @@ Retrieves the chain configuration for the provider.
 
 #### Defined in
 
-packages/types/src/dex-provider.types.ts:69
+[packages/types/src/dex-provider.types.ts:69](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-provider.types.ts#L69)
 
 ***
 
@@ -100,7 +100,7 @@ Retrieves the name of the chain associated with the provider.
 
 #### Defined in
 
-packages/types/src/dex-provider.types.ts:75
+[packages/types/src/dex-provider.types.ts:75](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-provider.types.ts#L75)
 
 ***
 
@@ -120,7 +120,7 @@ Retrieves the custom network configuration, if any.
 
 #### Defined in
 
-packages/types/src/dex-provider.types.ts:72
+[packages/types/src/dex-provider.types.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-provider.types.ts#L72)
 
 ***
 
@@ -140,7 +140,7 @@ Retrieves the network details for the blockchain provider.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:48
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:48
 
 ***
 
@@ -160,7 +160,7 @@ Retrieves the blockchain provider instance.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:44
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:44
 
 ***
 
@@ -176,7 +176,7 @@ Retrieves the signer with the attached provider
 
 #### Defined in
 
-packages/types/src/dex-provider.types.ts:66
+[packages/types/src/dex-provider.types.ts:66](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-provider.types.ts#L66)
 
 ## Methods
 
@@ -208,7 +208,7 @@ their results in a structured format.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:61
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:61
 
 ***
 
@@ -252,7 +252,7 @@ A function that creates the contract call context.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:69
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:69
 
 ***
 
@@ -288,7 +288,7 @@ A promise that resolves to the native coin balance as an IDexNumber.
 
 #### Defined in
 
-packages/types/src/dex-provider.types.ts:86
+[packages/types/src/dex-provider.types.ts:86](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-provider.types.ts#L86)
 
 ***
 
@@ -320,4 +320,4 @@ The generated contract instance of the specified type.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/types/dist/esm/multicall-provider.types.d.ts:55
+submodules/multicall-toolkit/packages/types/dist/esm/multicall-provider.types.d.ts:55

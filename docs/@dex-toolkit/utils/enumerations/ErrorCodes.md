@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:7
+[packages/utils/src/errors/error-codes.ts:7](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L7)
 
 ***
 
@@ -24,7 +24,7 @@ packages/utils/src/errors/error-codes.ts:7
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:32
+[packages/utils/src/errors/error-codes.ts:32](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L32)
 
 ***
 
@@ -34,7 +34,7 @@ packages/utils/src/errors/error-codes.ts:32
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:41
+[packages/utils/src/errors/error-codes.ts:41](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L41)
 
 ***
 
@@ -44,7 +44,7 @@ packages/utils/src/errors/error-codes.ts:41
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:36
+[packages/utils/src/errors/error-codes.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L36)
 
 ***
 
@@ -54,7 +54,7 @@ packages/utils/src/errors/error-codes.ts:36
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:35
+[packages/utils/src/errors/error-codes.ts:35](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L35)
 
 ***
 
@@ -64,7 +64,7 @@ packages/utils/src/errors/error-codes.ts:35
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:51
+[packages/utils/src/errors/error-codes.ts:51](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L51)
 
 ***
 
@@ -74,7 +74,7 @@ packages/utils/src/errors/error-codes.ts:51
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:50
+[packages/utils/src/errors/error-codes.ts:50](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L50)
 
 ***
 
@@ -84,7 +84,7 @@ packages/utils/src/errors/error-codes.ts:50
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:54
+[packages/utils/src/errors/error-codes.ts:54](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L54)
 
 ***
 
@@ -94,7 +94,7 @@ packages/utils/src/errors/error-codes.ts:54
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:53
+[packages/utils/src/errors/error-codes.ts:53](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L53)
 
 ***
 
@@ -104,7 +104,7 @@ packages/utils/src/errors/error-codes.ts:53
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:52
+[packages/utils/src/errors/error-codes.ts:52](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L52)
 
 ***
 
@@ -114,7 +114,7 @@ packages/utils/src/errors/error-codes.ts:52
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:65
+[packages/utils/src/errors/error-codes.ts:65](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L65)
 
 ***
 
@@ -124,7 +124,7 @@ packages/utils/src/errors/error-codes.ts:65
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:21
+[packages/utils/src/errors/error-codes.ts:21](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L21)
 
 ***
 
@@ -134,7 +134,7 @@ packages/utils/src/errors/error-codes.ts:21
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:20
+[packages/utils/src/errors/error-codes.ts:20](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L20)
 
 ***
 
@@ -144,7 +144,7 @@ packages/utils/src/errors/error-codes.ts:20
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:4
+[packages/utils/src/errors/error-codes.ts:4](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L4)
 
 ***
 
@@ -154,7 +154,7 @@ packages/utils/src/errors/error-codes.ts:4
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:25
+[packages/utils/src/errors/error-codes.ts:25](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L25)
 
 ***
 
@@ -164,7 +164,7 @@ packages/utils/src/errors/error-codes.ts:25
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:3
+[packages/utils/src/errors/error-codes.ts:3](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L3)
 
 ***
 
@@ -174,7 +174,7 @@ packages/utils/src/errors/error-codes.ts:3
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:42
+[packages/utils/src/errors/error-codes.ts:42](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L42)
 
 ***
 
@@ -184,7 +184,7 @@ packages/utils/src/errors/error-codes.ts:42
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:12
+[packages/utils/src/errors/error-codes.ts:12](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L12)
 
 ***
 
@@ -194,7 +194,7 @@ packages/utils/src/errors/error-codes.ts:12
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:11
+[packages/utils/src/errors/error-codes.ts:11](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L11)
 
 ***
 
@@ -204,7 +204,7 @@ packages/utils/src/errors/error-codes.ts:11
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:57
+[packages/utils/src/errors/error-codes.ts:57](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L57)
 
 ***
 
@@ -214,7 +214,7 @@ packages/utils/src/errors/error-codes.ts:57
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:58
+[packages/utils/src/errors/error-codes.ts:58](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L58)
 
 ***
 
@@ -224,7 +224,7 @@ packages/utils/src/errors/error-codes.ts:58
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:17
+[packages/utils/src/errors/error-codes.ts:17](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L17)
 
 ***
 
@@ -234,7 +234,7 @@ packages/utils/src/errors/error-codes.ts:17
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:46
+[packages/utils/src/errors/error-codes.ts:46](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L46)
 
 ***
 
@@ -244,7 +244,7 @@ packages/utils/src/errors/error-codes.ts:46
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:47
+[packages/utils/src/errors/error-codes.ts:47](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L47)
 
 ***
 
@@ -254,7 +254,7 @@ packages/utils/src/errors/error-codes.ts:47
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:45
+[packages/utils/src/errors/error-codes.ts:45](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L45)
 
 ***
 
@@ -264,7 +264,7 @@ packages/utils/src/errors/error-codes.ts:45
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:5
+[packages/utils/src/errors/error-codes.ts:5](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L5)
 
 ***
 
@@ -274,7 +274,7 @@ packages/utils/src/errors/error-codes.ts:5
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:37
+[packages/utils/src/errors/error-codes.ts:37](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L37)
 
 ***
 
@@ -284,7 +284,7 @@ packages/utils/src/errors/error-codes.ts:37
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:38
+[packages/utils/src/errors/error-codes.ts:38](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L38)
 
 ***
 
@@ -294,7 +294,7 @@ packages/utils/src/errors/error-codes.ts:38
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:10
+[packages/utils/src/errors/error-codes.ts:10](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L10)
 
 ***
 
@@ -304,7 +304,7 @@ packages/utils/src/errors/error-codes.ts:10
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:16
+[packages/utils/src/errors/error-codes.ts:16](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L16)
 
 ***
 
@@ -314,7 +314,7 @@ packages/utils/src/errors/error-codes.ts:16
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:61
+[packages/utils/src/errors/error-codes.ts:61](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L61)
 
 ***
 
@@ -324,7 +324,7 @@ packages/utils/src/errors/error-codes.ts:61
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:13
+[packages/utils/src/errors/error-codes.ts:13](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L13)
 
 ***
 
@@ -334,7 +334,7 @@ packages/utils/src/errors/error-codes.ts:13
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:14
+[packages/utils/src/errors/error-codes.ts:14](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L14)
 
 ***
 
@@ -344,7 +344,7 @@ packages/utils/src/errors/error-codes.ts:14
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:15
+[packages/utils/src/errors/error-codes.ts:15](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L15)
 
 ***
 
@@ -354,7 +354,7 @@ packages/utils/src/errors/error-codes.ts:15
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:23
+[packages/utils/src/errors/error-codes.ts:23](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L23)
 
 ***
 
@@ -364,7 +364,7 @@ packages/utils/src/errors/error-codes.ts:23
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:22
+[packages/utils/src/errors/error-codes.ts:22](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L22)
 
 ***
 
@@ -374,7 +374,7 @@ packages/utils/src/errors/error-codes.ts:22
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:24
+[packages/utils/src/errors/error-codes.ts:24](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L24)
 
 ***
 
@@ -384,7 +384,7 @@ packages/utils/src/errors/error-codes.ts:24
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:33
+[packages/utils/src/errors/error-codes.ts:33](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L33)
 
 ***
 
@@ -394,7 +394,7 @@ packages/utils/src/errors/error-codes.ts:33
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:62
+[packages/utils/src/errors/error-codes.ts:62](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L62)
 
 ***
 
@@ -404,7 +404,7 @@ packages/utils/src/errors/error-codes.ts:62
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:34
+[packages/utils/src/errors/error-codes.ts:34](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L34)
 
 ***
 
@@ -414,7 +414,7 @@ packages/utils/src/errors/error-codes.ts:34
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:68
+[packages/utils/src/errors/error-codes.ts:68](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L68)
 
 ***
 
@@ -424,7 +424,7 @@ packages/utils/src/errors/error-codes.ts:68
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:6
+[packages/utils/src/errors/error-codes.ts:6](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L6)
 
 ***
 
@@ -434,7 +434,7 @@ packages/utils/src/errors/error-codes.ts:6
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:29
+[packages/utils/src/errors/error-codes.ts:29](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L29)
 
 ***
 
@@ -444,4 +444,4 @@ packages/utils/src/errors/error-codes.ts:29
 
 #### Defined in
 
-packages/utils/src/errors/error-codes.ts:28
+[packages/utils/src/errors/error-codes.ts:28](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/error-codes.ts#L28)

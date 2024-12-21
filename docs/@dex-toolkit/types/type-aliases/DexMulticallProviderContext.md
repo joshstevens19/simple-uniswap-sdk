@@ -12,4 +12,4 @@ DEX provider context, which can be an IDexProvider instance or a provider contex
 
 ## Defined in
 
-packages/types/src/dex-provider.types.ts:57
+[packages/types/src/dex-provider.types.ts:57](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-provider.types.ts#L57)

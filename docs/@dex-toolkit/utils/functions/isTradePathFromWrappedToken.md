@@ -24,4 +24,4 @@ A boolean indicating whether the trade path is from a wrapped token (to either a
 
 ## Defined in
 
-packages/utils/src/utils/trade.utils.ts:759
+[packages/utils/src/utils/trade.utils.ts:760](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/trade.utils.ts#L760)

@@ -42,4 +42,4 @@ console.log(areTiersValid); // true if both 500 and 3000 are valid in dexConfig 
 
 ## Defined in
 
-packages/utils/src/utils/router.utils.ts:307
+[packages/utils/src/utils/router.utils.ts:307](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/utils/router.utils.ts#L307)

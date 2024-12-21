@@ -1,6 +1,7 @@
 packages:
   - 'packages/*'
   - 'submodules/abi-toolkit/packages/*'
+  - 'submodules/chain-toolkit/packages/*'
   - 'submodules/multicall-toolkit/packages/*'
   - 'examples/*'
   - 'test/*'

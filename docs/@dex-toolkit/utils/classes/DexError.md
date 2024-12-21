@@ -38,7 +38,7 @@ Custom error class for DEX-related errors with additional context and typing
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:34
+[packages/utils/src/errors/dex-error.ts:34](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L34)
 
 ## Properties
 
@@ -64,7 +64,7 @@ Error code identifying the type of error
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:17
+[packages/utils/src/errors/dex-error.ts:17](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L17)
 
 ***
 
@@ -76,7 +76,7 @@ Additional context about the error
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:22
+[packages/utils/src/errors/dex-error.ts:22](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L22)
 
 ***
 
@@ -104,7 +104,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:12
+[packages/utils/src/errors/dex-error.ts:12](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L12)
 
 ***
 
@@ -116,7 +116,7 @@ Original error if this error wrapped another error
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:32
+[packages/utils/src/errors/dex-error.ts:32](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L32)
 
 ***
 
@@ -128,7 +128,7 @@ Stack trace if available
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:27
+[packages/utils/src/errors/dex-error.ts:27](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L27)
 
 ***
 
@@ -202,7 +202,7 @@ Creates a plain object representation of the error
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:88
+[packages/utils/src/errors/dex-error.ts:88](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L88)
 
 ***
 
@@ -218,7 +218,7 @@ Creates a string representation of the error including context
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:71
+[packages/utils/src/errors/dex-error.ts:71](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L71)
 
 ***
 
@@ -238,7 +238,7 @@ Adds additional context to an existing error
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:109
+[packages/utils/src/errors/dex-error.ts:109](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L109)
 
 ***
 
@@ -284,4 +284,4 @@ Helper method to determine if an unknown error is a DexError
 
 #### Defined in
 
-packages/utils/src/errors/dex-error.ts:121
+[packages/utils/src/errors/dex-error.ts:121](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/errors/dex-error.ts#L121)

@@ -1,5 +1,6 @@
+import { zkEVMMainChainId } from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
 import type { DexConfig } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
 
 import {
   uniswapFactoryV3ABI,
@@ -8,7 +9,6 @@ import {
   uniswapQuoterV3ABI,
   uniswapRouterV3ABI,
 } from '../../abis/index'
-import { zkEVMMainChainId } from '../../chains/chainIds'
 import { POLToken, WPOLToken } from '../../tokens/configs/index'
 import { dexTypeMap } from '../../utils/dex.utils'
 

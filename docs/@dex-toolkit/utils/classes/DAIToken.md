@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:33
+[packages/utils/src/tokens/configs/dai.token.ts:33](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L33)
 
 ***
 
@@ -50,7 +50,7 @@ packages/utils/src/tokens/configs/dai.token.ts:33
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:48
+[packages/utils/src/tokens/configs/dai.token.ts:48](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L48)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/tokens/configs/dai.token.ts:48
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:64
+[packages/utils/src/tokens/configs/dai.token.ts:64](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L64)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/tokens/configs/dai.token.ts:64
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:79
+[packages/utils/src/tokens/configs/dai.token.ts:79](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L79)
 
 ***
 
@@ -104,7 +104,7 @@ packages/utils/src/tokens/configs/dai.token.ts:79
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:95
+[packages/utils/src/tokens/configs/dai.token.ts:95](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L95)
 
 ***
 
@@ -122,7 +122,7 @@ packages/utils/src/tokens/configs/dai.token.ts:95
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:106
+[packages/utils/src/tokens/configs/dai.token.ts:106](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L106)
 
 ***
 
@@ -148,7 +148,7 @@ packages/utils/src/tokens/configs/dai.token.ts:106
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:122
+[packages/utils/src/tokens/configs/dai.token.ts:122](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L122)
 
 ***
 
@@ -166,7 +166,7 @@ packages/utils/src/tokens/configs/dai.token.ts:122
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:150
+[packages/utils/src/tokens/configs/dai.token.ts:150](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L150)
 
 ***
 
@@ -184,7 +184,7 @@ packages/utils/src/tokens/configs/dai.token.ts:150
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:165
+[packages/utils/src/tokens/configs/dai.token.ts:165](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L165)
 
 ***
 
@@ -210,7 +210,7 @@ packages/utils/src/tokens/configs/dai.token.ts:165
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:196
+[packages/utils/src/tokens/configs/dai.token.ts:196](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L196)
 
 ***
 
@@ -228,7 +228,7 @@ packages/utils/src/tokens/configs/dai.token.ts:196
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:181
+[packages/utils/src/tokens/configs/dai.token.ts:181](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L181)
 
 ***
 
@@ -246,7 +246,7 @@ packages/utils/src/tokens/configs/dai.token.ts:181
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:226
+[packages/utils/src/tokens/configs/dai.token.ts:226](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L226)
 
 ## Methods
 
@@ -264,4 +264,4 @@ packages/utils/src/tokens/configs/dai.token.ts:226
 
 #### Defined in
 
-packages/utils/src/tokens/configs/dai.token.ts:241
+[packages/utils/src/tokens/configs/dai.token.ts:241](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/tokens/configs/dai.token.ts#L241)

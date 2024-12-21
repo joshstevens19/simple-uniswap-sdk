@@ -36,7 +36,7 @@
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:48
+[packages/contracts/src/pool/pool.contract.ts:48](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L48)
 
 ## Properties
 
@@ -46,7 +46,7 @@ packages/contracts/src/pool/pool.contract.ts:48
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:44
+[packages/contracts/src/pool/pool.contract.ts:44](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L44)
 
 ***
 
@@ -60,7 +60,7 @@ packages/contracts/src/pool/pool.contract.ts:44
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -70,7 +70,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:46
+[packages/contracts/src/pool/pool.contract.ts:46](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L46)
 
 ***
 
@@ -106,7 +106,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -142,7 +142,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:128
+[packages/contracts/src/pool/pool.contract.ts:128](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L128)
 
 ***
 
@@ -164,7 +164,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ***
 
@@ -180,7 +180,7 @@ Get the pool contract
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:123
+[packages/contracts/src/pool/pool.contract.ts:123](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L123)
 
 ## Methods
 
@@ -220,7 +220,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:292
+[packages/contracts/src/pool/pool.contract.ts:292](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L292)
 
 ***
 
@@ -232,7 +232,7 @@ Executes a multicall for the given contract methods.
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"collectProtocol"`\> \| `MethodCall`\<`Contract`, `"fee"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal0X128"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal1X128"`\> \| `MethodCall`\<`Contract`, `"flash"`\> \| `MethodCall`\<`Contract`, `"increaseObservationCardinalityNext"`\> \| `MethodCall`\<`Contract`, `"liquidity"`\> \| `MethodCall`\<`Contract`, `"maxLiquidityPerTick"`\> \| `MethodCall`\<`Contract`, `"observations"`\> \| `MethodCall`\<`Contract`, `"observe"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"protocolFees"`\> \| `MethodCall`\<`Contract`, `"setFeeProtocol"`\> \| `MethodCall`\<`Contract`, `"slot0"`\> \| `MethodCall`\<`Contract`, `"snapshotCumulativesInside"`\> \| `MethodCall`\<`Contract`, `"tickBitmap"`\> \| `MethodCall`\<`Contract`, `"tickSpacing"`\> \| `MethodCall`\<`Contract`, `"ticks"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\> \| `MethodCall`\<`Contract`, `"collectProtocol"`\> \| `MethodCall`\<`Contract`, `"fee"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal0X128"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal1X128"`\> \| `MethodCall`\<`Contract`, `"flash"`\> \| `MethodCall`\<`Contract`, `"increaseObservationCardinalityNext"`\> \| `MethodCall`\<`Contract`, `"liquidity"`\> \| `MethodCall`\<`Contract`, `"maxLiquidityPerTick"`\> \| `MethodCall`\<`Contract`, `"observations"`\> \| `MethodCall`\<`Contract`, `"observe"`\> \| `MethodCall`\<`Contract`, `"protocolFees"`\> \| `MethodCall`\<`Contract`, `"setFeeProtocol"`\> \| `MethodCall`\<`Contract`, `"slot0"`\> \| `MethodCall`\<`Contract`, `"snapshotCumulativesInside"`\> \| `MethodCall`\<`Contract`, `"tickBitmap"`\> \| `MethodCall`\<`Contract`, `"tickSpacing"`\> \| `MethodCall`\<`Contract`, `"ticks"`\>\>
 
 The type of the calls object.
 
@@ -261,7 +261,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:250
+[packages/contracts/src/pool/pool.contract.ts:250](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L250)
 
 ***
 
@@ -309,7 +309,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:331
+[packages/contracts/src/pool/pool.contract.ts:331](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L331)
 
 ***
 
@@ -349,7 +349,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:382
+[packages/contracts/src/pool/pool.contract.ts:382](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L382)
 
 ***
 
@@ -381,7 +381,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:313
+[packages/contracts/src/pool/pool.contract.ts:313](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L313)
 
 ***
 
@@ -421,7 +421,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:358
+[packages/contracts/src/pool/pool.contract.ts:358](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L358)
 
 ***
 
@@ -453,7 +453,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:403
+[packages/contracts/src/pool/pool.contract.ts:403](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L403)
 
 ***
 
@@ -489,7 +489,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:521
+[packages/contracts/src/pool/pool.contract.ts:521](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L521)
 
 ***
 
@@ -513,7 +513,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:551
+[packages/contracts/src/pool/pool.contract.ts:551](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L551)
 
 ***
 
@@ -541,7 +541,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:581
+[packages/contracts/src/pool/pool.contract.ts:581](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L581)
 
 ***
 
@@ -581,7 +581,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:663
+[packages/contracts/src/pool/pool.contract.ts:663](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L663)
 
 ***
 
@@ -609,7 +609,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:801
+[packages/contracts/src/pool/pool.contract.ts:801](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L801)
 
 ***
 
@@ -649,7 +649,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:899
+[packages/contracts/src/pool/pool.contract.ts:899](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L899)
 
 ***
 
@@ -692,7 +692,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -714,7 +714,7 @@ The factory address.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:419
+[packages/contracts/src/pool/pool.contract.ts:419](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L419)
 
 ***
 
@@ -732,7 +732,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:427
+[packages/contracts/src/pool/pool.contract.ts:427](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L427)
 
 ***
 
@@ -754,7 +754,7 @@ The fee percentage for the pool.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:438
+[packages/contracts/src/pool/pool.contract.ts:438](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L438)
 
 ***
 
@@ -772,7 +772,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:446
+[packages/contracts/src/pool/pool.contract.ts:446](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L446)
 
 ***
 
@@ -794,7 +794,7 @@ The fee growth of token0.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:454
+[packages/contracts/src/pool/pool.contract.ts:454](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L454)
 
 ***
 
@@ -812,7 +812,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:462
+[packages/contracts/src/pool/pool.contract.ts:462](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L462)
 
 ***
 
@@ -834,7 +834,7 @@ The fee growth of token1.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:473
+[packages/contracts/src/pool/pool.contract.ts:473](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L473)
 
 ***
 
@@ -852,7 +852,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:481
+[packages/contracts/src/pool/pool.contract.ts:481](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L481)
 
 ***
 
@@ -896,7 +896,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:497
+[packages/contracts/src/pool/pool.contract.ts:497](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L497)
 
 ***
 
@@ -928,7 +928,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:536
+[packages/contracts/src/pool/pool.contract.ts:536](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L536)
 
 ***
 
@@ -960,7 +960,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:565
+[packages/contracts/src/pool/pool.contract.ts:565](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L565)
 
 ***
 
@@ -982,7 +982,7 @@ The current liquidity.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:592
+[packages/contracts/src/pool/pool.contract.ts:592](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L592)
 
 ***
 
@@ -1000,7 +1000,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:600
+[packages/contracts/src/pool/pool.contract.ts:600](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L600)
 
 ***
 
@@ -1022,7 +1022,7 @@ The maximum liquidity per tick.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:611
+[packages/contracts/src/pool/pool.contract.ts:611](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L611)
 
 ***
 
@@ -1040,7 +1040,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:619
+[packages/contracts/src/pool/pool.contract.ts:619](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L619)
 
 ***
 
@@ -1088,7 +1088,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:636
+[packages/contracts/src/pool/pool.contract.ts:636](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L636)
 
 ***
 
@@ -1116,7 +1116,7 @@ The observation data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:684
+[packages/contracts/src/pool/pool.contract.ts:684](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L684)
 
 ***
 
@@ -1140,7 +1140,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:698
+[packages/contracts/src/pool/pool.contract.ts:698](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L698)
 
 ***
 
@@ -1168,7 +1168,7 @@ The observation result.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:709
+[packages/contracts/src/pool/pool.contract.ts:709](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L709)
 
 ***
 
@@ -1192,7 +1192,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:723
+[packages/contracts/src/pool/pool.contract.ts:723](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L723)
 
 ***
 
@@ -1220,7 +1220,7 @@ The position data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:734
+[packages/contracts/src/pool/pool.contract.ts:734](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L734)
 
 ***
 
@@ -1244,7 +1244,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:748
+[packages/contracts/src/pool/pool.contract.ts:748](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L748)
 
 ***
 
@@ -1276,7 +1276,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:178
+[packages/contracts/src/pool/pool.contract.ts:178](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L178)
 
 ***
 
@@ -1288,7 +1288,7 @@ Helper function to dynamically prepare a contract context based on custom or def
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"collectProtocol"`\> \| `MethodCall`\<`Contract`, `"fee"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal0X128"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal1X128"`\> \| `MethodCall`\<`Contract`, `"flash"`\> \| `MethodCall`\<`Contract`, `"increaseObservationCardinalityNext"`\> \| `MethodCall`\<`Contract`, `"liquidity"`\> \| `MethodCall`\<`Contract`, `"maxLiquidityPerTick"`\> \| `MethodCall`\<`Contract`, `"observations"`\> \| `MethodCall`\<`Contract`, `"observe"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"protocolFees"`\> \| `MethodCall`\<`Contract`, `"setFeeProtocol"`\> \| `MethodCall`\<`Contract`, `"slot0"`\> \| `MethodCall`\<`Contract`, `"snapshotCumulativesInside"`\> \| `MethodCall`\<`Contract`, `"tickBitmap"`\> \| `MethodCall`\<`Contract`, `"tickSpacing"`\> \| `MethodCall`\<`Contract`, `"ticks"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"swap"`\> \| `MethodCall`\<`Contract`, `"initialize"`\> \| `MethodCall`\<`Contract`, `"factory"`\> \| `MethodCall`\<`Contract`, `"burn"`\> \| `MethodCall`\<`Contract`, `"collect"`\> \| `MethodCall`\<`Contract`, `"mint"`\> \| `MethodCall`\<`Contract`, `"positions"`\> \| `MethodCall`\<`Contract`, `"token0"`\> \| `MethodCall`\<`Contract`, `"token1"`\> \| `MethodCall`\<`Contract`, `"collectProtocol"`\> \| `MethodCall`\<`Contract`, `"fee"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal0X128"`\> \| `MethodCall`\<`Contract`, `"feeGrowthGlobal1X128"`\> \| `MethodCall`\<`Contract`, `"flash"`\> \| `MethodCall`\<`Contract`, `"increaseObservationCardinalityNext"`\> \| `MethodCall`\<`Contract`, `"liquidity"`\> \| `MethodCall`\<`Contract`, `"maxLiquidityPerTick"`\> \| `MethodCall`\<`Contract`, `"observations"`\> \| `MethodCall`\<`Contract`, `"observe"`\> \| `MethodCall`\<`Contract`, `"protocolFees"`\> \| `MethodCall`\<`Contract`, `"setFeeProtocol"`\> \| `MethodCall`\<`Contract`, `"slot0"`\> \| `MethodCall`\<`Contract`, `"snapshotCumulativesInside"`\> \| `MethodCall`\<`Contract`, `"tickBitmap"`\> \| `MethodCall`\<`Contract`, `"tickSpacing"`\> \| `MethodCall`\<`Contract`, `"ticks"`\>\>
 
 • **TCustomData** = `unknown`
 
@@ -1310,7 +1310,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:207
+[packages/contracts/src/pool/pool.contract.ts:207](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L207)
 
 ***
 
@@ -1332,7 +1332,7 @@ The protocol fees for token0 and token1.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:758
+[packages/contracts/src/pool/pool.contract.ts:758](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L758)
 
 ***
 
@@ -1350,7 +1350,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:769
+[packages/contracts/src/pool/pool.contract.ts:769](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L769)
 
 ***
 
@@ -1386,7 +1386,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:783
+[packages/contracts/src/pool/pool.contract.ts:783](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L783)
 
 ***
 
@@ -1408,7 +1408,7 @@ The slot0 data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:815
+[packages/contracts/src/pool/pool.contract.ts:815](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L815)
 
 ***
 
@@ -1426,7 +1426,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:826
+[packages/contracts/src/pool/pool.contract.ts:826](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L826)
 
 ***
 
@@ -1458,7 +1458,7 @@ The cumulative snapshot inside the range.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:836
+[packages/contracts/src/pool/pool.contract.ts:836](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L836)
 
 ***
 
@@ -1486,7 +1486,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:852
+[packages/contracts/src/pool/pool.contract.ts:852](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L852)
 
 ***
 
@@ -1534,7 +1534,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:872
+[packages/contracts/src/pool/pool.contract.ts:872](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L872)
 
 ***
 
@@ -1562,7 +1562,7 @@ The tick bitmap value.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:920
+[packages/contracts/src/pool/pool.contract.ts:920](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L920)
 
 ***
 
@@ -1586,7 +1586,7 @@ The CallContext object to be used with Multicall.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:929
+[packages/contracts/src/pool/pool.contract.ts:929](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L929)
 
 ***
 
@@ -1608,7 +1608,7 @@ The tick spacing value.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:939
+[packages/contracts/src/pool/pool.contract.ts:939](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L939)
 
 ***
 
@@ -1626,7 +1626,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:947
+[packages/contracts/src/pool/pool.contract.ts:947](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L947)
 
 ***
 
@@ -1654,7 +1654,7 @@ The tick data.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:959
+[packages/contracts/src/pool/pool.contract.ts:959](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L959)
 
 ***
 
@@ -1678,7 +1678,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:972
+[packages/contracts/src/pool/pool.contract.ts:972](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L972)
 
 ***
 
@@ -1700,7 +1700,7 @@ The address of token0.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:982
+[packages/contracts/src/pool/pool.contract.ts:982](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L982)
 
 ***
 
@@ -1718,7 +1718,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:990
+[packages/contracts/src/pool/pool.contract.ts:990](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L990)
 
 ***
 
@@ -1740,7 +1740,7 @@ The address of token1.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:1001
+[packages/contracts/src/pool/pool.contract.ts:1001](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L1001)
 
 ***
 
@@ -1758,4 +1758,4 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/pool/pool.contract.ts:1009
+[packages/contracts/src/pool/pool.contract.ts:1009](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/pool/pool.contract.ts#L1009)

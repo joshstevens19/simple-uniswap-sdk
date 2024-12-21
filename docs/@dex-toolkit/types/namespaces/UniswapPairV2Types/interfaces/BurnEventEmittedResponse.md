@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:84
+[packages/types/src/abis/uniswap-pair-v2.types.ts:84](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L84)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/uniswap-pair-v2.types.ts:84
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:85
+[packages/types/src/abis/uniswap-pair-v2.types.ts:85](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L85)
 
 ***
 
@@ -34,7 +34,7 @@ packages/types/src/abis/uniswap-pair-v2.types.ts:85
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:83
+[packages/types/src/abis/uniswap-pair-v2.types.ts:83](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L83)
 
 ***
 
@@ -44,4 +44,4 @@ packages/types/src/abis/uniswap-pair-v2.types.ts:83
 
 #### Defined in
 
-packages/types/src/abis/uniswap-pair-v2.types.ts:86
+[packages/types/src/abis/uniswap-pair-v2.types.ts:86](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-pair-v2.types.ts#L86)

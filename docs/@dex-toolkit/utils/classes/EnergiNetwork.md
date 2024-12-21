@@ -28,7 +28,7 @@
 
 #### Defined in
 
-packages/utils/src/chains/networks/energi.network.ts:53
+[packages/utils/src/chains/networks/energi.network.ts:33](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/energi.network.ts#L33)
 
 ***
 
@@ -42,7 +42,7 @@ packages/utils/src/chains/networks/energi.network.ts:53
 
 #### Defined in
 
-packages/utils/src/chains/networks/energi.network.ts:82
+[packages/utils/src/chains/networks/energi.network.ts:45](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/energi.network.ts#L45)
 
 ***
 
@@ -60,4 +60,4 @@ packages/utils/src/chains/networks/energi.network.ts:82
 
 #### Defined in
 
-packages/utils/src/chains/networks/energi.network.ts:117
+[packages/utils/src/chains/networks/energi.network.ts:57](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/energi.network.ts#L57)

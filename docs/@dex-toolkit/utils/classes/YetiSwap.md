@@ -32,7 +32,7 @@
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/yetiSwap.dex.ts:61
+[packages/utils/src/exchanges/configs/yetiSwap.dex.ts:62](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/yetiSwap.dex.ts#L62)
 
 ## Methods
 
@@ -46,7 +46,7 @@ packages/utils/src/exchanges/configs/yetiSwap.dex.ts:61
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/yetiSwap.dex.ts:104
+[packages/utils/src/exchanges/configs/yetiSwap.dex.ts:105](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/yetiSwap.dex.ts#L105)
 
 ***
 
@@ -64,4 +64,4 @@ packages/utils/src/exchanges/configs/yetiSwap.dex.ts:104
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/yetiSwap.dex.ts:95
+[packages/utils/src/exchanges/configs/yetiSwap.dex.ts:96](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/yetiSwap.dex.ts#L96)

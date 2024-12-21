@@ -42,7 +42,7 @@ V3 Deployments:
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:66
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:66](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L66)
 
 ***
 
@@ -68,7 +68,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:66
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:127
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:127](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L127)
 
 ***
 
@@ -86,7 +86,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:127
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:216
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:216](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L216)
 
 ***
 
@@ -104,7 +104,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:216
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:277
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:277](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L277)
 
 ***
 
@@ -130,7 +130,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:277
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:338
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:338](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L338)
 
 ***
 
@@ -148,7 +148,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:338
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:427
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:427](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L427)
 
 ***
 
@@ -174,7 +174,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:427
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:463
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:463](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L463)
 
 ***
 
@@ -192,7 +192,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:463
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:576
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:576](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L576)
 
 ***
 
@@ -210,7 +210,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:576
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:637
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:637](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L637)
 
 ***
 
@@ -228,7 +228,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:637
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:701
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:701](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L701)
 
 ## Methods
 
@@ -242,7 +242,7 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:701
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:798
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:798](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L798)
 
 ***
 
@@ -260,4 +260,4 @@ packages/utils/src/exchanges/configs/sushiSwap.dex.ts:798
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/sushiSwap.dex.ts:765
+[packages/utils/src/exchanges/configs/sushiSwap.dex.ts:765](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/sushiSwap.dex.ts#L765)

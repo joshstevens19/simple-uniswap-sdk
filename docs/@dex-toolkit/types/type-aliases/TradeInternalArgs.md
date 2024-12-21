@@ -24,4 +24,4 @@ The DEX provider responsible for handling the trade execution.
 
 ## Defined in
 
-packages/types/src/trade.types.ts:82
+[packages/types/src/trade.types.ts:82](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/trade.types.ts#L82)

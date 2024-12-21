@@ -32,4 +32,4 @@ The URL where the token list can be fetched.
 
 ## Defined in
 
-packages/types/src/token-list.types.ts:50
+[packages/types/src/token-list.types.ts:51](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/token-list.types.ts#L51)

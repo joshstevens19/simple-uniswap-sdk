@@ -46,7 +46,7 @@ Not available
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:30
+[packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:30](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pulseXSwap.dex.ts#L30)
 
 ## Methods
 
@@ -60,7 +60,7 @@ packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:30
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:148
+[packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:148](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pulseXSwap.dex.ts#L148)
 
 ***
 
@@ -78,4 +78,4 @@ packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:148
 
 #### Defined in
 
-packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:137
+[packages/utils/src/exchanges/configs/pulseXSwap.dex.ts:137](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/exchanges/configs/pulseXSwap.dex.ts#L137)

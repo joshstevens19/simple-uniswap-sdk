@@ -137,4 +137,4 @@ Slippage tolerance in percentage, e.g., 0.005 represents 0.5% slippage.
 
 ## Defined in
 
-packages/types/src/dex.types.ts:145
+[packages/types/src/dex.types.ts:146](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex.types.ts#L146)

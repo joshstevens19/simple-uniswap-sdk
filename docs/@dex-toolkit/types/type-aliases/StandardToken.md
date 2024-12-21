@@ -12,4 +12,4 @@ Combined type definition for all supported token standards.
 
 ## Defined in
 
-packages/types/src/standard.types.ts:24
+[packages/types/src/standard.types.ts:24](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/standard.types.ts#L24)

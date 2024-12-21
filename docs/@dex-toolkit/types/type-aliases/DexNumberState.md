@@ -26,4 +26,4 @@ This state helps track whether the value has been transformed to or from its sma
 
 ## Defined in
 
-packages/types/src/dex-number.types.ts:43
+[packages/types/src/dex-number.types.ts:43](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/dex-number.types.ts#L43)

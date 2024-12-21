@@ -32,4 +32,4 @@ The protocol of the decentralized exchange (DEX) (e.g., V2, V3).
 
 ## Defined in
 
-packages/types/src/contract-detail.types.ts:49
+[packages/types/src/contract-detail.types.ts:46](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/contract-detail.types.ts#L46)

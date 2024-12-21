@@ -35,7 +35,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:54
+[packages/types/src/abis/bep20.types.ts:54](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L54)
 
 ***
 
@@ -66,7 +66,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:67
+[packages/types/src/abis/bep20.types.ts:67](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L67)
 
 ***
 
@@ -93,7 +93,7 @@ Type: address, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:79
+[packages/types/src/abis/bep20.types.ts:79](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L79)
 
 ***
 
@@ -116,7 +116,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:89
+[packages/types/src/abis/bep20.types.ts:89](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L89)
 
 ***
 
@@ -139,7 +139,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:96
+[packages/types/src/abis/bep20.types.ts:96](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L96)
 
 ***
 
@@ -162,7 +162,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:103
+[packages/types/src/abis/bep20.types.ts:103](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L103)
 
 ***
 
@@ -185,7 +185,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:110
+[packages/types/src/abis/bep20.types.ts:110](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L110)
 
 ***
 
@@ -208,7 +208,7 @@ Type: function
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:117
+[packages/types/src/abis/bep20.types.ts:117](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L117)
 
 ***
 
@@ -239,7 +239,7 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:126
+[packages/types/src/abis/bep20.types.ts:126](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L126)
 
 ***
 
@@ -274,4 +274,4 @@ Type: uint256, Indexed: false
 
 #### Defined in
 
-packages/types/src/abis/bep20.types.ts:140
+[packages/types/src/abis/bep20.types.ts:140](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/bep20.types.ts#L140)

@@ -36,7 +36,7 @@
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:42
+[packages/contracts/src/factory/factory-v3.contract.ts:42](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L42)
 
 ## Properties
 
@@ -46,7 +46,7 @@ packages/contracts/src/factory/factory-v3.contract.ts:42
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:38
+[packages/contracts/src/factory/factory-v3.contract.ts:38](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L38)
 
 ***
 
@@ -60,7 +60,7 @@ packages/contracts/src/factory/factory-v3.contract.ts:38
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:4
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:4
 
 ***
 
@@ -70,7 +70,7 @@ submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:40
+[packages/contracts/src/factory/factory-v3.contract.ts:40](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L40)
 
 ***
 
@@ -106,7 +106,7 @@ The contract details of the concrete class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:18
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:18
 
 ***
 
@@ -142,7 +142,7 @@ Get the factory contract
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:106
+[packages/contracts/src/factory/factory-v3.contract.ts:106](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L106)
 
 ***
 
@@ -158,7 +158,7 @@ Get the method names
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:111
+[packages/contracts/src/factory/factory-v3.contract.ts:111](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L111)
 
 ***
 
@@ -180,7 +180,7 @@ The `MulticallProvider` instance used by this class.
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:12
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:12
 
 ## Methods
 
@@ -192,7 +192,7 @@ Executes a multicall for the given contract methods.
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"owner"`\> \| `MethodCall`\<`Contract`, `"createPool"`\> \| `MethodCall`\<`Contract`, `"enableFeeTier"`\> \| `MethodCall`\<`Contract`, `"feeTierTickSpacing"`\> \| `MethodCall`\<`Contract`, `"getPool"`\> \| `MethodCall`\<`Contract`, `"parameters"`\> \| `MethodCall`\<`Contract`, `"setOwner"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"owner"`\> \| `MethodCall`\<`Contract`, `"createPool"`\> \| `MethodCall`\<`Contract`, `"setOwner"`\> \| `MethodCall`\<`Contract`, `"enableFeeTier"`\> \| `MethodCall`\<`Contract`, `"feeTierTickSpacing"`\> \| `MethodCall`\<`Contract`, `"getPool"`\> \| `MethodCall`\<`Contract`, `"parameters"`\>\>
 
 The type of the calls object.
 
@@ -221,7 +221,7 @@ The results are typed according to the return types of the called methods.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:233
+[packages/contracts/src/factory/factory-v3.contract.ts:233](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L233)
 
 ***
 
@@ -261,7 +261,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:275
+[packages/contracts/src/factory/factory-v3.contract.ts:275](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L275)
 
 ***
 
@@ -297,7 +297,7 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:311
+[packages/contracts/src/factory/factory-v3.contract.ts:311](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L311)
 
 ***
 
@@ -329,7 +329,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:296
+[packages/contracts/src/factory/factory-v3.contract.ts:296](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L296)
 
 ***
 
@@ -357,7 +357,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:329
+[packages/contracts/src/factory/factory-v3.contract.ts:329](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L329)
 
 ***
 
@@ -381,7 +381,7 @@ The encoded function data.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:456
+[packages/contracts/src/factory/factory-v3.contract.ts:456](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L456)
 
 ***
 
@@ -424,7 +424,7 @@ A promise that resolves to an object containing the block number,
 
 #### Defined in
 
-submodules/ethereum-multicall/packages/provider/dist/esm/multicall-provider-base.d.ts:31
+submodules/multicall-toolkit/packages/provider/dist/esm/multicall-provider-base.d.ts:31
 
 ***
 
@@ -452,7 +452,7 @@ The tick spacing.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:341
+[packages/contracts/src/factory/factory-v3.contract.ts:341](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L341)
 
 ***
 
@@ -476,7 +476,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:350
+[packages/contracts/src/factory/factory-v3.contract.ts:350](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L350)
 
 ***
 
@@ -512,7 +512,7 @@ The address of the pool.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:363
+[packages/contracts/src/factory/factory-v3.contract.ts:363](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L363)
 
 ***
 
@@ -544,7 +544,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:382
+[packages/contracts/src/factory/factory-v3.contract.ts:382](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L382)
 
 ***
 
@@ -566,7 +566,7 @@ The owner address.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:398
+[packages/contracts/src/factory/factory-v3.contract.ts:398](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L398)
 
 ***
 
@@ -584,7 +584,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:406
+[packages/contracts/src/factory/factory-v3.contract.ts:406](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L406)
 
 ***
 
@@ -606,7 +606,7 @@ The factory parameters.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:417
+[packages/contracts/src/factory/factory-v3.contract.ts:417](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L417)
 
 ***
 
@@ -624,7 +624,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:428
+[packages/contracts/src/factory/factory-v3.contract.ts:428](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L428)
 
 ***
 
@@ -656,7 +656,7 @@ The call context.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:161
+[packages/contracts/src/factory/factory-v3.contract.ts:161](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L161)
 
 ***
 
@@ -668,7 +668,7 @@ Helper function to dynamically prepare a contract context based on custom or def
 
 #### Type Parameters
 
-• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"owner"`\> \| `MethodCall`\<`Contract`, `"createPool"`\> \| `MethodCall`\<`Contract`, `"enableFeeTier"`\> \| `MethodCall`\<`Contract`, `"feeTierTickSpacing"`\> \| `MethodCall`\<`Contract`, `"getPool"`\> \| `MethodCall`\<`Contract`, `"parameters"`\> \| `MethodCall`\<`Contract`, `"setOwner"`\>\>
+• **TCalls** *extends* `Record`\<`string`, `MethodCall`\<`Contract`, `"owner"`\> \| `MethodCall`\<`Contract`, `"createPool"`\> \| `MethodCall`\<`Contract`, `"setOwner"`\> \| `MethodCall`\<`Contract`, `"enableFeeTier"`\> \| `MethodCall`\<`Contract`, `"feeTierTickSpacing"`\> \| `MethodCall`\<`Contract`, `"getPool"`\> \| `MethodCall`\<`Contract`, `"parameters"`\>\>
 
 • **TCustomData** = `unknown`
 
@@ -690,7 +690,7 @@ The contract context, including the address, ABI, calls, and optional custom dat
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:190
+[packages/contracts/src/factory/factory-v3.contract.ts:190](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L190)
 
 ***
 
@@ -722,4 +722,4 @@ The contract transaction.
 
 #### Defined in
 
-packages/contracts/src/factory/factory-v3.contract.ts:441
+[packages/contracts/src/factory/factory-v3.contract.ts:441](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/contracts/src/factory/factory-v3.contract.ts#L441)

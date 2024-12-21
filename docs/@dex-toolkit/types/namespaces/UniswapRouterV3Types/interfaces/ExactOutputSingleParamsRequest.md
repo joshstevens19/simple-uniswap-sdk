@@ -14,7 +14,7 @@
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v3.types.ts:80
+[packages/types/src/abis/uniswap-router-v3.types.ts:80](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v3.types.ts#L80)
 
 ***
 
@@ -24,7 +24,7 @@ packages/types/src/abis/uniswap-router-v3.types.ts:80
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v3.types.ts:79
+[packages/types/src/abis/uniswap-router-v3.types.ts:79](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v3.types.ts#L79)
 
 ***
 
@@ -34,7 +34,7 @@ packages/types/src/abis/uniswap-router-v3.types.ts:79
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v3.types.ts:77
+[packages/types/src/abis/uniswap-router-v3.types.ts:77](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v3.types.ts#L77)
 
 ***
 
@@ -44,7 +44,7 @@ packages/types/src/abis/uniswap-router-v3.types.ts:77
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v3.types.ts:78
+[packages/types/src/abis/uniswap-router-v3.types.ts:78](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v3.types.ts#L78)
 
 ***
 
@@ -54,7 +54,7 @@ packages/types/src/abis/uniswap-router-v3.types.ts:78
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v3.types.ts:81
+[packages/types/src/abis/uniswap-router-v3.types.ts:81](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v3.types.ts#L81)
 
 ***
 
@@ -64,7 +64,7 @@ packages/types/src/abis/uniswap-router-v3.types.ts:81
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v3.types.ts:75
+[packages/types/src/abis/uniswap-router-v3.types.ts:75](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v3.types.ts#L75)
 
 ***
 
@@ -74,4 +74,4 @@ packages/types/src/abis/uniswap-router-v3.types.ts:75
 
 #### Defined in
 
-packages/types/src/abis/uniswap-router-v3.types.ts:76
+[packages/types/src/abis/uniswap-router-v3.types.ts:76](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/types/src/abis/uniswap-router-v3.types.ts#L76)

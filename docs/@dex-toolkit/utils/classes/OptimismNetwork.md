@@ -28,7 +28,7 @@
 
 #### Defined in
 
-packages/utils/src/chains/networks/optimism.network.ts:53
+[packages/utils/src/chains/networks/optimism.network.ts:36](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/optimism.network.ts#L36)
 
 ***
 
@@ -42,7 +42,7 @@ packages/utils/src/chains/networks/optimism.network.ts:53
 
 #### Defined in
 
-packages/utils/src/chains/networks/optimism.network.ts:117
+[packages/utils/src/chains/networks/optimism.network.ts:48](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/optimism.network.ts#L48)
 
 ***
 
@@ -60,4 +60,4 @@ packages/utils/src/chains/networks/optimism.network.ts:117
 
 #### Defined in
 
-packages/utils/src/chains/networks/optimism.network.ts:199
+[packages/utils/src/chains/networks/optimism.network.ts:60](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/utils/src/chains/networks/optimism.network.ts#L60)

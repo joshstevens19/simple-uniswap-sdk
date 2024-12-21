@@ -1,16 +1,3 @@
-import type { DexConfig } from '@dex-toolkit/types'
-import type { ChainId } from '@multicall-toolkit/types'
-
-import {
-  uniswapFactoryV2ABI,
-  uniswapFactoryV3ABI,
-  uniswapPairV2ABI,
-  uniswapPoolV3ABI,
-  uniswapPositionManagerV3ABI,
-  uniswapQuoterV3ABI,
-  uniswapRouterV2ABI,
-  uniswapRouterV3ABI,
-} from '../../abis/index'
 import {
   arbitrumMainChainId,
   avaxFujiChainId,
@@ -25,7 +12,20 @@ import {
   optimismMainChainId,
   polygonMainChainId,
   zkEVMMainChainId,
-} from '../../chains/chainIds'
+} from '@chain-toolkit/chains'
+import type { ChainId } from '@chain-toolkit/schemas'
+import type { DexConfig } from '@dex-toolkit/types'
+
+import {
+  uniswapFactoryV2ABI,
+  uniswapFactoryV3ABI,
+  uniswapPairV2ABI,
+  uniswapPoolV3ABI,
+  uniswapPositionManagerV3ABI,
+  uniswapQuoterV3ABI,
+  uniswapRouterV2ABI,
+  uniswapRouterV3ABI,
+} from '../../abis/index'
 import {
   AVAXToken,
   BNBToken,

@@ -39,7 +39,7 @@ The type of format used for numeric values in the class methods.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:72
+[packages/core/src/liquidity/liquidity.ts:72](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L72)
 
 ## Properties
 
@@ -55,7 +55,7 @@ DEX configurations indexed by DEX tag.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:124
+[packages/core/src/liquidity/liquidity.abstract.ts:124](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L124)
 
 ***
 
@@ -71,7 +71,7 @@ The DEX provider for managing blockchain interactions.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:114
+[packages/core/src/liquidity/liquidity.abstract.ts:114](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L114)
 
 ***
 
@@ -81,7 +81,7 @@ packages/core/src/liquidity/liquidity.abstract.ts:114
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:65
+[packages/core/src/liquidity/liquidity.ts:65](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L65)
 
 ***
 
@@ -91,7 +91,7 @@ packages/core/src/liquidity/liquidity.ts:65
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:61
+[packages/core/src/liquidity/liquidity.ts:61](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L61)
 
 ***
 
@@ -101,7 +101,7 @@ packages/core/src/liquidity/liquidity.ts:61
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:57
+[packages/core/src/liquidity/liquidity.ts:57](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L57)
 
 ***
 
@@ -111,7 +111,7 @@ packages/core/src/liquidity/liquidity.ts:57
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:59
+[packages/core/src/liquidity/liquidity.ts:59](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L59)
 
 ***
 
@@ -121,7 +121,7 @@ packages/core/src/liquidity/liquidity.ts:59
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:70
+[packages/core/src/liquidity/liquidity.ts:70](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L70)
 
 ***
 
@@ -137,7 +137,7 @@ Context for handling multiple price-related operations.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:129
+[packages/core/src/liquidity/liquidity.abstract.ts:129](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L129)
 
 ***
 
@@ -153,7 +153,7 @@ Information about the native currency for the current network.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:104
+[packages/core/src/liquidity/liquidity.abstract.ts:104](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L104)
 
 ***
 
@@ -169,7 +169,7 @@ Information about the wrapped native token for the current network.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:109
+[packages/core/src/liquidity/liquidity.abstract.ts:109](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L109)
 
 ***
 
@@ -185,7 +185,7 @@ Configuration settings for liquidity operations.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:119
+[packages/core/src/liquidity/liquidity.abstract.ts:119](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L119)
 
 ***
 
@@ -195,7 +195,7 @@ packages/core/src/liquidity/liquidity.abstract.ts:119
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:67
+[packages/core/src/liquidity/liquidity.ts:67](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L67)
 
 ***
 
@@ -211,7 +211,7 @@ The "from" token in liquidity operations.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:84
+[packages/core/src/liquidity/liquidity.abstract.ts:84](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L84)
 
 ***
 
@@ -227,7 +227,7 @@ The contract instance for the "from" token.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:94
+[packages/core/src/liquidity/liquidity.abstract.ts:94](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L94)
 
 ***
 
@@ -243,7 +243,7 @@ The "to" token in liquidity operations.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:89
+[packages/core/src/liquidity/liquidity.abstract.ts:89](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L89)
 
 ***
 
@@ -259,7 +259,7 @@ The contract instance for the "to" token.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:99
+[packages/core/src/liquidity/liquidity.abstract.ts:99](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L99)
 
 ***
 
@@ -275,7 +275,7 @@ Factory for managing token-related operations.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:134
+[packages/core/src/liquidity/liquidity.abstract.ts:134](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L134)
 
 ***
 
@@ -291,7 +291,7 @@ The wallet address associated with the liquidity operations.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:79
+[packages/core/src/liquidity/liquidity.abstract.ts:79](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L79)
 
 ***
 
@@ -301,7 +301,7 @@ packages/core/src/liquidity/liquidity.abstract.ts:79
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:63
+[packages/core/src/liquidity/liquidity.ts:63](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L63)
 
 ## Accessors
 
@@ -321,7 +321,7 @@ Get the dex provider
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:288
+[packages/core/src/liquidity/liquidity.abstract.ts:288](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L288)
 
 ***
 
@@ -343,7 +343,7 @@ The native currency information.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:306
+[packages/core/src/liquidity/liquidity.abstract.ts:306](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L306)
 
 ***
 
@@ -365,7 +365,7 @@ The native wrapped token information.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:297
+[packages/core/src/liquidity/liquidity.abstract.ts:297](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L297)
 
 ***
 
@@ -383,7 +383,7 @@ The liquidity protocol V2 instance, if it exists; otherwise, undefined.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:166
+[packages/core/src/liquidity/liquidity.ts:166](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L166)
 
 ***
 
@@ -401,7 +401,7 @@ The liquidity protocol V3 instance, if it exists; otherwise, undefined.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:175
+[packages/core/src/liquidity/liquidity.ts:175](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L175)
 
 ***
 
@@ -421,7 +421,7 @@ Get the from token
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:260
+[packages/core/src/liquidity/liquidity.abstract.ts:260](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L260)
 
 ***
 
@@ -439,7 +439,7 @@ The factory responsible for operations on token A.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:148
+[packages/core/src/liquidity/liquidity.ts:148](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L148)
 
 ***
 
@@ -459,7 +459,7 @@ Get the to token
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:267
+[packages/core/src/liquidity/liquidity.abstract.ts:267](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L267)
 
 ***
 
@@ -477,7 +477,7 @@ The factory responsible for operations on token B.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:157
+[packages/core/src/liquidity/liquidity.ts:157](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L157)
 
 ***
 
@@ -497,7 +497,7 @@ Get the token list factory
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:281
+[packages/core/src/liquidity/liquidity.abstract.ts:281](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L281)
 
 ***
 
@@ -517,7 +517,7 @@ Get the tokens factory
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:274
+[packages/core/src/liquidity/liquidity.abstract.ts:274](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L274)
 
 ## Methods
 
@@ -538,7 +538,7 @@ This method generates the necessary liquidity context and starts monitoring bloc
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:187
+[packages/core/src/liquidity/liquidity.ts:187](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L187)
 
 ***
 
@@ -569,7 +569,7 @@ This is called automatically when:
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:708
+[packages/core/src/liquidity/liquidity.ts:708](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L708)
 
 ***
 
@@ -594,7 +594,7 @@ A function that executes the liquidity operation
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:580
+[packages/core/src/liquidity/liquidity.ts:580](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L580)
 
 ***
 
@@ -641,7 +641,7 @@ The context is maintained internally in DexNumber format for accurate comparison
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:543
+[packages/core/src/liquidity/liquidity.ts:543](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L543)
 
 ***
 
@@ -666,7 +666,7 @@ This method:
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:760
+[packages/core/src/liquidity/liquidity.ts:760](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L760)
 
 ***
 
@@ -722,7 +722,7 @@ Promise resolving to the transaction data, or undefined if approval is not neede
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:448
+[packages/core/src/liquidity/liquidity.abstract.ts:448](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L448)
 
 ***
 
@@ -772,7 +772,7 @@ DexError if the protocol is not supported or if the liquidity context could not 
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:281
+[packages/core/src/liquidity/liquidity.ts:281](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L281)
 
 ***
 
@@ -800,7 +800,7 @@ Get coin balance
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:317
+[packages/core/src/liquidity/liquidity.abstract.ts:317](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L317)
 
 ***
 
@@ -830,7 +830,7 @@ A promise resolving to the balance of token A.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:374
+[packages/core/src/liquidity/liquidity.ts:374](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L374)
 
 ***
 
@@ -860,7 +860,7 @@ A promise resolving to the balance of token B.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:392
+[packages/core/src/liquidity/liquidity.ts:392](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L392)
 
 ***
 
@@ -880,7 +880,7 @@ Get the token prices for the from and to tokens, indexed by contract address.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:411
+[packages/core/src/liquidity/liquidity.abstract.ts:411](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L411)
 
 ***
 
@@ -913,7 +913,7 @@ before they're accessed. If it throws, it indicates an internal state issue.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:733
+[packages/core/src/liquidity/liquidity.ts:733](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L733)
 
 ***
 
@@ -957,7 +957,7 @@ If there's an error processing subscription updates
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:858
+[packages/core/src/liquidity/liquidity.ts:858](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L858)
 
 ***
 
@@ -1009,7 +1009,7 @@ DexError if the balance is not provided.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:379
+[packages/core/src/liquidity/liquidity.abstract.ts:379](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L379)
 
 ***
 
@@ -1053,7 +1053,7 @@ A `TokenBalanceInfo` object containing the allowance and a boolean indicating if
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.abstract.ts:336
+[packages/core/src/liquidity/liquidity.abstract.ts:336](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.abstract.ts#L336)
 
 ***
 
@@ -1095,7 +1095,7 @@ If there's an error generating or processing the new context
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:789
+[packages/core/src/liquidity/liquidity.ts:789](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L789)
 
 ***
 
@@ -1116,7 +1116,7 @@ This method generates the necessary liquidity context and starts monitoring bloc
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:227
+[packages/core/src/liquidity/liquidity.ts:227](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L227)
 
 ***
 
@@ -1154,7 +1154,7 @@ await liquidity.requote("subscription-123", 15372648);
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:419
+[packages/core/src/liquidity/liquidity.ts:419](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L419)
 
 ***
 
@@ -1183,7 +1183,7 @@ Block watching is started unless explicitly disabled in settings.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:472
+[packages/core/src/liquidity/liquidity.ts:472](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L472)
 
 ***
 
@@ -1206,7 +1206,7 @@ to prevent unnecessary block processing.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:453
+[packages/core/src/liquidity/liquidity.ts:453](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L453)
 
 ***
 
@@ -1229,4 +1229,4 @@ The watcher is automatically managed based on active subscriptions.
 
 #### Defined in
 
-packages/core/src/liquidity/liquidity.ts:436
+[packages/core/src/liquidity/liquidity.ts:436](https://github.com/niZmosis/dex-toolkit/blob/3d8b41b44787b30fbea5de3ab4737662ffb61bc8/packages/core/src/liquidity/liquidity.ts#L436)

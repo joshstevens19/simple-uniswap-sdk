@@ -353,7 +353,7 @@ export interface Contract {
     _tokenX: string,
     _tokenY: string,
     overrides?: ContractCallOverrides,
-  ): Promise<LBPairsAvailableResponse[]>
+  ): Promise<GetAllLBPairsLBPairsAvailableResponse[]>
   /**
    * Payable: false
    * Constant: true
