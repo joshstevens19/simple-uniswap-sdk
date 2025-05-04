@@ -29,10 +29,7 @@ export class TokenFactory {
   constructor(
     private _tokenContractAddress: string,
     private _ethersProvider: EthersProvider,
-    private _customNetwork?: CustomNetwork | undefined,
-    private _cloneUniswapContractDetails?:
-      | CloneUniswapContractDetails
-      | undefined
+    private _customNetwork?: CustomNetwork | undefined
   ) {}
 
   /**
@@ -101,7 +98,8 @@ export class TokenFactory {
    */
   public async allowance(
     uniswapVersion: UniswapVersion,
-    ethereumAddress: string
+    ethereumAddress: string,
+    cloneUniswapContractDetails: CloneUniswapContractDetails
   ): Promise<string> {
     if (isNativeEth(this._tokenContractAddress)) {
       return '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
@@ -110,10 +108,10 @@ export class TokenFactory {
         ethereumAddress,
         uniswapVersion === UniswapVersion.v2
           ? uniswapContracts.v2.getRouterAddress(
-              this._cloneUniswapContractDetails
+              cloneUniswapContractDetails
             )
           : uniswapContracts.v3.getRouterAddress(
-              this._cloneUniswapContractDetails
+              cloneUniswapContractDetails
             )
       );
 
@@ -165,7 +163,8 @@ export class TokenFactory {
    * @param ethereumAddress The ethereum address
    */
   public async getAllowanceAndBalanceOf(
-    ethereumAddress: string
+    ethereumAddress: string,
+    cloneUniswapContractDetails: CloneUniswapContractDetails
   ): Promise<AllowanceAndBalanceOf> {
     if (isNativeEth(this._tokenContractAddress)) {
       return {
@@ -184,13 +183,15 @@ export class TokenFactory {
       contractCallContext.push(
         this.buildAllowanceAndBalanceContractCallContext(
           ethereumAddress,
-          UniswapVersion.v2
+          UniswapVersion.v2,
+          cloneUniswapContractDetails
         )
       );
       contractCallContext.push(
         this.buildAllowanceAndBalanceContractCallContext(
           ethereumAddress,
-          UniswapVersion.v3
+          UniswapVersion.v3,
+          cloneUniswapContractDetails
         )
       );
 
@@ -216,7 +217,8 @@ export class TokenFactory {
 
   private buildAllowanceAndBalanceContractCallContext(
     ethereumAddress: string,
-    uniswapVersion: UniswapVersion
+    uniswapVersion: UniswapVersion,
+    cloneUniswapContractDetails: CloneUniswapContractDetails
   ): ContractCallContext {
     return {
       reference: uniswapVersion,
@@ -230,10 +232,10 @@ export class TokenFactory {
             ethereumAddress,
             uniswapVersion === UniswapVersion.v2
               ? uniswapContracts.v2.getRouterAddress(
-                  this._cloneUniswapContractDetails
+                  cloneUniswapContractDetails
                 )
               : uniswapContracts.v3.getRouterAddress(
-                  this._cloneUniswapContractDetails
+                  cloneUniswapContractDetails
                 ),
           ],
         },

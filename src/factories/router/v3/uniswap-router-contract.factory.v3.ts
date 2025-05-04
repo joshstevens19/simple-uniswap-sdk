@@ -19,7 +19,7 @@ export class UniswapRouterContractFactoryV3 {
 
   constructor(
     private _ethersProvider: EthersProvider,
-    private _routerAddress: string = UniswapContractContextV3.routerAddress,
+    public _routerAddress: string = UniswapContractContextV3.routerAddress,
     private _routerAbi: JsonFragment[] = UniswapContractContextV3.routerAbi
   ) {}
 

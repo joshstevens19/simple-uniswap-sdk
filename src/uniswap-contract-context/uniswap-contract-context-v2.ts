@@ -6,6 +6,11 @@ import {
 
 export class UniswapContractContextV2 {
   /**
+   * The uniswap name
+   */
+   public static description = 'Uniswap';
+
+  /**
    * The uniswap router address
    */
   public static routerAddress = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
